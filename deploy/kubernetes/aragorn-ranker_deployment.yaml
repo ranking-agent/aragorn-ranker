@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aragorn-ranker-deployment
+  labels:
+    app: aragorn-ranker
+    service: ranker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aragorn-ranker
+  template:
+    metadata:
+      labels:
+        app: aragorn-ranker
+    spec:
+      containers:
+      - name: aragorn-ranker
+        image: renciorg/aragorn-ranker:latest
+        envFrom:
+          - configMapRef:
+              name: aragorn-ranker-env
+        command:
+          - "gunicorn"
+        args:
+          - "--bind"
+          - "0.0.0.0:4868"
+          - "-w"
+          - "4"
+          - "-k"
+          - "uvicorn.workers.UvicornWorker"
+          - "-t"
+          - "600"
+          - "aragorn-ranker.server:APP"
+        volumeMounts:
+          - mountPath: /home/murphy/logs
+            name: logs-volume
+          - mountPath: /home/murphy/shared
+            name: shared-volume
+        ports:
+          - containerPort: 4868
+      restartPolicy: Always
+      volumes:
+        - name: logs-volume
+          persistentVolumeClaim:
+            claimName: aragorn-ranker-logs-pvc
+        - name: shared-volume
+          persistentVolumeClaim:
+            claimName: aragorn-ranker-shared-pvc

@@ -1,0 +1,624 @@
+{
+    "knowledge_graph": {
+        "edges": [
+            {
+                "id": "08c3eeec57fe0374dc63e6ae7d9b1415",
+                "source_id": "MONDO:0018982",
+                "target_id": "HGNC:7897",
+                "type": "has_phenotype",
+                "publications": []
+            },
+            {
+                "id": "78b2176fe83ffb7eafff1383bfc0249b",
+                "source_id": "MONDO:0018982",
+                "target_id": "HGNC:7897",
+                "type": "gene_associated_with_condition",
+                "publications": [
+                    "PMID:16098014",
+                    "PMID:17160617",
+                    "PMID:22065762",
+                    "PMID:19013089",
+                    "PMID:11333381",
+                    "PMID:26206375",
+                    "PMID:15465421",
+                    "PMID:25131710",
+                    "PMID:27139891",
+                    "PMID:24676439",
+                    "PMID:20826119",
+                    "PMID:23653225",
+                    "PMID:23430855",
+                    "PMID:12401890",
+                    "PMID:11182931",
+                    "PMID:26981555",
+                    "PMID:11479732",
+                    "PMID:15459971",
+                    "PMID:19206179",
+                    "PMID:15130691",
+                    "PMID:15596783",
+                    "PMID:21245028",
+                    "PMID:23773996",
+                    "PMID:19744920",
+                    "PMID:11545687",
+                    "PMID:23142039",
+                    "PMID:19223215",
+                    "PMID:4795418",
+                    "PMID:24915861",
+                    "PMID:22326530",
+                    "PMID:24035292",
+                    "PMID:20718790",
+                    "PMID:11754101",
+                    "PMID:22704015",
+                    "PMID:24570279",
+                    "PMID:18216017",
+                    "PMID:22750297",
+                    "PMID:10480349",
+                    "PMID:24386122",
+                    "PMID:9211849",
+                    "PMID:26937389",
+                    "PMID:9802331",
+                    "PMID:17003072",
+                    "PMID:23433426",
+                    "PMID:25236789",
+                    "PMID:12955717",
+                    "PMID:22216111",
+                    "PMID:19609713",
+                    "PMID:3378364",
+                    "PMID:16126423",
+                    "PMID:9634529",
+                    "PMID:12205649",
+                    "PMID:11349231",
+                    "PMID:12408188",
+                    "PMID:23774949",
+                    "PMID:23146215",
+                    "PMID:22505584",
+                    "PMID:12974729",
+                    "PMID:22476655",
+                    "PMID:22676771",
+                    "PMID:26666848",
+                    "PMID:23427322",
+                    "PMID:16720792",
+                    "PMID:19900398",
+                    "PMID:10521297",
+                    "PMID:24001525",
+                    "PMID:19252935",
+                    "PMID:12554680",
+                    "PMID:10521290",
+                    "PMID:19307542",
+                    "PMID:16778374"
+                ]
+            },
+            {
+                "id": "4307c21780ba9435f2ec841186fc1aef",
+                "source_id": "MONDO:0009757",
+                "target_id": "HGNC:7897",
+                "type": "disease_to_gene_association",
+                "publications": []
+            },
+            {
+                "id": "09faa8e1752c8078bd854ee50479fcd1",
+                "source_id": "MONDO:0009757",
+                "target_id": "HGNC:7897",
+                "type": "gene_associated_with_condition",
+                "publications": [
+                    "PMID:16098014",
+                    "PMID:17160617",
+                    "PMID:22065762",
+                    "PMID:19013089",
+                    "PMID:11333381",
+                    "PMID:26206375",
+                    "PMID:15465421",
+                    "PMID:25131710",
+                    "PMID:27139891",
+                    "PMID:24676439",
+                    "PMID:20826119",
+                    "PMID:23653225",
+                    "PMID:23430855",
+                    "PMID:12401890",
+                    "PMID:11182931",
+                    "PMID:26981555",
+                    "PMID:11479732",
+                    "PMID:15459971",
+                    "PMID:19206179",
+                    "PMID:15130691",
+                    "PMID:15596783",
+                    "PMID:21245028",
+                    "PMID:23773996",
+                    "PMID:19744920",
+                    "PMID:11545687",
+                    "PMID:23142039",
+                    "PMID:19223215",
+                    "PMID:4795418",
+                    "PMID:24915861",
+                    "PMID:22326530",
+                    "PMID:24035292",
+                    "PMID:20718790",
+                    "PMID:11754101",
+                    "PMID:22704015",
+                    "PMID:24570279",
+                    "PMID:18216017",
+                    "PMID:22750297",
+                    "PMID:10480349",
+                    "PMID:24386122",
+                    "PMID:9211849",
+                    "PMID:26937389",
+                    "PMID:9802331",
+                    "PMID:17003072",
+                    "PMID:23433426",
+                    "PMID:25236789",
+                    "PMID:12955717",
+                    "PMID:22216111",
+                    "PMID:19609713",
+                    "PMID:3378364",
+                    "PMID:16126423",
+                    "PMID:9634529",
+                    "PMID:12205649",
+                    "PMID:11349231",
+                    "PMID:12408188",
+                    "PMID:23774949",
+                    "PMID:23146215",
+                    "PMID:22505584",
+                    "PMID:12974729",
+                    "PMID:22476655",
+                    "PMID:22676771",
+                    "PMID:26666848",
+                    "PMID:23427322",
+                    "PMID:16720792",
+                    "PMID:19900398",
+                    "PMID:10521297",
+                    "PMID:24001525",
+                    "PMID:19252935",
+                    "PMID:12554680",
+                    "PMID:10521290",
+                    "PMID:19307542",
+                    "PMID:16778374"
+                ]
+            },
+            {
+                "id": "5579d0ec3e69cf5bd79fd643942d8536",
+                "source_id": "MONDO:0005737",
+                "target_id": "HGNC:7897",
+                "type": "disease_to_gene_association",
+                "publications": []
+            },
+            {
+                "id": "3e0357ca76a619211570454f2c6cf992",
+                "source_id": "HGNC:7897",
+                "target_id": "MONDO:0009757",
+                "type": "gene_associated_with_condition",
+                "publications": [
+                    "PMID:16098014",
+                    "PMID:17160617",
+                    "PMID:22065762",
+                    "PMID:19013089",
+                    "PMID:11333381",
+                    "PMID:26206375",
+                    "PMID:15465421",
+                    "PMID:25131710",
+                    "PMID:27139891",
+                    "PMID:24676439",
+                    "PMID:20826119",
+                    "PMID:23653225",
+                    "PMID:23430855",
+                    "PMID:12401890",
+                    "PMID:11182931",
+                    "PMID:26981555",
+                    "PMID:11479732",
+                    "PMID:15459971",
+                    "PMID:19206179",
+                    "PMID:15130691",
+                    "PMID:15596783",
+                    "PMID:21245028",
+                    "PMID:23773996",
+                    "PMID:19744920",
+                    "PMID:11545687",
+                    "PMID:23142039",
+                    "PMID:19223215",
+                    "PMID:4795418",
+                    "PMID:24915861",
+                    "PMID:22326530",
+                    "PMID:24035292",
+                    "PMID:20718790",
+                    "PMID:11754101",
+                    "PMID:22704015",
+                    "PMID:24570279",
+                    "PMID:18216017",
+                    "PMID:22750297",
+                    "PMID:10480349",
+                    "PMID:24386122",
+                    "PMID:9211849",
+                    "PMID:26937389",
+                    "PMID:9802331",
+                    "PMID:17003072",
+                    "PMID:23433426",
+                    "PMID:25236789",
+                    "PMID:12955717",
+                    "PMID:22216111",
+                    "PMID:19609713",
+                    "PMID:3378364",
+                    "PMID:16126423",
+                    "PMID:9634529",
+                    "PMID:12205649",
+                    "PMID:11349231",
+                    "PMID:12408188",
+                    "PMID:23774949",
+                    "PMID:23146215",
+                    "PMID:22505584",
+                    "PMID:12974729",
+                    "PMID:22476655",
+                    "PMID:22676771",
+                    "PMID:26666848",
+                    "PMID:23427322",
+                    "PMID:16720792",
+                    "PMID:19900398",
+                    "PMID:10521297",
+                    "PMID:24001525",
+                    "PMID:19252935",
+                    "PMID:12554680",
+                    "PMID:10521290",
+                    "PMID:19307542",
+                    "PMID:16778374"
+                ]
+            },
+            {
+                "id": "0ad16bee8af8229e57d24582ec2f179b",
+                "source_id": "MONDO:0019255",
+                "target_id": "HGNC:7897",
+                "type": "has_phenotype",
+                "publications": []
+            },
+            {
+                "id": "456976ff982dd5fff0e1e92a601f8340",
+                "source_id": "MONDO:0019255",
+                "target_id": "HGNC:7897",
+                "type": "gene_associated_with_condition",
+                "publications": [
+                    "PMID:16098014",
+                    "PMID:17160617",
+                    "PMID:22065762",
+                    "PMID:19013089",
+                    "PMID:11333381",
+                    "PMID:26206375",
+                    "PMID:15465421",
+                    "PMID:25131710",
+                    "PMID:27139891",
+                    "PMID:24676439",
+                    "PMID:20826119",
+                    "PMID:23653225",
+                    "PMID:23430855",
+                    "PMID:12401890",
+                    "PMID:11182931",
+                    "PMID:26981555",
+                    "PMID:11479732",
+                    "PMID:15459971",
+                    "PMID:19206179",
+                    "PMID:15130691",
+                    "PMID:15596783",
+                    "PMID:21245028",
+                    "PMID:23773996",
+                    "PMID:19744920",
+                    "PMID:11545687",
+                    "PMID:23142039",
+                    "PMID:19223215",
+                    "PMID:4795418",
+                    "PMID:24915861",
+                    "PMID:22326530",
+                    "PMID:24035292",
+                    "PMID:20718790",
+                    "PMID:11754101",
+                    "PMID:22704015",
+                    "PMID:24570279",
+                    "PMID:18216017",
+                    "PMID:22750297",
+                    "PMID:10480349",
+                    "PMID:24386122",
+                    "PMID:9211849",
+                    "PMID:26937389",
+                    "PMID:9802331",
+                    "PMID:17003072",
+                    "PMID:23433426",
+                    "PMID:25236789",
+                    "PMID:12955717",
+                    "PMID:22216111",
+                    "PMID:19609713",
+                    "PMID:3378364",
+                    "PMID:16126423",
+                    "PMID:9634529",
+                    "PMID:12205649",
+                    "PMID:11349231",
+                    "PMID:12408188",
+                    "PMID:23774949",
+                    "PMID:23146215",
+                    "PMID:22505584",
+                    "PMID:12974729",
+                    "PMID:22476655",
+                    "PMID:22676771",
+                    "PMID:26666848",
+                    "PMID:23427322",
+                    "PMID:16720792",
+                    "PMID:19900398",
+                    "PMID:10521297",
+                    "PMID:24001525",
+                    "PMID:19252935",
+                    "PMID:12554680",
+                    "PMID:10521290",
+                    "PMID:19307542",
+                    "PMID:16778374"
+                ]
+            },
+            {
+                "id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                "num_publications": 48,
+                "source_id": "MONDO:0005737",
+                "target_id": "HGNC:7897",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "52a810a9-c8a1-494a-a69b-7e3e197a41f7",
+                "num_publications": 3,
+                "source_id": "MONDO:0005737",
+                "target_id": "MONDO:0018982",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "b786b3c1-47bf-438c-b214-6aed237a2ddd",
+                "num_publications": 389,
+                "source_id": "HGNC:7897",
+                "target_id": "MONDO:0018982",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "da96b98f-4363-4e5c-bcb1-b61c602469f5",
+                "num_publications": 1,
+                "source_id": "MONDO:0005737",
+                "target_id": "MONDO:0019255",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "91fa6831-396c-42ff-b11a-8768cb6bc389",
+                "num_publications": 4,
+                "source_id": "HGNC:7897",
+                "target_id": "MONDO:0019255",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "f474c502-02e5-497f-9600-d384e1e623e3",
+                "num_publications": 2,
+                "source_id": "MONDO:0005737",
+                "target_id": "MONDO:0009757",
+                "type": "literature_co-occurrence"
+            },
+            {
+                "id": "ae9d8a4f-f866-45b3-9b17-d41aff3f81c9",
+                "num_publications": 65,
+                "source_id": "HGNC:7897",
+                "target_id": "MONDO:0009757",
+                "type": "literature_co-occurrence"
+            }
+        ],
+        "nodes": [
+            {
+                "id": "MONDO:0018982",
+                "name": "Niemann-Pick disease type C",
+                "omnicorp_article_count": 856,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "MONDO:0009757",
+                "name": "Niemann-Pick disease, type C1",
+                "omnicorp_article_count": 74,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "MONDO:0005737",
+                "name": "Ebola hemorrhagic fever",
+                "omnicorp_article_count": 7071,
+                "type": [
+                    "disease"
+                ]
+            },
+            {
+                "id": "HGNC:7897",
+                "name": "NPC1",
+                "omnicorp_article_count": 984,
+                "type": [
+                    "gene"
+                ]
+            },
+            {
+                "id": "MONDO:0019255",
+                "name": "sphingolipidosis",
+                "omnicorp_article_count": 522,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            }
+        ]
+    },
+    "query_graph": {
+        "edges": [
+            {
+                "id": "e00",
+                "source_id": "n00",
+                "target_id": "n01"
+            },
+            {
+                "id": "e01",
+                "source_id": "n01",
+                "target_id": "n02"
+            }
+        ],
+        "nodes": [
+            {
+                "curie": "MONDO:0005737",
+                "id": "n00",
+                "type": "disease"
+            },
+            {
+                "id": "n01",
+                "type": "gene"
+            },
+            {
+                "id": "n02",
+                "type": "genetic_condition"
+            }
+        ]
+    },
+    "results": [
+        {
+            "edge_bindings": [
+                {
+                    "kg_id": "5579d0ec3e69cf5bd79fd643942d8536",
+                    "qg_id": "e00",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "4307c21780ba9435f2ec841186fc1aef",
+                    "qg_id": "e01",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "3e0357ca76a619211570454f2c6cf992",
+                    "qg_id": "e01",
+                    "weight": 1.0
+                },
+                {
+                    "kg_id": "09faa8e1752c8078bd854ee50479fcd1",
+                    "qg_id": "e01",
+                    "weight": 1.0
+                },
+                {
+                    "kg_id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                    "qg_id": "s3",
+                    "weight": 0.0032786645688920313
+                },
+                {
+                    "kg_id": "f474c502-02e5-497f-9600-d384e1e623e3",
+                    "qg_id": "s154",
+                    "weight": 0.00013603600616196587
+                },
+                {
+                    "kg_id": "ae9d8a4f-f866-45b3-9b17-d41aff3f81c9",
+                    "qg_id": "s155",
+                    "weight": 0.004462903202433033
+                }
+            ],
+            "node_bindings": [
+                {
+                    "kg_id": "MONDO:0005737",
+                    "qg_id": "n00"
+                },
+                {
+                    "kg_id": "HGNC:7897",
+                    "qg_id": "n01"
+                },
+                {
+                    "kg_id": "MONDO:0009757",
+                    "qg_id": "n02"
+                }
+            ]
+        },
+        {
+            "edge_bindings": [
+                {
+                    "kg_id": "5579d0ec3e69cf5bd79fd643942d8536",
+                    "qg_id": "e00",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "08c3eeec57fe0374dc63e6ae7d9b1415",
+                    "qg_id": "e01",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "78b2176fe83ffb7eafff1383bfc0249b",
+                    "qg_id": "e01",
+                    "weight": 1.0
+                },
+                {
+                    "kg_id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                    "qg_id": "s3",
+                    "weight": 0.0032786645688920313
+                },
+                {
+                    "kg_id": "52a810a9-c8a1-494a-a69b-7e3e197a41f7",
+                    "qg_id": "s77",
+                    "weight": 0.00019106151944114913
+                },
+                {
+                    "kg_id": "b786b3c1-47bf-438c-b214-6aed237a2ddd",
+                    "qg_id": "s78",
+                    "weight": 0.026701585281989626
+                }
+            ],
+            "node_bindings": [
+                {
+                    "kg_id": "MONDO:0005737",
+                    "qg_id": "n00"
+                },
+                {
+                    "kg_id": "HGNC:7897",
+                    "qg_id": "n01"
+                },
+                {
+                    "kg_id": "MONDO:0018982",
+                    "qg_id": "n02"
+                }
+            ]
+        },
+        {
+            "edge_bindings": [
+                {
+                    "kg_id": "5579d0ec3e69cf5bd79fd643942d8536",
+                    "qg_id": "e00",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "0ad16bee8af8229e57d24582ec2f179b",
+                    "qg_id": "e01",
+                    "weight": 0.2679491924311228
+                },
+                {
+                    "kg_id": "456976ff982dd5fff0e1e92a601f8340",
+                    "qg_id": "e01",
+                    "weight": 1.0
+                },
+                {
+                    "kg_id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                    "qg_id": "s3",
+                    "weight": 0.0032786645688920313
+                },
+                {
+                    "kg_id": "da96b98f-4363-4e5c-bcb1-b61c602469f5",
+                    "qg_id": "s112",
+                    "weight": 5.9559806065312415e-05
+                },
+                {
+                    "kg_id": "91fa6831-396c-42ff-b11a-8768cb6bc389",
+                    "qg_id": "s113",
+                    "weight": 0.0002733862280606125
+                }
+            ],
+            "node_bindings": [
+                {
+                    "kg_id": "MONDO:0005737",
+                    "qg_id": "n00"
+                },
+                {
+                    "kg_id": "HGNC:7897",
+                    "qg_id": "n01"
+                },
+                {
+                    "kg_id": "MONDO:0019255",
+                    "qg_id": "n02"
+                }
+            ]
+        }
+    ]
+}

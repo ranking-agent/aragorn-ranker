@@ -4,21 +4,33 @@
 # creates /home/murphy
 # sets HOME=/home/murphy and USER=murphy
 
-FROM python:3.7.4-buster
+FROM python:3.8.5
+
+# get some credit
+LABEL maintainer="powen@renci.org"
 
 # install basic tools
 RUN apt-get update
 RUN apt-get install -yq \
-    vim
+    nano
 
-# set up murphy
-RUN mkdir /home/murphy
-ENV HOME=/home/murphy
-ENV USER=murphy
+# make a directory for the repo
+RUN mkdir /repo
+
+# go to the directory where we are going to upload the repo
+WORKDIR /repo
+
+# get the latest code
+RUN git clone https://github.com/ranking-agent/aragorn-ranker.git
+
+# go to the repo dir
+WORKDIR /repo/aragorn-ranker
 
 # install requirements
-ADD ./requirements.txt /home/murphy/requirements.txt
-RUN pip install -r /home/murphy/requirements.txt --src /usr/local/src
+RUN pip install -r requirements.txt
 
-# finish
-WORKDIR /home/murphy
+# expose the default port
+EXPOSE 4868
+
+# start the service entry point
+ENTRYPOINT ["bash", "main.sh"]

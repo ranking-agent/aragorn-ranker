@@ -9,4 +9,4 @@ pyyaml==5.3.1
 redis==3.5.3
 uvicorn==0.12.1
 git+https://github.com/ranking-agent/reasoner#egg=reasoner
-git+https://github.com/ranking-agent/reasoner-pydantic#egg=reasoner-pydantic
+git+https://github.com/TranslatorSRI/reasoner-pydantic#egg=reasoner-pydantic

@@ -1,8 +1,9 @@
 # This Dockerfile is used to build a ROBOKOP python image
 # starts with the python image
-# installs vim
-# creates /home/murphy
-# sets HOME=/home/murphy and USER=murphy
+# installs nano
+# creates a directory for the repo
+# gets the aragorn-ranker repo
+# and runs main which enables the gunicorn web server
 
 FROM python:3.8.5
 

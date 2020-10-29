@@ -85,7 +85,7 @@ async def query(
         if len(publications) == 1:
             if '|' in publications[0]:
                 publications = publications[0].split('|')
-            elif ',' in publications[0]
+            elif ',' in publications[0]:
                 publications = publications[0].split(',')
         edge_pubs = edge.get('num_publications', len(publications))
         #now the nicer cleaner version when we have publications as an actual array

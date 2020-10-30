@@ -57,6 +57,5 @@ def log_exception(method):
 
 for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
-    APP.post('/' + operation, response_model=Message)(
-        log_exception(md.query)
-    )
+
+    APP.post('/' + operation, response_model=Message)(log_exception(md.query))

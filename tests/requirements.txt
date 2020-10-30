@@ -4,6 +4,7 @@ pytest-asyncio
 pytest-cov
 python-dotenv
 tox
+uvicorn
 uvloop
 git+https://github.com/ranking-agent/reasoner-pydantic#egg=reasoner-pydantic
 git+https://github.com/ranking-agent/reasoner#egg=reasoner

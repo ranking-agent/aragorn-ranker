@@ -8,11 +8,11 @@ from ranker.shared.util import get_curie_prefix
 logger = logging.getLogger(__name__)
 
 
-OMNICORP_DB = os.environ.get('OMNICORP_DB', 'robokop')
-OMNICORP_USER = os.environ.get('OMNICORP_USER', 'murphy')
-OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '5432')
-OMNICORP_HOST = os.environ.get('OMNICORP_HOST', '172.25.16.183')
-OMNICORP_PASSWORD = os.environ.get('OMNICORP_PASSWORD', 'ncatsgamma')
+OMNICORP_DB = os.environ.get('OMNICORP_DB', '')
+OMNICORP_USER = os.environ.get('OMNICORP_USER', '')
+OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '')
+OMNICORP_HOST = os.environ.get('OMNICORP_HOST', '')
+OMNICORP_PASSWORD = os.environ.get('OMNICORP_PASSWORD', '')
 
 
 class OmniCorp():

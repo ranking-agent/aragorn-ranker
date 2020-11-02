@@ -1,23 +1,21 @@
 version: "3"
 services:
-  redis:
-    container_name: redis
-    image: redis
-    ports:
-      - "6379:6379"
-
-  aragorn-ranker:
+  aragorn-ranker-compose:
     build:
       context: ./
-    container_name: aragorn-ranker
+
+    container_name: aragorn-ranker-deploy
+
     image: aragorn-ranker
+
     volumes:
       - ../logs:/d/dvols/logs
       - ./:/home/murphy/aragorn-ranker
 
     command: 'gunicorn --bind 0.0.0.0:4868 -w 4 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP'
 
-    ports: 4868:4868
+    ports:
+      - 4868:4868
 
     stdin_open: true
     tty: true

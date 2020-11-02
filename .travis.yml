@@ -5,12 +5,14 @@ python:
 services:
   - docker
 install:
-  - pip install tox neo4j-driver psycopg2 python-dotenv httpx
+  - pip install tox psycopg2 python-dotenv httpx
   - mkdir logs
   - mkdir cache
 before_script:
   - export PYTHONPATH=$(pwd)
+  - ./tests/setup/startup_helpers.sh
 script:
   - tox
 after_script:
+  - cd ./tests/helpers
   - docker-compose down

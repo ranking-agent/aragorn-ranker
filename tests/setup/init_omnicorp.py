@@ -7,17 +7,17 @@ file_path = os.path.dirname(os.path.realpath(__file__))
 dotenv_path = os.path.abspath(os.path.join(file_path, '..', '.env'))
 load_dotenv(dotenv_path=dotenv_path)
 
-print('env path: ' + dotenv_path)
-for key in os.environ:
-    print(key + ':' + os.environ[f'{key}'])
+print('Connecting')
 
 conn = psycopg2.connect(
     dbname=os.environ['OMNICORP_DB'],
-    user='murphy',#user=os.environ['OMNICORP_USER']
+    user=os.environ['OMNICORP_USER'],
     host=os.environ['OMNICORP_HOST'],
     port=os.environ['OMNICORP_PORT'],
     password=os.environ['OMNICORP_PASSWORD'])
 
+print('Connected'
+      )
 cur = conn.cursor()
 
 statement = f"CREATE SCHEMA IF NOT EXISTS omnicorp;\n"

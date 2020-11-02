@@ -3,6 +3,7 @@ pytest
 pytest-asyncio
 pytest-cov
 python-dotenv
+psycopg2
 tox
 git+https://github.com/ranking-agent/reasoner-pydantic#egg=reasoner-pydantic
 git+https://github.com/ranking-agent/reasoner#egg=reasoner

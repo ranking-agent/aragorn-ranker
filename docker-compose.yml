@@ -1,18 +1,22 @@
 version: "3"
 services:
-  aragorn-ranker:
-    container_name: aragorn-ranker
+  aragorn-ranker-compose:
     build:
-      context: .
-    command: 'gunicorn --bind 0.0.0.0:4868 -w 4 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP'
-    user: "${UID}:${GID}"
-    env_file:
-      - ../shared/robokop.env
-    environment:
-      - PYTHONPATH=/home/murphy/robokop-messenger
-    ports:
-      - "4868:4868"
+      context: ./
+
+    container_name: aragorn-ranker-deploy
+
+    image: aragorn-ranker
+
     volumes:
-      - ../logs:/home/murphy/logs
-      - ../shared:/home/murphy/shared
-      - ./:/home/murphy/robokop-messenger
+      - ../logs:/d/dvols/logs
+      - ./:/home/murphy/aragorn-ranker
+
+    command: 'gunicorn --bind 0.0.0.0:4868 -w 4 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP'
+
+    ports:
+      - 4868:4868
+
+    stdin_open: true
+    tty: true
+

@@ -1,8 +1,7 @@
 """Weight edges."""
-from collections import defaultdict
 import math
+from collections import defaultdict
 from typing import Optional
-
 from fastapi import Query
 from reasoner_pydantic import Request, Message
 

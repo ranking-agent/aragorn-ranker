@@ -9,10 +9,10 @@ services:
     env_file:
       - ../shared/robokop.env
     environment:
-      - PYTHONPATH=/home/murphy/robokop-messenger
+      - PYTHONPATH=/home/murphy/aragorn-ranker
     ports:
       - "4868:4868"
     volumes:
       - ../logs:/home/murphy/logs
       - ../shared:/home/murphy/shared
-      - ./:/home/murphy/robokop-messenger
+      - ./:/home/murphy/aragorn-ranker

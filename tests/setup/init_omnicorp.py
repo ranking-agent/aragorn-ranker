@@ -8,8 +8,8 @@ dotenv_path = os.path.abspath(os.path.join(file_path, '..', '.env'))
 load_dotenv(dotenv_path=dotenv_path)
 
 print('env path: ' + dotenv_path)
-for key, item in os.environ:
-    print(item[key])
+for key in os.environ:
+    print(key + ':' + os.environ[f'{key}'])
 
 conn = psycopg2.connect(
     dbname=os.environ['OMNICORP_DB'],

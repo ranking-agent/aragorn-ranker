@@ -2,6 +2,9 @@ dist: xenial
 language: python
 python:
   - "3.8.5"
+notifications:
+  email:
+    - powen@renci.org
 services:
   - docker
 install:
@@ -9,7 +12,6 @@ install:
   - mkdir logs
   - mkdir cache
 before_script:
-  - export PYTHONPATH=$(pwd)
   - chmod 777 ./tests/setup/startup_helpers.sh
   - ./tests/setup/startup_helpers.sh
 script:

@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 OMNICORP_DB = os.environ.get('OMNICORP_DB', 'omnicorp')
-OMNICORP_USER = os.environ.get('OMNICORP_USER', 'murphy')
-OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '5432')
+OMNICORP_USER = os.environ.get('OMNICORP_USER', 'auser')
+OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '1234')
 OMNICORP_HOST = os.environ.get('OMNICORP_HOST', 'localhost')
 OMNICORP_PASSWORD = os.environ.get('OMNICORP_PASSWORD', 'pword')
 

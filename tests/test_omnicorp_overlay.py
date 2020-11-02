@@ -23,4 +23,4 @@ def test_omnicorp_overlay(famcov_new):
     assert(len(answer['results'][0]['node_bindings'])== 3)
 
     # assert there are node bindings
-    assert(len(answer['results'][0]['edge_bindings']) == 9)
+    assert(len(answer['results'][0]['edge_bindings']) == 6)

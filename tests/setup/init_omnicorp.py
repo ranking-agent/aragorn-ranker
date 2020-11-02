@@ -28,6 +28,9 @@ statement += f"COPY omnicorp.mondo (curie,pubmedid) FROM '/data/omnicorp_mondo.c
 statement += f"CREATE TABLE IF NOT EXISTS omnicorp.hgnc (curie TEXT, pubmedid INTEGER);\n"
 statement += f"COPY omnicorp.hgnc (curie,pubmedid) FROM '/data/omnicorp_hgnc.csv' DELIMITER ',' CSV HEADER;"
 
+statement += f"CREATE TABLE IF NOT EXISTS omnicorp.chebi (curie TEXT, pubmedid INTEGER);\n"
+#statement += f"COPY omnicorp.hgnc (curie,pubmedid) FROM '/data/omnicorp_hgnc.csv' DELIMITER ',' CSV HEADER;"
+
 cur.execute(statement)
 cur.close()
 conn.commit()

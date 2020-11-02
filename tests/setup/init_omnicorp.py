@@ -11,7 +11,7 @@ print(dotenv_path)
 
 conn = psycopg2.connect(
     dbname=os.environ['OMNICORP_DB'],
-    user=os.environ['OMNICORP_USER'],
+    user='murphy',#user=os.environ['OMNICORP_USER']
     host=os.environ['OMNICORP_HOST'],
     port=os.environ['OMNICORP_PORT'],
     password=os.environ['OMNICORP_PASSWORD'])

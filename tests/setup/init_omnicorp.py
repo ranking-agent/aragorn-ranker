@@ -7,6 +7,8 @@ file_path = os.path.dirname(os.path.realpath(__file__))
 dotenv_path = os.path.abspath(os.path.join(file_path, '..', '.env'))
 load_dotenv(dotenv_path=dotenv_path)
 
+print(dotenv_path)
+
 conn = psycopg2.connect(
     dbname=os.environ['OMNICORP_DB'],
     user=os.environ['OMNICORP_USER'],

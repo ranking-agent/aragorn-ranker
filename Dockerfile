@@ -27,6 +27,8 @@ RUN git clone https://github.com/ranking-agent/aragorn-ranker.git
 # go to the repo dir
 WORKDIR /repo/aragorn-ranker
 
+RUN git checkout Phil_AR
+
 # install requirements
 RUN pip install -r requirements.txt
 

@@ -1,10 +1,7 @@
 #!/usr/bin/env python
-
-"""Run Redis-REST with referencing."""
-import argparse
-
 from gunicorn.app.wsgiapp import WSGIApplication
 
-# ranker.server:APP --bind 0.0.0.0:4868 -w 4 -k uvicorn.workers.UvicornWorker -t 600
+# --bind 0.0.0.0:8080 -w 1 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP
 app = WSGIApplication()
+
 app.run()

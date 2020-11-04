@@ -4,10 +4,10 @@ from operator import itemgetter
 from collections import defaultdict
 from itertools import combinations, permutations, product
 import logging
-import re
-from uuid import uuid4
 import numpy as np
-from ranker.shared.util import flatten_semilist
+# import re
+# from uuid import uuid4
+# from ranker.shared.util import flatten_semilist
 
 logger = logging.getLogger(__name__)
 

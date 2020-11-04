@@ -79,7 +79,16 @@ async def query(
 
     edges = kgraph['edges']
     for edge in edges:
-        edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
+        #We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
+        publications = edge.get('publications',[])
+        if len(publications) == 1:
+            if '|' in publications[0]:
+                publications = publications[0].split('|')
+            elif ',' in publications[0]:
+                publications = publications[0].split(',')
+        edge_pubs = edge.get('num_publications', len(publications))
+        #now the nicer cleaner version when we have publications as an actual array
+        #edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
         if edge['type'] == 'literature_co-occurrence':
             source_pubs = int(node_pubs[edge['source_id']])
             target_pubs = int(node_pubs[edge['target_id']])

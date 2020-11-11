@@ -47,7 +47,7 @@ class Cache:
                     db=redis_db)
 
             self.redis.get('x')
-            logger.info("Cache connected to redis at %s:%s/%s",
+            logger.debug("Cache connected to redis at %s:%s/%s",
                         redis_host,
                         redis_port,
                         redis_db)

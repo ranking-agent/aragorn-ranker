@@ -86,6 +86,7 @@ async def query(request: Request) -> Message:
     """
     message = request.message.dict()
 
+    qgraph = message['query_graph']
     kgraph = message['knowledge_graph']
     answers = message['results']
 
@@ -116,22 +117,51 @@ async def query(request: Request) -> Message:
             for node, value, key in zip(kgraph['nodes'], values, keys)
         ]
 
+        #which qgraph nodes are sets?
+        qgraph_setnodes = set([ n['id'] for n in qgraph['nodes'] if (('set' in n) and (n['set']))] )
+
         # Generate a set of pairs of node curies
         pair_to_answer = defaultdict(set)  # a map of node pairs to answers
         for ans_idx, answer_map in enumerate(answers):
 
             # Get all nodes that are not part of sets and densely connect them
-            nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
-            for node_pair in combinations(nodes, 2):
+            # can be str (not a set) or list (could be a set or not a set)
+            nonset_nodes = []
+            setnodes = {}
+            for nb in answer_map['node_bindings']:
+                if nb['qg_id'] in qgraph_setnodes:
+                    #this is a set
+                    if isinstance(nb['kg_id'],str):
+                        setnodes[nb['qg_id']] = [ nb['kg_id'] ]
+                    else:
+                        setnodes[nb['qg_id']] = nb['kg_id']
+                else:
+                    #not a set
+                    if isinstance(nb['kg_id'],str):
+                        nonset_nodes.append(nb['kg_id'])
+                    else:
+                        nonset_nodes.append(nb['kg_id'][0])
+
+            nonset_nodes = sorted(nonset_nodes)
+            #nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
+            for node_pair in combinations(nonset_nodes, 2):
                 pair_to_answer[node_pair].add(ans_idx)
 
+            #set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
+            #set_nodes = [n for el in set_nodes_list_list for n in el]
             # For all nodes that are within sets, connect them to all nodes that are not in sets
-            set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
-            set_nodes = [n for el in set_nodes_list_list for n in el]
-            for set_node in set_nodes:
-                for node in nodes:
-                    node_pair = tuple(sorted((node, set_node)))
-                    pair_to_answer[node_pair].add(ans_idx)
+            for qg_id,snodes in setnodes.items():
+                for snode in snodes:
+                    for node in nonset_nodes:
+                        node_pair = tuple(sorted((node, snode)))
+                        pair_to_answer[node_pair].add(ans_idx)
+
+            #now all nodes in set a to all nodes in set b
+            for qga,qgb in combinations(setnodes.keys(),2):
+                for anode in setnodes[qga]:
+                    for bnode in setnodes[qgb]:
+                        node_pair = tuple(sorted(anode,bnode))
+                        pair_to_answer[node_pair].add(ans_idx)
 
         # get all pair supports
         cached_prefixes = cache.get('OmnicorpPrefixes') if cache else None

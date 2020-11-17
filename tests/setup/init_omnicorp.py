@@ -22,14 +22,12 @@ cur = conn.cursor()
 
 statement = f"CREATE SCHEMA IF NOT EXISTS omnicorp;\n"
 
-statement += f"CREATE TABLE IF NOT EXISTS omnicorp.mondo (curie TEXT, pubmedid INTEGER);\n"
-statement += f"COPY omnicorp.mondo (curie,pubmedid) FROM '/data/omnicorp_mondo.csv' DELIMITER ',' CSV HEADER;\n"
+curie_types: list = ['mesh', 'mondo', 'ncbigene', 'ncbitaxon', 'chebi', 'chembl.compound']
 
-statement += f"CREATE TABLE IF NOT EXISTS omnicorp.hgnc (curie TEXT, pubmedid INTEGER);\n"
-statement += f"COPY omnicorp.hgnc (curie,pubmedid) FROM '/data/omnicorp_hgnc.csv' DELIMITER ',' CSV HEADER;"
+for item in curie_types:
+    statement += f"CREATE TABLE IF NOT EXISTS omnicorp.{item} (curie TEXT, pubmedid INTEGER);\n"
+    statement += f"COPY omnicorp.{item} (curie,pubmedid) FROM '/data/omnicorp_{item}.csv' DELIMITER ',' CSV HEADER;\n"
 
-statement += f"CREATE TABLE IF NOT EXISTS omnicorp.chebi (curie TEXT, pubmedid INTEGER);\n"
-#statement += f"COPY omnicorp.hgnc (curie,pubmedid) FROM '/data/omnicorp_hgnc.csv' DELIMITER ',' CSV HEADER;"
 
 cur.execute(statement)
 cur.close()

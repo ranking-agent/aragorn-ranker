@@ -1,4 +1,4 @@
-# This Dockerfile is used to build a ROBOKOP python image
+# This Dockerfile is used to build the aragorn ranker image
 # starts with the python image
 # installs nano
 # creates a directory for the repo

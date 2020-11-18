@@ -1,0 +1,3954 @@
+{
+    "query_graph": {
+        "nodes": [
+            {
+                "id": "a",
+                "curie": "MONDO:0005090",
+                "type": "disease"
+            },
+            {
+                "id": "b",
+                "type": "chemical_substance",
+                "set": true
+            }
+        ],
+        "edges": [
+            {
+                "id": "ab",
+                "source_id": "b",
+                "target_id": "a",
+                "type": "treats"
+            }
+        ]
+    },
+    "knowledge_graph": {
+        "nodes": [
+            {
+                "id": "MONDO:0005090",
+                "type": [
+                    "named_thing",
+                    "disease",
+                    "disease_or_phenotypic_feature"
+                ],
+                "synonyms": [
+                    "schizophrenia",
+                    "schizophrenia-1",
+                    "schizoaffective disorder",
+                    "schizophrenia with or without an affective disorder",
+                    "schizophrenia; SCZD",
+                    "SCZD"
+                ],
+                "name": "schizophrenia (disease)",
+                "equivalent_identifiers": [
+                    "SNOMEDCT:268748000",
+                    "SNOMEDCT:192322009",
+                    "SNOMEDCT:83746006",
+                    "SNOMEDCT:191549007",
+                    "MESH:D012562",
+                    "SNOMEDCT:191526005",
+                    "NCIT:C3362",
+                    "MESH:D012561",
+                    "UMLS:C0154346",
+                    "UMLS:C0154451",
+                    "UMLS:C0154362",
+                    "NCIT:C35270",
+                    "UMLS:C0154454",
+                    "UMLS:C1562670",
+                    "UMLS:C0154388",
+                    "UMLS:C0375158",
+                    "UMLS:C0154342",
+                    "SNOMEDCT:191528006",
+                    "UMLS:C0338796",
+                    "UMLS:C0270395",
+                    "UMLS:C0154361",
+                    "UMLS:C1542843",
+                    "UMLS:C0154347",
+                    "SNOMEDCT:51133006",
+                    "UMLS:C0154345",
+                    "UMLS:C4524147",
+                    "UMLS:C0154340",
+                    "NCIT:C35004",
+                    "MEDDRA:10061040",
+                    "SNOMEDCT:111483008",
+                    "SNOMEDCT:191540006",
+                    "NCIT:C35184",
+                    "UMLS:C0154452",
+                    "UMLS:C0863109",
+                    "UMLS:C0154450",
+                    "NCIT:C35183",
+                    "UMLS:C0154349",
+                    "SNOMEDCT:29599000",
+                    "UMLS:C0270406",
+                    "UMLS:C1656427",
+                    "SNOMEDCT:416340002",
+                    "SNOMEDCT:58214004",
+                    "NCIT:C35007",
+                    "SNOMEDCT:154870000",
+                    "UMLS:C0853931",
+                    "UMLS:C0154357",
+                    "UMLS:C0029838",
+                    "MONDO:0005090",
+                    "DOID:5419",
+                    "SNOMEDCT:268626003",
+                    "UMLS:C0857501",
+                    "SNOMEDCT:191535003",
+                    "MESH:D012559",
+                    "UMLS:C0154382",
+                    "UMLS:C0154364",
+                    "UMLS:C0221520",
+                    "UMLS:C0270390",
+                    "UMLS:C0154381",
+                    "UMLS:C0036346",
+                    "SNOMEDCT:16990005",
+                    "UMLS:C0036347",
+                    "UMLS:C0154373",
+                    "SNOMEDCT:31373002",
+                    "UMLS:C0270408",
+                    "SNOMEDCT:154869001",
+                    "UMLS:C0036341",
+                    "SNOMEDCT:191534004",
+                    "UMLS:C0338793",
+                    "UMLS:C0375157",
+                    "SNOMEDCT:192324005",
+                    "UMLS:C4049474",
+                    "SNOMEDCT:35252006",
+                    "UMLS:C0154344",
+                    "UMLS:C0221765",
+                    "UMLS:C0154339",
+                    "SNOMEDCT:4926007",
+                    "SNOMEDCT:154867004",
+                    "SNOMEDCT:192327003",
+                    "UMLS:C0154363",
+                    "UMLS:C0154374",
+                    "UMLS:C0154380",
+                    "OMIM:181500",
+                    "SNOMEDCT:154866008",
+                    "UMLS:C0154387",
+                    "UMLS:C0154352",
+                    "UMLS:C0154358",
+                    "SNOMEDCT:192320001",
+                    "SNOMEDCT:111484002",
+                    "UMLS:C0154360",
+                    "SNOMEDCT:71103003",
+                    "UMLS:C0154384",
+                    "SNOMEDCT:191529003",
+                    "UMLS:C0154453",
+                    "UMLS:C4049473",
+                    "SNOMEDCT:231484006",
+                    "NCIT:C35269",
+                    "UMLS:C0030484",
+                    "UMLS:C0270403",
+                    "NCIT:C35185",
+                    "SNOMEDCT:76566000",
+                    "UMLS:C3544321",
+                    "UMLS:C0154356",
+                    "UMLS:C0036351",
+                    "HP:0100753",
+                    "UMLS:C0270381",
+                    "SNOMEDCT:191533005",
+                    "UMLS:C0154341",
+                    "UMLS:C1535118",
+                    "SNOMEDCT:191699003",
+                    "SNOMEDCT:191687005",
+                    "SNOMEDCT:26025008",
+                    "UMLS:C0154343",
+                    "MEDDRA:10039626",
+                    "NCIT:C35721",
+                    "NCIT:C35005",
+                    "UMLS:C0154351",
+                    "SNOMEDCT:192325006",
+                    "UMLS:C1536217",
+                    "SNOMEDCT:191579000",
+                    "NCIT:C94370",
+                    "UMLS:C0154372",
+                    "UMLS:C0154383",
+                    "UMLS:C0154354",
+                    "SNOMEDCT:191541005",
+                    "UMLS:C0392322",
+                    "UMLS:C0154350",
+                    "SNOMEDCT:191527001",
+                    "SNOMEDCT:26472000",
+                    "UMLS:C0270384"
+                ]
+            },
+            {
+                "id": "CHEBI:10119",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "5-{2-[4-(1,2-benzothiazol-3-yl)piperazin-1-yl]ethyl}-6-chloro-1,3-dihydro-2H-indol-2-one",
+                    "Ziprasidone",
+                    "ziprasidona",
+                    "ziprasidone",
+                    "ziprasidonum"
+                ],
+                "name": "ziprasidone",
+                "equivalent_identifiers": [
+                    "CHEBI:10119",
+                    "KEGG.COMPOUND:C07568",
+                    "CHEMBL.COMPOUND:CHEMBL708",
+                    "GTOPDB:59",
+                    "INCHIKEY:QRGLOHALUOQSDT-UHFFFAOYSA-N",
+                    "DRUGBANK:DB00246",
+                    "PUBCHEM:60854",
+                    "MESH:C092292",
+                    "UNII:6UKA5VEJ6X",
+                    "HMDB:HMDB0014391"
+                ]
+            },
+            {
+                "id": "CHEBI:135778",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "synonyms": [
+                    "clocapramine HCl",
+                    "clocapramine hydrochloride",
+                    "clocarpramine"
+                ],
+                "name": "clocapramine",
+                "equivalent_identifiers": [
+                    "UNII:6EEL1GB72K",
+                    "CHEBI:135778",
+                    "DRUGBANK:DB09003",
+                    "INCHIKEY:KRCTXIMBJOXIRC-AWEZNQCLSA-N",
+                    "MESH:C000449",
+                    "CHEMBL.COMPOUND:CHEMBL2104103",
+                    "PUBCHEM:2793"
+                ]
+            },
+            {
+                "id": "MESH:D003990",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Dibenzoxepins",
+                "equivalent_identifiers": [
+                    "MESH:D003990"
+                ]
+            },
+            {
+                "id": "CHEBI:3766",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "8-chloro-11-(4-methylpiperazin-1-yl)-5H-dibenzo[b,e][1,4]diazepine",
+                    "Clozapine",
+                    "Clozapin",
+                    "clozapina",
+                    "clozapine",
+                    "clozapinum"
+                ],
+                "name": "clozapine",
+                "equivalent_identifiers": [
+                    "KEGG.COMPOUND:C06924",
+                    "CHEBI:3766",
+                    "CHEMBL.COMPOUND:CHEMBL42",
+                    "MESH:D003024",
+                    "GTOPDB:38",
+                    "UNII:J60AR2IKIC",
+                    "PUBCHEM:135398737",
+                    "HMDB:HMDB0014507",
+                    "INCHIKEY:APSCTLSVGWMNTN-IAGOWNOFSA-N",
+                    "DRUGBANK:DB00363"
+                ]
+            },
+            {
+                "id": "CHEBI:31981",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "periciazine",
+                "equivalent_identifiers": [
+                    "CHEMBL.COMPOUND:CHEMBL251940",
+                    "INCHIKEY:YOKUDVNJYHCXIK-UHFFFAOYSA-N",
+                    "MESH:C084584",
+                    "HMDB:HMDB0015546",
+                    "UNII:3405M6FD73",
+                    "DRUGBANK:DB01608",
+                    "PUBCHEM:4747",
+                    "GTOPDB:9216",
+                    "CHEBI:31981"
+                ]
+            },
+            {
+                "id": "CHEBI:8707",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "2-[2-(4-dibenzo[b,f][1,4]thiazepin-11-ylpiperazin-1-yl)ethoxy]ethanol",
+                    "Quetiapine",
+                    "2-[2-(4-Dibenzo[b,f][1,4]thiazepin-11-yl-1-piperazinyl)ethoxy]ethanol",
+                    "quetiapina",
+                    "quetiapine",
+                    "quetiapinum"
+                ],
+                "name": "quetiapine",
+                "equivalent_identifiers": [
+                    "UNII:BGL0JSY5SI",
+                    "MESH:C069541",
+                    "CHEMBL.COMPOUND:CHEMBL716",
+                    "CHEBI:8707",
+                    "GTOPDB:50",
+                    "DRUGBANK:DB01224",
+                    "PUBCHEM:5002",
+                    "INCHIKEY:ZKLZSAACDZEQLJ-HXUWFJFHSA-N",
+                    "HMDB:HMDB0005021",
+                    "KEGG.COMPOUND:C07397"
+                ]
+            },
+            {
+                "id": "MESH:D013469",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Sulpiride",
+                "equivalent_identifiers": [
+                    "MESH:D013469",
+                    "UNII:7MNE9M8287"
+                ]
+            },
+            {
+                "id": "MESH:C030265",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "nemonapride",
+                "equivalent_identifiers": [
+                    "UNII:Q88T5P3444",
+                    "MESH:C030265"
+                ]
+            },
+            {
+                "id": "CHEBI:5613",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "4-[4-(4-chlorophenyl)-4-hydroxypiperidin-1-yl]-1-(4-fluorophenyl)butan-1-one",
+                    "1-(3-p-fluorobenzoylpropyl)-4-p-chlorophenyl-4-hydroxypiperidine",
+                    "4-(4-(para-chlorophenyl)-4-hydroxypiperidino)-4'-fluorobutyrophenone",
+                    "4-[4-(4-chlorophenyl)-4-hydroxy-1-piperidyl]-1-(4-fluorophenyl)-butan-1-one",
+                    "4'-fluoro-4-(4-(p-chlorophenyl)-4-hydroxypiperidinyl)butyrophenone",
+                    "4'-fluoro-4-(4-hydroxy-4-(4'-chlorophenyl)piperidino)butyrophenone",
+                    "gamma-(4-(p-chlorophenyl)-4-hydroxpiperidino)-p-fluorbutyrophenone",
+                    "Haldol",
+                    "haloperidol",
+                    "haloperidolum"
+                ],
+                "name": "haloperidol",
+                "equivalent_identifiers": [
+                    "KEGG.COMPOUND:C01814",
+                    "CHEMBL.COMPOUND:CHEMBL54",
+                    "UNII:J6292F8L3D",
+                    "PUBCHEM:3559",
+                    "MESH:D006220",
+                    "DRUGBANK:DB00502",
+                    "HMDB:HMDB0014645",
+                    "INCHIKEY:RTWGXFRLCDXCRX-OJSVXGLKSA-N",
+                    "CHEBI:5613",
+                    "GTOPDB:86"
+                ]
+            },
+            {
+                "id": "MESH:D000068882",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Paliperidone Palmitate",
+                "equivalent_identifiers": [
+                    "MESH:D000068882",
+                    "MESH:C548956",
+                    "UNII:R8P8USM8FR"
+                ]
+            },
+            {
+                "id": "CHEBI:70735",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "(3aR,4S,7R,7aS)-2-{[(1R,2R)-2-{[4-(1,2-benzothiazol-3-yl)piperazin-1-yl]methyl}cyclohexyl]methyl}hexahydro-1H-4,7-methanoisoindole-1,3(2H)-dione",
+                    "lurasidona",
+                    "lurasidone",
+                    "lurasidonum"
+                ],
+                "name": "lurasidone",
+                "equivalent_identifiers": [
+                    "GTOPDB:7461",
+                    "UNII:22IC88528T",
+                    "MESH:C525644",
+                    "INCHIKEY:NZESJOKORMSILA-ZARYIDLBSA-N",
+                    "PUBCHEM:213046",
+                    "CHEMBL.COMPOUND:CHEMBL1237021",
+                    "DRUGBANK:DB08815",
+                    "CHEBI:70735"
+                ]
+            },
+            {
+                "id": "MESH:D000077582",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Amisulpride",
+                "equivalent_identifiers": [
+                    "MESH:D000077582",
+                    "UNII:8110R61I4U"
+                ]
+            },
+            {
+                "id": "CHEBI:34605",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "synonyms": [
+                    "CX-516"
+                ],
+                "name": "CX-516",
+                "equivalent_identifiers": [
+                    "KEGG.COMPOUND:C13675",
+                    "GTOPDB:4165",
+                    "INCHIKEY:WRPPYCQXFUXOQL-IYNIXLDNSA-N",
+                    "UNII:Z5QU38B4V9",
+                    "DRUGBANK:DB06247",
+                    "CHEMBL.COMPOUND:CHEMBL136800",
+                    "PUBCHEM:148184",
+                    "CHEBI:34605",
+                    "MESH:C097396"
+                ]
+            },
+            {
+                "id": "MESH:C515050",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "zopiclone",
+                "equivalent_identifiers": [
+                    "UNII:03A5ORL08Q",
+                    "MESH:C515050"
+                ]
+            },
+            {
+                "id": "MESH:C007761",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "flupenthixol decanoate",
+                "equivalent_identifiers": [
+                    "MESH:C007761",
+                    "UNII:3B2FE28C1W"
+                ]
+            },
+            {
+                "id": "MESH:D012906",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Smoke",
+                "equivalent_identifiers": [
+                    "MESH:D012906"
+                ]
+            },
+            {
+                "id": "CHEBI:92293",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "1-[10-[3-[4-(2-hydroxyethyl)-1-piperidinyl]propyl]-2-phenothiazinyl]ethanone",
+                "equivalent_identifiers": [
+                    "UNII:KL6248WNW4",
+                    "CHEBI:92293",
+                    "INCHIKEY:RBIFNGAZHMWSFC-UHFFFAOYSA-N",
+                    "CHEMBL.COMPOUND:CHEMBL1584",
+                    "MESH:C067601",
+                    "PUBCHEM:19675"
+                ]
+            },
+            {
+                "id": "CHEBI:65173",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "1-(4-{3-[4-(6-fluoro-1,2-benzoxazol-3-yl)piperidin-1-yl]propoxy}-3-methoxyphenyl)ethanone",
+                    "1-[4-[3-[4-(6-fluoro-1,2-benzisoxazol-3-yl)-1- piperidinyl]propoxy]-3-methoxyphenyl]ethanone",
+                    "4'-(3-(4-(6-fluoro-1,2-benzisoxazol-3-yl)piperidino)propoxy)-3'-methoxyacetophenone",
+                    "Fanapt",
+                    "Fanapta",
+                    "iloperidona",
+                    "iloperidone",
+                    "iloperidonum",
+                    "Zomaril"
+                ],
+                "name": "iloperidone",
+                "equivalent_identifiers": [
+                    "CHEBI:65173",
+                    "UNII:VPO7KJ050N",
+                    "CHEMBL.COMPOUND:CHEMBL14376",
+                    "GTOPDB:87",
+                    "DRUGBANK:DB04946",
+                    "INCHIKEY:SIVSOFOFVRLIPH-UHFFFAOYSA-N",
+                    "MESH:C081732",
+                    "PUBCHEM:71360"
+                ]
+            },
+            {
+                "id": "MESH:D000069470",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Venlafaxine Hydrochloride",
+                "equivalent_identifiers": [
+                    "MESH:D000069470",
+                    "UNII:7D7RX5A8MO"
+                ]
+            },
+            {
+                "id": "CHEBI:31236",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "7-{4-[4-(2,3-dichlorophenyl)piperazin-1-yl]butoxy}-3,4-dihydroquinolin-2(1H)-one",
+                    "aripiprazole",
+                    "Aripiprazole",
+                    "Abilify",
+                    "Abilitat",
+                    "aripiprazol",
+                    "aripiprazolum"
+                ],
+                "name": "aripiprazole",
+                "equivalent_identifiers": [
+                    "DRUGBANK:DB01238",
+                    "CHEMBL.COMPOUND:CHEMBL1112",
+                    "GTOPDB:34",
+                    "INCHIKEY:HBRQZJDFQWHINU-SELJRJPRSA-N",
+                    "CHEBI:31236",
+                    "MESH:D000068180",
+                    "UNII:82VFR53I78",
+                    "KEGG.COMPOUND:C12564",
+                    "PUBCHEM:60795",
+                    "MESH:C094645",
+                    "HMDB:HMDB0005042"
+                ]
+            },
+            {
+                "id": "MESH:D011433",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Propranolol",
+                "equivalent_identifiers": [
+                    "MESH:D011433",
+                    "UNII:9Y8NXQ24VQ"
+                ]
+            },
+            {
+                "id": "CHEBI:7735",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "2-methyl-4-(4-methylpiperazin-1-yl)-10H-thieno[2,3-b][1,5]benzodiazepine",
+                    "Olanzapine",
+                    "olanzapina",
+                    "olanzapine",
+                    "olanzapinum",
+                    "Zyprexa"
+                ],
+                "name": "olanzapine",
+                "equivalent_identifiers": [
+                    "PUBCHEM:135398745",
+                    "INCHIKEY:JQQNLWJEKGFILV-UHFFFAOYSA-N",
+                    "KEGG.COMPOUND:C07322",
+                    "MESH:D000077152",
+                    "CHEMBL.COMPOUND:CHEMBL715",
+                    "UNII:N7U69T4SZR",
+                    "CHEBI:7735",
+                    "MESH:C076029",
+                    "DRUGBANK:DB00334",
+                    "HMDB:HMDB0005012"
+                ]
+            },
+            {
+                "id": "MESH:D011398",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Promethazine",
+                "equivalent_identifiers": [
+                    "MESH:D011398",
+                    "UNII:FF28EJQ494"
+                ]
+            },
+            {
+                "id": "CHEMBL.COMPOUND:CHEMBL2105481",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "ZETIDOLINE",
+                "equivalent_identifiers": [
+                    "INCHIKEY:QSFREBZMBNRGOK-UHFFFAOYSA-N",
+                    "CHEMBL.COMPOUND:CHEMBL2105481",
+                    "UNII:3B5J9TG94X",
+                    "MESH:C027277",
+                    "PUBCHEM:72155"
+                ]
+            },
+            {
+                "id": "MESH:D014282",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Trihexyphenidyl",
+                "equivalent_identifiers": [
+                    "MESH:D014282",
+                    "UNII:6RC5V8B7PO"
+                ]
+            },
+            {
+                "id": "MESH:D000077408",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Modafinil",
+                "equivalent_identifiers": [
+                    "UNII:R3UK8X3U3D",
+                    "MESH:C048833",
+                    "MESH:D000077408"
+                ]
+            },
+            {
+                "id": "CHEBI:8871",
+                "type": [
+                    "named_thing",
+                    "chemical_substance"
+                ],
+                "synonyms": [
+                    "3-{2-[4-(6-fluoro-1,2-benzisoxazol-3-yl)piperidin-1-yl]ethyl}-2-methyl-6,7,8,9-tetrahydro-4H-pyrido[1,2-a]pyrimidin-4-one",
+                    "risperidone",
+                    "Risperdal",
+                    "risperidona",
+                    "risperidonum",
+                    "Risperin",
+                    "Rispolept",
+                    "Rispolin",
+                    "Sequinan"
+                ],
+                "name": "risperidone",
+                "equivalent_identifiers": [
+                    "CHEMBL.COMPOUND:CHEMBL85",
+                    "PUBCHEM:5073",
+                    "UNII:L6UH7ZF8HC",
+                    "GTOPDB:96",
+                    "INCHIKEY:ICKPMTNGWVNOGC-UHFFFAOYSA-N",
+                    "HMDB:HMDB0005020",
+                    "DRUGBANK:DB00734",
+                    "CHEBI:8871",
+                    "MESH:D018967"
+                ]
+            },
+            {
+                "id": "MESH:D001712",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Biperiden",
+                "equivalent_identifiers": [
+                    "UNII:0FRP6G56LD",
+                    "MESH:D001712"
+                ]
+            },
+            {
+                "id": "MESH:D011352",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Procyclidine",
+                "equivalent_identifiers": [
+                    "MESH:D011352",
+                    "UNII:C6QE1Q1TKR"
+                ]
+            },
+            {
+                "id": "MESH:C522667",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Asenapine",
+                "equivalent_identifiers": [
+                    "UNII:JKZ19V908O",
+                    "MESH:C522667"
+                ]
+            },
+            {
+                "id": "MESH:D005473",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Fluoxetine",
+                "equivalent_identifiers": [
+                    "UNII:01K63SUP8D",
+                    "MESH:D005473"
+                ]
+            },
+            {
+                "id": "CHEMBL.COMPOUND:CHEMBL2106135",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "BROMPERIDOL",
+                "equivalent_identifiers": [
+                    "MESH:C077144",
+                    "CHEMBL.COMPOUND:CHEMBL2106135",
+                    "UNII:73LG72M4LV",
+                    "PUBCHEM:156321",
+                    "INCHIKEY:LPXJVJPXCNRZNB-OAQYLSRUSA-N"
+                ]
+            },
+            {
+                "id": "MESH:D008140",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Lorazepam",
+                "equivalent_identifiers": [
+                    "MESH:D008140",
+                    "UNII:O26FZP769L"
+                ]
+            },
+            {
+                "id": "CHEBI:64050",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "N-desmethylclozapine",
+                "equivalent_identifiers": [
+                    "UNII:1I9001LWY8",
+                    "HMDB:HMDB0060536",
+                    "PUBCHEM:135409468",
+                    "CHEBI:64050",
+                    "CHEMBL.COMPOUND:CHEMBL845",
+                    "MESH:C058272",
+                    "INCHIKEY:GCOHVGCNKUNLJF-JRFVFWCSSA-N"
+                ]
+            },
+            {
+                "id": "CHEMBL.COMPOUND:CHEMBL218166",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "BIFEPRUNOX",
+                "equivalent_identifiers": [
+                    "PUBCHEM:208951",
+                    "CHEMBL.COMPOUND:CHEMBL218166",
+                    "MESH:C509981",
+                    "INCHIKEY:ZZEABFFKPGYSDC-CEXWTWQISA-N",
+                    "UNII:AP69E83Z79",
+                    "DRUGBANK:DB04888"
+                ]
+            },
+            {
+                "id": "MESH:C060342",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "clopenthixol acetate ester",
+                "equivalent_identifiers": [
+                    "UNII:0A4EBG0F53",
+                    "MESH:C060342"
+                ]
+            },
+            {
+                "id": "MESH:D013881",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Thioridazine",
+                "equivalent_identifiers": [
+                    "UNII:N3D6TG58NI",
+                    "MESH:D013881"
+                ]
+            },
+            {
+                "id": "MESH:D008653",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Mesoridazine",
+                "equivalent_identifiers": [
+                    "MESH:D008653",
+                    "UNII:5XE4NWM740"
+                ]
+            },
+            {
+                "id": "MESH:C100234",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "benzquinamide",
+                "equivalent_identifiers": [
+                    "UNII:0475EA27Q3",
+                    "MESH:C100234"
+                ]
+            },
+            {
+                "id": "MESH:D008972",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "Molindone",
+                "equivalent_identifiers": [
+                    "MESH:D008972",
+                    "UNII:RT3Y3QMF8N"
+                ]
+            },
+            {
+                "id": "MESH:D012436",
+                "type": [
+                    "named_thing",
+                    "biological_entity",
+                    "chemical_substance",
+                    "molecular_entity"
+                ],
+                "name": "S-Adenosylmethionine",
+                "equivalent_identifiers": [
+                    "UNII:7LP2MPO46S",
+                    "MESH:D012436"
+                ]
+            }
+        ],
+        "edges": [
+            {
+                "id": "43821d8754c5fd847b24ae5bff93cf0b",
+                "source_id": "CHEBI:10119",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584315972.6803536
+            },
+            {
+                "id": "d30fdf6603478e158753fa54579c3bc8",
+                "source_id": "CHEBI:135778",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:4076529"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4386916
+            },
+            {
+                "id": "b350a7cdeb917e5427a848255024e654",
+                "source_id": "MESH:D003990",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:5237376"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4404716
+            },
+            {
+                "id": "f07c7b7ecfe8842148bd274046d16b91",
+                "source_id": "CHEBI:3766",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584319893.3806875
+            },
+            {
+                "id": "498c4c27bfd963f51fa822ad7f5a43cc",
+                "source_id": "CHEBI:31981",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1322069"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.442637
+            },
+            {
+                "id": "14403bd92938ce4daec86a4771bf62e5",
+                "source_id": "CHEBI:8707",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584317841.9821916
+            },
+            {
+                "id": "4c31cfcb4fcca8119bacadf5ff9c7c3f",
+                "source_id": "MESH:D013469",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:6367362"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352728.5877695
+            },
+            {
+                "id": "926bbe3b8fa81d53f421602d766bccde",
+                "source_id": "MESH:C030265",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:11505224"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.442209
+            },
+            {
+                "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                "source_id": "CHEBI:5613",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584317923.8584208
+            },
+            {
+                "id": "3c624dc8707e7087d30b693d3c064e5a",
+                "source_id": "MESH:D000068882",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:17460786",
+                    "PMID:19713555",
+                    "PMID:19825908",
+                    "PMID:19855366"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.442537
+            },
+            {
+                "id": "25ca4674bccf3d3623ec99ddd401fef8",
+                "source_id": "CHEBI:70735",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584319958.1717777
+            },
+            {
+                "id": "9b613f3b2cf64f7a0b7ca99f716d67d6",
+                "source_id": "MESH:D000077582",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:10221135",
+                    "PMID:11829208",
+                    "PMID:12893676",
+                    "PMID:14966260",
+                    "PMID:16225977",
+                    "PMID:16942633",
+                    "PMID:16963229",
+                    "PMID:18308817",
+                    "PMID:18504810",
+                    "PMID:18774435",
+                    "PMID:19673087",
+                    "PMID:20050717",
+                    "PMID:25085534",
+                    "PMID:6147865",
+                    "PMID:8996184"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4388447
+            },
+            {
+                "id": "62769563de9abea21d061f71c8e1f092",
+                "source_id": "CHEBI:34605",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:16782180"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4384906
+            },
+            {
+                "id": "477e260e9fd1ccd91159dbe57337c22e",
+                "source_id": "MESH:C515050",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:12095078"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.444756
+            },
+            {
+                "id": "faf12afc64a27e030125dd3011fcff06",
+                "source_id": "MESH:C007761",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:18464063",
+                    "PMID:990663"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4408097
+            },
+            {
+                "id": "ecd1e07e353f9416c93c3e9b5e098d77",
+                "source_id": "MESH:D012906",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:8958597"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.443968
+            },
+            {
+                "id": "ec69907b8aa355c68a3028d491774cb8",
+                "source_id": "CHEBI:92293",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1119614"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4431884
+            },
+            {
+                "id": "1f6d1af9c9790d9e764acbcefa529560",
+                "source_id": "CHEBI:65173",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584319702.9056776
+            },
+            {
+                "id": "0f708fa3e227b1fc99acf54b86ab0067",
+                "source_id": "MESH:D000069470",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:12380707"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.444431
+            },
+            {
+                "id": "45bb9997c8ac47225836c8e74cf91b5a",
+                "source_id": "CHEBI:31236",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584316094.4313107
+            },
+            {
+                "id": "b59a6c9652482f7a0b9f83afc9ae4146",
+                "source_id": "MESH:D011433",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:4441828"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4435315
+            },
+            {
+                "id": "b10e8f04da87590a3f4594b55cb5f622",
+                "source_id": "CHEBI:7735",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584326904.0242105
+            },
+            {
+                "id": "444737174a86b6215191c9ac6115486b",
+                "source_id": "MESH:D011398",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1485575"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4434807
+            },
+            {
+                "id": "4dcb2c732371e398b09ec26055f6359b",
+                "source_id": "CHEMBL.COMPOUND:CHEMBL2105481",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:6148118"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4446611
+            },
+            {
+                "id": "ead0c39f0b111e2554d42e09c6639da7",
+                "source_id": "MESH:D014282",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:391328",
+                    "PMID:709472"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4443378
+            },
+            {
+                "id": "e68666fd412ddb3addad4edb94d9e788",
+                "source_id": "MESH:D000077408",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:21064019"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4420311
+            },
+            {
+                "id": "f35fb52da54f92f60696a99e84bfa51a",
+                "source_id": "CHEBI:8871",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "mychem",
+                "publications": [],
+                "relation": "RO:0002606",
+                "predicate_id": "RO:0002606",
+                "relation_label": "treats",
+                "edge_source": "mychem.get_adverse_events",
+                "ctime": 1584318198.6242623
+            },
+            {
+                "id": "7e2638ffd0752352debdae9307986f8d",
+                "source_id": "MESH:D001712",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1322069"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4394462
+            },
+            {
+                "id": "5c92c1173e1b6b916355bc842d5c39e4",
+                "source_id": "MESH:D011352",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:12095078",
+                    "PMID:709472"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.44343
+            },
+            {
+                "id": "29805b4c97964fbcbc034e51592e1025",
+                "source_id": "MESH:C522667",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:20520283"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4391065
+            },
+            {
+                "id": "d614c7ce9753c9c96776b0b8c0496b90",
+                "source_id": "MESH:D005473",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:11910263"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4407206
+            },
+            {
+                "id": "4e71ece190e47455f7ae8b31d80dd3a9",
+                "source_id": "CHEMBL.COMPOUND:CHEMBL2106135",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1487623"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4396412
+            },
+            {
+                "id": "4a11a33f29fdbe47355079b7f43d97d0",
+                "source_id": "MESH:D008140",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:12095078",
+                    "PMID:9754850"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4415724
+            },
+            {
+                "id": "3f2dce542d551845ef737b2104a0a382",
+                "source_id": "CHEBI:64050",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:11151749"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.44228
+            },
+            {
+                "id": "48bfeb51ce3308d17910fcf7e55fe738",
+                "source_id": "CHEMBL.COMPOUND:CHEMBL218166",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:21591752"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4393945
+            },
+            {
+                "id": "a6dd784998583735c9cdcae7246c05f3",
+                "source_id": "MESH:C060342",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:18464063"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4401083
+            },
+            {
+                "id": "d14eb3961c1f7388e1d825087793b09c",
+                "source_id": "MESH:D013881",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:15285957",
+                    "PMID:18634530",
+                    "PMID:2773973",
+                    "PMID:4065553",
+                    "PMID:5237376",
+                    "PMID:6123407",
+                    "PMID:707646",
+                    "PMID:709472",
+                    "PMID:7435691",
+                    "PMID:7446763"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4441214
+            },
+            {
+                "id": "8efc24e375e9f21c0dcabd50d9df36e2",
+                "source_id": "MESH:D008653",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:15285957"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4416714
+            },
+            {
+                "id": "27e2d9c80f455b07035189d2d2185cc7",
+                "source_id": "MESH:C100234",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:5336562"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4393065
+            },
+            {
+                "id": "b81fdf71694595916d701accb5b538ac",
+                "source_id": "MESH:D008972",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:1971192",
+                    "PMID:2081681",
+                    "PMID:7446763"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4420745
+            },
+            {
+                "id": "46d04f20397875b7376435c704c3bd02",
+                "source_id": "MESH:D012436",
+                "target_id": "MONDO:0005090",
+                "type": "treats",
+                "source_database": "ctd",
+                "publications": [
+                    "PMID:18824331"
+                ],
+                "relation": "CTD:therapeutic",
+                "predicate_id": "RO:0002606",
+                "relation_label": "therapeutic",
+                "edge_source": "ctd.disease_to_chemical",
+                "ctime": 1583352731.4438016
+            }
+        ]
+    },
+    "results": [
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:10119",
+                        "CHEMBL.COMPOUND:CHEMBL218166",
+                        "CHEBI:70735",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents",
+                        "Central Nervous System Depressants"
+                    ],
+                    "p_values": [
+                        5.806829337051964e-29,
+                        3.4825194763543487e-20
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "48bfeb51ce3308d17910fcf7e55fe738",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents",
+                        "Central Nervous System Depressants"
+                    ],
+                    "p_values": [
+                        5.806829337051964e-29,
+                        3.4825194763543487e-20
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEMBL.COMPOUND:CHEMBL218166",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents (Second Generation [Atypical])"
+                    ],
+                    "p_values": [
+                        3.0241142097345405e-27
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "48bfeb51ce3308d17910fcf7e55fe738"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents (Second Generation [Atypical])"
+                    ],
+                    "p_values": [
+                        3.0241142097345405e-27
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine Antagonists",
+                        "antipsychotic_agent",
+                        "Psycholeptics",
+                        "tranquilizing_drug",
+                        "psychotropic_drug",
+                        "central_nervous_system_depressant",
+                        "Nervous System",
+                        "central_nervous_system_drug",
+                        "drugbank.approved"
+                    ],
+                    "p_values": [
+                        6.144835481766287e-26,
+                        3.3935645544156723e-25,
+                        2.083591414674083e-23,
+                        4.664524229261484e-23,
+                        1.4924067868043942e-20,
+                        2.4424766974723274e-20,
+                        8.621858623438945e-19,
+                        3.855260754411299e-18,
+                        4.204241861577259e-12
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine Antagonists",
+                        "antipsychotic_agent",
+                        "Psycholeptics",
+                        "tranquilizing_drug",
+                        "psychotropic_drug",
+                        "central_nervous_system_depressant",
+                        "Nervous System",
+                        "central_nervous_system_drug",
+                        "drugbank.approved"
+                    ],
+                    "p_values": [
+                        6.144835481766287e-26,
+                        3.3935645544156723e-25,
+                        2.083591414674083e-23,
+                        4.664524229261484e-23,
+                        1.4924067868043942e-20,
+                        2.4424766974723274e-20,
+                        8.621858623438945e-19,
+                        3.855260754411299e-18,
+                        4.204241861577259e-12
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:10119",
+                        "CHEMBL.COMPOUND:CHEMBL218166",
+                        "CHEBI:70735",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Neurotoxic agents"
+                    ],
+                    "p_values": [
+                        5.3305589460522206e-24
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "48bfeb51ce3308d17910fcf7e55fe738",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Neurotoxic agents"
+                    ],
+                    "p_values": [
+                        5.3305589460522206e-24
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine D2 Receptor Antagonists",
+                        "Hyperglycemia-Associated Agents",
+                        "QTc Prolonging Agents"
+                    ],
+                    "p_values": [
+                        3.187616322221585e-23,
+                        3.848197233022295e-21,
+                        6.958898493226733e-17
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine D2 Receptor Antagonists",
+                        "Hyperglycemia-Associated Agents",
+                        "QTc Prolonging Agents"
+                    ],
+                    "p_values": [
+                        3.187616322221585e-23,
+                        3.848197233022295e-21,
+                        6.958898493226733e-17
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Adrenergic alpha-Antagonists",
+                        "Adrenergic Antagonists"
+                    ],
+                    "p_values": [
+                        1.9814796626674995e-22,
+                        9.03558479782867e-21
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Adrenergic alpha-Antagonists",
+                        "Adrenergic Antagonists"
+                    ],
+                    "p_values": [
+                        1.9814796626674995e-22,
+                        9.03558479782867e-21
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:64050",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "serotonergic_drug"
+                    ],
+                    "p_values": [
+                        4.249088674438587e-22
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "3f2dce542d551845ef737b2104a0a382",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "serotonergic_drug"
+                    ],
+                    "p_values": [
+                        4.249088674438587e-22
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:64050",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "serotonergic_antagonist"
+                    ],
+                    "p_values": [
+                        7.994287266570692e-22
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "3f2dce542d551845ef737b2104a0a382",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "serotonergic_antagonist"
+                    ],
+                    "p_values": [
+                        7.994287266570692e-22
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Adrenergic alpha-1 Receptor Antagonists"
+                    ],
+                    "p_values": [
+                        5.780389625755477e-20
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Adrenergic alpha-1 Receptor Antagonists"
+                    ],
+                    "p_values": [
+                        5.780389625755477e-20
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "dopaminergic_antagonist",
+                        "dopaminergic_agent"
+                    ],
+                    "p_values": [
+                        5.780389625755477e-20,
+                        1.2245754661872446e-17
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "dopaminergic_antagonist",
+                        "dopaminergic_agent"
+                    ],
+                    "p_values": [
+                        5.780389625755477e-20,
+                        1.2245754661872446e-17
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "second_generation_antipsychotic"
+                    ],
+                    "p_values": [
+                        6.124215279082537e-20
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "second_generation_antipsychotic"
+                    ],
+                    "p_values": [
+                        6.124215279082537e-20
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Serotonin 5-HT1 Receptor Antagonists"
+                    ],
+                    "p_values": [
+                        8.420125668741252e-20
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Serotonin 5-HT1 Receptor Antagonists"
+                    ],
+                    "p_values": [
+                        8.420125668741252e-20
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Serotonin 5-HT2 Receptor Antagonists",
+                        "Serotonin Receptor Antagonists",
+                        "Serotonin Agents",
+                        "Antidepressive Agents",
+                        "Serotonergic Drugs Shown to Increase Risk of Serotonin Syndrome"
+                    ],
+                    "p_values": [
+                        1.0124433027778914e-19,
+                        9.13180644237244e-19,
+                        7.442472749738167e-17,
+                        6.352218917513221e-16,
+                        6.352218917513221e-16
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Serotonin 5-HT2 Receptor Antagonists",
+                        "Serotonin Receptor Antagonists",
+                        "Serotonin Agents",
+                        "Antidepressive Agents",
+                        "Serotonergic Drugs Shown to Increase Risk of Serotonin Syndrome"
+                    ],
+                    "p_values": [
+                        1.0124433027778914e-19,
+                        9.13180644237244e-19,
+                        7.442472749738167e-17,
+                        6.352218917513221e-16,
+                        6.352218917513221e-16
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Tranquilizing Agents",
+                        "Psychotropic Drugs",
+                        "Central Nervous System Agents"
+                    ],
+                    "p_values": [
+                        1.5509336278161702e-18,
+                        7.759526569265473e-17,
+                        6.381171807054183e-13
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Tranquilizing Agents",
+                        "Psychotropic Drugs",
+                        "Central Nervous System Agents"
+                    ],
+                    "p_values": [
+                        1.5509336278161702e-18,
+                        7.759526569265473e-17,
+                        6.381171807054183e-13
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:64050",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "neurotransmitter_agent",
+                        "pharmacological_role",
+                        "drug",
+                        "pharmaceutical",
+                        "application"
+                    ],
+                    "p_values": [
+                        1.9392300842586174e-17,
+                        9.845593954353718e-14,
+                        4.311754042893607e-10,
+                        4.92280207180422e-10,
+                        1.898054061365764e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "3f2dce542d551845ef737b2104a0a382",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "neurotransmitter_agent",
+                        "pharmacological_role",
+                        "drug",
+                        "pharmaceutical",
+                        "application"
+                    ],
+                    "p_values": [
+                        1.9392300842586174e-17,
+                        9.845593954353718e-14,
+                        4.311754042893607e-10,
+                        4.92280207180422e-10,
+                        1.898054061365764e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Histamine H1 Antagonists",
+                        "Histamine Antagonists"
+                    ],
+                    "p_values": [
+                        9.751104157386116e-16,
+                        2.53717261727642e-15
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Histamine H1 Antagonists",
+                        "Histamine Antagonists"
+                    ],
+                    "p_values": [
+                        9.751104157386116e-16,
+                        2.53717261727642e-15
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A7 Substrates",
+                        "Cytochrome P-450 CYP3A5 Substrates"
+                    ],
+                    "p_values": [
+                        2.53717261727642e-15,
+                        5.174975684340344e-14
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A7 Substrates",
+                        "Cytochrome P-450 CYP3A5 Substrates"
+                    ],
+                    "p_values": [
+                        2.53717261727642e-15,
+                        5.174975684340344e-14
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents that produce hypertension"
+                    ],
+                    "p_values": [
+                        1.2029932245069506e-14
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents that produce hypertension"
+                    ],
+                    "p_values": [
+                        1.2029932245069506e-14
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871",
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:92293"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "oral"
+                    ],
+                    "p_values": [
+                        5.349603526938068e-14
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "ec69907b8aa355c68a3028d491774cb8",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "oral"
+                    ],
+                    "p_values": [
+                        5.349603526938068e-14
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Substrates"
+                    ],
+                    "p_values": [
+                        5.382686432139031e-13
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Substrates"
+                    ],
+                    "p_values": [
+                        5.382686432139031e-13
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871",
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:31981",
+                        "CHEBI:92293"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "therapeutic_flag"
+                    ],
+                    "p_values": [
+                        9.106221871065939e-13
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "ec69907b8aa355c68a3028d491774cb8",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "therapeutic_flag"
+                    ],
+                    "p_values": [
+                        9.106221871065939e-13
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:65173",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
+                        "Cytochrome P-450 CYP3A4 Substrates",
+                        "Cytochrome P-450 CYP3A Substrates"
+                    ],
+                    "p_values": [
+                        2.192724535100354e-12,
+                        2.2559632096610845e-12,
+                        2.3871292731547096e-12
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "1f6d1af9c9790d9e764acbcefa529560",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
+                        "Cytochrome P-450 CYP3A4 Substrates",
+                        "Cytochrome P-450 CYP3A Substrates"
+                    ],
+                    "p_values": [
+                        2.192724535100354e-12,
+                        2.2559632096610845e-12,
+                        2.3871292731547096e-12
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:31236",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "histamine_antagonist",
+                        "histaminergic_drug",
+                        "antagonist"
+                    ],
+                    "p_values": [
+                        3.352402370065449e-12,
+                        5.242679941708122e-12,
+                        1.7747772495938714e-09
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "histamine_antagonist",
+                        "histaminergic_drug",
+                        "antagonist"
+                    ],
+                    "p_values": [
+                        3.352402370065449e-12,
+                        5.242679941708122e-12,
+                        1.7747772495938714e-09
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:5613",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine Agents"
+                    ],
+                    "p_values": [
+                        2.6644133525455906e-10
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Dopamine Agents"
+                    ],
+                    "p_values": [
+                        2.6644133525455906e-10
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:31236",
+                        "CHEBI:8707",
+                        "CHEBI:7735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Muscarinic Antagonists",
+                        "Anticholinergic Agents"
+                    ],
+                    "p_values": [
+                        6.647757927345507e-10,
+                        2.349033355134219e-09
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "45bb9997c8ac47225836c8e74cf91b5a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Muscarinic Antagonists",
+                        "Anticholinergic Agents"
+                    ],
+                    "p_values": [
+                        6.647757927345507e-10,
+                        2.349033355134219e-09
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:70735",
+                        "CHEBI:8707",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "adrenergic_antagonist",
+                        "adrenergic_agent"
+                    ],
+                    "p_values": [
+                        1.3134909760582042e-09,
+                        2.5550916535440553e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "adrenergic_antagonist",
+                        "adrenergic_agent"
+                    ],
+                    "p_values": [
+                        1.3134909760582042e-09,
+                        2.5550916535440553e-08
+                    ]
+                }
+            ],
+            "score": 6.821697557471264
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:70735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Neurotransmitter Agents"
+                    ],
+                    "p_values": [
+                        3.9528669315731255e-09
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Neurotransmitter Agents"
+                    ],
+                    "p_values": [
+                        3.9528669315731255e-09
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:34605",
+                        "CHEBI:7735",
+                        "CHEMBL.COMPOUND:CHEMBL218166",
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:31981",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "drugbank.investigational"
+                    ],
+                    "p_values": [
+                        4.907299306837665e-09
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "62769563de9abea21d061f71c8e1f092",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "48bfeb51ce3308d17910fcf7e55fe738"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "drugbank.investigational"
+                    ],
+                    "p_values": [
+                        4.907299306837665e-09
+                    ]
+                }
+            ],
+            "score": 6.821697557471264
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:70735",
+                        "CHEBI:31236",
+                        "CHEBI:7735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Potential QTc-Prolonging Agents"
+                    ],
+                    "p_values": [
+                        6.790939883777348e-09
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "45bb9997c8ac47225836c8e74cf91b5a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Potential QTc-Prolonging Agents"
+                    ],
+                    "p_values": [
+                        6.790939883777348e-09
+                    ]
+                }
+            ],
+            "score": 176.36243283045974
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Inhibitors",
+                        "Cytochrome P-450 CYP3A4 Inhibitors",
+                        "Cytochrome P-450 CYP3A Inhibitors"
+                    ],
+                    "p_values": [
+                        9.514102891777644e-09,
+                        3.2619386074794935e-08,
+                        3.893915235450328e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Inhibitors",
+                        "Cytochrome P-450 CYP3A4 Inhibitors",
+                        "Cytochrome P-450 CYP3A Inhibitors"
+                    ],
+                    "p_values": [
+                        9.514102891777644e-09,
+                        3.2619386074794935e-08,
+                        3.893915235450328e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:5613",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A4 Inhibitors (moderate)"
+                    ],
+                    "p_values": [
+                        2.4793757991757773e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP3A4 Inhibitors (moderate)"
+                    ],
+                    "p_values": [
+                        2.4793757991757773e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:5613",
+                        "CHEBI:8707",
+                        "CHEBI:7735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "P-glycoprotein/ABCB1 Substrates"
+                    ],
+                    "p_values": [
+                        3.5918379522350617e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "P-glycoprotein/ABCB1 Substrates"
+                    ],
+                    "p_values": [
+                        3.5918379522350617e-08
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:8707",
+                        "CHEBI:65173"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Highest Risk QTc-Prolonging Agents"
+                    ],
+                    "p_values": [
+                        3.868104921397195e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "1f6d1af9c9790d9e764acbcefa529560"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Highest Risk QTc-Prolonging Agents"
+                    ],
+                    "p_values": [
+                        3.868104921397195e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735",
+                        "CHEBI:5613",
+                        "CHEBI:31236",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "parenteral"
+                    ],
+                    "p_values": [
+                        4.4824019508037095e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "45bb9997c8ac47225836c8e74cf91b5a",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "parenteral"
+                    ],
+                    "p_values": [
+                        4.4824019508037095e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Inhibitors (weak)"
+                    ],
+                    "p_values": [
+                        6.50786010037084e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP2D6 Inhibitors (weak)"
+                    ],
+                    "p_values": [
+                        6.50786010037084e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:70735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Indole Derivatives"
+                    ],
+                    "p_values": [
+                        6.92709088076631e-08
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Indole Derivatives"
+                    ],
+                    "p_values": [
+                        6.92709088076631e-08
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:8707",
+                        "CHEBI:7735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Diazepines, Oxazepines, Thiazepines and Oxepines"
+                    ],
+                    "p_values": [
+                        1.7315337836411472e-07
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Diazepines, Oxazepines, Thiazepines and Oxepines"
+                    ],
+                    "p_values": [
+                        1.7315337836411472e-07
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:70735",
+                        "CHEBI:8707",
+                        "CHEBI:31981"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Sulfur Compounds"
+                    ],
+                    "p_values": [
+                        5.522283225897994e-07
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "25ca4674bccf3d3623ec99ddd401fef8",
+                        "14403bd92938ce4daec86a4771bf62e5"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Sulfur Compounds"
+                    ],
+                    "p_values": [
+                        5.522283225897994e-07
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735",
+                        "CHEBI:5613"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP1A2 Substrates"
+                    ],
+                    "p_values": [
+                        1.2435869110985117e-06
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 CYP1A2 Substrates"
+                    ],
+                    "p_values": [
+                        1.2435869110985117e-06
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:31236",
+                        "CHEBI:8707",
+                        "CHEBI:7735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents producing tachycardia"
+                    ],
+                    "p_values": [
+                        2.1718617053739945e-06
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "b10e8f04da87590a3f4594b55cb5f622",
+                        "45bb9997c8ac47225836c8e74cf91b5a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents producing tachycardia"
+                    ],
+                    "p_values": [
+                        2.1718617053739945e-06
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:5613",
+                        "CHEBI:31981"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents (First Generation [Typical])",
+                        "first_generation_antipsychotic"
+                    ],
+                    "p_values": [
+                        2.4216400812267688e-06,
+                        6.854690633622634e-06
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "498c4c27bfd963f51fa822ad7f5a43cc",
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antipsychotic Agents (First Generation [Typical])",
+                        "first_generation_antipsychotic"
+                    ],
+                    "p_values": [
+                        2.4216400812267688e-06,
+                        6.854690633622634e-06
+                    ]
+                }
+            ],
+            "score": 6.821697557471264
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:5613",
+                        "CHEBI:7735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antiemetics",
+                        "antiemetic",
+                        "Gastrointestinal Agents"
+                    ],
+                    "p_values": [
+                        6.854690633622634e-06,
+                        2.2456105364948117e-05,
+                        8.041817946902042e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Antiemetics",
+                        "antiemetic",
+                        "Gastrointestinal Agents"
+                    ],
+                    "p_values": [
+                        6.854690633622634e-06,
+                        2.2456105364948117e-05,
+                        8.041817946902042e-05
+                    ]
+                }
+            ],
+            "score": 4556.930668103448
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:70735",
+                        "CHEBI:8707"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "CYP3A Substrates (Sensitive)",
+                        "Cytochrome P-450 CYP3A4 Substrates with a Narrow Therapeutic Index"
+                    ],
+                    "p_values": [
+                        1.1397419534318613e-05,
+                        5.2312896892916676e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "14403bd92938ce4daec86a4771bf62e5",
+                        "25ca4674bccf3d3623ec99ddd401fef8"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "CYP3A Substrates (Sensitive)",
+                        "Cytochrome P-450 CYP3A4 Substrates with a Narrow Therapeutic Index"
+                    ],
+                    "p_values": [
+                        1.1397419534318613e-05,
+                        5.2312896892916676e-05
+                    ]
+                }
+            ],
+            "score": 1437.196623922414
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:5613",
+                        "CHEBI:7735",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 Enzyme Inhibitors"
+                    ],
+                    "p_values": [
+                        3.5515413076797656e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Cytochrome P-450 Enzyme Inhibitors"
+                    ],
+                    "p_values": [
+                        3.5515413076797656e-05
+                    ]
+                }
+            ],
+            "score": 4556.930668103448
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:31236",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "H1_receptor_antagonist"
+                    ],
+                    "p_values": [
+                        4.494653580439782e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "f35fb52da54f92f60696a99e84bfa51a",
+                        "45bb9997c8ac47225836c8e74cf91b5a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "H1_receptor_antagonist"
+                    ],
+                    "p_values": [
+                        4.494653580439782e-05
+                    ]
+                }
+            ],
+            "score": 1443.587358836207
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:10119",
+                        "CHEBI:7735"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "muscarinic_antagonist"
+                    ],
+                    "p_values": [
+                        6.02340026988661e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "43821d8754c5fd847b24ae5bff93cf0b",
+                        "b10e8f04da87590a3f4594b55cb5f622"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "muscarinic_antagonist"
+                    ],
+                    "p_values": [
+                        6.02340026988661e-05
+                    ]
+                }
+            ],
+            "score": 913.1693369252874
+        },
+        {
+            "node_bindings": [
+                {
+                    "qg_id": "a",
+                    "kg_id": [
+                        "MONDO:0005090"
+                    ]
+                },
+                {
+                    "qg_id": "b",
+                    "kg_id": [
+                        "CHEBI:5613",
+                        "CHEBI:8871"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents that reduce seizure threshold"
+                    ],
+                    "p_values": [
+                        8.177556185003141e-05
+                    ]
+                }
+            ],
+            "edge_bindings": [
+                {
+                    "qg_id": "ab",
+                    "kg_id": [
+                        "5f9d7ec7475fcd03c7d0349c3d43ffd7",
+                        "f35fb52da54f92f60696a99e84bfa51a"
+                    ],
+                    "coalescence_method": "property_enrichment",
+                    "properties": [
+                        "Agents that reduce seizure threshold"
+                    ],
+                    "p_values": [
+                        8.177556185003141e-05
+                    ]
+                }
+            ],
+            "score": 4556.930668103448
+        }
+    ]
+}

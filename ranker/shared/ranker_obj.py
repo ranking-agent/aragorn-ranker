@@ -109,18 +109,21 @@ class Ranker:
         knode_map = defaultdict(set)
         for nb in answer['node_bindings']:
             qnode_id = nb['qg_id']
-            knode_id = nb['kg_id']
-            rnode_id = (qnode_id, knode_id)
-            rnodes.add(rnode_id)
-            knode_map[knode_id].add(rnode_id)
-            if qnode_id in self.leaf_sets:
-                anchor_id = (f'{qnode_id}_anchor', '')
-                rnodes.add(anchor_id)
-                redges.append({
-                    'weight': 1e9,
-                    'source_id': rnode_id,
-                    'target_id': anchor_id
-                })
+            knode_ids = nb['kg_id']
+            if isinstance(knode_ids,str):
+                knode_ids = [ knode_ids ]
+            for knode_id in knode_ids:
+                rnode_id = (qnode_id, knode_id)
+                rnodes.add(rnode_id)
+                knode_map[knode_id].add(rnode_id)
+                if qnode_id in self.leaf_sets:
+                    anchor_id = (f'{qnode_id}_anchor', '')
+                    rnodes.add(anchor_id)
+                    redges.append({
+                        'weight': 1e9,
+                        'source_id': rnode_id,
+                        'target_id': anchor_id
+                    })
         rnodes = list(rnodes)
 
         # get "result" edges

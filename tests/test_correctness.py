@@ -13,9 +13,8 @@ client = TestClient(APP)
 
 def test_weight(to_weight):
     """Test that weight() runs without errors and that the weights are correctly ordered."""
-    response = client.post('/weight_correctness', json={
-        "message": to_weight
-    })
+    response = client.post('/weight_correctness', json=to_weight)
+
     weightresponse = response.json()
     #The input is constructed to have a series of 4 edges
     ebs = weightresponse['results'][0]['edge_bindings']

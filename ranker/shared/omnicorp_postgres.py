@@ -83,8 +83,12 @@ class OmniCorp():
 
     async def count_pmids(self, node):
         """Count PMIDs and return result."""
-        if get_curie_prefix(node) not in self.prefixes:
+        try:
+            if get_curie_prefix(node) not in self.prefixes:
+                return 0
+        except:
             return 0
+
         prefix = get_curie_prefix(node)
         start = datetime.datetime.now()
         statement = (

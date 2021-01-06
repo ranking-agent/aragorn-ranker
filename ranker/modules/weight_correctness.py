@@ -3,11 +3,11 @@ import math
 from collections import defaultdict
 from typing import Optional
 from fastapi import Query
-from reasoner_pydantic import Request, Message
+from reasoner_pydantic import Response, Message
 
 
 async def query(
-        request: Request,
+        response: Response,
         relevance: Optional[float] = Query(
             0.0025,
             description='portion of cooccurrence pubs relevant to question',
@@ -24,13 +24,13 @@ async def query(
             2.0,
             description='pubs at 50% of wt_max',
         ),
-) -> Message:
+) -> Response:
     """Weight kgraph edges based on metadata.
 
     "19 pubs from CTD is a 1, and 2 should at least be 0.5"
         - cbizon
     """
-    message = request.message.dict()
+    message = response.message.dict()
 
     def sigmoid(x):
         """Scale with partial sigmoid - the right (concave down) half.
@@ -103,4 +103,4 @@ async def query(
             redge['weight'] = redge.get('weight', 1.0) * sigmoid(effective_pubs)
 
     message['knowledge_graph'] = kgraph
-    return Message(**message)
+    return Response(**message)

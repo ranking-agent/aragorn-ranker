@@ -1,15 +1,14 @@
 """aragorn ranker server."""
-from functools import wraps
-from importlib import import_module
-import logging
 import logging.config
 import os
 import pkg_resources
+import yaml
 
+from functools import wraps
+from importlib import import_module
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from reasoner_pydantic import Message
-import yaml
+from reasoner_pydantic import Response
 
 # Set up default logger.
 with pkg_resources.resource_stream('ranker', 'logging.yml') as f:
@@ -24,7 +23,7 @@ LOGGER = logging.getLogger(__name__)
 
 APP = FastAPI(
     title='ARAGORN Ranker',
-    version='2.1.0',
+    version='2.2.0',
 )
 APP.add_middleware(
     CORSMiddleware,
@@ -58,4 +57,4 @@ def log_exception(method):
 for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
 
-    APP.post('/' + operation, response_model=Message, response_model_exclude_none=True)(log_exception(md.query))
+    APP.post('/' + operation, response_model=Response, response_model_exclude_none=True)(log_exception(md.query))

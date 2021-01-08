@@ -1,0 +1,158 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "d00": {
+          "category": "biolink:Disease"
+        },
+        "d01": {
+          "category": "biolink:Disease"
+        },
+        "d02": {
+          "category": "biolink:Disease"
+        },
+        "d03": {
+          "category": "biolink:Disease"
+        },
+        "n01": {
+          "category": "biolink:Gene"
+        }
+      },
+      "edges": {
+        "e00": {
+          "subject": "d00",
+          "object": "n01"
+        },
+        "e01": {
+          "subject": "d01",
+          "object": "n01"
+        },
+        "e02": {
+          "subject": "d02",
+          "object": "n01"
+        },
+        "e03": {
+          "subject": "d03",
+          "object": "n01"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "MONDO:0000001": {
+          "category": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "Niemann-Pick disease type C"
+        },
+        "MONDO:0000002": {
+          "category": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "Niemann-Pick disease, type C1"
+        },
+        "MONDO:0000003": {
+          "category": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "whatever"
+        },
+        "MONDO:0000004": {
+          "category": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "whateverelse"
+        },
+        "HGNC:7897": {
+          "category": [
+            "biolink:Gene"
+          ],
+          "name": "NPC1"
+        }
+      },
+      "edges": {
+        "emptypublicationsarray": {
+          "subject": "MONDO:0000001",
+          "object": "HGNC:7897",
+          "predicate": "biolink:has_phenotype"
+        },
+        "correctpublicationsarray": {
+          "subject": "MONDO:0000002",
+          "object": "HGNC:7897",
+          "predicate": "biolink:gene_associated_with_condition"
+        },
+        "correctpublicationscount": {
+          "subject": "MONDO:0000003",
+          "object": "HGNC:7897",
+          "predicate": "biolink:disease_to_gene_association"
+        },
+        "badpublicationsarray": {
+          "subject": "MONDO:0000004",
+          "object": "HGNC:7897",
+          "predicate": "biolink:gene_associated_with_condition"
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "d00": [
+            {
+              "id": "MONDO:0000001"
+            }
+          ],
+          "d01": [
+            {
+              "id": "MONDO:0000002"
+            }
+          ],
+          "d02": [
+            {
+              "id": "MONDO:0000003"
+            }
+          ],
+          "d03": [
+            {
+              "id": "MONDO:0000004"
+            }
+          ],
+          "n01": [
+            {
+              "id": "HGNC:7897"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e00": [
+            {
+              "id": "emptypublicationsarray",
+              "kg_id": "emptypublicationsarray"
+            }
+          ],
+          "e01": [
+            {
+              "id": "correctpublicationsarray",
+              "kg_id": "correctpublicationsarray"
+            }
+          ],
+          "e02": [
+            {
+              "id": "correctpublicationscount",
+              "kg_id": "correctpublicationscount"
+            }
+          ],
+          "e03": [
+            {
+              "id": "badpublicationsarray",
+              "kg_id": "badpublicationsarray"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

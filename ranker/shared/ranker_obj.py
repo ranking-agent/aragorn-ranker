@@ -96,7 +96,7 @@ class Ranker:
         laplacian = np.zeros((num_nodes, num_nodes))
         index = {node_id: node_ids.index(node_id) for node_id in node_ids}
         for edge in edges:
-            subject_id, object_id, weight = edge['subject'][0], edge['object'][0], edge['weight']
+            subject_id, object_id, weight = edge['subject'], edge['object'], edge['weight']
             i, j = index[subject_id], index[object_id]
             laplacian[i, j] += -weight
             laplacian[j, i] += -weight
@@ -177,15 +177,8 @@ class Ranker:
                     ))
 
                 for subject, object in pairs:
-                    weight = 1
-
-                    for w in kedge['attributes']:
-                        if w['type'].startswith('weight'):
-                            weight = w['value']
-                            break
-
                     edge = {
-                        'weight': weight,
+                        'weight': kedge_node['weight'],
                         'subject': subject,
                         'object': object
                     }

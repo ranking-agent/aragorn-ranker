@@ -44,56 +44,124 @@
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
-          "name": "Niemann-Pick disease type C"
+          "name": "Niemann-Pick disease type C",
+          "attributes": [
+            {
+              "name": "omnicorp_article_count",
+              "type": "EDAM:data_0006",
+              "value": 856
+            }
+          ]
         },
         "MONDO:0000002": {
           "category": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
-          "name": "Niemann-Pick disease, type C1"
+          "name": "Niemann-Pick disease, type C1",
+          "attributes": [
+            {
+              "name": "omnicorp_article_count",
+              "type": "EDAM:data_0006",
+              "value": 74
+            }
+          ]
         },
         "MONDO:0000003": {
           "category": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
-          "name": "whatever"
+          "name": "whatever",
+          "attributes": [
+            {
+              "name": "omnicorp_article_count",
+              "type": "EDAM:data_0006",
+              "value": 744
+            }
+          ]
         },
         "MONDO:0000004": {
           "category": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
-          "name": "whateverelse"
+          "name": "whateverelse",
+          "attributes": [
+            {
+              "name": "omnicorp_article_count",
+              "type": "EDAM:data_0006",
+              "value": 48
+            }
+          ]
         },
         "HGNC:7897": {
           "category": [
             "biolink:Gene"
           ],
-          "name": "NPC1"
+          "name": "NPC1",
+          "attributes": [
+            {
+              "name": "omnicorp_article_count",
+              "type": "EDAM:data_0006",
+              "value": 984
+            }
+          ]
         }
       },
       "edges": {
         "emptypublicationsarray": {
           "subject": "MONDO:0000001",
           "object": "HGNC:7897",
-          "predicate": "biolink:has_phenotype"
+          "predicate": "biolink:has_phenotype",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": []
+            }
+          ]
         },
         "correctpublicationsarray": {
           "subject": "MONDO:0000002",
           "object": "HGNC:7897",
-          "predicate": "biolink:gene_associated_with_condition"
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:16098014",
+                "PMID:17160617"
+              ]
+            }
+          ]
         },
         "correctpublicationscount": {
           "subject": "MONDO:0000003",
           "object": "HGNC:7897",
-          "predicate": "biolink:disease_to_gene_association"
+          "predicate": "biolink:disease_to_gene_association",
+          "attributes": [
+            {
+              "name": "num_publications",
+              "type": "EDAM:data_0006",
+              "value": 2
+            }
+          ]
         },
         "badpublicationsarray": {
           "subject": "MONDO:0000004",
           "object": "HGNC:7897",
-          "predicate": "biolink:gene_associated_with_condition"
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:160981014|1234|56787"
+              ]
+            }
+          ]
         }
       }
     },

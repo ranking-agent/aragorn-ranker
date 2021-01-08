@@ -27,7 +27,35 @@
             "biolink:Disease",
             "biolink:DiseaseOrPhenotypicFeature"
           ],
-          "name": "Parkinson disease"
+          "name": "Parkinson disease",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "UMLS:C0030567",
+                "UMLS:C0270729",
+                "UMLS:C0542165",
+                "SNOMEDCT:155000006",
+                "UMLS:C0853008",
+                "SNOMEDCT:155002003",
+                "DOID:14330",
+                "UMLS:C4049471",
+                "MESH:D010300",
+                "UMLS:C0235960",
+                "SNOMEDCT:155001005",
+                "SNOMEDCT:192831003",
+                "SNOMEDCT:192825001",
+                "MONDO:0005180",
+                "MEDDRA:10034010",
+                "SNOMEDCT:4223005",
+                "SNOMEDCT:154999006",
+                "MEDDRA:10061536",
+                "NCIT:C26845",
+                "SNOMEDCT:49049000"
+              ]
+            }
+          ]
         },
         "CHEBI:39300": {
           "category": [
@@ -36,7 +64,21 @@
             "biolink:ChemicalSubstance",
             "biolink:MolecularEntity"
           ],
-          "name": "propargite"
+          "name": "propargite",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "KEGG.COMPOUND:C18602",
+                "CHEBI:39300",
+                "CHEMBL.COMPOUND:CHEMBL1416084",
+                "INCHIKEY:QLZCGVNMWSCDIC-UHFFFAOYSA-N",
+                "PUBCHEM:4936",
+                "MESH:C002771"
+              ]
+            }
+          ]
         },
         "MESH:C084924": {
           "category": [
@@ -45,19 +87,99 @@
             "biolink:ChemicalSubstance",
             "biolink:MolecularEntity"
           ],
-          "name": "1,2,3,4-tetrahydro-1-(phenylmethyl)isoquinoline"
+          "name": "1,2,3,4-tetrahydro-1-(phenylmethyl)isoquinoline",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "MESH:C084924",
+                "UNII:X4S06GK4KN"
+              ]
+            }
+          ]
         }
       },
       "edges": {
         "013231a9a173a01620331cffbde23535": {
           "subject": "CHEBI:39300",
           "object": "MONDO:0005180",
-          "predicate": "biolink:contributes_to"
+          "predicate": "biolink:contributes_to",
+          "relation": "CTD:marker_mechanism",
+          "attributes": [
+            {
+              "name": "predicate_id",
+              "type": "EDAM:data_0006",
+              "value": "RO:0002326"
+            },
+            {
+              "name": "relation_label",
+              "type": "EDAM:data_0006",
+              "value": "marker_mechanism"
+            },
+            {
+              "name": "edge_source",
+              "type": "EDAM:data_0006",
+              "value": "ctd.disease_to_chemical"
+            },
+            {
+              "name": "ctime",
+              "type": "EDAM:data_0006",
+              "value": "1583896561.4053473"
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "ctd"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:20049211"
+              ]
+            }
+          ]
         },
         "33cc3972cb8a9aa6d40e074dc02499dd": {
           "subject": "MESH:C084924",
           "object": "MONDO:0005180",
-          "predicate": "biolink:contributes_to"
+          "predicate": "biolink:contributes_to",
+          "relation": "CTD:marker_mechanism",
+          "attributes": [
+            {
+              "name": "predicate_id",
+              "type": "EDAM:data_0006",
+              "value": "RO:0002326"
+            },
+            {
+              "name": "relation_label",
+              "type": "EDAM:data_0006",
+              "value": "marker_mechanism"
+            },
+            {
+              "name": "edge_source",
+              "type": "EDAM:data_0006",
+              "value": "ctd.disease_to_chemical"
+            },
+            {
+              "name": "ctime",
+              "type": "EDAM:data_0006",
+              "value": "1583896561.3991098"
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "ctd"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:15114628"
+              ]
+            }
+          ]
         }
       }
     },

@@ -21,6 +21,7 @@ files: list = [file for file in os.listdir(in_dir_name) if file.endswith('.json'
 for file in files:
     # open the input and output files
     with open(os.path.join(in_dir_name, file), 'r') as in_file, open(os.path.join(out_dir_name, file), 'w') as out_file:
+        print(file)
         # load the json input data
         data: dict = json.load(in_file)
 

@@ -23,27 +23,52 @@
         "asthma_geneA": {
           "subject": "asthma",
           "object": "geneA",
-          "predicate": "biolink:associated"
+          "predicate": "biolink:associated",
+          "provided_by": {
+            "allowlist": [
+              "genepro"
+            ]
+          }
         },
         "asthma_drugA": {
           "subject": "asthma",
           "object": "drugA",
-          "predicate": "biolink:association"
+          "predicate": "biolink:association",
+          "provided_by": {
+            "allowlist": [
+              "icees"
+            ]
+          }
         },
         "geneA_drugA": {
           "subject": "drugA",
           "object": "geneA",
-          "predicate": "biolink:related_to"
+          "predicate": "biolink:related_to",
+          "provided_by": {
+            "allowlist": [
+              "bte"
+            ]
+          }
         },
         "geneA_geneB": {
           "subject": "geneA",
           "object": "geneB",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "provided_by": {
+            "allowlist": [
+              "automat_intact"
+            ]
+          }
         },
         "geneB_drugB": {
           "subject": "geneB",
           "object": "drugB",
-          "predicate": "biolink:affected_by"
+          "predicate": "biolink:affected_by",
+          "provided_by": {
+            "allowlist": [
+              "molepro"
+            ]
+          }
         }
       }
     },
@@ -90,7 +115,17 @@
             "biolink:C",
             "biolink:E"
           ],
-          "name": "NITRIC OXIDE"
+          "name": "NITRIC OXIDE",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PUBCHEM.COMPOUND:145068",
+                "MESH:D009569"
+              ]
+            }
+          ]
         },
         "NCBIGene:3117": {
           "category": [
@@ -122,7 +157,17 @@
             "biolink:C",
             "biolink:E"
           ],
-          "name": "BENZENE"
+          "name": "BENZENE",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PUBCHEM.COMPOUND:241",
+                "MESH:D001554"
+              ]
+            }
+          ]
         },
         "NCBIGene:85480": {
           "category": [
@@ -154,7 +199,19 @@
             "biolink:C",
             "biolink:E"
           ],
-          "name": "Airborne Particulate Matter"
+          "name": "Airborne Particulate Matter",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCIT:C29886",
+                "UMLSCUI:C1510837",
+                "SCTID:278694008",
+                "ENVO:01000060"
+              ]
+            }
+          ]
         },
         "NCBIGene:8517": {
           "category": [
@@ -163,7 +220,37 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "IKBKG"
+          "name": "IKBKG",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:8517",
+                "ENSEMBL:ENSG00000269335",
+                "HGNC:5961",
+                "UniProtKB:Q9Y6K9"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "named_thing",
+                "biological_entity",
+                "molecular_entity",
+                "genomic_entity",
+                "macromolecular_machine",
+                "gene_or_gene_product"
+              ]
+            },
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            }
+          ]
         },
         "CHEBI:38666": {
           "category": [
@@ -287,7 +374,38 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "PRNP"
+          "name": "PRNP",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:5621",
+                "ENSEMBL:ENSG00000171867",
+                "HGNC:9449",
+                "UniProtKB:P04156",
+                "UniProtKB:F7VJQ1"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "named_thing",
+                "biological_entity",
+                "molecular_entity",
+                "genomic_entity",
+                "macromolecular_machine",
+                "gene_or_gene_product"
+              ]
+            },
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            }
+          ]
         },
         "CHEBI:27902": {
           "category": [
@@ -342,7 +460,37 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "HCRT"
+          "name": "HCRT",
+          "attributes": [
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:3060",
+                "ENSEMBL:ENSG00000161610",
+                "HGNC:4847",
+                "UniProtKB:O43612"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "named_thing",
+                "biological_entity",
+                "molecular_entity",
+                "genomic_entity",
+                "macromolecular_machine",
+                "gene_or_gene_product"
+              ]
+            },
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            }
+          ]
         },
         "CHEBI:18183": {
           "category": [
@@ -374,7 +522,37 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "ASGR2"
+          "name": "ASGR2",
+          "attributes": [
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            },
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:433",
+                "ENSEMBL:ENSG00000161944",
+                "HGNC:743",
+                "UniProtKB:P07307"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "named_thing",
+                "biological_entity",
+                "molecular_entity",
+                "genomic_entity",
+                "macromolecular_machine",
+                "gene_or_gene_product"
+              ]
+            }
+          ]
         },
         "CHEMBL.COMPOUND:CHEMBL2109137": {
           "category": [
@@ -452,7 +630,37 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "MYD88"
+          "name": "MYD88",
+          "attributes": [
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            },
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:4615",
+                "ENSEMBL:ENSG00000172936",
+                "HGNC:7562",
+                "UniProtKB:Q99836"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "gene_or_gene_product",
+                "macromolecular_machine",
+                "genomic_entity",
+                "molecular_entity",
+                "biological_entity",
+                "named_thing"
+              ]
+            }
+          ]
         },
         "CHEBI:76612": {
           "category": [
@@ -507,7 +715,37 @@
             "biolink:N",
             "biolink:E"
           ],
-          "name": "IRAK4"
+          "name": "IRAK4",
+          "attributes": [
+            {
+              "name": "taxon",
+              "type": "EDAM:data_0006",
+              "value": "9606"
+            },
+            {
+              "name": "equivalent_identifiers",
+              "type": "EDAM:data_0006",
+              "value": [
+                "NCBIGene:51135",
+                "ENSEMBL:ENSG00000198001",
+                "HGNC:17967",
+                "UniProtKB:Q9NWZ3"
+              ]
+            },
+            {
+              "name": "category",
+              "type": "EDAM:data_0006",
+              "value": [
+                "gene",
+                "gene_or_gene_product",
+                "macromolecular_machine",
+                "genomic_entity",
+                "molecular_entity",
+                "biological_entity",
+                "named_thing"
+              ]
+            }
+          ]
         },
         "CHEMBL.COMPOUND:CHEMBL2103830": {
           "category": [
@@ -583,7 +821,24 @@
         "MAGMA_GENE_349304": {
           "subject": "MONDO:0004979",
           "object": "NCBIGene:9173",
-          "predicate": "biolink:associated"
+          "predicate": "biolink:associated",
+          "attributes": [
+            {
+              "name": "score_name",
+              "type": "EDAM:data_0006",
+              "value": "MAGMA-pvalue"
+            },
+            {
+              "name": "score_direction",
+              "type": "EDAM:data_0006",
+              "value": "smaller_is_better"
+            },
+            {
+              "name": "score",
+              "type": "EDAM:data_0006",
+              "value": 7.4768e-07
+            }
+          ]
         },
         "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480": {
           "subject": "MONDO:0004979",
@@ -593,12 +848,52 @@
         "CHEBI:16480--related_to--NCBIGene:9173": {
           "subject": "CHEBI:16480",
           "object": "NCBIGene:9173",
-          "predicate": "biolink:related_to"
+          "predicate": "biolink:related_to",
+          "relation": "related_to",
+          "attributes": [
+            {
+              "name": "api",
+              "type": "EDAM:data_0006",
+              "value": "CORD Chemical API"
+            },
+            {
+              "name": "provided_by",
+              "type": "EDAM:data_0006",
+              "value": "Translator Text Mining Provider"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMC:PMC3175149",
+                "PMC:PMC3644799",
+                "PMC:PMC3664950",
+                "PMC:PMC7032173"
+              ]
+            }
+          ]
         },
         "MAGMA_GENE_352925": {
           "subject": "MONDO:0004979",
           "object": "NCBIGene:3117",
-          "predicate": "biolink:associated"
+          "predicate": "biolink:associated",
+          "attributes": [
+            {
+              "name": "score_name",
+              "type": "EDAM:data_0006",
+              "value": "MAGMA-pvalue"
+            },
+            {
+              "name": "score_direction",
+              "type": "EDAM:data_0006",
+              "value": "smaller_is_better"
+            },
+            {
+              "name": "score",
+              "type": "EDAM:data_0006",
+              "value": 4.1487e-14
+            }
+          ]
         },
         "MONDO:0004979_AvgDailyBenzeneExposure_2_qcut_CHEBI:16716": {
           "subject": "MONDO:0004979",
@@ -608,12 +903,49 @@
         "CHEBI:16716--related_to--NCBIGene:3117": {
           "subject": "CHEBI:16716",
           "object": "NCBIGene:3117",
-          "predicate": "biolink:related_to"
+          "predicate": "biolink:related_to",
+          "relation": "related_to",
+          "attributes": [
+            {
+              "name": "api",
+              "type": "EDAM:data_0006",
+              "value": "CTD API"
+            },
+            {
+              "name": "provided_by",
+              "type": "EDAM:data_0006",
+              "value": "CTD"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:16188091"
+              ]
+            }
+          ]
         },
         "MAGMA_GENE_352094": {
           "subject": "MONDO:0004979",
           "object": "NCBIGene:85480",
-          "predicate": "biolink:associated"
+          "predicate": "biolink:associated",
+          "attributes": [
+            {
+              "name": "score_name",
+              "type": "EDAM:data_0006",
+              "value": "MAGMA-pvalue"
+            },
+            {
+              "name": "score_direction",
+              "type": "EDAM:data_0006",
+              "value": "smaller_is_better"
+            },
+            {
+              "name": "score",
+              "type": "EDAM:data_0006",
+              "value": 5.5068e-08
+            }
+          ]
         },
         "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638": {
           "subject": "MONDO:0004979",
@@ -623,12 +955,67 @@
         "MESH:D052638--related_to--NCBIGene:85480": {
           "subject": "MESH:D052638",
           "object": "NCBIGene:85480",
-          "predicate": "biolink:related_to"
+          "predicate": "biolink:related_to",
+          "relation": "related_to",
+          "attributes": [
+            {
+              "name": "api",
+              "type": "EDAM:data_0006",
+              "value": "CTD API"
+            },
+            {
+              "name": "provided_by",
+              "type": "EDAM:data_0006",
+              "value": "CTD"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:28655636"
+              ]
+            }
+          ]
         },
         "2a4519287535ecf93f2df56a7b378e9f": {
           "subject": "NCBIGene:9173",
           "object": "NCBIGene:433",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:32296183"
+              ]
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:9173"
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:1356"
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            },
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:433"
+            }
+          ]
         },
         "e2": {
           "subject": "NCBIGene:51135",
@@ -648,22 +1035,162 @@
         "67d5ef9dcdb4f53d9529a5a6f0a4feef": {
           "subject": "NCBIGene:9173",
           "object": "NCBIGene:4615",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:16286016"
+              ]
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:9173"
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:0006"
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            },
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:4615"
+            }
+          ]
         },
         "856d6ea2294b841b5cd8dd508e4efed1": {
           "subject": "NCBIGene:9173",
           "object": "NCBIGene:51135",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:16286016"
+              ]
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:9173"
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:0006"
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            },
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:51135"
+            }
+          ]
         },
         "f752f939d746413be457dcd5d4386e89": {
           "subject": "NCBIGene:3117",
           "object": "NCBIGene:3060",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:14769912"
+              ]
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:0114"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:3117"
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            },
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:3060"
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            }
+          ]
         },
         "936d5107ce1ad39ff525821a287008d7": {
           "subject": "NCBIGene:8517",
           "object": "NCBIGene:85480",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:85480"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:8517"
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:0089"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:20098747"
+              ]
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            }
+          ]
         },
         "e4": {
           "subject": "NCBIGene:8517",
@@ -683,7 +1210,42 @@
         "512d7d6adb53958f7967c0a7bdcce38b": {
           "subject": "NCBIGene:5621",
           "object": "NCBIGene:85480",
-          "predicate": "biolink:directly_interacts_with"
+          "predicate": "biolink:directly_interacts_with",
+          "relation": "directly_interacts_with",
+          "attributes": [
+            {
+              "name": "object",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:85480"
+            },
+            {
+              "name": "subject",
+              "type": "EDAM:data_0006",
+              "value": "NCBIGene:5621"
+            },
+            {
+              "name": "detection_method",
+              "type": "EDAM:data_0006",
+              "value": "MI:0089"
+            },
+            {
+              "name": "publications",
+              "type": "EDAM:data_0006",
+              "value": [
+                "PMID:18482256"
+              ]
+            },
+            {
+              "name": "edge_label",
+              "type": "EDAM:data_0006",
+              "value": "directly_interacts_with"
+            },
+            {
+              "name": "source_database",
+              "type": "EDAM:data_0006",
+              "value": "IntAct"
+            }
+          ]
         }
       }
     },

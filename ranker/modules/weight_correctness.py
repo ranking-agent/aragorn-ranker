@@ -10,19 +10,19 @@ async def query(
         response: Response,
         relevance: Optional[float] = Query(
             0.0025,
-            description='portion of cooccurrence pubs relevant to question',
+            description='Portion of cooccurrence publications relevant to a question',
         ),
         wt_min: Optional[float] = Query(
             0.0,
-            description='minimum weight (at 0 pubs)',
+            description='Minimum weight (at 0 publications)',
         ),
         wt_max: Optional[float] = Query(
             1.0,
-            description='maximum weight (at inf pubs)',
+            description='Maximum weight (at inf publications)',
         ),
         p50: Optional[float] = Query(
             2.0,
-            description='pubs at 50% of wt_max',
+            description='Publications at 50% of wt_max',
         ),
 ) -> Response:
     """Weight kgraph edges based on metadata.
@@ -46,61 +46,89 @@ async def query(
         k = 1 / p50 * (math.log(r + c) - math.log(a - r - c))
         return a / (1 + math.exp(-k * x)) - c
 
-    kgraph = message['knowledge_graph']
-    node_pubs = {n['id']: n.get('omnicorp_article_count', None) for n in kgraph['nodes']}
     all_pubs = 27840000
 
     results = message['results']
+    kgraph = message['knowledge_graph']
 
-    # ensure that each edge_binding has a single kg_id
-    for result in results:
-        result['edge_bindings'] = [
-            eb
-            for ebs in result['edge_bindings']
-            for eb in (
-                [
-                    {
-                        'qg_id': ebs['qg_id'],
-                        'kg_id': kg_id,
-                    }
-                    for kg_id in ebs['kg_id']
-                ] if isinstance(ebs['kg_id'], list)
-                else [ebs]
-            )
-        ]
+    node_pubs: dict = {}
+
+    for n in kgraph['nodes']:
+        # init the default
+        omnicorp_article_count: int = 0
+
+        # get the article count atribute
+        for p in kgraph['nodes'][n]['attributes']:
+            # is this what we are looking for
+            if p['name'] == 'omnicorp_article_count':
+                # save it
+                omnicorp_article_count = p['value']
+
+                # no need to continue
+                break
+
+        # add the node d and count to the dict
+        node_pubs.update({n: omnicorp_article_count})
+
+    new_edge_bindings: list = []
 
     # map kedges to edge_bindings
     krmap = defaultdict(list)
+
     for result in results:
+
+        # print(f"1.0 original result: {result['edge_bindings']}")
+
         for eb in result['edge_bindings']:
-            assert isinstance(eb['kg_id'], str)
-            eb['weight'] = eb.get('weight', 1.0)
-            krmap[eb['kg_id']].append(eb)
+            result['edge_bindings'][eb][0]['weight'] = result['edge_bindings'][eb][0].get('weight', 1)
+            krmap[result['edge_bindings'][eb][0]['id']] = result['edge_bindings'][eb][0]
 
     edges = kgraph['edges']
+
     for edge in edges:
+        effective_pubs = 0
+
         #We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
-        publications = edge.get('publications',[])
+        attributes = edges[edge].get('attributes', [])
+
+        # init storage for the publications and their count
+        publications = []
+        num_publications = 0
+
+        for attribute in attributes:
+            if attribute['name'].startswith('publications'):
+                publications = attribute['value']
+            elif attribute['name'].startswith('num_publications'):
+                num_publications = attribute.get('value', 0)
+
         if len(publications) == 1:
             if '|' in publications[0]:
                 publications = publications[0].split('|')
             elif ',' in publications[0]:
                 publications = publications[0].split(',')
-        edge_pubs = edge.get('num_publications', len(publications))
+
+            num_publications = len(publications)
+
+        if num_publications == 0:
+            num_publications = len(publications)
+
         #now the nicer cleaner version when we have publications as an actual array
         #edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
-        if edge['type'] == 'literature_co-occurrence':
-            source_pubs = int(node_pubs[edge['source_id']])
-            target_pubs = int(node_pubs[edge['target_id']])
+        if edges[edge].get('predicate') == 'literature_co-occurrence':
+            subject_pubs = int(node_pubs[edge['subject']])
+            object_pubs = int(node_pubs[edge['object']])
 
-            cov = (edge_pubs / all_pubs) - (source_pubs / all_pubs) * (target_pubs / all_pubs)
+            cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
             cov = max((cov, 0.0))
             effective_pubs = cov * all_pubs * relevance
         else:
-            effective_pubs = edge_pubs + 1  # consider the curation a pub
+            effective_pubs = num_publications + 1  # consider the curation a pub
 
-        for redge in krmap[edge['id']]:
-            redge['weight'] = redge.get('weight', 1.0) * sigmoid(effective_pubs)
+        krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
 
     message['knowledge_graph'] = kgraph
-    return Response(**message)
+
+    # get this in the correct response model format
+    ret_val = {'message': message}
+
+    return Response(**ret_val)

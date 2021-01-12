@@ -1,16 +1,16 @@
 """Rank."""
-from reasoner_pydantic import Request, Message
+from reasoner_pydantic import Response, Message
 
 from ranker.shared.util import flatten_semilist
 from ranker.shared.ranker_obj import Ranker
 
 
-async def query(request: Request, *, jaccard_like: bool = False) -> Message:
+async def query(response: Response, *, jaccard_like: bool = False) -> Response:
     """Score answers.
 
     This is mostly glue around the heavy lifting in ranker_obj.Ranker
     """
-    message = request.message.dict()
+    message = response.message.dict()
     kgraph = message['knowledge_graph']
     answers = message['results']
 
@@ -20,4 +20,9 @@ async def query(request: Request, *, jaccard_like: bool = False) -> Message:
 
     # finish
     message['results'] = answers
-    return Message(**message)
+
+    # get this in the correct response model format
+    ret_val = {'message': message}
+
+    # return the results
+    return Response(**ret_val)

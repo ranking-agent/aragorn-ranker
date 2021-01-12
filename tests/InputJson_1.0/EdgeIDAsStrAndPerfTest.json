@@ -1679,17 +1679,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "3b65b1c1838fd53b21037703935c6190",
-              "kg_id": "3b65b1c1838fd53b21037703935c6190"
+              "id": "3b65b1c1838fd53b21037703935c6190"
             }
           ]
-        }
+        },
+        "score": 267.4734721981218,
+        "timestamp": 4.860227346420288
       },
       {
         "node_bindings": {
@@ -1712,17 +1712,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "2f9ad710a936819fbe8391406a772944",
-              "kg_id": "2f9ad710a936819fbe8391406a772944"
+              "id": "2f9ad710a936819fbe8391406a772944"
             }
           ]
-        }
+        },
+        "score": 176.47599457176872,
+        "timestamp": 4.889455795288086
       },
       {
         "node_bindings": {
@@ -1745,17 +1745,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "030d98d3d488979c1d9ea2d8ed5f1fa4",
-              "kg_id": "030d98d3d488979c1d9ea2d8ed5f1fa4"
+              "id": "030d98d3d488979c1d9ea2d8ed5f1fa4"
             }
           ]
-        }
+        },
+        "score": 26.460492221644074,
+        "timestamp": 4.912858009338379
       },
       {
         "node_bindings": {
@@ -1778,17 +1778,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "b17f9980db80907daead21be8013ee06",
-              "kg_id": "b17f9980db80907daead21be8013ee06"
+              "id": "b17f9980db80907daead21be8013ee06"
             }
           ]
-        }
+        },
+        "score": 92.86772970235423,
+        "timestamp": 4.928002595901489
       },
       {
         "node_bindings": {
@@ -1811,17 +1811,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "5370cbe9de051dda0a6d5a2b119754c4",
-              "kg_id": "5370cbe9de051dda0a6d5a2b119754c4"
+              "id": "5370cbe9de051dda0a6d5a2b119754c4"
             }
           ]
-        }
+        },
+        "score": 81.31571330505707,
+        "timestamp": 6.56871771812439
       },
       {
         "node_bindings": {
@@ -1844,17 +1844,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "bfdb7173136dd4afe52f9b36db8ef827",
-              "kg_id": "bfdb7173136dd4afe52f9b36db8ef827"
+              "id": "bfdb7173136dd4afe52f9b36db8ef827"
             }
           ]
-        }
+        },
+        "score": 16.885293255596427,
+        "timestamp": 6.650407791137695
       },
       {
         "node_bindings": {
@@ -1877,17 +1877,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "0fff15328cc4d46da67708079e957576",
-              "kg_id": "0fff15328cc4d46da67708079e957576"
+              "id": "0fff15328cc4d46da67708079e957576"
             }
           ]
-        }
+        },
+        "score": 71.17850171415888,
+        "timestamp": 6.656814336776733
       },
       {
         "node_bindings": {
@@ -1910,17 +1910,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "008e880af90a3978947f7f3f0f48f239",
-              "kg_id": "008e880af90a3978947f7f3f0f48f239"
+              "id": "008e880af90a3978947f7f3f0f48f239"
             }
           ]
-        }
+        },
+        "score": 116.54954879127295,
+        "timestamp": 6.662815809249878
       },
       {
         "node_bindings": {
@@ -1943,17 +1943,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "a42ccc61a9c5816b552f22280ade5915",
-              "kg_id": "a42ccc61a9c5816b552f22280ade5915"
+              "id": "a42ccc61a9c5816b552f22280ade5915"
             }
           ]
-        }
+        },
+        "score": 122.19665114149372,
+        "timestamp": 6.668087720870972
       },
       {
         "node_bindings": {
@@ -1976,17 +1976,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "5b0186a8084a516fc088f567bb51bae5",
-              "kg_id": "5b0186a8084a516fc088f567bb51bae5"
+              "id": "5b0186a8084a516fc088f567bb51bae5"
             }
           ]
-        }
+        },
+        "score": 7.485736181823101,
+        "timestamp": 6.6760413646698
       },
       {
         "node_bindings": {
@@ -2009,17 +2009,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "85f55f6d104bae833eb66dc23f20589d",
-              "kg_id": "85f55f6d104bae833eb66dc23f20589d"
+              "id": "85f55f6d104bae833eb66dc23f20589d"
             }
           ]
-        }
+        },
+        "score": 0.9973522498535403,
+        "timestamp": 6.681374549865723
       },
       {
         "node_bindings": {
@@ -2042,17 +2042,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "0fdc05abe5350b919d411c368009bdae",
-              "kg_id": "0fdc05abe5350b919d411c368009bdae"
+              "id": "0fdc05abe5350b919d411c368009bdae"
             }
           ]
-        }
+        },
+        "score": 157.64083226345107,
+        "timestamp": 6.688529968261719
       },
       {
         "node_bindings": {
@@ -2075,17 +2075,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "c6d76b25ff58f0ae63a4863f478e9026",
-              "kg_id": "c6d76b25ff58f0ae63a4863f478e9026"
+              "id": "c6d76b25ff58f0ae63a4863f478e9026"
             }
           ]
-        }
+        },
+        "score": 40.79601157189061,
+        "timestamp": 6.693993806838989
       },
       {
         "node_bindings": {
@@ -2108,17 +2108,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "f4b9a34ded7e271dd2fb57232bfd881d",
-              "kg_id": "f4b9a34ded7e271dd2fb57232bfd881d"
+              "id": "f4b9a34ded7e271dd2fb57232bfd881d"
             }
           ]
-        }
+        },
+        "score": 47.26015544536788,
+        "timestamp": 6.699046850204468
       },
       {
         "node_bindings": {
@@ -2141,17 +2141,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "e59b719c3655c91fcdc8d262f32bc127",
-              "kg_id": "e59b719c3655c91fcdc8d262f32bc127"
+              "id": "e59b719c3655c91fcdc8d262f32bc127"
             }
           ]
-        }
+        },
+        "score": 0.9973522498535403,
+        "timestamp": 6.704402208328247
       },
       {
         "node_bindings": {
@@ -2174,17 +2174,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "df355623d19ee3e5e1d46334b73dc856",
-              "kg_id": "df355623d19ee3e5e1d46334b73dc856"
+              "id": "df355623d19ee3e5e1d46334b73dc856"
             }
           ]
-        }
+        },
+        "score": 0.9973522498535403,
+        "timestamp": 6.710435152053833
       },
       {
         "node_bindings": {
@@ -2207,17 +2207,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "61e5984a7f6588f1f12b124ec1cd1d78",
-              "kg_id": "61e5984a7f6588f1f12b124ec1cd1d78"
+              "id": "61e5984a7f6588f1f12b124ec1cd1d78"
             }
           ],
           "bc": [
             {
-              "id": "be1b4028f1578f1ac3b8600815946f2a",
-              "kg_id": "be1b4028f1578f1ac3b8600815946f2a"
+              "id": "be1b4028f1578f1ac3b8600815946f2a"
             }
           ]
-        }
+        },
+        "score": 349.1005034687562,
+        "timestamp": 6.715851306915283
       },
       {
         "node_bindings": {
@@ -2240,17 +2240,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "60c3cc109c426cad829f1892acdb3b1d",
-              "kg_id": "60c3cc109c426cad829f1892acdb3b1d"
+              "id": "60c3cc109c426cad829f1892acdb3b1d"
             }
           ]
-        }
+        },
+        "score": 0.9873033899028645,
+        "timestamp": 8.702222347259521
       },
       {
         "node_bindings": {
@@ -2273,17 +2273,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "c60a08cf24ba106434dc4ed0f24cd153",
-              "kg_id": "c60a08cf24ba106434dc4ed0f24cd153"
+              "id": "c60a08cf24ba106434dc4ed0f24cd153"
             }
           ]
-        }
+        },
+        "score": 0.9873033899028645,
+        "timestamp": 14.527596712112427
       },
       {
         "node_bindings": {
@@ -2306,17 +2306,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "444695539ca1bdadb4a1996e5df17f47",
-              "kg_id": "444695539ca1bdadb4a1996e5df17f47"
+              "id": "444695539ca1bdadb4a1996e5df17f47"
             }
           ]
-        }
+        },
+        "score": 0.9873033899028645,
+        "timestamp": 14.921783924102783
       },
       {
         "node_bindings": {
@@ -2339,17 +2339,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "ec3cc48841227b727e7ff60249e07c22",
-              "kg_id": "ec3cc48841227b727e7ff60249e07c22"
+              "id": "ec3cc48841227b727e7ff60249e07c22"
             }
           ]
-        }
+        },
+        "score": 0.9873033899028645,
+        "timestamp": 14.948070764541626
       },
       {
         "node_bindings": {
@@ -2372,17 +2372,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "58dce689016ba2c90462de8a477211d5",
-              "kg_id": "58dce689016ba2c90462de8a477211d5"
+              "id": "58dce689016ba2c90462de8a477211d5"
             }
           ]
-        }
+        },
+        "score": 4.539135734779706,
+        "timestamp": 14.974950313568115
       },
       {
         "node_bindings": {
@@ -2405,17 +2405,17 @@
         "edge_bindings": {
           "ab": [
             {
-              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e",
-              "kg_id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
+              "id": "6f324dbb0a38b1b6a6a3ced6c1c1c03e"
             }
           ],
           "bc": [
             {
-              "id": "af1705ec3a183714a4b2e332b1057944",
-              "kg_id": "af1705ec3a183714a4b2e332b1057944"
+              "id": "af1705ec3a183714a4b2e332b1057944"
             }
           ]
-        }
+        },
+        "score": 0.9873033899028645,
+        "timestamp": 14.98697304725647
       }
     ]
   }

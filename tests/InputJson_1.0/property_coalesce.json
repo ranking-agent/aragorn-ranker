@@ -2970,18 +2970,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -2994,18 +2982,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3018,18 +2994,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3042,18 +3006,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3066,18 +3018,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3090,18 +3030,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3114,18 +3042,6 @@
             },
             {
               "id": "48bfeb51ce3308d17910fcf7e55fe738",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3138,18 +3054,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3162,18 +3066,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3186,18 +3078,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents",
@@ -3209,7 +3089,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -3305,16 +3186,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3325,16 +3196,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3345,16 +3206,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3365,16 +3216,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3385,16 +3226,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3405,16 +3236,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3425,16 +3246,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3445,16 +3256,6 @@
             },
             {
               "id": "48bfeb51ce3308d17910fcf7e55fe738",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (Second Generation [Atypical])"
@@ -3464,7 +3265,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -3714,17 +3516,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3751,17 +3542,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3788,17 +3568,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3825,17 +3594,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3862,17 +3620,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3899,17 +3646,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3936,17 +3672,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -3973,17 +3698,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -4010,17 +3724,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Antagonists",
@@ -4046,7 +3749,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -4152,17 +3856,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4173,17 +3866,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4194,17 +3876,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4215,17 +3886,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4236,17 +3896,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4257,17 +3906,6 @@
             },
             {
               "id": "48bfeb51ce3308d17910fcf7e55fe738",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4278,17 +3916,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4299,17 +3926,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4320,17 +3936,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotoxic agents"
@@ -4340,7 +3945,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -4468,16 +4074,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4492,16 +4088,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4516,16 +4102,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4540,16 +4116,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4564,16 +4130,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4588,16 +4144,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4612,16 +4158,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4636,16 +4172,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine D2 Receptor Antagonists",
@@ -4659,7 +4185,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -4771,16 +4298,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4793,16 +4310,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4815,16 +4322,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4837,16 +4334,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4859,16 +4346,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4881,16 +4358,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4903,16 +4370,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4925,16 +4382,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-Antagonists",
@@ -4946,7 +4393,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -5052,17 +4500,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5073,17 +4510,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5094,17 +4520,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5115,17 +4530,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5136,17 +4540,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5157,17 +4550,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5178,17 +4560,6 @@
             },
             {
               "id": "3f2dce542d551845ef737b2104a0a382",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5199,17 +4570,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5220,17 +4580,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_drug"
@@ -5240,7 +4589,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -5336,16 +4686,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5356,16 +4696,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5376,16 +4706,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5396,16 +4716,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5416,16 +4726,6 @@
             },
             {
               "id": "3f2dce542d551845ef737b2104a0a382",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5436,16 +4736,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5456,16 +4746,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5476,16 +4756,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "3f2dce542d551845ef737b2104a0a382",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "serotonergic_antagonist"
@@ -5495,7 +4765,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -5581,15 +4852,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5600,15 +4862,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5619,15 +4872,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5638,15 +4882,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5657,15 +4892,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5676,15 +4902,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5695,15 +4912,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Adrenergic alpha-1 Receptor Antagonists"
@@ -5713,7 +4921,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -5813,15 +5022,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5834,15 +5034,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5855,15 +5046,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5876,15 +5058,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5897,15 +5070,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5918,15 +5082,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5939,15 +5094,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "dopaminergic_antagonist",
@@ -5959,7 +5105,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -6035,14 +5182,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6053,14 +5192,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6071,14 +5202,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6089,14 +5212,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6107,14 +5222,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6125,14 +5232,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "second_generation_antipsychotic"
@@ -6142,7 +5241,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -6218,14 +5318,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6236,14 +5328,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6254,14 +5338,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6272,14 +5348,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6290,14 +5358,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6308,14 +5368,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT1 Receptor Antagonists"
@@ -6325,7 +5377,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -6467,15 +5520,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6494,15 +5538,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6521,15 +5556,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6548,15 +5574,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6575,15 +5592,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6602,15 +5610,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6629,15 +5628,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Serotonin 5-HT2 Receptor Antagonists",
@@ -6655,7 +5645,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -6769,15 +5760,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6792,15 +5774,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6815,15 +5788,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6838,15 +5802,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6861,15 +5816,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6884,15 +5830,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6907,15 +5844,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Tranquilizing Agents",
@@ -6929,7 +5857,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -7125,18 +6054,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7155,18 +6072,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7185,18 +6090,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7215,18 +6108,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7245,18 +6126,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7275,18 +6144,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7305,18 +6162,6 @@
             },
             {
               "id": "3f2dce542d551845ef737b2104a0a382",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7335,18 +6180,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7365,18 +6198,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7395,18 +6216,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "3f2dce542d551845ef737b2104a0a382",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "neurotransmitter_agent",
@@ -7424,7 +6233,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -7512,14 +6322,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7532,14 +6334,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7552,14 +6346,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7572,14 +6358,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7592,14 +6370,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7612,14 +6382,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Histamine H1 Antagonists",
@@ -7631,7 +6393,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -7719,14 +6482,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7739,14 +6494,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7759,14 +6506,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7779,14 +6518,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7799,14 +6530,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7819,14 +6542,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A7 Substrates",
@@ -7838,7 +6553,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -7924,15 +6640,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -7943,15 +6650,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -7962,15 +6660,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -7981,15 +6670,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -8000,15 +6680,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -8019,15 +6690,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -8038,15 +6700,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that produce hypertension"
@@ -8056,7 +6709,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -8162,17 +6816,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8183,17 +6826,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8204,17 +6836,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8225,17 +6846,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8246,17 +6856,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8267,17 +6866,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8288,17 +6876,6 @@
             },
             {
               "id": "ec69907b8aa355c68a3028d491774cb8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8309,17 +6886,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8330,17 +6896,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "oral"
@@ -8350,7 +6905,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -8426,14 +6982,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8444,14 +6992,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8462,14 +7002,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8480,14 +7012,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8498,14 +7022,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8516,14 +7032,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Substrates"
@@ -8533,7 +7041,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -8649,18 +7158,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8671,18 +7168,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8693,18 +7178,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8715,18 +7188,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8737,18 +7198,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8759,18 +7208,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8781,18 +7218,6 @@
             },
             {
               "id": "ec69907b8aa355c68a3028d491774cb8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8803,18 +7228,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8825,18 +7238,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8847,18 +7248,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "ec69907b8aa355c68a3028d491774cb8",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "therapeutic_flag"
@@ -8868,7 +7257,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -8982,15 +7372,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9005,15 +7386,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9028,15 +7400,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9051,15 +7414,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9074,15 +7428,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9097,15 +7442,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9120,15 +7456,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "1f6d1af9c9790d9e764acbcefa529560",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Substrates (strength unknown)",
@@ -9142,7 +7469,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -9228,13 +7556,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "histamine_antagonist",
@@ -9249,13 +7570,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "histamine_antagonist",
@@ -9270,13 +7584,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "histamine_antagonist",
@@ -9291,13 +7598,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "histamine_antagonist",
@@ -9312,13 +7612,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "histamine_antagonist",
@@ -9332,7 +7625,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -9388,12 +7682,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Agents"
@@ -9404,12 +7692,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Agents"
@@ -9420,12 +7702,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Agents"
@@ -9436,12 +7712,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Dopamine Agents"
@@ -9451,7 +7721,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -9515,12 +7786,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Muscarinic Antagonists",
@@ -9533,12 +7798,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Muscarinic Antagonists",
@@ -9551,12 +7810,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Muscarinic Antagonists",
@@ -9569,12 +7822,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Muscarinic Antagonists",
@@ -9586,7 +7833,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -9650,12 +7898,6 @@
           "ab": [
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "adrenergic_antagonist",
@@ -9668,12 +7910,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "adrenergic_antagonist",
@@ -9686,12 +7922,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "adrenergic_antagonist",
@@ -9704,12 +7934,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "adrenergic_antagonist",
@@ -9721,7 +7945,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 6.821697557471264
       },
       {
         "node_bindings": {
@@ -9787,13 +8012,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotransmitter Agents"
@@ -9804,13 +8022,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotransmitter Agents"
@@ -9821,13 +8032,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotransmitter Agents"
@@ -9838,13 +8042,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotransmitter Agents"
@@ -9855,13 +8052,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Neurotransmitter Agents"
@@ -9871,7 +8061,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -9957,15 +8148,6 @@
           "ab": [
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -9976,15 +8158,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -9995,15 +8168,6 @@
             },
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -10014,15 +8178,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -10033,15 +8188,6 @@
             },
             {
               "id": "62769563de9abea21d061f71c8e1f092",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -10052,15 +8198,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -10071,15 +8208,6 @@
             },
             {
               "id": "48bfeb51ce3308d17910fcf7e55fe738",
-              "kg_id": [
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "62769563de9abea21d061f71c8e1f092",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "48bfeb51ce3308d17910fcf7e55fe738"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "drugbank.investigational"
@@ -10089,7 +8217,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 6.821697557471264
       },
       {
         "node_bindings": {
@@ -10145,12 +8274,6 @@
           "ab": [
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Potential QTc-Prolonging Agents"
@@ -10161,12 +8284,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Potential QTc-Prolonging Agents"
@@ -10177,12 +8294,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Potential QTc-Prolonging Agents"
@@ -10193,12 +8304,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Potential QTc-Prolonging Agents"
@@ -10208,7 +8313,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 176.36243283045974
       },
       {
         "node_bindings": {
@@ -10280,12 +8386,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors",
@@ -10300,12 +8400,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors",
@@ -10320,12 +8414,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors",
@@ -10340,12 +8428,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors",
@@ -10359,7 +8441,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10405,11 +8488,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Inhibitors (moderate)"
@@ -10420,11 +8498,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Inhibitors (moderate)"
@@ -10435,11 +8508,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP3A4 Inhibitors (moderate)"
@@ -10449,7 +8517,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10505,12 +8574,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "P-glycoprotein/ABCB1 Substrates"
@@ -10521,12 +8584,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "P-glycoprotein/ABCB1 Substrates"
@@ -10537,12 +8594,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "P-glycoprotein/ABCB1 Substrates"
@@ -10553,12 +8604,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "P-glycoprotein/ABCB1 Substrates"
@@ -10568,7 +8613,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -10614,11 +8660,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "1f6d1af9c9790d9e764acbcefa529560"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Highest Risk QTc-Prolonging Agents"
@@ -10629,11 +8670,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "1f6d1af9c9790d9e764acbcefa529560"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Highest Risk QTc-Prolonging Agents"
@@ -10644,11 +8680,6 @@
             },
             {
               "id": "1f6d1af9c9790d9e764acbcefa529560",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "1f6d1af9c9790d9e764acbcefa529560"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Highest Risk QTc-Prolonging Agents"
@@ -10658,7 +8689,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10724,13 +8756,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "parenteral"
@@ -10741,13 +8766,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "parenteral"
@@ -10758,13 +8776,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "parenteral"
@@ -10775,13 +8786,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "parenteral"
@@ -10792,13 +8796,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "45bb9997c8ac47225836c8e74cf91b5a",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "parenteral"
@@ -10808,7 +8805,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10854,11 +8852,6 @@
           "ab": [
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors (weak)"
@@ -10869,11 +8862,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors (weak)"
@@ -10884,11 +8872,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP2D6 Inhibitors (weak)"
@@ -10898,7 +8881,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10934,10 +8918,6 @@
           "ab": [
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Indole Derivatives"
@@ -10948,10 +8928,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Indole Derivatives"
@@ -10961,7 +8937,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -10997,10 +8974,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Diazepines, Oxazepines, Thiazepines and Oxepines"
@@ -11011,10 +8984,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Diazepines, Oxazepines, Thiazepines and Oxepines"
@@ -11024,7 +8993,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -11080,12 +9050,6 @@
           "ab": [
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Sulfur Compounds"
@@ -11096,12 +9060,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Sulfur Compounds"
@@ -11112,12 +9070,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Sulfur Compounds"
@@ -11128,12 +9080,6 @@
             },
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "25ca4674bccf3d3623ec99ddd401fef8",
-                "14403bd92938ce4daec86a4771bf62e5"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Sulfur Compounds"
@@ -11143,7 +9089,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -11189,11 +9136,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP1A2 Substrates"
@@ -11204,11 +9146,6 @@
             },
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP1A2 Substrates"
@@ -11219,11 +9156,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 CYP1A2 Substrates"
@@ -11233,7 +9165,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -11279,11 +9212,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents producing tachycardia"
@@ -11294,11 +9222,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents producing tachycardia"
@@ -11309,11 +9232,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "b10e8f04da87590a3f4594b55cb5f622",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents producing tachycardia"
@@ -11323,7 +9241,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -11363,10 +9282,6 @@
           "ab": [
             {
               "id": "498c4c27bfd963f51fa822ad7f5a43cc",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (First Generation [Typical])",
@@ -11379,10 +9294,6 @@
             },
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "498c4c27bfd963f51fa822ad7f5a43cc",
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antipsychotic Agents (First Generation [Typical])",
@@ -11394,7 +9305,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 6.821697557471264
       },
       {
         "node_bindings": {
@@ -11438,10 +9350,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antiemetics",
@@ -11456,10 +9364,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Antiemetics",
@@ -11473,7 +9377,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 4556.930668103448
       },
       {
         "node_bindings": {
@@ -11513,10 +9418,6 @@
           "ab": [
             {
               "id": "14403bd92938ce4daec86a4771bf62e5",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "25ca4674bccf3d3623ec99ddd401fef8"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "CYP3A Substrates (Sensitive)",
@@ -11529,10 +9430,6 @@
             },
             {
               "id": "25ca4674bccf3d3623ec99ddd401fef8",
-              "kg_id": [
-                "14403bd92938ce4daec86a4771bf62e5",
-                "25ca4674bccf3d3623ec99ddd401fef8"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "CYP3A Substrates (Sensitive)",
@@ -11544,7 +9441,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1437.196623922414
       },
       {
         "node_bindings": {
@@ -11590,11 +9488,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 Enzyme Inhibitors"
@@ -11605,11 +9498,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 Enzyme Inhibitors"
@@ -11620,11 +9508,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Cytochrome P-450 Enzyme Inhibitors"
@@ -11634,7 +9517,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 4556.930668103448
       },
       {
         "node_bindings": {
@@ -11670,10 +9554,6 @@
           "ab": [
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "H1_receptor_antagonist"
@@ -11684,10 +9564,6 @@
             },
             {
               "id": "45bb9997c8ac47225836c8e74cf91b5a",
-              "kg_id": [
-                "f35fb52da54f92f60696a99e84bfa51a",
-                "45bb9997c8ac47225836c8e74cf91b5a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "H1_receptor_antagonist"
@@ -11697,7 +9573,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 1443.587358836207
       },
       {
         "node_bindings": {
@@ -11733,10 +9610,6 @@
           "ab": [
             {
               "id": "43821d8754c5fd847b24ae5bff93cf0b",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "muscarinic_antagonist"
@@ -11747,10 +9620,6 @@
             },
             {
               "id": "b10e8f04da87590a3f4594b55cb5f622",
-              "kg_id": [
-                "43821d8754c5fd847b24ae5bff93cf0b",
-                "b10e8f04da87590a3f4594b55cb5f622"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "muscarinic_antagonist"
@@ -11760,7 +9629,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 913.1693369252874
       },
       {
         "node_bindings": {
@@ -11796,10 +9666,6 @@
           "ab": [
             {
               "id": "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that reduce seizure threshold"
@@ -11810,10 +9676,6 @@
             },
             {
               "id": "f35fb52da54f92f60696a99e84bfa51a",
-              "kg_id": [
-                "5f9d7ec7475fcd03c7d0349c3d43ffd7",
-                "f35fb52da54f92f60696a99e84bfa51a"
-              ],
               "coalescence_method": "property_enrichment",
               "properties": [
                 "Agents that reduce seizure threshold"
@@ -11823,7 +9685,8 @@
               ]
             }
           ]
-        }
+        },
+        "score": 4556.930668103448
       }
     ]
   }

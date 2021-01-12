@@ -197,26 +197,22 @@
         "edge_bindings": {
           "e00": [
             {
-              "id": "emptypublicationsarray",
-              "kg_id": "emptypublicationsarray"
+              "id": "emptypublicationsarray"
             }
           ],
           "e01": [
             {
-              "id": "correctpublicationsarray",
-              "kg_id": "correctpublicationsarray"
+              "id": "correctpublicationsarray"
             }
           ],
           "e02": [
             {
-              "id": "correctpublicationscount",
-              "kg_id": "correctpublicationscount"
+              "id": "correctpublicationscount"
             }
           ],
           "e03": [
             {
-              "id": "badpublicationsarray",
-              "kg_id": "badpublicationsarray"
+              "id": "badpublicationsarray"
             }
           ]
         }

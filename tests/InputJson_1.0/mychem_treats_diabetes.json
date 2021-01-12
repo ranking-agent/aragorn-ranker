@@ -8294,11 +8294,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "f250222ce759cc501fc8db08a10ef129",
-              "kg_id": "f250222ce759cc501fc8db08a10ef129"
+              "id": "f250222ce759cc501fc8db08a10ef129"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8316,11 +8316,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "8ba8f9b1cce29a5b4b5b92037c1fca3d",
-              "kg_id": "8ba8f9b1cce29a5b4b5b92037c1fca3d"
+              "id": "8ba8f9b1cce29a5b4b5b92037c1fca3d"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8338,11 +8338,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "4d619257f8c148c470dba0811a7b699a",
-              "kg_id": "4d619257f8c148c470dba0811a7b699a"
+              "id": "4d619257f8c148c470dba0811a7b699a"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8360,11 +8360,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "ae473b7796d80274ae774e51cdaa0841",
-              "kg_id": "ae473b7796d80274ae774e51cdaa0841"
+              "id": "ae473b7796d80274ae774e51cdaa0841"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8382,11 +8382,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "7b7d2245aeb2183efbc8b4749eae5e8b",
-              "kg_id": "7b7d2245aeb2183efbc8b4749eae5e8b"
+              "id": "7b7d2245aeb2183efbc8b4749eae5e8b"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8404,11 +8404,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "6bfa51d92077ce9c2199cbd246c4fdeb",
-              "kg_id": "6bfa51d92077ce9c2199cbd246c4fdeb"
+              "id": "6bfa51d92077ce9c2199cbd246c4fdeb"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8426,11 +8426,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "15551720213af58c59255ba3c0723d07",
-              "kg_id": "15551720213af58c59255ba3c0723d07"
+              "id": "15551720213af58c59255ba3c0723d07"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8448,11 +8448,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e1fa568bffad9c6e3997f6c2a7bafc04",
-              "kg_id": "e1fa568bffad9c6e3997f6c2a7bafc04"
+              "id": "e1fa568bffad9c6e3997f6c2a7bafc04"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8470,11 +8470,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "1102029d8841bf0d7c8d2ef47209a14a",
-              "kg_id": "1102029d8841bf0d7c8d2ef47209a14a"
+              "id": "1102029d8841bf0d7c8d2ef47209a14a"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8492,11 +8492,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "9136d8ff414de9d94ab005b4c689615b",
-              "kg_id": "9136d8ff414de9d94ab005b4c689615b"
+              "id": "9136d8ff414de9d94ab005b4c689615b"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8514,11 +8514,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "b70221071b1b7f067c65c19ae2a5a743",
-              "kg_id": "b70221071b1b7f067c65c19ae2a5a743"
+              "id": "b70221071b1b7f067c65c19ae2a5a743"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8536,11 +8536,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "a432be57e752928ba8e8e35c1fffaf6a",
-              "kg_id": "a432be57e752928ba8e8e35c1fffaf6a"
+              "id": "a432be57e752928ba8e8e35c1fffaf6a"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8558,11 +8558,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e693021f9660437218c35212a02e3317",
-              "kg_id": "e693021f9660437218c35212a02e3317"
+              "id": "e693021f9660437218c35212a02e3317"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8580,11 +8580,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "47877372020c204be21b831c83b4854c",
-              "kg_id": "47877372020c204be21b831c83b4854c"
+              "id": "47877372020c204be21b831c83b4854c"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8602,11 +8602,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "44f3354fecc8a6e3ca6d33c44a34e26f",
-              "kg_id": "44f3354fecc8a6e3ca6d33c44a34e26f"
+              "id": "44f3354fecc8a6e3ca6d33c44a34e26f"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8624,11 +8624,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "91e528335a4e68e031f405c5adeda9c8",
-              "kg_id": "91e528335a4e68e031f405c5adeda9c8"
+              "id": "91e528335a4e68e031f405c5adeda9c8"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8646,11 +8646,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "2cd8564e4600119ce684f274dfdc53a4",
-              "kg_id": "2cd8564e4600119ce684f274dfdc53a4"
+              "id": "2cd8564e4600119ce684f274dfdc53a4"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8668,11 +8668,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "623c0cb5e42c5892173ed3a7a85498ff",
-              "kg_id": "623c0cb5e42c5892173ed3a7a85498ff"
+              "id": "623c0cb5e42c5892173ed3a7a85498ff"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8690,11 +8690,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "7da694bbccacb10421ea43adc902b172",
-              "kg_id": "7da694bbccacb10421ea43adc902b172"
+              "id": "7da694bbccacb10421ea43adc902b172"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8712,11 +8712,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "0c69cdeb184a217e9993d669adf4e6d9",
-              "kg_id": "0c69cdeb184a217e9993d669adf4e6d9"
+              "id": "0c69cdeb184a217e9993d669adf4e6d9"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8734,11 +8734,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "c24c1e06d201269d63c03a4ee44aa0a3",
-              "kg_id": "c24c1e06d201269d63c03a4ee44aa0a3"
+              "id": "c24c1e06d201269d63c03a4ee44aa0a3"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8756,11 +8756,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "3b11cb16521e673a49e4f6f96fd302a9",
-              "kg_id": "3b11cb16521e673a49e4f6f96fd302a9"
+              "id": "3b11cb16521e673a49e4f6f96fd302a9"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8778,11 +8778,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "a5eb2e56c412ca8c99d032d235f8ccb6",
-              "kg_id": "a5eb2e56c412ca8c99d032d235f8ccb6"
+              "id": "a5eb2e56c412ca8c99d032d235f8ccb6"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8800,11 +8800,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e918af17b16fb0f91bc8a46ad2ecb25f",
-              "kg_id": "e918af17b16fb0f91bc8a46ad2ecb25f"
+              "id": "e918af17b16fb0f91bc8a46ad2ecb25f"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8822,11 +8822,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "6333f699b0aeea29493ceaff35365aba",
-              "kg_id": "6333f699b0aeea29493ceaff35365aba"
+              "id": "6333f699b0aeea29493ceaff35365aba"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8844,11 +8844,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "b7daa0996dde24c1acd04ca2fec6b992",
-              "kg_id": "b7daa0996dde24c1acd04ca2fec6b992"
+              "id": "b7daa0996dde24c1acd04ca2fec6b992"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8866,11 +8866,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "d7759261541a1e1abce9463a08b136d7",
-              "kg_id": "d7759261541a1e1abce9463a08b136d7"
+              "id": "d7759261541a1e1abce9463a08b136d7"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8888,11 +8888,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "5c434a9f8d2aee118188d31154201208",
-              "kg_id": "5c434a9f8d2aee118188d31154201208"
+              "id": "5c434a9f8d2aee118188d31154201208"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8910,11 +8910,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "b59f6f77c9932889d9adf3c6c42caaf7",
-              "kg_id": "b59f6f77c9932889d9adf3c6c42caaf7"
+              "id": "b59f6f77c9932889d9adf3c6c42caaf7"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8932,11 +8932,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "4f4ad284b25d1e2079f6f0cb39b2348b",
-              "kg_id": "4f4ad284b25d1e2079f6f0cb39b2348b"
+              "id": "4f4ad284b25d1e2079f6f0cb39b2348b"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8954,11 +8954,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "5bc4788d14ac1d7fbee5ca8b6e6846ba",
-              "kg_id": "5bc4788d14ac1d7fbee5ca8b6e6846ba"
+              "id": "5bc4788d14ac1d7fbee5ca8b6e6846ba"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8976,11 +8976,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e474d8315636847eed8b28df47bb5e75",
-              "kg_id": "e474d8315636847eed8b28df47bb5e75"
+              "id": "e474d8315636847eed8b28df47bb5e75"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -8998,11 +8998,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e6ea1a1c5f55f6d061072c3bf66e2c87",
-              "kg_id": "e6ea1a1c5f55f6d061072c3bf66e2c87"
+              "id": "e6ea1a1c5f55f6d061072c3bf66e2c87"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9020,11 +9020,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "3f77dcc07f6db5d36e4a48ce3ec3be2e",
-              "kg_id": "3f77dcc07f6db5d36e4a48ce3ec3be2e"
+              "id": "3f77dcc07f6db5d36e4a48ce3ec3be2e"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9042,11 +9042,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "e7d5b5fa7a3f7e167b08b75d2f54c99a",
-              "kg_id": "e7d5b5fa7a3f7e167b08b75d2f54c99a"
+              "id": "e7d5b5fa7a3f7e167b08b75d2f54c99a"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9064,11 +9064,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "373496ec172b7dd9006aae33314163e8",
-              "kg_id": "373496ec172b7dd9006aae33314163e8"
+              "id": "373496ec172b7dd9006aae33314163e8"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9086,11 +9086,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "ca7aac7ea5e26e766e749dd6047d0cb3",
-              "kg_id": "ca7aac7ea5e26e766e749dd6047d0cb3"
+              "id": "ca7aac7ea5e26e766e749dd6047d0cb3"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9108,11 +9108,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "81d25c03711d540423bd0a333bab2b8d",
-              "kg_id": "81d25c03711d540423bd0a333bab2b8d"
+              "id": "81d25c03711d540423bd0a333bab2b8d"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9130,11 +9130,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "7d4926c7a37ce6f2667eb3c0ce108857",
-              "kg_id": "7d4926c7a37ce6f2667eb3c0ce108857"
+              "id": "7d4926c7a37ce6f2667eb3c0ce108857"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9152,11 +9152,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "d569acaeef6b86c245ce7427f55ca90e",
-              "kg_id": "d569acaeef6b86c245ce7427f55ca90e"
+              "id": "d569acaeef6b86c245ce7427f55ca90e"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9174,11 +9174,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "0cd51525ab6609fb980256c685b1c430",
-              "kg_id": "0cd51525ab6609fb980256c685b1c430"
+              "id": "0cd51525ab6609fb980256c685b1c430"
             }
           ]
-        }
+        },
+        "score": 1
       },
       {
         "node_bindings": {
@@ -9196,11 +9196,11 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "16b4be0e2c99725cfb05436da8a81951",
-              "kg_id": "16b4be0e2c99725cfb05436da8a81951"
+              "id": "16b4be0e2c99725cfb05436da8a81951"
             }
           ]
-        }
+        },
+        "score": 1
       }
     ]
   }

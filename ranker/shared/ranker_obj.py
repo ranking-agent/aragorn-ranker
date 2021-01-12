@@ -22,12 +22,19 @@ class Ranker:
 
         kedges = self.kgraph['edges']
 
+        attribute = {'name': 'weight', 'value': 1, 'type': 'EDAM:data_0006', 'url': None, 'source': None}
+
         for kedge in kedges:
             if kedges[kedge]['attributes'] is None:
-                attribute = [{'type': 'weight', 'value': 1}]
-                kedges[kedge]['attributes'] = attribute
-            elif not any('weight' in kedges[kedge]['attributes']):
-                kedges[kedge]['attributes']['weight'] : 1
+                kedges[kedge]['attributes'] = [attribute]
+            else:
+                found = False
+                for attrib in kedges[kedge]['attributes']:
+                    if attrib['name'] == 'weight':
+                        found = True
+
+                if not found:
+                    kedges[kedge]['attributes'].append(attribute)
 
         self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
         self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}

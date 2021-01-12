@@ -1281,32 +1281,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "2a4519287535ecf93f2df56a7b378e9f",
-              "kg_id": "2a4519287535ecf93f2df56a7b378e9f"
+              "id": "2a4519287535ecf93f2df56a7b378e9f"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e2",
-              "kg_id": "e2"
+              "id": "e2"
             }
           ]
         }
@@ -1342,32 +1337,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "2a4519287535ecf93f2df56a7b378e9f",
-              "kg_id": "2a4519287535ecf93f2df56a7b378e9f"
+              "id": "2a4519287535ecf93f2df56a7b378e9f"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -1403,32 +1393,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "2a4519287535ecf93f2df56a7b378e9f",
-              "kg_id": "2a4519287535ecf93f2df56a7b378e9f"
+              "id": "2a4519287535ecf93f2df56a7b378e9f"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e1",
-              "kg_id": "e1"
+              "id": "e1"
             }
           ]
         }
@@ -1464,32 +1449,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "67d5ef9dcdb4f53d9529a5a6f0a4feef",
-              "kg_id": "67d5ef9dcdb4f53d9529a5a6f0a4feef"
+              "id": "67d5ef9dcdb4f53d9529a5a6f0a4feef"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -1525,32 +1505,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "67d5ef9dcdb4f53d9529a5a6f0a4feef",
-              "kg_id": "67d5ef9dcdb4f53d9529a5a6f0a4feef"
+              "id": "67d5ef9dcdb4f53d9529a5a6f0a4feef"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e1",
-              "kg_id": "e1"
+              "id": "e1"
             }
           ]
         }
@@ -1586,32 +1561,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "856d6ea2294b841b5cd8dd508e4efed1",
-              "kg_id": "856d6ea2294b841b5cd8dd508e4efed1"
+              "id": "856d6ea2294b841b5cd8dd508e4efed1"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e1",
-              "kg_id": "e1"
+              "id": "e1"
             }
           ]
         }
@@ -1647,32 +1617,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "856d6ea2294b841b5cd8dd508e4efed1",
-              "kg_id": "856d6ea2294b841b5cd8dd508e4efed1"
+              "id": "856d6ea2294b841b5cd8dd508e4efed1"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -1708,32 +1673,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_349304",
-              "kg_id": "MAGMA_GENE_349304"
+              "id": "MAGMA_GENE_349304"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480",
-              "kg_id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
+              "id": "MONDO:0004979_AvgDailyNOExposure_2_qcut_CHEBI:16480"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16480--related_to--NCBIGene:9173",
-              "kg_id": "CHEBI:16480--related_to--NCBIGene:9173"
+              "id": "CHEBI:16480--related_to--NCBIGene:9173"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "856d6ea2294b841b5cd8dd508e4efed1",
-              "kg_id": "856d6ea2294b841b5cd8dd508e4efed1"
+              "id": "856d6ea2294b841b5cd8dd508e4efed1"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e2",
-              "kg_id": "e2"
+              "id": "e2"
             }
           ]
         }
@@ -1769,32 +1729,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352925",
-              "kg_id": "MAGMA_GENE_352925"
+              "id": "MAGMA_GENE_352925"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyBenzeneExposure_2_qcut_CHEBI:16716",
-              "kg_id": "MONDO:0004979_AvgDailyBenzeneExposure_2_qcut_CHEBI:16716"
+              "id": "MONDO:0004979_AvgDailyBenzeneExposure_2_qcut_CHEBI:16716"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "CHEBI:16716--related_to--NCBIGene:3117",
-              "kg_id": "CHEBI:16716--related_to--NCBIGene:3117"
+              "id": "CHEBI:16716--related_to--NCBIGene:3117"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "f752f939d746413be457dcd5d4386e89",
-              "kg_id": "f752f939d746413be457dcd5d4386e89"
+              "id": "f752f939d746413be457dcd5d4386e89"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -1830,32 +1785,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "936d5107ce1ad39ff525821a287008d7",
-              "kg_id": "936d5107ce1ad39ff525821a287008d7"
+              "id": "936d5107ce1ad39ff525821a287008d7"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e1",
-              "kg_id": "e1"
+              "id": "e1"
             }
           ]
         }
@@ -1891,32 +1841,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "936d5107ce1ad39ff525821a287008d7",
-              "kg_id": "936d5107ce1ad39ff525821a287008d7"
+              "id": "936d5107ce1ad39ff525821a287008d7"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e4",
-              "kg_id": "e4"
+              "id": "e4"
             }
           ]
         }
@@ -1952,32 +1897,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "936d5107ce1ad39ff525821a287008d7",
-              "kg_id": "936d5107ce1ad39ff525821a287008d7"
+              "id": "936d5107ce1ad39ff525821a287008d7"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -2013,32 +1953,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "936d5107ce1ad39ff525821a287008d7",
-              "kg_id": "936d5107ce1ad39ff525821a287008d7"
+              "id": "936d5107ce1ad39ff525821a287008d7"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e5",
-              "kg_id": "e5"
+              "id": "e5"
             }
           ]
         }
@@ -2074,32 +2009,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "936d5107ce1ad39ff525821a287008d7",
-              "kg_id": "936d5107ce1ad39ff525821a287008d7"
+              "id": "936d5107ce1ad39ff525821a287008d7"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e3",
-              "kg_id": "e3"
+              "id": "e3"
             }
           ]
         }
@@ -2135,32 +2065,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "512d7d6adb53958f7967c0a7bdcce38b",
-              "kg_id": "512d7d6adb53958f7967c0a7bdcce38b"
+              "id": "512d7d6adb53958f7967c0a7bdcce38b"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e0",
-              "kg_id": "e0"
+              "id": "e0"
             }
           ]
         }
@@ -2196,32 +2121,27 @@
         "edge_bindings": {
           "asthma_geneA": [
             {
-              "id": "MAGMA_GENE_352094",
-              "kg_id": "MAGMA_GENE_352094"
+              "id": "MAGMA_GENE_352094"
             }
           ],
           "asthma_drugA": [
             {
-              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638",
-              "kg_id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
+              "id": "MONDO:0004979_AvgDailyPM2.5Exposure_2_qcut_MESH:D052638"
             }
           ],
           "geneA_drugA": [
             {
-              "id": "MESH:D052638--related_to--NCBIGene:85480",
-              "kg_id": "MESH:D052638--related_to--NCBIGene:85480"
+              "id": "MESH:D052638--related_to--NCBIGene:85480"
             }
           ],
           "geneA_geneB": [
             {
-              "id": "512d7d6adb53958f7967c0a7bdcce38b",
-              "kg_id": "512d7d6adb53958f7967c0a7bdcce38b"
+              "id": "512d7d6adb53958f7967c0a7bdcce38b"
             }
           ],
           "geneB_drugB": [
             {
-              "id": "e1",
-              "kg_id": "e1"
+              "id": "e1"
             }
           ]
         }

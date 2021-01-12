@@ -200,11 +200,12 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "013231a9a173a01620331cffbde23535",
-              "kg_id": "013231a9a173a01620331cffbde23535"
+              "id": "013231a9a173a01620331cffbde23535"
             }
           ]
-        }
+        },
+        "score": 3.781932327586207,
+        "timestamp": 1584217835.977325
       },
       {
         "node_bindings": {
@@ -222,11 +223,12 @@
         "edge_bindings": {
           "e0": [
             {
-              "id": "33cc3972cb8a9aa6d40e074dc02499dd",
-              "kg_id": "33cc3972cb8a9aa6d40e074dc02499dd"
+              "id": "33cc3972cb8a9aa6d40e074dc02499dd"
             }
           ]
-        }
+        },
+        "score": 1.0,
+        "timestamp": 1584217836.0665915
       }
     ]
   }

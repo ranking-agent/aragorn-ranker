@@ -1,0 +1,3493 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "a": {
+          "id": [
+            "MONDO:0100096"
+          ],
+          "category": "biolink:Disease",
+          "is_set": false
+        },
+        "b": {
+          "category": "biolink:NamedThing",
+          "is_set": false
+        },
+        "c": {
+          "id": [
+            "CHEBI:4975"
+          ],
+          "category": "biolink:ChemicalSubstance",
+          "is_set": false
+        }
+      },
+      "edges": {
+        "ab": {
+          "subject": "a",
+          "object": "b"
+        },
+        "bc": {
+          "subject": "c",
+          "object": "b"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "MONDO:0100096": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "COVID-19",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 130564
+            }
+          ]
+        },
+        "NCBITaxon:2697049": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:OntologyClass",
+            "biolink:OrganismTaxon"
+          ],
+          "name": "Severe acute respiratory syndrome coronavirus 2",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 0
+            }
+          ]
+        },
+        "CHEBI:4975": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:ChemicalSubstance",
+            "biolink:MolecularEntity"
+          ],
+          "name": "famotidine",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 2363
+            }
+          ]
+        },
+        "MONDO:0056821": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "bronchiolitis obliterans organizing pneumonia",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 2085
+            }
+          ]
+        },
+        "MONDO:0019737": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "thrombotic microangiopathy",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 3861
+            }
+          ]
+        },
+        "MONDO:0015796": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "acute lung injury",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 16577
+            }
+          ]
+        },
+        "NCBIGene:7124": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:MolecularEntity",
+            "biolink:Gene",
+            "biolink:GeneOrGeneProduct",
+            "biolink:MacromolecularMachine",
+            "biolink:GenomicEntity"
+          ],
+          "name": "TNF",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 0
+            }
+          ]
+        },
+        "MONDO:0005478": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "torsades de pointes",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 4815
+            }
+          ]
+        },
+        "MONDO:0004652": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "bacterial pneumonia",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 15538
+            }
+          ]
+        },
+        "MONDO:0002258": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "pharyngitis",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 18588
+            }
+          ]
+        },
+        "MONDO:0001208": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "acute respiratory failure",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 8051
+            }
+          ]
+        },
+        "MONDO:0045057": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "delirium",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 59323
+            }
+          ]
+        },
+        "MONDO:0005249": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "pneumonia",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 135762
+            }
+          ]
+        },
+        "MONDO:0003785": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "leukopenia",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 22821
+            }
+          ]
+        },
+        "MONDO:0005252": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "heart failure",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 181606
+            }
+          ]
+        },
+        "MONDO:0024355": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "respiratory tract infectious disease",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 67660
+            }
+          ]
+        },
+        "MONDO:0001673": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "diarrheal disease",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 119086
+            }
+          ]
+        },
+        "MONDO:0001243": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "disseminated intravascular coagulation",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 21335
+            }
+          ]
+        },
+        "MONDO:0021146": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "headache disorder",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 91781
+            }
+          ]
+        },
+        "MONDO:0005265": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "inflammatory bowel disease",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 52824
+            }
+          ]
+        },
+        "MONDO:0004995": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "cardiovascular disease",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 257247
+            }
+          ]
+        },
+        "MONDO:0019810": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "toxic epidermal necrolysis",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 308547
+            }
+          ]
+        },
+        "MONDO:0005113": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "bacterial infectious disease",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 113485
+            }
+          ]
+        },
+        "MONDO:0005263": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "unipolar depression",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 380777
+            }
+          ]
+        },
+        "MONDO:0006932": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "pulmonary edema",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 28954
+            }
+          ]
+        },
+        "MONDO:0015137": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "periodic fever syndrome",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 187046
+            }
+          ]
+        },
+        "MONDO:0021113": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "respiratory failure",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 67310
+            }
+          ]
+        },
+        "MONDO:0004730": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "speech disorder",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 30575
+            }
+          ]
+        },
+        "MONDO:0004900": {
+          "category": [
+            "biolink:NamedThing",
+            "biolink:BiologicalEntity",
+            "biolink:Disease",
+            "biolink:DiseaseOrPhenotypicFeature"
+          ],
+          "name": "peripheral vertigo",
+          "attributes": [
+            {
+              "type": "omnicorp_article_count",
+              "value": 20810
+            }
+          ]
+        }
+      },
+      "edges": {
+        "f7ba96a2d5c606323e97d07af7eaa18b": {
+          "subject": "MONDO:0100096",
+          "object": "NCBITaxon:2697049",
+          "predicate": "biolink:related_to"
+        },
+        "aff80436570aaf17f95b5acf1c5c0f7b": {
+          "subject": "CHEBI:4975",
+          "object": "NCBITaxon:2697049",
+          "predicate": "biolink:in_clinical_trial_for"
+        },
+        "2280d6cddf5f10a8fd58de70f404b987": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0056821",
+          "predicate": "biolink:related_to"
+        },
+        "14174cce99ff32ab8c288ae1ef54257f": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0056821",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "be11439ec57dcefc9f15abe6d1e762b9": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0019737",
+          "predicate": "biolink:related_to"
+        },
+        "812246ae2940eeefbd72ab73666c01fe": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0019737",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "653fde0eee33086441d5077a731d974b": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0015796",
+          "predicate": "biolink:related_to"
+        },
+        "c303bbb38a2ec460a39ed06817d03073": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0015796",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "7c7423ae1957fd581b156b0421d23294": {
+          "subject": "MONDO:0100096",
+          "object": "NCBIGene:7124",
+          "predicate": "biolink:related_to"
+        },
+        "60c62cc42ccdd831a8a428633584aa73": {
+          "subject": "CHEBI:4975",
+          "object": "NCBIGene:7124",
+          "predicate": "biolink:increases_secretion_of"
+        },
+        "eb2b32c3a22ebcefac4d52819d41db51": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005478",
+          "predicate": "biolink:related_to"
+        },
+        "7325ed3030aa9e947dd4064104317cfc": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005478",
+          "predicate": "biolink:contributes_to"
+        },
+        "cc99bb33ef8f58c50731d908ae6e750d": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005478",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "109061a2db0cad5009e55fc1cab09575": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0004652",
+          "predicate": "biolink:related_to"
+        },
+        "ec2db97f8fc49b086acffa6f4f22dbc8": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004652",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "c952240b0e55a98a7d4eb53656b348f1": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0002258",
+          "predicate": "biolink:related_to"
+        },
+        "4cf89334ad046b12f517e13367c341bd": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0002258",
+          "predicate": "biolink:prevents"
+        },
+        "a9c76d8e36531364d25cb3f83572c806": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0001208",
+          "predicate": "biolink:related_to"
+        },
+        "3784d2f2916dc24cfda753828b01269d": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001208",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "5036689d55b8f9f9e8d2c35fdfb3e258": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:related_to"
+        },
+        "9f4df0444db2a3ffc09c25e8b0713578": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:has_phenotype"
+        },
+        "908ca5052b017f4ea79f769b5c3a5897": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:contributes_to"
+        },
+        "1e4dfcec8da6409799fb897f6e02a746": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "8183f213914fbca4a1ada57f34367e93": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:prevents"
+        },
+        "c7ce253a2de06705ce6c6c9e2155ab4a": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005249",
+          "predicate": "biolink:related_to"
+        },
+        "da825870d445b043d8c03cde137e1499": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005249",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "d1b2d3715085b8d8fade58301abb1dc2": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0003785",
+          "predicate": "biolink:related_to"
+        },
+        "1173aa8a4bf2e0a4d42adcad4fbec00a": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0003785",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "dbf99209970155864e61a71189d26623": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005252",
+          "predicate": "biolink:related_to"
+        },
+        "8a06a374968eb4b52fc312e9bc10a0b9": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005252",
+          "predicate": "biolink:treats"
+        },
+        "c6ad4bcfc2f9404760353d0c6e14a757": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0024355",
+          "predicate": "biolink:related_to"
+        },
+        "1846fe0ab4733cbf57cf1e1c450a555a": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0024355",
+          "predicate": "biolink:prevents"
+        },
+        "e17690f475384c9eb9cff97ea02656db": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0001673",
+          "predicate": "biolink:related_to"
+        },
+        "449bd7a67b7c8dcec04ed68e60170c65": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0001673",
+          "predicate": "biolink:has_phenotype"
+        },
+        "c1ceb82427292fa60cd18f538af273b1": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001673",
+          "predicate": "biolink:contraindicated_for"
+        },
+        "94c0e06a30513062fcee89e3ca7363bb": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0001243",
+          "predicate": "biolink:related_to"
+        },
+        "5230997850fea7af82071c758253bfd6": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001243",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "02a3b9d04dc8f00baad56f1d3c2eb0ae": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0021146",
+          "predicate": "biolink:related_to"
+        },
+        "39bf57a77e9522c8643e2a4bdb6ccd8f": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0021146",
+          "predicate": "biolink:has_phenotype"
+        },
+        "1b344638fcb4da3c3c3f84e0fa30fb0b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0021146",
+          "predicate": "biolink:contributes_to"
+        },
+        "ca8fa0f8260433fef4eac6579ef883fc": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0021146",
+          "predicate": "biolink:prevents"
+        },
+        "7f29d713370c8aacab232c743ee3987a": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005265",
+          "predicate": "biolink:related_to"
+        },
+        "d573cb39419143de1dc2d84a0206eb30": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005265",
+          "predicate": "biolink:prevents"
+        },
+        "cee8f061f83713bca61cc0f7ca083f4e": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0004995",
+          "predicate": "biolink:related_to"
+        },
+        "84aa4a49db52be6a1be71060f32b219c": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004995",
+          "predicate": "biolink:prevents"
+        },
+        "0c55c26d87be113f70e4dda7cbd75d85": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0019810",
+          "predicate": "biolink:related_to"
+        },
+        "360a39b818b2e4df83794bc95e083724": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0019810",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "bbaaff34c1aa38d09cbb1ea3b971c359": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005113",
+          "predicate": "biolink:related_to"
+        },
+        "6d7efc3a7025d38ea53fc918545ff336": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005113",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "9cafac13235b8ae745a7930a4c9436cf": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0005263",
+          "predicate": "biolink:related_to"
+        },
+        "68727deb8a51a89077d0dbf040f34025": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005263",
+          "predicate": "biolink:prevents"
+        },
+        "c26987f51ee73278e67a0c91d835d0af": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0006932",
+          "predicate": "biolink:related_to"
+        },
+        "9d61bda4fbdcc44ba2cb202c801a1e2d": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0006932",
+          "predicate": "biolink:treats"
+        },
+        "2c23784201bbecd03ac2d95c7670b817": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0015137",
+          "predicate": "biolink:related_to"
+        },
+        "4b5cc0ba33025b8d27e1ea9c61d24545": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0015137",
+          "predicate": "biolink:has_phenotype"
+        },
+        "2df290232bf3d30a27ad874836d05262": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0015137",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "6b637092c75966e1c35ee55ef62219fc": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0021113",
+          "predicate": "biolink:related_to"
+        },
+        "a72584a4e86423d6d94314f0bce9ddc5": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0021113",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "04b388385c74f1f389d8edc8a2b76707": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0004730",
+          "predicate": "biolink:has_phenotype"
+        },
+        "52a00428d863733171ef71ec9f0de00b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004730",
+          "predicate": "biolink:causes_adverse_event"
+        },
+        "c9605cdaf3cf404cd43bb7b2f70167f5": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004730",
+          "predicate": "biolink:prevents"
+        },
+        "a0ab13c777e2d23b0ea6f82a2d06dd88": {
+          "subject": "MONDO:0100096",
+          "object": "MONDO:0004900",
+          "predicate": "biolink:has_phenotype"
+        },
+        "97ba863e0634a258a7bd4f13f5c2154b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004900",
+          "predicate": "biolink:prevents"
+        },
+        "ad94b873-67fb-4fa2-8616-d462b67ee78f": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005478",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "e1029fbc-7047-43cf-813c-dd7dbca8239a": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0002258",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "04967b37-4fde-4369-abc8-877f88143e03": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "5a3e71f8-8c0c-4494-aea0-cc8264296d60": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005249",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "0b012332-9910-4771-9ea7-7189596d89e8": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0003785",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "dd8fc12b-5e8e-454b-8918-73572cd34fa7": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005252",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "5508e2fc-be9c-49a0-8f2f-521f47f3347b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001673",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "b880b4cd-999d-4f6d-8efe-646e54f481e5": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001243",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "72a1933b-6420-4ade-a7e5-d88614c9bae7": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005265",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "653e89b2-271b-4a97-8c98-18a3733911eb": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004995",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "222a6eb5-d1e5-4ba7-89c1-23146f70277b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0019810",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "588de277-6fc7-4252-afea-8e59f137ad9e": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005113",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "c82d3447-7148-412c-9f5a-290e4b9da771": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0006932",
+          "predicate": "biolink:literature_co_occurrence"
+        },
+        "0f089b86-c9a9-4794-9a29-3f8cf68ceffc": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0045057",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 42
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "521c1304-78e3-495c-9d76-daa71173d45d": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 62
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "70301413-6df7-4ae1-89ee-7dc98a373680": {
+          "subject": "MONDO:0045057",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 2980
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "0087c373-b420-445c-b9a4-895a9f3f35b7": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0021146",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 54
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "80377671-c982-4a75-87fa-5e7e95c38ad1": {
+          "subject": "MONDO:0021146",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 3699
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "7a3968e5-5471-4029-b680-867fd47c51a4": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005252",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 57
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "dff79d99-2404-4dce-904a-38e838d092d9": {
+          "subject": "MONDO:0005252",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 2475
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "9bd90e5d-19fa-480b-a674-29e045e50047": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005478",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 12
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "a1ffb5b7-06aa-4a27-83ef-a16401159854": {
+          "subject": "MONDO:0005478",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 305
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "e3109fc3-7aa4-4111-b9e5-af46877786b4": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0006932",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 38
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "c2616460-27b1-4b8d-b2a5-348d5775c3fa": {
+          "subject": "MONDO:0006932",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 1078
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "6e6a5170-2574-4414-b6fa-5521ed9603ac": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001673",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 110
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "00baeb34-9276-4886-8c4f-8155a2586d1e": {
+          "subject": "MONDO:0001673",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 5241
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "69a2f047-d7c1-4b9a-8f57-420cd583c41b": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0015137",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 104
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "2eb35199-6fd2-4e86-841f-c1bd93e29571": {
+          "subject": "MONDO:0015137",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 15194
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "2e1d743b-b981-4e79-aa7a-d51de31a69d7": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005249",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 74
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "e952445a-40b1-4e89-8347-2a20cac088c4": {
+          "subject": "MONDO:0005249",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 17799
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "0aeabeb5-3a16-46b5-a016-177d7fcb6327": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0002258",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 20
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "f12b8c14-421b-439f-a956-c2bfb47c8d59": {
+          "subject": "MONDO:0002258",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 2719
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "fe0daa3c-6657-4305-a02a-8dfee362970f": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0021113",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 38
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "10c5e8a9-f1fa-4809-b770-638b21fe7e85": {
+          "subject": "MONDO:0021113",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 6025
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "050437b1-4a7d-4e07-8068-bb5eb688d88f": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0024355",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 30
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "330bc8d3-9242-41a6-9176-b984708908f8": {
+          "subject": "MONDO:0024355",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 5168
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "42ab5a39-fbc5-49b5-ae3f-c30f78af7f2e": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0015796",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 18
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "f971af97-1bcd-4175-87e1-3627248b4ddb": {
+          "subject": "MONDO:0015796",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 1508
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "15182d17-c0a4-4b32-90db-a1cb168ea7a0": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001208",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 9
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "1e341eaf-f18a-4b2c-8754-b5c96d7b51df": {
+          "subject": "MONDO:0001208",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 976
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "c1596675-8d03-4e36-8ed6-4fa48513aba6": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0019810",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 79
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "845945b9-b740-4aed-b852-fc3e96388d7f": {
+          "subject": "MONDO:0019810",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 6139
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "873a227d-f749-4d60-8738-2b83272a424d": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0001243",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 42
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "d2b4f495-1b5d-4bc3-9611-79db0c58d3fb": {
+          "subject": "MONDO:0001243",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 1372
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "bd43b1dd-2282-4077-91ea-157c7ba672a3": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004730",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 11
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "080ac4cf-8781-4d16-9113-81bc870d5823": {
+          "subject": "MONDO:0004730",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 126
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "6e3f3611-295b-4176-a172-56ca550acf88": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004995",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 39
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "ac27b63e-07e1-41b1-b901-9d4952fada43": {
+          "subject": "MONDO:0004995",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 5165
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "b0e5b618-9b22-4b54-857b-1dbcdaf1cf28": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0003785",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 37
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "cf91e592-5349-4444-a6d6-d6dab2801369": {
+          "subject": "MONDO:0003785",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 937
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "74d6df5d-16f9-49ca-bdc9-0c8a35c86bce": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004652",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 17
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "a427b873-eda2-4dc6-ab58-29dd0a20af7d": {
+          "subject": "MONDO:0004652",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 690
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "f8a216c6-50a7-45ab-8001-4db604b8b34a": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0056821",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 2
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "5e1b8aca-4b3e-4ac2-bd19-63250379ed74": {
+          "subject": "MONDO:0056821",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 220
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "f25ba534-9545-46d6-a1bd-3ce0e3ef7f3e": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005113",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 53
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "2a1f816f-98c8-46a2-89d1-74af3e80d892": {
+          "subject": "MONDO:0005113",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 1816
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "a1a674ac-f2a2-4462-9270-c7c0794f48e9": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005263",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 91
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "0576db23-407f-42eb-bd28-2341e71dc7e0": {
+          "subject": "MONDO:0005263",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 4343
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "b329460e-ba89-4887-bb65-3d57e4e7a097": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0019737",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 4
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "c8123305-ae21-4e28-89fe-570e64f29843": {
+          "subject": "MONDO:0019737",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 245
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "5b37f375-fb99-45d0-807d-d951424c9673": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0005265",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 51
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "2a56ae27-d724-4f78-ac4c-2d66d6bbe327": {
+          "subject": "MONDO:0005265",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 863
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "30e473e4-ee5e-418b-b162-3d7596f0806a": {
+          "subject": "CHEBI:4975",
+          "object": "MONDO:0004900",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 6
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        },
+        "db479a6d-0458-4417-9691-ced9890b6ea0": {
+          "subject": "MONDO:0004900",
+          "object": "MONDO:0100096",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "type": "num_publications",
+              "value": 102
+            },
+            {
+              "type": "publications",
+              "value": []
+            },
+            {
+              "type": "source_database",
+              "value": "omnicorp"
+            },
+            {
+              "type": "edge_source",
+              "value": "omnicorp.term_to_term"
+            }
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0045057"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "5036689d55b8f9f9e8d2c35fdfb3e258",
+              "weight": 0.7204410299421424,
+              "kg_id": "5036689d55b8f9f9e8d2c35fdfb3e258"
+            },
+            {
+              "id": "9f4df0444db2a3ffc09c25e8b0713578",
+              "weight": 0.2679491924311228,
+              "kg_id": "9f4df0444db2a3ffc09c25e8b0713578"
+            }
+          ],
+          "bc": [
+            {
+              "id": "908ca5052b017f4ea79f769b5c3a5897",
+              "weight": 0.6772190444071822,
+              "kg_id": "908ca5052b017f4ea79f769b5c3a5897"
+            },
+            {
+              "id": "1e4dfcec8da6409799fb897f6e02a746",
+              "weight": 0.2679491924311228,
+              "kg_id": "1e4dfcec8da6409799fb897f6e02a746"
+            },
+            {
+              "id": "8183f213914fbca4a1ada57f34367e93",
+              "weight": 0.2679491924311228,
+              "kg_id": "8183f213914fbca4a1ada57f34367e93"
+            }
+          ],
+          "s19": [
+            {
+              "id": "04967b37-4fde-4369-abc8-877f88143e03",
+              "weight": 0.002715367498174137,
+              "kg_id": "04967b37-4fde-4369-abc8-877f88143e03"
+            }
+          ],
+          "s0": [
+            {
+              "id": "0f089b86-c9a9-4794-9a29-3f8cf68ceffc"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s2": [
+            {
+              "id": "70301413-6df7-4ae1-89ee-7dc98a373680"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0021146"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "02a3b9d04dc8f00baad56f1d3c2eb0ae",
+              "weight": 0.703939540146167,
+              "kg_id": "02a3b9d04dc8f00baad56f1d3c2eb0ae"
+            },
+            {
+              "id": "39bf57a77e9522c8643e2a4bdb6ccd8f",
+              "weight": 0.2679491924311228,
+              "kg_id": "39bf57a77e9522c8643e2a4bdb6ccd8f"
+            }
+          ],
+          "bc": [
+            {
+              "id": "1b344638fcb4da3c3c3f84e0fa30fb0b",
+              "weight": 0.4999999999999998,
+              "kg_id": "1b344638fcb4da3c3c3f84e0fa30fb0b"
+            },
+            {
+              "id": "ca8fa0f8260433fef4eac6579ef883fc",
+              "weight": 0.2679491924311228,
+              "kg_id": "ca8fa0f8260433fef4eac6579ef883fc"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s3": [
+            {
+              "id": "0087c373-b420-445c-b9a4-895a9f3f35b7"
+            }
+          ],
+          "s4": [
+            {
+              "id": "80377671-c982-4a75-87fa-5e7e95c38ad1"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005252"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "dbf99209970155864e61a71189d26623",
+              "weight": 0.33486103129084155,
+              "kg_id": "dbf99209970155864e61a71189d26623"
+            }
+          ],
+          "bc": [
+            {
+              "id": "8a06a374968eb4b52fc312e9bc10a0b9",
+              "weight": 0.7999999999999998,
+              "kg_id": "8a06a374968eb4b52fc312e9bc10a0b9"
+            }
+          ],
+          "s25": [
+            {
+              "id": "dd8fc12b-5e8e-454b-8918-73572cd34fa7",
+              "weight": 0.003180142818884679,
+              "kg_id": "dd8fc12b-5e8e-454b-8918-73572cd34fa7"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s5": [
+            {
+              "id": "7a3968e5-5471-4029-b680-867fd47c51a4"
+            }
+          ],
+          "s6": [
+            {
+              "id": "dff79d99-2404-4dce-904a-38e838d092d9"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005478"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "eb2b32c3a22ebcefac4d52819d41db51",
+              "weight": 0.34018056065823865,
+              "kg_id": "eb2b32c3a22ebcefac4d52819d41db51"
+            }
+          ],
+          "bc": [
+            {
+              "id": "7325ed3030aa9e947dd4064104317cfc",
+              "weight": 0.4999999999999998,
+              "kg_id": "7325ed3030aa9e947dd4064104317cfc"
+            },
+            {
+              "id": "cc99bb33ef8f58c50731d908ae6e750d",
+              "weight": 0.2679491924311228,
+              "kg_id": "cc99bb33ef8f58c50731d908ae6e750d"
+            }
+          ],
+          "s11": [
+            {
+              "id": "ad94b873-67fb-4fa2-8616-d462b67ee78f",
+              "weight": 0.0045755789664765345,
+              "kg_id": "ad94b873-67fb-4fa2-8616-d462b67ee78f"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s7": [
+            {
+              "id": "9bd90e5d-19fa-480b-a674-29e045e50047"
+            }
+          ],
+          "s8": [
+            {
+              "id": "a1ffb5b7-06aa-4a27-83ef-a16401159854"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0006932"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "c26987f51ee73278e67a0c91d835d0af",
+              "weight": 0.41405815273039237,
+              "kg_id": "c26987f51ee73278e67a0c91d835d0af"
+            }
+          ],
+          "bc": [
+            {
+              "id": "9d61bda4fbdcc44ba2cb202c801a1e2d",
+              "weight": 0.4999999999999998,
+              "kg_id": "9d61bda4fbdcc44ba2cb202c801a1e2d"
+            }
+          ],
+          "s45": [
+            {
+              "id": "c82d3447-7148-412c-9f5a-290e4b9da771",
+              "weight": 0.00021680922281430703,
+              "kg_id": "c82d3447-7148-412c-9f5a-290e4b9da771"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s9": [
+            {
+              "id": "e3109fc3-7aa4-4111-b9e5-af46877786b4"
+            }
+          ],
+          "s10": [
+            {
+              "id": "c2616460-27b1-4b8d-b2a5-348d5775c3fa"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0001673"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "e17690f475384c9eb9cff97ea02656db",
+              "weight": 0.8643468193489441,
+              "kg_id": "e17690f475384c9eb9cff97ea02656db"
+            },
+            {
+              "id": "449bd7a67b7c8dcec04ed68e60170c65",
+              "weight": 0.2679491924311228,
+              "kg_id": "449bd7a67b7c8dcec04ed68e60170c65"
+            }
+          ],
+          "bc": [
+            {
+              "id": "c1ceb82427292fa60cd18f538af273b1",
+              "weight": 0.2679491924311228,
+              "kg_id": "c1ceb82427292fa60cd18f538af273b1"
+            }
+          ],
+          "s29": [
+            {
+              "id": "5508e2fc-be9c-49a0-8f2f-521f47f3347b",
+              "weight": 0.011878609336186896,
+              "kg_id": "5508e2fc-be9c-49a0-8f2f-521f47f3347b"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s11": [
+            {
+              "id": "6e6a5170-2574-4414-b6fa-5521ed9603ac"
+            }
+          ],
+          "s12": [
+            {
+              "id": "00baeb34-9276-4886-8c4f-8155a2586d1e"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0015137"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "2c23784201bbecd03ac2d95c7670b817",
+              "weight": 0.9999958711504491,
+              "kg_id": "2c23784201bbecd03ac2d95c7670b817"
+            },
+            {
+              "id": "4b5cc0ba33025b8d27e1ea9c61d24545",
+              "weight": 0.2679491924311228,
+              "kg_id": "4b5cc0ba33025b8d27e1ea9c61d24545"
+            }
+          ],
+          "bc": [
+            {
+              "id": "2df290232bf3d30a27ad874836d05262",
+              "weight": 0.2679491924311228,
+              "kg_id": "2df290232bf3d30a27ad874836d05262"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s13": [
+            {
+              "id": "69a2f047-d7c1-4b9a-8f57-420cd583c41b"
+            }
+          ],
+          "s14": [
+            {
+              "id": "2eb35199-6fd2-4e86-841f-c1bd93e29571"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005249"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "c7ce253a2de06705ce6c6c9e2155ab4a",
+              "weight": 0.9999999999954481,
+              "kg_id": "c7ce253a2de06705ce6c6c9e2155ab4a"
+            }
+          ],
+          "bc": [
+            {
+              "id": "da825870d445b043d8c03cde137e1499",
+              "weight": 0.2679491924311228,
+              "kg_id": "da825870d445b043d8c03cde137e1499"
+            }
+          ],
+          "s21": [
+            {
+              "id": "5a3e71f8-8c0c-4494-aea0-cc8264296d60",
+              "weight": 0.0038342811209324257,
+              "kg_id": "5a3e71f8-8c0c-4494-aea0-cc8264296d60"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s15": [
+            {
+              "id": "2e1d743b-b981-4e79-aa7a-d51de31a69d7"
+            }
+          ],
+          "s16": [
+            {
+              "id": "e952445a-40b1-4e89-8347-2a20cac088c4"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "NCBITaxon:2697049"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "f7ba96a2d5c606323e97d07af7eaa18b",
+              "weight": 1,
+              "kg_id": "f7ba96a2d5c606323e97d07af7eaa18b"
+            }
+          ],
+          "bc": [
+            {
+              "id": "aff80436570aaf17f95b5acf1c5c0f7b",
+              "weight": 0.2679491924311228,
+              "kg_id": "aff80436570aaf17f95b5acf1c5c0f7b"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0002258"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "c952240b0e55a98a7d4eb53656b348f1",
+              "weight": 0.9892286174666232,
+              "kg_id": "c952240b0e55a98a7d4eb53656b348f1"
+            }
+          ],
+          "bc": [
+            {
+              "id": "4cf89334ad046b12f517e13367c341bd",
+              "weight": 0.2679491924311228,
+              "kg_id": "4cf89334ad046b12f517e13367c341bd"
+            }
+          ],
+          "s15": [
+            {
+              "id": "e1029fbc-7047-43cf-813c-dd7dbca8239a",
+              "weight": 0.000702274323792107,
+              "kg_id": "e1029fbc-7047-43cf-813c-dd7dbca8239a"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s19": [
+            {
+              "id": "0aeabeb5-3a16-46b5-a016-177d7fcb6327"
+            }
+          ],
+          "s20": [
+            {
+              "id": "f12b8c14-421b-439f-a956-c2bfb47c8d59"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0021113"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "6b637092c75966e1c35ee55ef62219fc",
+              "weight": 0.9933746758258188,
+              "kg_id": "6b637092c75966e1c35ee55ef62219fc"
+            }
+          ],
+          "bc": [
+            {
+              "id": "a72584a4e86423d6d94314f0bce9ddc5",
+              "weight": 0.2679491924311228,
+              "kg_id": "a72584a4e86423d6d94314f0bce9ddc5"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s21": [
+            {
+              "id": "fe0daa3c-6657-4305-a02a-8dfee362970f"
+            }
+          ],
+          "s22": [
+            {
+              "id": "10c5e8a9-f1fa-4809-b770-638b21fe7e85"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0024355"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "c6ad4bcfc2f9404760353d0c6e14a757",
+              "weight": 0.982290959293364,
+              "kg_id": "c6ad4bcfc2f9404760353d0c6e14a757"
+            }
+          ],
+          "bc": [
+            {
+              "id": "1846fe0ab4733cbf57cf1e1c450a555a",
+              "weight": 0.2679491924311228,
+              "kg_id": "1846fe0ab4733cbf57cf1e1c450a555a"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s23": [
+            {
+              "id": "050437b1-4a7d-4e07-8068-bb5eb688d88f"
+            }
+          ],
+          "s24": [
+            {
+              "id": "330bc8d3-9242-41a6-9176-b984708908f8"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "NCBIGene:7124"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "7c7423ae1957fd581b156b0421d23294",
+              "weight": 0.34012698346324877,
+              "kg_id": "7c7423ae1957fd581b156b0421d23294"
+            }
+          ],
+          "bc": [
+            {
+              "id": "60c62cc42ccdd831a8a428633584aa73",
+              "weight": 0.4999999999999998,
+              "kg_id": "60c62cc42ccdd831a8a428633584aa73"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0015796"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "653fde0eee33086441d5077a731d974b",
+              "weight": 0.7426315349333443,
+              "kg_id": "653fde0eee33086441d5077a731d974b"
+            }
+          ],
+          "bc": [
+            {
+              "id": "c303bbb38a2ec460a39ed06817d03073",
+              "weight": 0.2679491924311228,
+              "kg_id": "c303bbb38a2ec460a39ed06817d03073"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s27": [
+            {
+              "id": "42ab5a39-fbc5-49b5-ae3f-c30f78af7f2e"
+            }
+          ],
+          "s28": [
+            {
+              "id": "f971af97-1bcd-4175-87e1-3627248b4ddb"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0001208"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "a9c76d8e36531364d25cb3f83572c806",
+              "weight": 0.7057353164939839,
+              "kg_id": "a9c76d8e36531364d25cb3f83572c806"
+            }
+          ],
+          "bc": [
+            {
+              "id": "3784d2f2916dc24cfda753828b01269d",
+              "weight": 0.2679491924311228,
+              "kg_id": "3784d2f2916dc24cfda753828b01269d"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s29": [
+            {
+              "id": "15182d17-c0a4-4b32-90db-a1cb168ea7a0"
+            }
+          ],
+          "s30": [
+            {
+              "id": "1e341eaf-f18a-4b2c-8754-b5c96d7b51df"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0019810"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "0c55c26d87be113f70e4dda7cbd75d85",
+              "weight": 0.5655810872611449,
+              "kg_id": "0c55c26d87be113f70e4dda7cbd75d85"
+            }
+          ],
+          "bc": [
+            {
+              "id": "360a39b818b2e4df83794bc95e083724",
+              "weight": 0.2679491924311228,
+              "kg_id": "360a39b818b2e4df83794bc95e083724"
+            }
+          ],
+          "s39": [
+            {
+              "id": "222a6eb5-d1e5-4ba7-89c1-23146f70277b",
+              "weight": 0.005649926783491965,
+              "kg_id": "222a6eb5-d1e5-4ba7-89c1-23146f70277b"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s31": [
+            {
+              "id": "c1596675-8d03-4e36-8ed6-4fa48513aba6"
+            }
+          ],
+          "s32": [
+            {
+              "id": "845945b9-b740-4aed-b852-fc3e96388d7f"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0001243"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "94c0e06a30513062fcee89e3ca7363bb",
+              "weight": 0.573476543904875,
+              "kg_id": "94c0e06a30513062fcee89e3ca7363bb"
+            }
+          ],
+          "bc": [
+            {
+              "id": "5230997850fea7af82071c758253bfd6",
+              "weight": 0.2679491924311228,
+              "kg_id": "5230997850fea7af82071c758253bfd6"
+            }
+          ],
+          "s31": [
+            {
+              "id": "b880b4cd-999d-4f6d-8efe-646e54f481e5",
+              "weight": 0.0017703807035425179,
+              "kg_id": "b880b4cd-999d-4f6d-8efe-646e54f481e5"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s33": [
+            {
+              "id": "873a227d-f749-4d60-8738-2b83272a424d"
+            }
+          ],
+          "s34": [
+            {
+              "id": "d2b4f495-1b5d-4bc3-9611-79db0c58d3fb"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0004730"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "04b388385c74f1f389d8edc8a2b76707",
+              "weight": 0.2679491924311228,
+              "kg_id": "04b388385c74f1f389d8edc8a2b76707"
+            }
+          ],
+          "bc": [
+            {
+              "id": "52a00428d863733171ef71ec9f0de00b",
+              "weight": 0.2679491924311228,
+              "kg_id": "52a00428d863733171ef71ec9f0de00b"
+            },
+            {
+              "id": "c9605cdaf3cf404cd43bb7b2f70167f5",
+              "weight": 0.2679491924311228,
+              "kg_id": "c9605cdaf3cf404cd43bb7b2f70167f5"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s35": [
+            {
+              "id": "bd43b1dd-2282-4077-91ea-157c7ba672a3"
+            }
+          ],
+          "s36": [
+            {
+              "id": "080ac4cf-8781-4d16-9113-81bc870d5823"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0004995"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "cee8f061f83713bca61cc0f7ca083f4e",
+              "weight": 0.528807115838255,
+              "kg_id": "cee8f061f83713bca61cc0f7ca083f4e"
+            }
+          ],
+          "bc": [
+            {
+              "id": "84aa4a49db52be6a1be71060f32b219c",
+              "weight": 0.2679491924311228,
+              "kg_id": "84aa4a49db52be6a1be71060f32b219c"
+            }
+          ],
+          "s37": [
+            {
+              "id": "6e3f3611-295b-4176-a172-56ca550acf88"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s38": [
+            {
+              "id": "ac27b63e-07e1-41b1-b901-9d4952fada43"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0003785"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "d1b2d3715085b8d8fade58301abb1dc2",
+              "weight": 0.4351902913761012,
+              "kg_id": "d1b2d3715085b8d8fade58301abb1dc2"
+            }
+          ],
+          "bc": [
+            {
+              "id": "1173aa8a4bf2e0a4d42adcad4fbec00a",
+              "weight": 0.2679491924311228,
+              "kg_id": "1173aa8a4bf2e0a4d42adcad4fbec00a"
+            }
+          ],
+          "s23": [
+            {
+              "id": "0b012332-9910-4771-9ea7-7189596d89e8",
+              "weight": 0.0003070707819303742,
+              "kg_id": "0b012332-9910-4771-9ea7-7189596d89e8"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s39": [
+            {
+              "id": "b0e5b618-9b22-4b54-857b-1dbcdaf1cf28"
+            }
+          ],
+          "s40": [
+            {
+              "id": "cf91e592-5349-4444-a6d6-d6dab2801369"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0004652"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "109061a2db0cad5009e55fc1cab09575",
+              "weight": 0.39897406432070515,
+              "kg_id": "109061a2db0cad5009e55fc1cab09575"
+            }
+          ],
+          "bc": [
+            {
+              "id": "ec2db97f8fc49b086acffa6f4f22dbc8",
+              "weight": 0.2679491924311228,
+              "kg_id": "ec2db97f8fc49b086acffa6f4f22dbc8"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s41": [
+            {
+              "id": "74d6df5d-16f9-49ca-bdc9-0c8a35c86bce"
+            }
+          ],
+          "s42": [
+            {
+              "id": "a427b873-eda2-4dc6-ab58-29dd0a20af7d"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0056821"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "2280d6cddf5f10a8fd58de70f404b987",
+              "weight": 0.374573621530218,
+              "kg_id": "2280d6cddf5f10a8fd58de70f404b987"
+            }
+          ],
+          "bc": [
+            {
+              "id": "14174cce99ff32ab8c288ae1ef54257f",
+              "weight": 0.2679491924311228,
+              "kg_id": "14174cce99ff32ab8c288ae1ef54257f"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s43": [
+            {
+              "id": "f8a216c6-50a7-45ab-8001-4db604b8b34a"
+            }
+          ],
+          "s44": [
+            {
+              "id": "5e1b8aca-4b3e-4ac2-bd19-63250379ed74"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005113"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "bbaaff34c1aa38d09cbb1ea3b971c359",
+              "weight": 0.34269650956680997,
+              "kg_id": "bbaaff34c1aa38d09cbb1ea3b971c359"
+            }
+          ],
+          "bc": [
+            {
+              "id": "6d7efc3a7025d38ea53fc918545ff336",
+              "weight": 0.2679491924311228,
+              "kg_id": "6d7efc3a7025d38ea53fc918545ff336"
+            }
+          ],
+          "s41": [
+            {
+              "id": "588de277-6fc7-4252-afea-8e59f137ad9e",
+              "weight": 0,
+              "kg_id": "588de277-6fc7-4252-afea-8e59f137ad9e"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s45": [
+            {
+              "id": "f25ba534-9545-46d6-a1bd-3ce0e3ef7f3e"
+            }
+          ],
+          "s46": [
+            {
+              "id": "2a1f816f-98c8-46a2-89d1-74af3e80d892"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005263"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "9cafac13235b8ae745a7930a4c9436cf",
+              "weight": 0.33069381641594275,
+              "kg_id": "9cafac13235b8ae745a7930a4c9436cf"
+            }
+          ],
+          "bc": [
+            {
+              "id": "68727deb8a51a89077d0dbf040f34025",
+              "weight": 0.2679491924311228,
+              "kg_id": "68727deb8a51a89077d0dbf040f34025"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s47": [
+            {
+              "id": "a1a674ac-f2a2-4462-9270-c7c0794f48e9"
+            }
+          ],
+          "s48": [
+            {
+              "id": "0576db23-407f-42eb-bd28-2341e71dc7e0"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0019737"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "be11439ec57dcefc9f15abe6d1e762b9",
+              "weight": 0.32595248119313136,
+              "kg_id": "be11439ec57dcefc9f15abe6d1e762b9"
+            }
+          ],
+          "bc": [
+            {
+              "id": "812246ae2940eeefbd72ab73666c01fe",
+              "weight": 0.2679491924311228,
+              "kg_id": "812246ae2940eeefbd72ab73666c01fe"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s49": [
+            {
+              "id": "b329460e-ba89-4887-bb65-3d57e4e7a097"
+            }
+          ],
+          "s50": [
+            {
+              "id": "c8123305-ae21-4e28-89fe-570e64f29843"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0005265"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "7f29d713370c8aacab232c743ee3987a",
+              "weight": 0.30409428907913316,
+              "kg_id": "7f29d713370c8aacab232c743ee3987a"
+            }
+          ],
+          "bc": [
+            {
+              "id": "d573cb39419143de1dc2d84a0206eb30",
+              "weight": 0.2679491924311228,
+              "kg_id": "d573cb39419143de1dc2d84a0206eb30"
+            }
+          ],
+          "s35": [
+            {
+              "id": "72a1933b-6420-4ade-a7e5-d88614c9bae7",
+              "weight": 0,
+              "kg_id": "72a1933b-6420-4ade-a7e5-d88614c9bae7"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s51": [
+            {
+              "id": "5b37f375-fb99-45d0-807d-d951424c9673"
+            }
+          ],
+          "s52": [
+            {
+              "id": "2a56ae27-d724-4f78-ac4c-2d66d6bbe327"
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "a": [
+            {
+              "id": "MONDO:0100096"
+            }
+          ],
+          "b": [
+            {
+              "id": "MONDO:0004900"
+            }
+          ],
+          "c": [
+            {
+              "id": "CHEBI:4975"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "ab": [
+            {
+              "id": "a0ab13c777e2d23b0ea6f82a2d06dd88",
+              "weight": 0.2679491924311228,
+              "kg_id": "a0ab13c777e2d23b0ea6f82a2d06dd88"
+            }
+          ],
+          "bc": [
+            {
+              "id": "97ba863e0634a258a7bd4f13f5c2154b",
+              "weight": 0.2679491924311228,
+              "kg_id": "97ba863e0634a258a7bd4f13f5c2154b"
+            }
+          ],
+          "s1": [
+            {
+              "id": "521c1304-78e3-495c-9d76-daa71173d45d"
+            }
+          ],
+          "s53": [
+            {
+              "id": "30e473e4-ee5e-418b-b162-3d7596f0806a"
+            }
+          ],
+          "s54": [
+            {
+              "id": "db479a6d-0458-4417-9691-ced9890b6ea0"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

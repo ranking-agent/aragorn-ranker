@@ -1,0 +1,172 @@
+{
+    "message": {
+    "knowledge_graph": {
+        "edges": [
+            {
+                "id": "emptypublicationsarray",
+                "source_id": "MONDO:0000001",
+                "target_id": "HGNC:7897",
+                "type": "has_phenotype",
+                "publications": []
+            },
+            {
+                "id": "correctpublicationsarray",
+                "source_id": "MONDO:0000002",
+                "target_id": "HGNC:7897",
+                "type": "gene_associated_with_condition",
+                "publications": ["PMID:16098014", "PMID:17160617"]
+            },
+            {
+                "id": "correctpublicationscount",
+                "source_id": "MONDO:0000003",
+                "target_id": "HGNC:7897",
+                "type": "disease_to_gene_association",
+                "num_publications": 2
+            },
+            {
+                "id": "badpublicationsarray",
+                "source_id": "MONDO:0000004",
+                "target_id": "HGNC:7897",
+                "type": "gene_associated_with_condition",
+                "publications": ["PMID:160981014|1234|56787"]
+
+            }
+        ],
+        "nodes": [
+            {
+                "id": "MONDO:0000001",
+                "name": "Niemann-Pick disease type C",
+                "omnicorp_article_count": 856,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "MONDO:0000002",
+                "name": "Niemann-Pick disease, type C1",
+                "omnicorp_article_count": 74,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "MONDO:0000003",
+                "name": "whatever",
+                "omnicorp_article_count": 744,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "MONDO:0000004",
+                "name": "whateverelse",
+                "omnicorp_article_count": 48,
+                "type": [
+                    "disease",
+                    "genetic_condition"
+                ]
+            },
+            {
+                "id": "HGNC:7897",
+                "name": "NPC1",
+                "omnicorp_article_count": 984,
+                "type": [
+                    "gene"
+                ]
+            }
+        ]
+    },
+    "query_graph": {
+        "edges": [
+            {
+                "id": "e00",
+                "source_id": "d00",
+                "target_id": "n01"
+            },
+            {
+                "id": "e01",
+                "source_id": "d01",
+                "target_id": "n01"
+            },
+            {
+                "id": "e02",
+                "source_id": "d02",
+                "target_id": "n01"
+            },
+            {
+                "id": "e03",
+                "source_id": "d03",
+                "target_id": "n01"
+            }
+        ],
+        "nodes": [
+            {
+                "id": "d00",
+                "type": "disease"
+            },
+            {
+                "id": "d01",
+                "type": "disease"
+            },
+            {
+                "id": "d02",
+                "type": "disease"
+            },
+            {
+                "id": "d03",
+                "type": "disease"
+            },
+            {
+                "id": "n01",
+                "type": "gene"
+            }
+        ]
+    },
+    "results": [
+        {
+            "edge_bindings": [
+                {
+                    "kg_id": "emptypublicationsarray",
+                    "qg_id": "e00"
+                },
+                {
+                    "kg_id": "correctpublicationsarray",
+                    "qg_id": "e01"
+                },
+                {
+                    "kg_id": "correctpublicationscount",
+                    "qg_id": "e02"
+                },
+                {
+                    "kg_id": "badpublicationsarray",
+                    "qg_id": "e03"
+                }
+            ],
+            "node_bindings": [
+                {
+                    "kg_id": "MONDO:0000001",
+                    "qg_id": "d00"
+                },
+                {
+                    "kg_id": "MONDO:0000002",
+                    "qg_id": "d01"
+                },
+                {
+                    "kg_id": "MONDO:0000003",
+                    "qg_id": "d02"
+                },
+                {
+                    "kg_id": "MONDO:0000004",
+                    "qg_id": "d03"
+                },
+                {
+                    "kg_id": "HGNC:7897",
+                    "qg_id": "n01"
+                }
+            ]
+        }
+    ]
+}}

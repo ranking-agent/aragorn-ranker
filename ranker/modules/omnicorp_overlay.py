@@ -5,7 +5,7 @@ import asyncio
 from uuid import uuid4
 from collections import defaultdict
 from itertools import combinations
-from reasoner_pydantic import Request, Message
+from reasoner_pydantic import Response, Message
 from ranker.shared.cache import Cache
 from ranker.shared.omnicorp import OmnicorpSupport
 from ranker.shared.util import batches
@@ -18,18 +18,20 @@ CACHE_DB = os.environ.get('CACHE_DB', '0')
 CACHE_PASSWORD = os.environ.get('CACHE_PASSWORD', '')
 
 
-async def count_node_pmids(supporter, node, key, value, cache):
+async def count_node_pmids(supporter, node, key, value, cache, kgraph):
     """Count node PMIDs and add as node property."""
     if value is not None:
         logger.debug(f'{key} is cached')
         support_dict = value
     else:
         logger.debug(f'Computing {key}...')
-        support_dict = await supporter.node_pmid_count(node['id'])
+        support_dict = await supporter.node_pmid_count(kgraph[node])
         if cache and support_dict['omnicorp_article_count']:
             cache.set(key, support_dict)
     # add omnicorp_article_count to nodes in networkx graph
-    node.update(support_dict)
+    attribute = [{'type': 'omnicorp_article_count', 'value': support_dict['omnicorp_article_count']}]
+    kgraph[node]['attributes'] = attribute
+    #kgraph[node].update(support_dict)
 
 
 async def count_shared_pmids(
@@ -60,31 +62,31 @@ async def count_shared_pmids(
         logger.debug(f'{pair} is cached')
     if not support_edge:
         return
+
     uid = str(uuid4())
-    kgraph['edges'].append({
-        'type': 'literature_co-occurrence',
-        'id': uid,
-        'num_publications': support_edge,
-        'publications': [],
-        'source_database': 'omnicorp',
-        'source_id': pair[0],
-        'target_id': pair[1],
-        'edge_source': 'omnicorp.term_to_term'
-    })
+
+    kgraph['edges'].update({uid: {
+        'predicate': 'biolink:literature_co_occurrence',
+        'attributes': [
+            {'type': 'num_publications', 'value': support_edge},
+            {'type': 'publications', 'value': []},
+            {'type': 'source_database', 'value': 'omnicorp'},
+            {'type': 'edge_source', 'value': 'omnicorp.term_to_term'}
+        ],
+        'subject': pair[0],
+        'object': pair[1],
+    }})
 
     for sg in pair_to_answer[pair]:
-        answers[sg]['edge_bindings'].append({
-            'qg_id': f's{support_idx}',
-            'kg_id': uid
-        })
+        answers[sg]['edge_bindings'].update({f's{support_idx}': [{'id': uid}]})
 
 
-async def query(request: Request) -> Message:
+async def query(response: Response):
     """Add support to message.
 
     Add support edges to knowledge_graph and bindings to results.
     """
-    message = request.message.dict()
+    message = response.message.dict()
 
     qgraph = message['query_graph']
     kgraph = message['knowledge_graph']
@@ -107,18 +109,18 @@ async def query(request: Request) -> Message:
     async with OmnicorpSupport() as supporter:
         # get all node supports
 
-        keys = [f"{supporter.__class__.__name__}({node['id']})" for node in kgraph['nodes']]
+        keys = [f"{supporter.__class__.__name__}({node})" for node in kgraph['nodes']]
         values = []
         for batch in batches(keys, redis_batch_size):
             values.extend(cache.mget(*batch))
 
         jobs = [
-            count_node_pmids(supporter, node, key, value, cache)
+            count_node_pmids(supporter, node, key, value, cache, kgraph['nodes'])
             for node, value, key in zip(kgraph['nodes'], values, keys)
         ]
 
-        #which qgraph nodes are sets?
-        qgraph_setnodes = set([ n['id'] for n in qgraph['nodes'] if (('set' in n) and (n['set']))] )
+        # which qgraph nodes are sets?
+        qgraph_setnodes = set([n for n in qgraph['nodes'] if (('is_set' in qgraph['nodes'][n]) and (qgraph['nodes'][n]['is_set']))])
 
         # Generate a set of pairs of node curies
         pair_to_answer = defaultdict(set)  # a map of node pairs to answers
@@ -128,39 +130,33 @@ async def query(request: Request) -> Message:
             # can be str (not a set) or list (could be a set or not a set)
             nonset_nodes = []
             setnodes = {}
+            # Note: modified by powen for trapi 1.0.
+            # node binding results is now a dict containing dicts that contain a list of dicts.
             for nb in answer_map['node_bindings']:
-                if nb['qg_id'] in qgraph_setnodes:
-                    #this is a set
-                    if isinstance(nb['kg_id'],str):
-                        setnodes[nb['qg_id']] = [ nb['kg_id'] ]
-                    else:
-                        setnodes[nb['qg_id']] = nb['kg_id']
+                if nb in qgraph_setnodes:
+                    setnodes[nb] = answer_map['node_bindings'][nb][0]['id']
                 else:
-                    #not a set
-                    if isinstance(nb['kg_id'],str):
-                        nonset_nodes.append(nb['kg_id'])
-                    else:
-                        nonset_nodes.append(nb['kg_id'][0])
+                    nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
 
             nonset_nodes = sorted(nonset_nodes)
-            #nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
+            # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
             for node_pair in combinations(nonset_nodes, 2):
                 pair_to_answer[node_pair].add(ans_idx)
 
-            #set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
-            #set_nodes = [n for el in set_nodes_list_list for n in el]
+            # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
+            # set_nodes = [n for el in set_nodes_list_list for n in el]
             # For all nodes that are within sets, connect them to all nodes that are not in sets
-            for qg_id,snodes in setnodes.items():
+            for qg_id, snodes in setnodes.items():
                 for snode in snodes:
                     for node in nonset_nodes:
                         node_pair = tuple(sorted((node, snode)))
                         pair_to_answer[node_pair].add(ans_idx)
 
-            #now all nodes in set a to all nodes in set b
-            for qga,qgb in combinations(setnodes.keys(),2):
+            # now all nodes in set a to all nodes in set b
+            for qga, qgb in combinations(setnodes.keys(), 2):
                 for anode in setnodes[qga]:
                     for bnode in setnodes[qgb]:
-                        node_pair = tuple(sorted(anode,bnode))
+                        node_pair = tuple(sorted(anode, bnode))
                         pair_to_answer[node_pair].add(ans_idx)
 
         # get all pair supports
@@ -181,6 +177,12 @@ async def query(request: Request) -> Message:
         ])
         await asyncio.gather(*jobs)
 
+    # load the new results into the response
     message['knowledge_graph'] = kgraph
     message['results'] = answers
-    return Message(**message)
+
+    # get this in the correct response model format
+    ret_val = {'message': message}
+
+    # return the results
+    return Response(**ret_val)

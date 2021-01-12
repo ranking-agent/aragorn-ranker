@@ -3,7 +3,7 @@ import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
 # this will load all the json test files into global objects to use in a test
-from .fixtures import weighted2,schizo,treatsSchizophreniaw
+from .fixtures import weighted2, schizo, treatsSchizophreniaw
 
 # start a client
 client = TestClient(APP)
@@ -11,26 +11,28 @@ client = TestClient(APP)
 
 def test_score(weighted2):
     """Test that score() runs without errors."""
-    response = client.post('/score', json={"message": weighted2})
+    response = client.post('/score', json=weighted2)
 
     # load the json
-    answer = json.loads(response.content)
+    resp = response.json()
+
+    answer = resp['message']['results']
 
     # make sure the there are 3 results
-    assert(len(answer['results']) == 3)
+    assert(len(answer) == 3)
 
     # assert there are node bindings
-    assert(len(answer['results'][0]['node_bindings'])== 3)
+    assert(len(answer[0]['node_bindings']) == 3)
 
     # assert there are node bindings
-    assert(len(answer['results'][0]['edge_bindings']) == 7)
+    assert(len(answer[0]['edge_bindings']) == 5)
 
 def test_score_schizo(schizo):
     """Test that score() runs without errors."""
-    response = client.post('/score', json={"message": schizo})
+    response = client.post('/score', json=schizo)
     assert response.status_code == 200
 
 def test_score_schizo(treatsSchizophreniaw):
     """Test that score() runs without errors."""
-    response = client.post('/score', json={"message": treatsSchizophreniaw})
+    response = client.post('/score', json=treatsSchizophreniaw)
     assert response.status_code == 200

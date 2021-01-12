@@ -17,30 +17,42 @@ class Ranker:
 
     def __init__(self, message):
         """Create ranker."""
-        kgraph = message['knowledge_graph']
-        qgraph = message['query_graph']
+        self.kgraph = message['knowledge_graph']
+        self.qgraph = message['query_graph']
 
-        kedges = kgraph['edges']
-        if not any('weight' in kedge for kedge in kedges):
-            for kedge in kedges:
-                kedge['weight'] = 1
+        kedges = self.kgraph['edges']
 
-        self.qnode_by_id = {n['id']: n for n in qgraph['nodes']}
-        self.kedge_by_id = {n['id']: n for n in kedges}
-        self.qedge_by_id = {n['id']: n for n in qgraph['edges']}
+        attribute = {'name': 'weight', 'value': 1, 'type': 'EDAM:data_0006', 'url': None, 'source': None}
+
+        for kedge in kedges:
+            if kedges[kedge]['attributes'] is None:
+                kedges[kedge]['attributes'] = [attribute]
+            else:
+                found = False
+                for attrib in kedges[kedge]['attributes']:
+                    if attrib['name'] == 'weight':
+                        found = True
+
+                if not found:
+                    kedges[kedge]['attributes'].append(attribute)
+
+        self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
+        self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}
+        self.kedge_by_id = {n: self.kgraph['edges'][n] for n in kedges}
         self.kedges_by_knodes = defaultdict(list)
+
         for e in kedges:
-            self.kedges_by_knodes[tuple(sorted([e['source_id'], e['target_id']]))].append(e)
+            self.kedges_by_knodes[tuple(sorted([kedges[e]['subject'], kedges[e]['object']]))].append(kedges[e])
 
         # find leaf-set qnodes
         degree = defaultdict(int)
-        for edge in qgraph['edges']:
-            degree[edge['source_id']] += 1
-            degree[edge['target_id']] += 1
+        for edge in self.qgraph['edges']:
+            degree[self.qgraph['edges'][edge]['subject']] += 1
+            degree[self.qgraph['edges'][edge]['object']] += 1
         self.leaf_sets = [
-            node['id']
-            for node in qgraph['nodes']
-            if node.get('set', False) and degree[node['id']]==1
+            node
+            for node in self.qgraph['nodes']
+            if self.qgraph['nodes'][node].get('is_set', False) and degree[node] == 1
         ]
 
 
@@ -91,8 +103,8 @@ class Ranker:
         laplacian = np.zeros((num_nodes, num_nodes))
         index = {node_id: node_ids.index(node_id) for node_id in node_ids}
         for edge in edges:
-            source_id, target_id, weight = edge['source_id'], edge['target_id'], edge['weight']
-            i, j = index[source_id], index[target_id]
+            subject_id, object_id, weight = edge['subject'], edge['object'], edge['weight']
+            i, j = index[subject_id], index[object_id]
             laplacian[i, j] += -weight
             laplacian[j, i] += -weight
             laplacian[i, i] += weight
@@ -108,28 +120,33 @@ class Ranker:
         # get list of nodes, and knode_map
         knode_map = defaultdict(set)
         for nb in answer['node_bindings']:
-            qnode_id = nb['qg_id']
-            knode_ids = nb['kg_id']
-            if isinstance(knode_ids,str):
-                knode_ids = [ knode_ids ]
+            # get the query node binding entry
+            qnode_id = nb
+            knode_ids: list = []
+
+            # get all the knowledge node entries
+            for knode_id in answer['node_bindings'][nb]:
+                knode_ids.append(knode_id['id'])
+
             for knode_id in knode_ids:
                 rnode_id = (qnode_id, knode_id)
                 rnodes.add(rnode_id)
                 knode_map[knode_id].add(rnode_id)
+
                 if qnode_id in self.leaf_sets:
                     anchor_id = (f'{qnode_id}_anchor', '')
                     rnodes.add(anchor_id)
                     redges.append({
                         'weight': 1e9,
-                        'source_id': rnode_id,
-                        'target_id': anchor_id
+                        'subject': rnode_id,
+                        'object': anchor_id
                     })
         rnodes = list(rnodes)
 
         # get "result" edges
         for eb in answer['edge_bindings']:
-            kedge_id = eb['kg_id']
-            qedge_id = eb['qg_id']
+            qedge_id = eb
+            kedges = answer['edge_bindings'][eb]
 
             # find source and target rnode(s)
             # qedge direction may not match kedge direction
@@ -137,40 +154,42 @@ class Ranker:
             # note that a single support edge may in theory result in multiple redges
             # if the same knode is bound to multiple qnodes
 
-            kedge = self.kedge_by_id[kedge_id]
-            try:
-                qedge = self.qedge_by_id[qedge_id]
-                pairs = list(product(
-                    [
-                        rnode for rnode in rnodes
-                        if rnode[0] in (qedge['source_id'], qedge['target_id']) and rnode[1] == kedge['source_id']
-                    ],
-                    [
-                        rnode for rnode in rnodes
-                        if rnode[0] in (qedge['source_id'], qedge['target_id']) and rnode[1] == kedge['target_id']
-                    ],
-                ))
-            except KeyError:
-                # a support edge
-                # qedge just needs to contain regex patterns for source and target ids
-                pairs = list(product(
-                    [
-                        rnode for rnode in rnodes
-                        if rnode[1] == kedge['source_id']
-                    ],
-                    [
-                        rnode for rnode in rnodes
-                        if rnode[1] == kedge['target_id']
-                    ],
-                ))
+            for kedge_node in kedges:
+                kedge = self.kedge_by_id[kedge_node['id']]
 
-            for source_id, target_id in pairs:
-                edge = {
-                    'weight': eb['weight'],
-                    'source_id': source_id,
-                    'target_id': target_id
-                }
-                redges.append(edge)
+                try:
+                    qedge = self.qedge_by_id[qedge_id]
+                    pairs = list(product(
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[0] in (qedge['subject'], qedge['object']) and rnode[1] == kedge['subject']
+                        ],
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[0] in (qedge['subject'], qedge['object']) and rnode[1] == kedge['object']
+                        ],
+                    ))
+                except KeyError:
+                    # a support edge
+                    # qedge just needs to contain regex patterns for source and target ids
+                    pairs = list(product(
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[1] == kedge['subject']
+                        ],
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[1] == kedge['object']
+                        ],
+                    ))
+
+                for subject, object in pairs:
+                    edge = {
+                        'weight': kedge_node['weight'],
+                        'subject': subject,
+                        'object': object
+                    }
+                    redges.append(edge)
 
         return rnodes, redges
 

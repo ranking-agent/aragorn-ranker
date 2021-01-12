@@ -13,13 +13,19 @@ client = TestClient(APP)
 
 def test_weight(to_weight):
     """Test that weight() runs without errors and that the weights are correctly ordered."""
-    response = client.post('/weight_correctness', json={
-        "message": to_weight
-    })
+    response = client.post('/weight_correctness', json=to_weight)
+
     weightresponse = response.json()
     #The input is constructed to have a series of 4 edges
-    ebs = weightresponse['results'][0]['edge_bindings']
-    weights = { e['kg_id']: e['weight'] for e in ebs}
+
+    weights = {}
+    # weights = { e['kg_id']: e['weight'] for e in ebs}
+
+    ebs = weightresponse['message']['results'][0]['edge_bindings']
+
+    for e in ebs:
+        weights.update({ebs[e][0]['id']: ebs[e][0]['weight']})
+
     #there are 3 pubs in the malformed array, and a pubcount of 2
     assert weights['badpublicationsarray'] > weights['correctpublicationscount']
     #good publications array also has 2

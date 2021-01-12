@@ -24,7 +24,7 @@ LOGGER = logging.getLogger(__name__)
 
 APP = FastAPI(
     title='ARAGORN Ranker',
-    version='2.1.0',
+    version='2.1.1',
 )
 APP.add_middleware(
     CORSMiddleware,

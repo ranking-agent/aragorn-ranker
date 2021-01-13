@@ -2,7 +2,7 @@ contact:
   email: patrick@covar.com
   name: Patrick Wang
   x-id: https://github.com/patrickkwang
-  x-role: Principle Investigator
+  x-role: responsible developer
 description: 'ARAGORN Ranker: The ranker used by the ARAGORN ARA, which takes a TRAPI 1.0 message containing answers, and calculates numerical scores for each answer.'
 servers:
 - description: Default server

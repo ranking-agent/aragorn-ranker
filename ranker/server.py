@@ -8,6 +8,7 @@ from functools import wraps
 from importlib import import_module
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response
 
 # Set up default logger.
@@ -21,10 +22,56 @@ logging.config.dictConfig(config)
 
 LOGGER = logging.getLogger(__name__)
 
-APP = FastAPI(
-    title='ARAGORN Ranker',
-    version='2.2.2',
-)
+APP = FastAPI(title='ARAGORN Ranker', version='2.2.2')
+
+def construct_open_api_schema():
+
+    if APP.openapi_schema:
+        return APP.openapi_schema
+
+    open_api_schema = get_openapi(
+        title='ARAGORN Ranker',
+        version='2.2.2',
+        routes=APP.routes
+    )
+
+    open_api_extended_file_path = os.path.join(os.path.dirname(__file__), '../openapi-config.yaml')
+
+    with open(open_api_extended_file_path) as open_api_file:
+        open_api_extended_spec = yaml.load(open_api_file, Loader=yaml.SafeLoader)
+
+    x_translator_extension = open_api_extended_spec.get("x-translator")
+    contact_config = open_api_extended_spec.get("contact")
+    terms_of_service = open_api_extended_spec.get("termsOfService")
+    servers_conf = open_api_extended_spec.get("servers")
+    tags = open_api_extended_spec.get("tags")
+    title_override = open_api_extended_spec.get("title") or 'ARAGORN Ranker'
+    description = open_api_extended_spec.get("description")
+
+    if tags:
+        open_api_schema['tags'] = tags
+
+    if x_translator_extension:
+        # if x_translator_team is defined amends schema with x_translator extension
+        open_api_schema["info"]["x-translator"] = x_translator_extension
+
+    if contact_config:
+        open_api_schema["info"]["contact"] = contact_config
+
+    if terms_of_service:
+        open_api_schema["info"]["termsOfService"] = terms_of_service
+
+    if description:
+        open_api_schema["info"]["description"] = description
+
+    if title_override:
+        open_api_schema["info"]["title"] = title_override
+
+    if servers_conf:
+        open_api_schema["servers"] = servers_conf
+
+    return open_api_schema
+
 APP.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -58,3 +105,6 @@ for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
 
     APP.post('/' + operation, response_model=Response, response_model_exclude_none=True)(log_exception(md.query))
+
+
+APP.openapi_schema = construct_open_api_schema()

@@ -15,5 +15,5 @@ tags:
 - name: ARA
 x-translator:
   component: KP
-  teams:
+  team:
   - Ranking Agent

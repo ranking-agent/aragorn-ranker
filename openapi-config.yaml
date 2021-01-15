@@ -6,7 +6,7 @@ contact:
 description: 'ARAGORN Ranker: The ranker used by the ARAGORN ARA, which takes a TRAPI 1.0 message containing answers, and calculates numerical scores for each answer.'
 servers:
 - description: Default server
-  url: https://aragorn-ranker.renci.org/docs
+  url: https://aragorn-ranker.renci.org
 termsOfService: http://linkmissing
 title: ARAGORN Ranker
 tags:

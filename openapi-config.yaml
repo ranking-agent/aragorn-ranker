@@ -7,7 +7,7 @@ description: 'ARAGORN Ranker: The ranker used by the ARAGORN ARA, which takes a 
 servers:
 - description: Default server
   url: https://aragorn-ranker.renci.org
-termsOfService: http://linkmissing
+termsOfService: http://robokop.renci.org:7055/tos?service_long=ARAGORN Ranker&provider_long=RENCI
 title: ARAGORN Ranker
 tags:
 - name: Translator

@@ -10,10 +10,10 @@ servers:
 termsOfService: http://robokop.renci.org:7055/tos?service_long=ARAGORN Ranker&provider_long=RENCI
 title: ARAGORN Ranker
 tags:
-- name: Translator
+- name: translator
 - name: ARAGORN
 - name: ARA
 x-translator:
-  component: KP
+  component: ARA
   team:
   - Ranking Agent

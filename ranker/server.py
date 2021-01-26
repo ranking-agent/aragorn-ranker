@@ -98,6 +98,7 @@ def construct_open_api_schema():
 
     return open_api_schema
 
+# note: this must be commented out for local debugging
 APP.openapi_schema = construct_open_api_schema()
 
 APP.add_middleware(

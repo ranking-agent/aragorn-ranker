@@ -104,12 +104,13 @@ async def query(
 
         # for each data attribute
         for attribute in attributes:
-            # is this the publication list
-            if attribute['name'].startswith('publications'):
-                publications = attribute['value']
-            # else is this the number of publications
-            elif attribute['name'].startswith('num_publications'):
-                num_publications = attribute.get('value', 0)
+            if attribute['name'] is not None:
+                # is this the publication list
+                if attribute['name'].startswith('publications'):
+                    publications = attribute['value']
+                # else is this the number of publications
+                elif attribute['name'].startswith('num_publications'):
+                    num_publications = attribute.get('value', 0)
 
         # if there was only 1 publication value found insure it wasnt a character seperated list
         if len(publications) == 1:

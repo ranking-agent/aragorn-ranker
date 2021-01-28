@@ -77,69 +77,72 @@ async def query(
     # map kedges to edge_bindings
     krmap = defaultdict(list)
 
-    # for each reult listd in the data
+    # for each result listed in the data
     for result in results:
         # for every edge binding result
         for eb in result['edge_bindings']:
-            # default the weight to 0 if there is none listed
-            result['edge_bindings'][eb][0]['weight'] = result['edge_bindings'][eb][0].get('weight', 1)
+            # default the weight to 1 if there is none listed
+            for idx, binding_val in enumerate(result['edge_bindings'][eb]):
+                result['edge_bindings'][eb][idx]['weight'] = result['edge_bindings'][eb][idx].get('weight', 1)
 
-            # get a reference to the weight for easy update later
-            krmap[result['edge_bindings'][eb][0]['id']] = result['edge_bindings'][eb][0]
+                # get a reference to the weight for easy update later
+                krmap[binding_val['id']] = result['edge_bindings'][eb][idx]
 
     # get the knowledge graph edges
     edges = kgraph['edges']
 
     # for each knowledge graph edge
     for edge in edges:
-        # init theeffective publication count
+        # init the effective publication count
         effective_pubs = 0
 
         # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
-        attributes = edges[edge].get('attributes', [])
+        attributes = edges[edge].get('attributes', None)
 
         # init storage for the publications and their count
         publications = []
         num_publications = 0
 
-        # for each data attribute
-        for attribute in attributes:
-            if attribute['name'] is not None:
-                # is this the publication list
-                if attribute['name'].startswith('publications'):
-                    publications = attribute['value']
-                # else is this the number of publications
-                elif attribute['name'].startswith('num_publications'):
-                    num_publications = attribute.get('value', 0)
+        if attributes is not None:
+            # for each data attribute
+            for attribute in attributes:
+                if attribute['name'] is not None:
+                    # is this the publication list
+                    if attribute['name'].startswith('publications'):
+                        publications = attribute['value']
+                    # else is this the number of publications
+                    elif attribute['name'].startswith('num_publications'):
+                        num_publications = attribute.get('value', 0)
 
-        # if there was only 1 publication value found insure it wasnt a character seperated list
-        if len(publications) == 1:
-            if '|' in publications[0]:
-                publications = publications[0].split('|')
-            elif ',' in publications[0]:
-                publications = publications[0].split(',')
+            # if there was only 1 publication value found insure it wasnt a character seperated list
+            if len(publications) == 1:
+                if '|' in publications[0]:
+                    publications = publications[0].split('|')
+                elif ',' in publications[0]:
+                    publications = publications[0].split(',')
 
-            # get the real publication count
-            num_publications = len(publications)
+                # get the real publication count
+                num_publications = len(publications)
 
-        # if there was no publication count found yet revert to the number of individual values
-        if num_publications == 0:
-            num_publications = len(publications)
+            # if there was no publication count found yet revert to the number of individual values
+            if num_publications == 0:
+                num_publications = len(publications)
 
-        #now the nicer cleaner version when we have publications as an actual array
-        #edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
-        if edges[edge].get('predicate') == 'literature_co-occurrence':
-            subject_pubs = int(node_pubs[edge['subject']])
-            object_pubs = int(node_pubs[edge['object']])
+            #now the nicer cleaner version when we have publications as an actual array
+            #edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
+            if edges[edge].get('predicate') == 'literature_co-occurrence':
+                subject_pubs = int(node_pubs[edge['subject']])
+                object_pubs = int(node_pubs[edge['object']])
 
-            cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
-            cov = max((cov, 0.0))
-            effective_pubs = cov * all_pubs * relevance
-        else:
-            effective_pubs = num_publications + 1  # consider the curation a pub
+                cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
+                cov = max((cov, 0.0))
+                effective_pubs = cov * all_pubs * relevance
+            else:
+                effective_pubs = num_publications + 1  # consider the curation a pub
 
-        # save the weight value in the results using the reference shortcut above
-        krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
+            if len(krmap[edge]) != 0:
+                # save the weight value in the results using the reference shortcut above
+                krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
 
     # save the new knowledge graph data
     message['knowledge_graph'] = kgraph

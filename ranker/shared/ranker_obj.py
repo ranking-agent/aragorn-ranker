@@ -80,7 +80,7 @@ class Ranker:
             idx for idx, rnode_id in enumerate(rgraph[0])
             if (
                 (rnode_id[0] not in self.qnode_by_id) or
-                (not self.qnode_by_id[rnode_id[0]].get('set', False))
+                (not self.qnode_by_id[rnode_id[0]].get('is_set', False))
             )
         ]
 

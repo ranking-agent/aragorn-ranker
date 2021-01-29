@@ -25,7 +25,7 @@ async def count_node_pmids(supporter, node, key, value, cache, kgraph):
         support_dict = value
     else:
         logger.debug(f'Computing {key}...')
-        support_dict = await supporter.node_pmid_count(kgraph[node])
+        support_dict = await supporter.node_pmid_count(node)
         if cache and support_dict['omnicorp_article_count']:
             cache.set(key, support_dict)
     # add omnicorp_article_count to nodes in networkx graph
@@ -130,11 +130,11 @@ async def query(response: Response):
             # can be str (not a set) or list (could be a set or not a set)
             nonset_nodes = []
             setnodes = {}
-            # Note: modified by powen for trapi 1.0.
+
             # node binding results is now a dict containing dicts that contain a list of dicts.
             for nb in answer_map['node_bindings']:
                 if nb in qgraph_setnodes:
-                    setnodes[nb] = answer_map['node_bindings'][nb][0]['id']
+                    setnodes[nb] = [node['id'] for node in answer_map['node_bindings'][nb]]
                 else:
                     nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
 

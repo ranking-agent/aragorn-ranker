@@ -59,7 +59,7 @@ class Ranker:
     def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
         # get subgraph statistics
-        print(f'{len(answers)} answers')
+        #print(f'{len(answers)} answers')
         answers_ = []
         for answer in answers:
             answers_.append(self.score(answer, jaccard_like=jaccard_like))

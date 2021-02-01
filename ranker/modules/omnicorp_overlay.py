@@ -136,7 +136,8 @@ async def query(response: Response):
                 if nb in qgraph_setnodes:
                     setnodes[nb] = [node['id'] for node in answer_map['node_bindings'][nb]]
                 else:
-                    nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
+                    if len(answer_map['node_bindings'][nb]) != 0:
+                        nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
 
             nonset_nodes = sorted(nonset_nodes)
             # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])

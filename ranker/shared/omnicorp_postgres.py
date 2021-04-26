@@ -51,7 +51,7 @@ class OmniCorp():
             "WHERE table_schema = 'omnicorp'"
         )
         async with self.pool.acquire() as conn:
-            rows = await conn.fetchrows(statement)
+            rows = await conn.fetch(statement)
         prefixes = [ row['table_name'] for row in rows ]
         return prefixes
 

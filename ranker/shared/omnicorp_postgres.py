@@ -20,7 +20,7 @@ class OmniCorp():
 
     def __init__(self):
         """Create and omnicorp service object."""
-        self.prefixes = self.get_prefixes()
+        self.prefixes = None
         self.pool = None
         self.nsingle = 0
         self.total_single_call = datetime.timedelta()
@@ -37,6 +37,7 @@ class OmniCorp():
             host=OMNICORP_HOST,
             port=OMNICORP_PORT,
         )
+        self.prefixes = await self.get_prefixes()
 
     async def close(self):
         """Close PostgreSQL connection."""

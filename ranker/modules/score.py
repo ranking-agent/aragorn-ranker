@@ -1,7 +1,5 @@
 """Rank."""
 from reasoner_pydantic import Response, Message
-
-from ranker.shared.util import flatten_semilist
 from ranker.shared.ranker_obj import Ranker
 
 

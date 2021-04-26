@@ -37,5 +37,5 @@ def get_postgres_curie_prefix(curie):
     if ':' not in curie:
         raise ValueError('Curies ought to contain a colon')
     prefix = curie.lower().split(':')
-    prefix = '_'.join(prefix.split('.'))
+    prefix = '_'.join(prefix[0].split('.'))
     return prefix

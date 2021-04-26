@@ -1,14 +1,10 @@
 """Neo4j lookup utilities."""
-from abc import ABC, abstractmethod
-from copy import deepcopy
-import json
-import logging
-from urllib.parse import urlparse
-
 import httpx
-from neo4j import GraphDatabase, basic_auth
+import logging
 
-from messenger.shared.util import batches, flatten_semilist
+from abc import ABC, abstractmethod
+from urllib.parse import urlparse
+from neo4j import GraphDatabase, basic_auth
 
 logger = logging.getLogger(__name__)
 

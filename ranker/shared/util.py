@@ -31,3 +31,11 @@ def get_curie_prefix(curie):
     if ':' not in curie:
         raise ValueError('Curies ought to contain a colon')
     return curie.upper().split(':')[0]
+
+def get_postgres_curie_prefix(curie):
+    """The representation in postgres moves things to lowercase, and replaces . with _"""
+    if ':' not in curie:
+        raise ValueError('Curies ought to contain a colon')
+    prefix = curie.lower().split(':')
+    prefix = '_'.join(prefix.split('.'))
+    return prefix

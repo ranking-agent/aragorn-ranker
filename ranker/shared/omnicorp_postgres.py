@@ -3,7 +3,7 @@ import datetime
 import os
 import logging
 import asyncpg
-from ranker.shared.util import get_curie_prefix
+from ranker.shared.util import get_postgres_curie_prefix
 
 logger = logging.getLogger(__name__)
 
@@ -20,21 +20,7 @@ class OmniCorp():
 
     def __init__(self):
         """Create and omnicorp service object."""
-        self.prefixes = set([
-            'UBERON',
-            'BSPO',
-            'PATO',
-            'GO',
-            'MONDO',
-            'HP',
-            'ENVO',
-            'OBI',
-            'CL',
-            'SO',
-            'CHEBI',
-            'HGNC',
-            'EFO',
-            'MESH'])
+        self.prefixes = None
         self.pool = None
         self.nsingle = 0
         self.total_single_call = datetime.timedelta()
@@ -51,16 +37,28 @@ class OmniCorp():
             host=OMNICORP_HOST,
             port=OMNICORP_PORT,
         )
+        self.prefixes = await self.get_prefixes()
 
     async def close(self):
         """Close PostgreSQL connection."""
         logger.debug('Closing PostgreSQL connection pool...')
         await self.pool.close()
 
+    async def get_prefixes(self):
+        statement = (
+            "SELECT table_name\n"
+            "FROM information_schema.tables\n"
+            "WHERE table_schema = 'omnicorp'"
+        )
+        async with self.pool.acquire() as conn:
+            rows = await conn.fetch(statement)
+        prefixes = [ row['table_name'] for row in rows ]
+        return prefixes
+
     async def get_shared_pmids_count(self, node1, node2):
         """Get shared PMIDs."""
-        prefix1 = get_curie_prefix(node1)
-        prefix2 = get_curie_prefix(node2)
+        prefix1 = get_postgres_curie_prefix(node1)
+        prefix2 = get_postgres_curie_prefix(node2)
         if (
                 prefix1 not in self.prefixes or
                 prefix2 not in self.prefixes
@@ -84,12 +82,12 @@ class OmniCorp():
     async def count_pmids(self, node):
         """Count PMIDs and return result."""
         try:
-            if get_curie_prefix(node) not in self.prefixes:
+            if get_postgres_curie_prefix(node) not in self.prefixes:
                 return 0
         except:
             return 0
 
-        prefix = get_curie_prefix(node)
+        prefix = get_postgres_curie_prefix(node)
         start = datetime.datetime.now()
         statement = (
             f"SELECT COUNT(pubmedid) from omnicorp.{prefix}\n"

@@ -28,11 +28,16 @@ async def count_node_pmids(supporter, node, key, value, cache, kgraph):
         support_dict = await supporter.node_pmid_count(node)
         if cache and support_dict['omnicorp_article_count']:
             cache.set(key, support_dict)
+
     # add omnicorp_article_count to nodes in networkx graph
     attribute = {'type': 'EDAM:data_0006', 'name': 'omnicorp_article_count', 'value': support_dict['omnicorp_article_count']}
-    kgraph[node]['attributes'].append(attribute)
-    #kgraph[node].update(support_dict)
 
+    # if there is no attributes array add one
+    if kgraph[node]['attributes'] is None:
+        kgraph[node]['attributes'] = []
+
+    # save the attributes
+    kgraph[node]['attributes'].append(attribute)
 
 async def count_shared_pmids(
         supporter, support_idx, pair, key, value,

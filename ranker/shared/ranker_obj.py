@@ -84,10 +84,15 @@ class Ranker:
             )
         ]
 
-        score = 1 / kirchhoff(laplacian, nonset_node_ids)
+        # the nonset node count has to be at least 2 nodes
+        if len(nonset_node_ids) < 2:
+            score = 0
+        else:
+            score = 1 / kirchhoff(laplacian, nonset_node_ids)
 
         # fail safe to nuke nans
         score = score if np.isfinite(score) and score >= 0 else -1
+
         if jaccard_like:
             answer['score'] = score / (1 - score)
         else:
@@ -196,14 +201,18 @@ class Ranker:
 
 def kirchhoff(L, keep):
     """Compute Kirchhoff index, including only specific nodes."""
-    num_nodes = L.shape[0]
-    cols = []
-    for x, y in combinations(keep, 2):
-        d = np.zeros(num_nodes)
-        d[x] = -1
-        d[y] = 1
-        cols.append(d)
-    x = np.stack(cols, axis=1)
+    try:
+        num_nodes = L.shape[0]
+        cols = []
+        for x, y in combinations(keep, 2):
+            d = np.zeros(num_nodes)
+            d[x] = -1
+            d[y] = 1
+            cols.append(d)
+        x = np.stack(cols, axis=1)
+    except:
+        print(cols)
+        return
 
     return np.trace(x.T @ np.linalg.lstsq(L, x, rcond=None)[0])
 

@@ -76,13 +76,21 @@ class Ranker:
         if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
             answer['score'] = 0
             return answer
-        nonset_node_ids = [
-            idx for idx, rnode_id in enumerate(rgraph[0])
-            if (
-                (rnode_id[0] not in self.qnode_by_id) or
-                (not self.qnode_by_id[rnode_id[0]].get('is_set', False))
-            )
-        ]
+
+        #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
+        # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
+        # rgraph[0] is structured as a list of (qg_id, kg_id) tuples.  So we want the indices of rgraph[0] that have qg_id that occur only once in rgraph[0]
+        counts = defaultdict(int)
+        for q,k in rgraph[0]:
+            counts[q] += 1
+        nonset_node_ids = [ idx for idx,rnode_id in enumerate(rgraph[0]) if ( counts[rnode_id[0]] == 1 ) ]
+        #nonset_node_ids = [
+        #    idx for idx, rnode_id in enumerate(rgraph[0])
+        #    if (
+        #        (rnode_id[0] not in self.qnode_by_id) or
+        #        (not self.qnode_by_id[rnode_id[0]].get('is_set', False))
+        #    )
+        #]
 
         # the nonset node count has to be at least 2 nodes
         if len(nonset_node_ids) < 2:

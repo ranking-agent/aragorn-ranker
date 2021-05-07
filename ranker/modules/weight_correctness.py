@@ -64,7 +64,7 @@ async def query(
         # get the article count atribute
         for p in kgraph['nodes'][n]['attributes']:
             # is this what we are looking for
-            if p['name'] == 'omnicorp_article_count':
+            if p['original_attribute_name'] == 'omnicorp_article_count':
                 # save it
                 omnicorp_article_count = p['value']
 
@@ -106,12 +106,12 @@ async def query(
         if attributes is not None:
             # for each data attribute
             for attribute in attributes:
-                if attribute['name'] is not None:
+                if attribute['original_attribute_name'] is not None:
                     # is this the publication list
-                    if attribute['name'].startswith('publications'):
+                    if attribute['original_attribute_name'].startswith('publications'):
                         publications = attribute['value']
                     # else is this the number of publications
-                    elif attribute['name'].startswith('num_publications'):
+                    elif attribute['original_attribute_name'].startswith('num_publications'):
                         num_publications = attribute.get('value', 0)
 
             # if there was only 1 publication value found insure it wasnt a character seperated list

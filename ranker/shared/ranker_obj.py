@@ -22,7 +22,12 @@ class Ranker:
 
         kedges = self.kgraph['edges']
 
-        attribute = {'name': 'weight', 'value': 1, 'type': 'EDAM:data_0006', 'url': None, 'source': None}
+        attribute = {'original_attribute_name': 'weight',
+                     'attribute_type_id': 'biolink:has_quotient',
+                     'value': 1,
+                     'value_type_id': 'EDAM:data_0006',
+                     'value_url': None,
+                     'attribute_source': None}
 
         for kedge in kedges:
             if kedges[kedge]['attributes'] is None:
@@ -30,7 +35,7 @@ class Ranker:
             else:
                 found = False
                 for attrib in kedges[kedge]['attributes']:
-                    if attrib['name'] == 'weight':
+                    if attrib['original_attribute_name'] == 'weight':
                         found = True
 
                 if not found:

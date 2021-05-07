@@ -3,11 +3,24 @@ import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
 # this will load all the json test files into global objects to use in a test
-from .fixtures import weighted2, schizo, treatsSchizophreniaw
+from .fixtures import weighted2, weighted_answer, schizo, treatsSchizophreniaw, weighted_set
 
 # start a client
 client = TestClient(APP)
 
+def test_nonzero_score(weighted_answer):
+    """Test that score() runs without errors."""
+    response = client.post('/score', json=weighted_answer)
+
+    # load the json
+    resp = response.json()
+
+    answer = resp['message']['results']
+
+    # make sure the there are 3 results
+    assert(len(answer) == 1)
+
+    assert(answer[0]['score'] > 0)
 
 def test_score(weighted2):
     """Test that score() runs without errors."""

@@ -45,7 +45,7 @@ def test_score_schizo(schizo):
     response = client.post('/score', json=schizo)
     assert response.status_code == 200
 
-def test_score_schizo(treatsSchizophreniaw):
+def test_score_schizo2(treatsSchizophreniaw):
     """Test that score() runs without errors."""
     response = client.post('/score', json=treatsSchizophreniaw)
     assert response.status_code == 200

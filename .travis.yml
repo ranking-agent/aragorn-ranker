@@ -8,7 +8,8 @@ notifications:
 services:
   - docker
 install:
-  - pip install tox psycopg2 python-dotenv httpx
+  - pip install -r ./tests/requirements.txt
+  - pip install -r requirements.txt
   - mkdir logs
   - mkdir cache
 before_script:

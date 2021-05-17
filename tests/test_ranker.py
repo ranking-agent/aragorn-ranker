@@ -49,6 +49,8 @@ def test_service(svc_test):
     kg_node_list = list(ret['knowledge_graph']['nodes'].items())
     kg_edge_list = list(ret['knowledge_graph']['edges'].items())
 
+    found = False
+
     # insure that ranker/omnicorp overlay the omni article count
     for n in kg_node_list:
         if 'attributes' in n[1] and len(n[1]['attributes']) > 0:

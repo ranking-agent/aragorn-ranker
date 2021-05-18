@@ -69,7 +69,7 @@ def test_service(svc_test):
     for e in kg_edge_list:
         if 'attributes' in e[1]:
             for a in e[1]['attributes']:
-                if str(a['value']).startswith('omnicorp') or str(a['value']).startswith('omnicorp.term_to_term'):
+                if str(a['original_attribute_name']).startswith('omnicorp_article_count'):
                     found = True
                     break
             if found:

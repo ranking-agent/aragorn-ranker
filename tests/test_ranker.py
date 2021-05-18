@@ -66,7 +66,7 @@ def test_service(svc_test):
     found = False
 
     # insure that ranker/omnicorp overlay added the omnicorp data
-    for e in kg_edge_list:
+    for e in kg_node_list:
         if 'attributes' in e[1]:
             for a in e[1]['attributes']:
                 if str(a['original_attribute_name']).startswith('omnicorp_article_count'):

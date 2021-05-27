@@ -30,7 +30,10 @@ async def count_node_pmids(supporter, node, key, value, cache, kgraph):
             cache.set(key, support_dict)
 
     # add omnicorp_article_count to nodes in networkx graph
-    attribute = {'type': 'EDAM:data_0006', 'name': 'omnicorp_article_count', 'value': support_dict['omnicorp_article_count']}
+    attribute = {'original_attribute_name': 'omnicorp_article_count',
+                 'attribute_type_id': 'biolink:has_count',
+                 'value': support_dict['omnicorp_article_count'],
+                 'value_type_id': 'EDAM:data_0006'}
 
     # if there is no attributes array add one
     if kgraph[node]['attributes'] is None:
@@ -38,6 +41,7 @@ async def count_node_pmids(supporter, node, key, value, cache, kgraph):
 
     # save the attributes
     kgraph[node]['attributes'].append(attribute)
+
 
 async def count_shared_pmids(
         supporter, support_idx, pair, key, value,
@@ -73,10 +77,10 @@ async def count_shared_pmids(
     kgraph['edges'].update({uid: {
         'predicate': 'biolink:literature_co_occurrence',
         'attributes': [
-            {'type': 'num_publications', 'value': support_edge},
-            {'type': 'publications', 'value': []},
-            {'type': 'source_database', 'value': 'omnicorp'},
-            {'type': 'edge_source', 'value': 'omnicorp.term_to_term'}
+            {'original_attribute_name': 'num_publications', 'attribute_type_id': 'biolink:has_count', 'value_type_id': 'EDAM:data_0006', 'value': support_edge},
+            {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
+            {'original_attribute_name': 'source_database', 'attribute_type_id': 'biolink:dataset', 'value_type_id': 'EDAM:data_0006', 'value': 'omnicorp'},
+            {'original_attribute_name': 'edge_source', 'attribute_type_id': 'biolink:dataset', 'value_type_id': 'EDAM:data_0006', 'value': 'omnicorp.term_to_term'}
         ],
         'subject': pair[0],
         'object': pair[1],

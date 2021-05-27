@@ -51,29 +51,29 @@ def test_service(svc_test):
 
     found = False
 
-    # insure that ranker/omnicorp overlay the omni article count
+    # insure that ranker/omnicorp overlay added the omni article count
     for n in kg_node_list:
         if 'attributes' in n[1] and len(n[1]['attributes']) > 0:
             for a in n[1]['attributes']:
                 if a['original_attribute_name'] == 'omnicorp_article_count':
                     found = True
                     break
-            if found:
-                break
+        if found:
+            break
 
     assert found
 
     found = False
 
     # insure that ranker/omnicorp overlay added the omnicorp data
-    for e in kg_node_list:
+    for e in kg_edge_list:
         if 'attributes' in e[1]:
             for a in e[1]['attributes']:
-                if str(a['original_attribute_name']).startswith('omnicorp_article_count'):
+                if str(a['value']).startswith('omnicorp') or str(a['value']).startswith('omnicorp.term_to_term'):
                     found = True
                     break
-            if found:
-                break
+        if found:
+            break
 
     assert found
 
@@ -82,13 +82,12 @@ def test_service(svc_test):
     # insure that ranker/weight added the weight element
     for r in ret['results']:
         if 'edge_bindings' in r:
-            if len(r['edge_bindings']['e01']) > 1:
-                for e in r['edge_bindings']['e01']:
-                    if 'weight' in e:
-                        found = True
-                        break
-                if found:
+            for nb in r['edge_bindings']:
+                if len(r['edge_bindings'][nb][0]) > 1 and 'weight' in r['edge_bindings'][nb][0]:
+                    found = True
                     break
+        if found:
+            break
 
     assert found
 

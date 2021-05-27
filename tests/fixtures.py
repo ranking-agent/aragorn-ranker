@@ -7,7 +7,7 @@ import pytest
 # generate fixture for each JSON file in tests/data
 dirname = os.path.dirname(__file__)
 
-files = glob.glob(os.path.join(dirname, 'InputJson_1.0/*.json')) # 0.9.2
+files = glob.glob(os.path.join(dirname, 'InputJson_1.1/*.json'))
 
 fixtures = []
 

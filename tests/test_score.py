@@ -43,9 +43,21 @@ def test_score(weighted2):
 def test_score_schizo(schizo):
     """Test that score() runs without errors."""
     response = client.post('/score', json=schizo)
+
+    # load the json
+    resp = response.json()
+
+    answer = resp['message']['results']
+
     assert response.status_code == 200
 
-def test_score_schizo2(treatsSchizophreniaw):
+def test_score_schizo(treatsSchizophreniaw):
     """Test that score() runs without errors."""
     response = client.post('/score', json=treatsSchizophreniaw)
+
+    # load the json
+    resp = response.json()
+
+    answer = resp['message']['results']
+
     assert response.status_code == 200

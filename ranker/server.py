@@ -57,7 +57,7 @@ def construct_open_api_schema():
 
     open_api_schema = get_openapi(
         title='ARAGORN Ranker',
-        version='2.2.2',
+        version='2.3.3',
         routes=APP.routes
     )
 

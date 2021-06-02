@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 CACHE_HOST = os.environ.get('CACHE_HOST', 'localhost')
 CACHE_PORT = os.environ.get('CACHE_PORT', '6379')
-CACHE_DB = os.environ.get('CACHE_DB', '5')
+CACHE_DB = os.environ.get('CACHE_DB', '0')
 CACHE_PASSWORD = os.environ.get('CACHE_PASSWORD', '')
 
 

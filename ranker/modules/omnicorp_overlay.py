@@ -2,19 +2,24 @@
 import logging
 import os
 import asyncio
+
 from uuid import uuid4
 from collections import defaultdict
 from itertools import combinations
-from reasoner_pydantic import Response, Message
+from datetime import datetime
+from fastapi.responses import JSONResponse
 from ranker.shared.cache import Cache
 from ranker.shared.omnicorp import OmnicorpSupport
 from ranker.shared.util import batches
+from fastapi.encoders import jsonable_encoder
+
+from reasoner_pydantic import Response as PDResponse
 
 logger = logging.getLogger(__name__)
 
 CACHE_HOST = os.environ.get('CACHE_HOST', 'localhost')
 CACHE_PORT = os.environ.get('CACHE_PORT', '6379')
-CACHE_DB = os.environ.get('CACHE_DB', '0')
+CACHE_DB = os.environ.get('CACHE_DB', '5')
 CACHE_PASSWORD = os.environ.get('CACHE_PASSWORD', '')
 
 
@@ -90,12 +95,34 @@ async def count_shared_pmids(
         answers[sg]['edge_bindings'].update({f's{support_idx}': [{'id': uid}]})
 
 
-async def query(response: Response):
+def create_log_entry(msg: str, err_level, code=None) -> dict:
+    # load the data
+    ret_val = {
+        'timestamp': str(datetime.now()),
+        'level': err_level,
+        'message': msg,
+        'code': code
+    }
+
+    # return to the caller
+    return ret_val
+
+
+async def query(request: PDResponse):
     """Add support to message.
 
     Add support edges to knowledge_graph and bindings to results.
     """
-    message = response.message.dict()
+    in_message = request.dict()
+
+    # save the logs for the response (if any)
+    if 'logs' not in in_message or in_message['logs'] is None:
+        in_message['logs'] = []
+
+    # init the status code
+    status_code: int = 200
+
+    message = in_message['message']
 
     qgraph = message['query_graph']
     kgraph = message['knowledge_graph']
@@ -109,90 +136,98 @@ async def query(response: Response):
             redis_db=CACHE_DB,
             redis_password=CACHE_PASSWORD,
         )
-    except Exception as err:
-        logger.exception(err)
+    except Exception as e:
+        logger.exception(e)
         cache = None
 
     redis_batch_size = 100
 
-    async with OmnicorpSupport() as supporter:
-        # get all node supports
+    try:
+        async with OmnicorpSupport() as supporter:
+            # get all node supports
 
-        keys = [f"{supporter.__class__.__name__}({node})" for node in kgraph['nodes']]
-        values = []
-        for batch in batches(keys, redis_batch_size):
-            values.extend(cache.mget(*batch))
+            keys = [f"{supporter.__class__.__name__}({node})" for node in kgraph['nodes']]
+            values = []
+            for batch in batches(keys, redis_batch_size):
+                values.extend(cache.mget(*batch))
 
-        jobs = [
-            count_node_pmids(supporter, node, key, value, cache, kgraph['nodes'])
-            for node, value, key in zip(kgraph['nodes'], values, keys)
-        ]
+            jobs = [
+                count_node_pmids(supporter, node, key, value, cache, kgraph['nodes'])
+                for node, value, key in zip(kgraph['nodes'], values, keys)
+            ]
 
-        # which qgraph nodes are sets?
-        qgraph_setnodes = set([n for n in qgraph['nodes'] if (('is_set' in qgraph['nodes'][n]) and (qgraph['nodes'][n]['is_set']))])
+            # which qgraph nodes are sets?
+            qgraph_setnodes = set([n for n in qgraph['nodes'] if (('is_set' in qgraph['nodes'][n]) and (qgraph['nodes'][n]['is_set']))])
 
-        # Generate a set of pairs of node curies
-        pair_to_answer = defaultdict(set)  # a map of node pairs to answers
-        for ans_idx, answer_map in enumerate(answers):
+            # Generate a set of pairs of node curies
+            pair_to_answer = defaultdict(set)  # a map of node pairs to answers
+            for ans_idx, answer_map in enumerate(answers):
 
-            # Get all nodes that are not part of sets and densely connect them
-            # can be str (not a set) or list (could be a set or not a set)
-            nonset_nodes = []
-            setnodes = {}
+                # Get all nodes that are not part of sets and densely connect them
+                # can be str (not a set) or list (could be a set or not a set)
+                nonset_nodes = []
+                setnodes = {}
 
-            # node binding results is now a dict containing dicts that contain a list of dicts.
-            for nb in answer_map['node_bindings']:
-                if nb in qgraph_setnodes:
-                    setnodes[nb] = [node['id'] for node in answer_map['node_bindings'][nb]]
-                else:
-                    if len(answer_map['node_bindings'][nb]) != 0:
-                        nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
+                # node binding results is now a dict containing dicts that contain a list of dicts.
+                for nb in answer_map['node_bindings']:
+                    if nb in qgraph_setnodes:
+                        setnodes[nb] = [node['id'] for node in answer_map['node_bindings'][nb]]
+                    else:
+                        if len(answer_map['node_bindings'][nb]) != 0:
+                            nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
 
-            nonset_nodes = sorted(nonset_nodes)
-            # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
-            for node_pair in combinations(nonset_nodes, 2):
-                pair_to_answer[node_pair].add(ans_idx)
+                nonset_nodes = sorted(nonset_nodes)
+                # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
+                for node_pair in combinations(nonset_nodes, 2):
+                    pair_to_answer[node_pair].add(ans_idx)
 
-            # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
-            # set_nodes = [n for el in set_nodes_list_list for n in el]
-            # For all nodes that are within sets, connect them to all nodes that are not in sets
-            for qg_id, snodes in setnodes.items():
-                for snode in snodes:
-                    for node in nonset_nodes:
-                        node_pair = tuple(sorted((node, snode)))
-                        pair_to_answer[node_pair].add(ans_idx)
+                # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
+                # set_nodes = [n for el in set_nodes_list_list for n in el]
+                # For all nodes that are within sets, connect them to all nodes that are not in sets
+                for qg_id, snodes in setnodes.items():
+                    for snode in snodes:
+                        for node in nonset_nodes:
+                            node_pair = tuple(sorted((node, snode)))
+                            pair_to_answer[node_pair].add(ans_idx)
 
-            # now all nodes in set a to all nodes in set b
-            for qga, qgb in combinations(setnodes.keys(), 2):
-                for anode in setnodes[qga]:
-                    for bnode in setnodes[qgb]:
-                        node_pair = tuple(sorted(anode, bnode))
-                        pair_to_answer[node_pair].add(ans_idx)
+                # now all nodes in set a to all nodes in set b
+                for qga, qgb in combinations(setnodes.keys(), 2):
+                    for anode in setnodes[qga]:
+                        for bnode in setnodes[qgb]:
+                            node_pair = tuple(sorted(anode, bnode))
+                            pair_to_answer[node_pair].add(ans_idx)
 
-        # get all pair supports
-        cached_prefixes = cache.get('OmnicorpPrefixes') if cache else None
+            # get all pair supports
+            cached_prefixes = cache.get('OmnicorpPrefixes') if cache else None
 
-        keys = [f"{supporter.__class__.__name__}_count({pair[0]},{pair[1]})" for pair in pair_to_answer]
-        values = []
-        for batch in batches(keys, redis_batch_size):
-            values.extend(cache.mget(*batch))
+            keys = [f"{supporter.__class__.__name__}_count({pair[0]},{pair[1]})" for pair in pair_to_answer]
+            values = []
+            for batch in batches(keys, redis_batch_size):
+                values.extend(cache.mget(*batch))
 
-        jobs.extend([
-            count_shared_pmids(
-                supporter, support_idx, pair, key, value,
-                cache, cached_prefixes, kgraph, pair_to_answer,
-                answers,
-            )
-            for support_idx, (pair, value, key) in enumerate(zip(pair_to_answer, values, keys))
-        ])
-        await asyncio.gather(*jobs)
+            jobs.extend([
+                count_shared_pmids(
+                    supporter, support_idx, pair, key, value,
+                    cache, cached_prefixes, kgraph, pair_to_answer,
+                    answers,
+                )
+                for support_idx, (pair, value, key) in enumerate(zip(pair_to_answer, values, keys))
+            ])
+            await asyncio.gather(*jobs)
 
-    # load the new results into the response
-    message['knowledge_graph'] = kgraph
-    message['results'] = answers
+        # load the new results into the response
+        message['knowledge_graph'] = kgraph
+        message['results'] = answers
 
-    # get this in the correct response model format
-    ret_val = {'message': message}
+    except Exception as e:
+        # put the error in the response
+        status_code = 500
 
-    # return the results
-    return Response(**ret_val)
+        # save any log entries
+        in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+
+    # validate the response again after normalization
+    in_message = jsonable_encoder(PDResponse(**in_message))
+
+    # return the result to the caller
+    return JSONResponse(content=in_message, status_code=status_code)

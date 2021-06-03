@@ -1,13 +1,17 @@
 """Weight edges."""
 import math
+
 from collections import defaultdict
 from typing import Optional
 from fastapi import Query
-from reasoner_pydantic import Response, Message
+from datetime import datetime
+from reasoner_pydantic import Response as PDResponse
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 
 async def query(
-        response: Response,
+        request: PDResponse,
         relevance: Optional[float] = Query(
             0.0025,
             description='Portion of cooccurrence publications relevant to a question',
@@ -24,13 +28,22 @@ async def query(
             2.0,
             description='Publications at 50% of wt_max',
         ),
-) -> Response:
+):
     """Weight kgraph edges based on metadata.
 
     "19 pubs from CTD is a 1, and 2 should at least be 0.5"
         - cbizon
     """
-    message = response.message.dict()
+    in_message = request.dict()
+
+    # save the logs for the response (if any)
+    if 'logs' not in in_message or in_message['logs'] is None:
+        in_message['logs'] = []
+
+    # init the status code
+    status_code: int = 200
+
+    message = in_message['message']
 
     def sigmoid(x):
         """Scale with partial sigmoid - the right (concave down) half.
@@ -46,109 +59,126 @@ async def query(
         k = 1 / p50 * (math.log(r + c) - math.log(a - r - c))
         return a / (1 + math.exp(-k * x)) - c
 
-    # constant count of all publications
-    all_pubs = 27840000
+    def create_log_entry(msg: str, err_level, code=None) -> dict:
+        # load the data
+        ret_val = {
+            'timestamp': str(datetime.now()),
+            'level': err_level,
+            'message': msg,
+            'code': code
+        }
 
-    # get the data nodes we need
-    results = message['results']
-    kgraph = message['knowledge_graph']
+        # return to the caller
+        return ret_val
 
-    # storage for the publication counts for the node
-    node_pubs: dict = {}
+    try:
+        # constant count of all publications
+        all_pubs = 27840000
 
-    # for each node in the knowledge graph
-    for n in kgraph['nodes']:
-        # init the count value
-        omnicorp_article_count: int = 0
+        # get the data nodes we need
+        results = message['results']
+        kgraph = message['knowledge_graph']
 
-        # get the article count atribute
-        for p in kgraph['nodes'][n]['attributes']:
-            # is this what we are looking for
-            if p['original_attribute_name'] == 'omnicorp_article_count':
-                # save it
-                omnicorp_article_count = p['value']
+        # storage for the publication counts for the node
+        node_pubs: dict = {}
 
-                # no need to continue
-                break
+        # for each node in the knowledge graph
+        for n in kgraph['nodes']:
+            # init the count value
+            omnicorp_article_count: int = 0
 
-        # add the node d and count to the dict
-        node_pubs.update({n: omnicorp_article_count})
+            # get the article count atribute
+            for p in kgraph['nodes'][n]['attributes']:
+                # is this what we are looking for
+                if p['original_attribute_name'] == 'omnicorp_article_count':
+                    # save it
+                    omnicorp_article_count = p['value']
 
-    # map kedges to edge_bindings
-    krmap = defaultdict(list)
+                    # no need to continue
+                    break
 
-    # for each result listed in the data
-    for result in results:
-        # for every edge binding result
-        for eb in result['edge_bindings']:
-            # default the weight to 1 if there is none listed
-            for idx, binding_val in enumerate(result['edge_bindings'][eb]):
-                result['edge_bindings'][eb][idx]['weight'] = result['edge_bindings'][eb][idx].get('weight', 1)
+            # add the node d and count to the dict
+            node_pubs.update({n: omnicorp_article_count})
 
-                # get a reference to the weight for easy update later
-                krmap[binding_val['id']] = result['edge_bindings'][eb][idx]
+        # map kedges to edge_bindings
+        krmap = defaultdict(list)
 
-    # get the knowledge graph edges
-    edges = kgraph['edges']
+        # for each result listed in the data
+        for result in results:
+            # for every edge binding result
+            for eb in result['edge_bindings']:
+                # default the weight to 1 if there is none listed
+                for idx, binding_val in enumerate(result['edge_bindings'][eb]):
+                    result['edge_bindings'][eb][idx]['weight'] = result['edge_bindings'][eb][idx].get('weight', 1)
 
-    # for each knowledge graph edge
-    for edge in edges:
-        # init the effective publication count
-        effective_pubs = 0
+                    # get a reference to the weight for easy update later
+                    krmap[binding_val['id']] = result['edge_bindings'][eb][idx]
 
-        # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
-        attributes = edges[edge].get('attributes', None)
+        # get the knowledge graph edges
+        edges = kgraph['edges']
 
-        # init storage for the publications and their count
-        publications = []
-        num_publications = 0
+        # for each knowledge graph edge
+        for edge in edges:
+            # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
+            attributes = edges[edge].get('attributes', None)
 
-        if attributes is not None:
-            # for each data attribute
-            for attribute in attributes:
-                if attribute['original_attribute_name'] is not None:
-                    # is this the publication list
-                    if attribute['original_attribute_name'].startswith('publications'):
-                        publications = attribute['value']
-                    # else is this the number of publications
-                    elif attribute['original_attribute_name'].startswith('num_publications'):
-                        num_publications = attribute.get('value', 0)
+            # init storage for the publications and their count
+            publications = []
+            num_publications = 0
 
-            # if there was only 1 publication value found insure it wasnt a character seperated list
-            if len(publications) == 1:
-                if '|' in publications[0]:
-                    publications = publications[0].split('|')
-                elif ',' in publications[0]:
-                    publications = publications[0].split(',')
+            if attributes is not None:
+                # for each data attribute
+                for attribute in attributes:
+                    if attribute['original_attribute_name'] is not None:
+                        # is this the publication list
+                        if attribute['original_attribute_name'].startswith('publications'):
+                            publications = attribute['value']
+                        # else is this the number of publications
+                        elif attribute['original_attribute_name'].startswith('num_publications'):
+                            num_publications = attribute.get('value', 0)
 
-                # get the real publication count
-                num_publications = len(publications)
+                # if there was only 1 publication value found insure it wasnt a character separated list
+                if len(publications) == 1:
+                    if '|' in publications[0]:
+                        publications = publications[0].split('|')
+                    elif ',' in publications[0]:
+                        publications = publications[0].split(',')
 
-            # if there was no publication count found yet revert to the number of individual values
-            if num_publications == 0:
-                num_publications = len(publications)
+                    # get the real publication count
+                    num_publications = len(publications)
 
-            #now the nicer cleaner version when we have publications as an actual array
-            #edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
-            if edges[edge].get('predicate') == 'literature_co-occurrence':
-                subject_pubs = int(node_pubs[edge['subject']])
-                object_pubs = int(node_pubs[edge['object']])
+                # if there was no publication count found yet revert to the number of individual values
+                if num_publications == 0:
+                    num_publications = len(publications)
 
-                cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
-                cov = max((cov, 0.0))
-                effective_pubs = cov * all_pubs * relevance
-            else:
-                effective_pubs = num_publications + 1  # consider the curation a pub
+                # now the nicer cleaner version when we have publications as an actual array
+                # edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
+                if edges[edge].get('predicate') == 'literature_co-occurrence':
+                    subject_pubs = int(node_pubs[edge['subject']])
+                    object_pubs = int(node_pubs[edge['object']])
 
-            if len(krmap[edge]) != 0:
-                # save the weight value in the results using the reference shortcut above
-                krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
+                    cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
+                    cov = max((cov, 0.0))
+                    effective_pubs = cov * all_pubs * relevance
+                else:
+                    effective_pubs = num_publications + 1  # consider the curation a pub
 
-    # save the new knowledge graph data
-    message['knowledge_graph'] = kgraph
+                if len(krmap[edge]) != 0:
+                    # save the weight value in the results using the reference shortcut above
+                    krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
 
-    # get this in the correct response model format
-    ret_val = {'message': message}
+        # save the new knowledge graph data
+        message['knowledge_graph'] = kgraph
 
-    # return the message back to the caller
-    return Response(**ret_val)
+    except Exception as e:
+        # put the error in the response
+        status_code = 500
+
+        # save any log entries
+        in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+
+    # validate the response again after normalization
+    in_message = jsonable_encoder(PDResponse(**in_message))
+
+    # return the result to the caller
+    return JSONResponse(content=in_message, status_code=status_code)

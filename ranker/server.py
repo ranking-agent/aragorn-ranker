@@ -9,15 +9,19 @@ from importlib import import_module
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from reasoner_pydantic import Response
+from reasoner_pydantic import Response as PDResponse
 
 # Set up default logger.
 with pkg_resources.resource_stream('ranker', 'logging.yml') as f:
     config = yaml.safe_load(f.read())
+
 logdir = 'logs'
+
 if not os.path.exists(logdir):
     os.makedirs(logdir)
+
 config['handlers']['file']['filename'] = os.path.join(logdir, 'ranker.log')
+
 logging.config.dictConfig(config)
 
 LOGGER = logging.getLogger(__name__)
@@ -47,7 +51,7 @@ operations = [
 for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
 
-    APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=Response, response_model_exclude_none=True)(log_exception(md.query))
+    APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))
 
 
 def construct_open_api_schema():

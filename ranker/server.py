@@ -26,7 +26,7 @@ logging.config.dictConfig(config)
 
 LOGGER = logging.getLogger(__name__)
 
-APP = FastAPI(title='ARAGORN Ranker', version='2.3.3')
+APP = FastAPI(title='ARAGORN Ranker', version='1.0.0')
 
 def log_exception(method):
     """Wrap method."""
@@ -61,7 +61,7 @@ def construct_open_api_schema():
 
     open_api_schema = get_openapi(
         title='ARAGORN Ranker',
-        version='2.3.3',
+        version='1.0.0',
         routes=APP.routes
     )
 

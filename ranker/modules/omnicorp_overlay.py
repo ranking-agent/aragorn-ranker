@@ -194,7 +194,8 @@ async def query(request: PDResponse):
                 for qga, qgb in combinations(setnodes.keys(), 2):
                     for anode in setnodes[qga]:
                         for bnode in setnodes[qgb]:
-                            node_pair = tuple(sorted(anode, bnode))
+                            # node_pair = tuple(sorted(anode, bnode))
+                            node_pair = tuple(sorted((anode, bnode)))
                             pair_to_answer[node_pair].add(ans_idx)
 
             # get all pair supports

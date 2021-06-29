@@ -3,14 +3,14 @@
     "query_graph": {
       "nodes": {
         "n00": {
-          "category": "biolink:Disease",
+          "categories": ["biolink:Disease"],
           "id": "MONDO:0005737"
         },
         "n01": {
-          "category": "biolink:Gene"
+          "categories": ["biolink:Gene"]
         },
         "n02": {
-          "category": "biolink:GeneticCondition"
+          "categories": ["biolink:GeneticCondition"]
         }
       },
       "edges": {
@@ -27,7 +27,7 @@
     "knowledge_graph": {
       "nodes": {
         "MONDO:0018982": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -41,7 +41,7 @@
           ]
         },
         "MONDO:0009757": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -55,7 +55,7 @@
           ]
         },
         "MONDO:0005737": {
-          "category": [
+          "categories": [
             "biolink:Disease"
           ],
           "name": "Ebola hemorrhagic fever",
@@ -68,7 +68,7 @@
           ]
         },
         "HGNC:7897": {
-          "category": [
+          "categories": [
             "biolink:Gene"
           ],
           "name": "NPC1",
@@ -81,7 +81,7 @@
           ]
         },
         "MONDO:0019255": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],

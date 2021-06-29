@@ -100,19 +100,40 @@ async def query(
             # add the node d and count to the dict
             node_pubs.update({n: omnicorp_article_count})
 
-        # map kedges to edge_bindings
+        # map kedges to result edge bindings
         krmap = defaultdict(list)
 
-        # for each result listed in the data
+        # for each result listed in the data get a map reference and default the weight attribute
         for result in results:
             # for every edge binding result
             for eb in result['edge_bindings']:
-                # default the weight to 1 if there is none listed
+                # loop through the edge binding
                 for idx, binding_val in enumerate(result['edge_bindings'][eb]):
-                    result['edge_bindings'][eb][idx]['weight'] = result['edge_bindings'][eb][idx].get('weight', 1)
-
                     # get a reference to the weight for easy update later
                     krmap[binding_val['id']] = result['edge_bindings'][eb][idx]
+
+                    found = False
+
+                    # is there already a list of attributes
+                    if 'attributes' in krmap[binding_val['id']]:
+                        # loop through the attributes
+                        for item in krmap[binding_val['id']]['attributes']:
+                            # search for the weight attribute
+                            if item['original_attribute_name'].startswith('weight'):
+                                found = True
+                                break
+
+                    # was the attribute found
+                    if not found:
+                        if 'attributes' not in krmap[binding_val['id']]:
+                            krmap[binding_val['id']]['attributes'] = []
+
+                        # create an Attribute
+                        krmap[binding_val['id']]['attributes'].append({
+                            'original_attribute_name': 'weight',
+                            'attribute_type_id': 'biolink:has_numeric_value',
+                            'value': 1,
+                            'value_type_id': 'EDAM:data_1669'})
 
         # get the knowledge graph edges
         edges = kgraph['edges']
@@ -127,7 +148,7 @@ async def query(
             num_publications = 0
 
             if attributes is not None:
-                # for each data attribute
+                # for each data attribute collect the needed params
                 for attribute in attributes:
                     if attribute['original_attribute_name'] is not None:
                         # is this the publication list
@@ -147,7 +168,7 @@ async def query(
                     # get the real publication count
                     num_publications = len(publications)
 
-                # if there was no publication count found yet revert to the number of individual values
+                # if there was no publication count found revert to the number of individual values
                 if num_publications == 0:
                     num_publications = len(publications)
 
@@ -163,9 +184,24 @@ async def query(
                 else:
                     effective_pubs = num_publications + 1  # consider the curation a pub
 
+                # if there is something to add this new attribute to
                 if len(krmap[edge]) != 0:
-                    # save the weight value in the results using the reference shortcut above
-                    krmap[edge]['weight'] = krmap[edge].get('weight', 1.0) * sigmoid(effective_pubs)
+                    # is there already a list of attributes
+                    if 'attributes' in krmap[edge]:
+                        # loop through the attributes
+                        for item in krmap[edge]['attributes']:
+                            # search for the weight attribute
+                            if item['original_attribute_name'].startswith('weight'):
+                                # update the params
+                                item['attribute_type_id'] = 'biolink:has_numeric_value'
+                                item['value'] = item['value'] * sigmoid(effective_pubs)
+                                item['value_type_id'] = 'EDAM:data_1669'
+                                found = True
+                                break
+
+                    # was the attribute found
+                    if not found:
+                        print('this should never happen')
 
         # save the new knowledge graph data
         message['knowledge_graph'] = kgraph

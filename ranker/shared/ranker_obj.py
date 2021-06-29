@@ -23,9 +23,9 @@ class Ranker:
         kedges = self.kgraph['edges']
 
         attribute = {'original_attribute_name': 'weight',
-                     'attribute_type_id': 'biolink:has_quotient',
+                     'attribute_type_id': 'biolink:has_numeric_value',
                      'value': 1,
-                     'value_type_id': 'EDAM:data_0006',
+                     'value_type_id': 'EDAM:data_1669',
                      'value_url': None,
                      'attribute_source': None}
 
@@ -202,11 +202,16 @@ class Ranker:
                     ))
 
                 for subject, object in pairs:
-                    edge = {
-                        'weight': kedge_node['weight'],
-                        'subject': subject,
-                        'object': object
-                    }
+                    # get the weight from the edge binding
+                    for item in kedge_node['attributes']:
+                        # search for the weight attribute
+                        if item['original_attribute_name'].startswith('weight'):
+                            edge = {
+                                'weight': item['value'],
+                                'subject': subject,
+                                'object': object
+                            }
+
                     redges.append(edge)
 
         return rnodes, redges

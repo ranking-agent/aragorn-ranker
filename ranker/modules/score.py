@@ -24,6 +24,7 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
 
     This is mostly glue around the heavy lifting in ranker_obj.Ranker
     """
+    # get the message into a dict
     in_message = request.dict()
 
     # save the logs for the response (if any)
@@ -33,23 +34,21 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
     # init the status code
     status_code: int = 200
 
+    # get a reference to the entire message
     message = in_message['message']
 
-    kgraph = message['knowledge_graph']
+    # get a reference to the results
     answers = message['results']
 
     try:
         # resistance distance ranking
         pr = Ranker(message)
 
+        # rank the answers. there should be a score for each bound result after this
         answers = pr.rank(answers, jaccard_like=jaccard_like)
 
-        # finish
+        # save the results
         message['results'] = answers
-
-        # get this in the correct response model format
-        ret_val = {'message': message}
-
     except Exception as e:
         # put the error in the response
         status_code = 500
@@ -57,7 +56,7 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    # validate the response again after normalization
+    # validate the response and get it into json
     in_message = jsonable_encoder(PDResponse(**in_message))
 
     # return the result to the caller

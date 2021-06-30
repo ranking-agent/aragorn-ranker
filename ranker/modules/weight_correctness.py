@@ -199,10 +199,6 @@ async def query(
                                 found = True
                                 break
 
-                    # was the attribute found
-                    if not found:
-                        print('this should never happen')
-
         # save the new knowledge graph data
         message['knowledge_graph'] = kgraph
 

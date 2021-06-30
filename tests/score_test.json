@@ -1,0 +1,132 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n0": {
+          "ids": ["node_0"]
+        },
+        "n1": {
+          "ids": ["node_1"]
+        }
+      },
+      "edges": {
+        "e01": {
+          "subject": "n0",
+          "object": "n1"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "node_0": {
+          "name": "knode_0_name"
+        },
+        "node_1": {
+          "name": "knode_1_name"
+        }
+      },
+      "edges": {
+        "edge_0": {
+          "subject": "n0",
+          "object": "n1",
+          "attributes": [
+            {
+            }
+          ]
+        },
+        "edge_1": {
+          "subject": "node_0",
+          "object": "node_1",
+          "attributes": [
+            {
+            }
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "node_0",
+              "categories": [
+                "biolink:DiseaseOrPhenotypicFeature",
+                "biolink:Disease",
+                "biolink:NamedThing",
+                "biolink:BiologicalEntity"
+              ]
+            }
+          ],
+          "n1": [
+            {
+              "id": "node_1",
+              "categories": [
+                "biolink:PhenotypicFeature"
+              ]
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "1234",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ],
+          "s0": [
+            {
+              "id": "3456",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ]
+        },
+        "score": null
+      },
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "MONDO:0005148"
+            }
+          ],
+          "n1": [
+            {
+              "id": "OMIM:MTHU036407"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "4567",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ]
+        },
+        "score": null
+      }
+    ]
+  }
+}

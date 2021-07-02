@@ -23,9 +23,9 @@ class Ranker:
         kedges = self.kgraph['edges']
 
         attribute = {'original_attribute_name': 'weight',
-                     'attribute_type_id': 'biolink:has_quotient',
+                     'attribute_type_id': 'biolink:has_numeric_value',
                      'value': 1,
-                     'value_type_id': 'EDAM:data_0006',
+                     'value_type_id': 'EDAM:data_1669',
                      'value_url': None,
                      'attribute_source': None}
 
@@ -161,19 +161,20 @@ class Ranker:
                     })
         rnodes = list(rnodes)
 
-        # get "result" edges
-        for eb in answer['edge_bindings']:
-            qedge_id = eb
-            kedges = answer['edge_bindings'][eb]
+        # for eb in answer['edge_bindings']:
+        # qedge_id = eb
+        # kedges = answer['edge_bindings'][eb]
 
+        # get "result" edges
+        for qedge_id, kedge_bindings in answer['edge_bindings'].items():
             # find source and target rnode(s)
             # qedge direction may not match kedge direction
             # we'll go with the kedge direction
             # note that a single support edge may in theory result in multiple redges
             # if the same knode is bound to multiple qnodes
 
-            for kedge_node in kedges:
-                kedge = self.kedge_by_id[kedge_node['id']]
+            for kedge_binding in kedge_bindings:
+                kedge = self.kedge_by_id[kedge_binding['id']]
 
                 try:
                     qedge = self.qedge_by_id[qedge_id]
@@ -202,11 +203,16 @@ class Ranker:
                     ))
 
                 for subject, object in pairs:
-                    edge = {
-                        'weight': kedge_node['weight'],
-                        'subject': subject,
-                        'object': object
-                    }
+                    # get the weight from the edge binding
+                    for item in kedge_binding['attributes']:
+                        # search for the weight attribute
+                        if item['original_attribute_name'].startswith('weight'):
+                            edge = {
+                                'weight': item['value'],
+                                'subject': subject,
+                                'object': object
+                            }
+
                     redges.append(edge)
 
         return rnodes, redges

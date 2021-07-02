@@ -27,20 +27,14 @@
       },
       "edges": {
         "edge_0": {
-          "subject": "n0",
-          "object": "n1",
-          "attributes": [
-            {
-            }
-          ]
+          "subject": "node_0",
+          "object": "node_1",
+          "predicate": "biolink:related_to"
         },
         "edge_1": {
           "subject": "node_0",
           "object": "node_1",
-          "attributes": [
-            {
-            }
-          ]
+          "predicate": "biolink:related_to"
         }
       }
     },
@@ -49,41 +43,19 @@
         "node_bindings": {
           "n0": [
             {
-              "id": "node_0",
-              "categories": [
-                "biolink:DiseaseOrPhenotypicFeature",
-                "biolink:Disease",
-                "biolink:NamedThing",
-                "biolink:BiologicalEntity"
-              ]
+              "id": "node_0"
             }
           ],
           "n1": [
             {
-              "id": "node_1",
-              "categories": [
-                "biolink:PhenotypicFeature"
-              ]
+              "id": "node_1"
             }
           ]
         },
         "edge_bindings": {
           "e01": [
             {
-              "id": "1234",
-              "attributes": [
-                {
-                  "original_attribute_name": "weight",
-                  "attribute_type_id": "biolink:has_numeric_value",
-                  "value": 1,
-                  "value_type_id": "EDAM:data_1669"
-                }
-              ]
-            }
-          ],
-          "s0": [
-            {
-              "id": "3456",
+              "id": "edge_0",
               "attributes": [
                 {
                   "original_attribute_name": "weight",
@@ -94,38 +66,36 @@
               ]
             }
           ]
-        },
-        "score": null
+        }
       },
       {
         "node_bindings": {
           "n0": [
             {
-              "id": "MONDO:0005148"
+              "id": "node_0"
             }
           ],
           "n1": [
             {
-              "id": "OMIM:MTHU036407"
+              "id": "node_1"
             }
           ]
         },
         "edge_bindings": {
           "e01": [
             {
-              "id": "4567",
+              "id": "edge_1",
               "attributes": [
                 {
                   "original_attribute_name": "weight",
                   "attribute_type_id": "biolink:has_numeric_value",
-                  "value": 1,
+                  "value": 2,
                   "value_type_id": "EDAM:data_1669"
                 }
               ]
             }
           ]
-        },
-        "score": null
+        }
       }
     ]
   }

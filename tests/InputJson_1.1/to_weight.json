@@ -3,19 +3,19 @@
     "query_graph": {
       "nodes": {
         "d00": {
-          "category": "biolink:Disease"
+          "categories": ["biolink:Disease"]
         },
         "d01": {
-          "category": "biolink:Disease"
+          "categories": ["biolink:Disease"]
         },
         "d02": {
-          "category": "biolink:Disease"
+          "categories": ["biolink:Disease"]
         },
         "d03": {
-          "category": "biolink:Disease"
+          "categories": ["biolink:Disease"]
         },
         "n01": {
-          "category": "biolink:Gene"
+          "categories": ["biolink:Gene"]
         }
       },
       "edges": {
@@ -40,7 +40,7 @@
     "knowledge_graph": {
       "nodes": {
         "MONDO:0000001": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -54,7 +54,7 @@
           ]
         },
         "MONDO:0000002": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -68,7 +68,7 @@
           ]
         },
         "MONDO:0000003": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -82,7 +82,7 @@
           ]
         },
         "MONDO:0000004": {
-          "category": [
+          "categories": [
             "biolink:Disease",
             "biolink:GeneticCondition"
           ],
@@ -96,7 +96,7 @@
           ]
         },
         "HGNC:7897": {
-          "category": [
+          "categories": [
             "biolink:Gene"
           ],
           "name": "NPC1",

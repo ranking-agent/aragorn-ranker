@@ -3,11 +3,10 @@
     "query_graph": {
       "nodes": {
         "n0": {
-          "categories": ["biolink:Gene"]
+          "ids": ["node_0"]
         },
         "n1": {
-          "categories": ["biolink:Disease"],
-          "is_set": "True"
+          "ids": ["node_1"]
         }
       },
       "edges": {
@@ -19,25 +18,22 @@
     },
     "knowledge_graph": {
       "nodes": {
-        "knode_0": {
-          "name": "Genex"
+        "node_0": {
+          "name": "knode_0_name"
         },
-        "knode_1": {
-          "name": "Disease1"
-        },
-        "knode_2": {
-          "name": "Disease2"
+        "node_1": {
+          "name": "knode_1_name"
         }
       },
       "edges": {
         "edge_0": {
-          "subject": "knode_0",
-          "object": "knode_1",
+          "subject": "node_0",
+          "object": "node_1",
           "predicate": "biolink:related_to"
         },
         "edge_1": {
-          "subject": "knode_0",
-          "object": "knode_2",
+          "subject": "node_0",
+          "object": "node_1",
           "predicate": "biolink:related_to"
         }
       }
@@ -47,15 +43,12 @@
         "node_bindings": {
           "n0": [
             {
-              "id": "knode_0"
+              "id": "node_0"
             }
           ],
           "n1": [
             {
-              "id": "knode_1"
-            },
-            {
-              "id": "knode_2"
+              "id": "node_1"
             }
           ]
         },
@@ -67,18 +60,36 @@
                 {
                   "original_attribute_name": "weight",
                   "attribute_type_id": "biolink:has_numeric_value",
-                  "value": 2,
+                  "value": 1,
                   "value_type_id": "EDAM:data_1669"
                 }
               ]
-            },
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "node_0"
+            }
+          ],
+          "n1": [
+            {
+              "id": "node_1"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
             {
               "id": "edge_1",
               "attributes": [
                 {
                   "original_attribute_name": "weight",
                   "attribute_type_id": "biolink:has_numeric_value",
-                  "value": 1,
+                  "value": 2,
                   "value_type_id": "EDAM:data_1669"
                 }
               ]

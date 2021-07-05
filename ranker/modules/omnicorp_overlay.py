@@ -80,7 +80,7 @@ async def count_shared_pmids(
     uid = str(uuid4())
 
     kgraph['edges'].update({uid: {
-        'predicate': 'biolink:literature_co_occurrence',
+        'predicate': 'biolink:correlated_with',
         'attributes': [
             {'original_attribute_name': 'num_publications', 'attribute_type_id': 'biolink:has_count', 'value_type_id': 'EDAM:data_0006', 'value': support_edge},
             {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},

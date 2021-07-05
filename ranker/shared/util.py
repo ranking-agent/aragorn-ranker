@@ -29,13 +29,13 @@ def batches(arr, n):
 
 def get_curie_prefix(curie):
     if ':' not in curie:
-        raise ValueError('Curies ought to contain a colon')
+        raise ValueError(f'Curies ought to contain a colon: {curie}')
     return curie.upper().split(':')[0]
 
 def get_postgres_curie_prefix(curie):
     """The representation in postgres moves things to lowercase, and replaces . with _"""
     if ':' not in curie:
-        raise ValueError('Curies ought to contain a colon')
+        raise ValueError(f'Curies ought to contain a colon: {curie}')
     prefix = curie.lower().split(':')
     prefix = '_'.join(prefix[0].split('.'))
     return prefix

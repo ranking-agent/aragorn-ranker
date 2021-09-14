@@ -11,5 +11,4 @@ uvicorn==0.13.3
 uvloop==0.14.0
 numpy==1.19.4
 httptools==0.1.1
-git+https://github.com/ranking-agent/reasoner#egg=reasoner
 reasoner-pydantic==1.1.2.1

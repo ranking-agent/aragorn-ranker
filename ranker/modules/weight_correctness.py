@@ -36,6 +36,7 @@ async def query(
     """
     in_message = request.dict()
 
+
     # save the logs for the response (if any)
     if 'logs' not in in_message or in_message['logs'] is None:
         in_message['logs'] = []
@@ -115,7 +116,7 @@ async def query(
                     found = False
 
                     # is there already a list of attributes
-                    if 'attributes' in krmap[binding_val['id']]:
+                    if 'attributes' in krmap[binding_val['id']] and krmap[binding_val['id']]['attributes'] is not None:
                         # loop through the attributes
                         for item in krmap[binding_val['id']]['attributes']:
                             # search for the weight attribute
@@ -125,7 +126,7 @@ async def query(
 
                     # was the attribute found
                     if not found:
-                        if 'attributes' not in krmap[binding_val['id']]:
+                        if 'attributes' not in krmap[binding_val['id']] or krmap[binding_val['id']]['attributes'] is None:
                             krmap[binding_val['id']]['attributes'] = []
 
                         # create an Attribute

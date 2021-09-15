@@ -1,0 +1,102 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n0": {
+          "ids": ["node_0"]
+        },
+        "n1": {
+          "ids": ["node_1"]
+        }
+      },
+      "edges": {
+        "e01": {
+          "subject": "n0",
+          "object": "n1"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "node_0": {
+          "name": "knode_0_name"
+        },
+        "node_1": {
+          "name": "knode_1_name"
+        }
+      },
+      "edges": {
+        "edge_0": {
+          "subject": "node_0",
+          "object": "node_1",
+          "predicate": "biolink:related_to"
+        },
+        "edge_1": {
+          "subject": "node_0",
+          "object": "node_1",
+          "predicate": "biolink:related_to"
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "node_0"
+            }
+          ],
+          "n1": [
+            {
+              "id": "node_1"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "edge_0",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "node_0"
+            }
+          ],
+          "n1": [
+            {
+              "id": "node_1"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "edge_1",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 2,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

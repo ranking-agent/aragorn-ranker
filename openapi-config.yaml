@@ -17,3 +17,9 @@ x-translator:
   component: ARA
   team:
   - Ranking Agent
+x-trapi:
+  version: 1.2.0
+  operations:
+  - Rank by OmniCorp overlay
+  - Rank by score
+  - Rank by weight correctness

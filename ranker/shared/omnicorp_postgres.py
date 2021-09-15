@@ -8,7 +8,7 @@ from ranker.shared.util import get_postgres_curie_prefix
 logger = logging.getLogger(__name__)
 
 
-OMNICORP_DB = os.environ.get('OMNICORP_DB', 'omnicorp')
+OMNICORP_DB = os.environ.get('OMNICORP_DB', 'robokop')
 OMNICORP_USER = os.environ.get('OMNICORP_USER', 'murphy')
 OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '5432')
 OMNICORP_HOST = os.environ.get('OMNICORP_HOST', 'localhost')
@@ -30,14 +30,18 @@ class OmniCorp():
     async def connect(self):
         """Connect to PostgreSQL."""
         logger.debug("Creating PostgreSQL connection pool...")
-        self.pool = await asyncpg.create_pool(
-            user=OMNICORP_USER,
-            password=OMNICORP_PASSWORD,
-            database=OMNICORP_DB,
-            host=OMNICORP_HOST,
-            port=OMNICORP_PORT,
-        )
-        self.prefixes = await self.get_prefixes()
+        try:
+            self.pool = await asyncpg.create_pool(
+                user=OMNICORP_USER,
+                password=OMNICORP_PASSWORD,
+                database=OMNICORP_DB,
+                host=OMNICORP_HOST,
+                port=OMNICORP_PORT,
+            )
+            self.prefixes = await self.get_prefixes()
+        except Exception as e:
+            print(e)
+
 
     async def close(self):
         """Close PostgreSQL connection."""

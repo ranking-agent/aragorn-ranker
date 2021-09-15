@@ -1,0 +1,91 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n0": {
+          "categories": ["biolink:Gene"]
+        },
+        "n1": {
+          "categories": ["biolink:Disease"],
+          "is_set": "True"
+        }
+      },
+      "edges": {
+        "e01": {
+          "subject": "n0",
+          "object": "n1"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "knode_0": {
+          "name": "Genex"
+        },
+        "knode_1": {
+          "name": "Disease1"
+        },
+        "knode_2": {
+          "name": "Disease2"
+        }
+      },
+      "edges": {
+        "edge_0": {
+          "subject": "knode_0",
+          "object": "knode_1",
+          "predicate": "biolink:related_to"
+        },
+        "edge_1": {
+          "subject": "knode_0",
+          "object": "knode_2",
+          "predicate": "biolink:related_to"
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "knode_0"
+            }
+          ],
+          "n1": [
+            {
+              "id": "knode_1"
+            },
+            {
+              "id": "knode_2"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "edge_0",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 2,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            },
+            {
+              "id": "edge_1",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

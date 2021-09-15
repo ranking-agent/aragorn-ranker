@@ -24,7 +24,7 @@ def test_weight(to_weight):
     ebs = weightresponse['message']['results'][0]['edge_bindings']
 
     for e in ebs:
-        weights.update({ebs[e][0]['id']: ebs[e][0]['weight']})
+        weights[ebs[e][0]['id']] = ebs[e][0]['attributes'][0]['value']
 
     #there are 3 pubs in the malformed array, and a pubcount of 2
     assert weights['badpublicationsarray'] > weights['correctpublicationscount']

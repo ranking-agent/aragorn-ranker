@@ -34,6 +34,8 @@ async def query(
     "19 pubs from CTD is a 1, and 2 should at least be 0.5"
         - cbizon
     """
+    dt_start = datetime.now()
+
     in_message = request.dict()
 
     # save the logs for the response (if any)
@@ -115,7 +117,7 @@ async def query(
                     found = False
 
                     # is there already a list of attributes
-                    if 'attributes' in krmap[binding_val['id']]:
+                    if 'attributes' in krmap[binding_val['id']] and krmap[binding_val['id']]['attributes'] is not None:
                         # loop through the attributes
                         for item in krmap[binding_val['id']]['attributes']:
                             # search for the weight attribute
@@ -125,7 +127,7 @@ async def query(
 
                     # was the attribute found
                     if not found:
-                        if 'attributes' not in krmap[binding_val['id']]:
+                        if 'attributes' not in krmap[binding_val['id']] or krmap[binding_val['id']]['attributes'] is None:
                             krmap[binding_val['id']]['attributes'] = []
 
                         # create an Attribute
@@ -208,6 +210,10 @@ async def query(
 
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+
+    if 'log_level' in in_message and in_message['log_level'] is not None and in_message['log_level'].upper().startswith('DEBUG'):
+        diff = datetime.now() - dt_start
+        in_message['logs'].append(create_log_entry(f'End of score processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 
     # validate the response again after normalization
     in_message = jsonable_encoder(PDResponse(**in_message))

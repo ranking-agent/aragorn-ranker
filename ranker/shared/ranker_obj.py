@@ -204,14 +204,15 @@ class Ranker:
 
                 for subject, object in pairs:
                     # get the weight from the edge binding
-                    for item in kedge_binding['attributes']:
-                        # search for the weight attribute
-                        if item['original_attribute_name'].startswith('weight'):
-                            edge = {
-                                'weight': item['value'],
-                                'subject': subject,
-                                'object': object
-                            }
+                    if kedge_binding['attributes'] is not None:
+                        for item in kedge_binding['attributes']:
+                            # search for the weight attribute
+                            if item['original_attribute_name'].startswith('weight'):
+                                edge = {
+                                    'weight': item['value'],
+                                    'subject': subject,
+                                    'object': object
+                                }
 
                     redges.append(edge)
 

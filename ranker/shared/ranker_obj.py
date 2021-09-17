@@ -214,7 +214,7 @@ class Ranker:
                                     'object': object
                                 }
 
-                    redges.append(edge)
+                                redges.append(edge)
 
         return rnodes, redges
 

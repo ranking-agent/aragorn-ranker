@@ -38,6 +38,7 @@ async def query(
 
     in_message = request.dict()
 
+
     # save the logs for the response (if any)
     if 'logs' not in in_message or in_message['logs'] is None:
         in_message['logs'] = []

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # from gunicorn.app.wsgiapp import WSGIApplication
 #
-# --bind localhost:5003 -w 1 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP
+# # --bind 0.0.0.0:8080 -w 1 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP
 # app = WSGIApplication()
 #
 # app.run()
@@ -14,4 +14,4 @@ class App:
 app = App()
 
 if __name__ == "__main__":
-    uvicorn.run("ranker.server:APP", host="localhost", port=5003, log_level="info")
+    uvicorn.run("ranker.server:APP", host="127.0.0.1", port=5003, log_level="info")

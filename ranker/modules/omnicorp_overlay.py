@@ -118,6 +118,8 @@ async def query(request: PDResponse):
 
     Add support edges to knowledge_graph and bindings to results.
     """
+    dt_start = datetime.now()
+
     in_message = request.dict()
 
     # save the logs for the response (if any)
@@ -231,6 +233,10 @@ async def query(request: PDResponse):
 
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+
+    if 'log_level' in in_message and in_message['log_level'] is not None and in_message['log_level'].upper().startswith('DEBUG'):
+        diff = datetime.now() - dt_start
+        in_message['logs'].append(create_log_entry(f'End of score overlay. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 
     # validate the response again after normalization
     in_message = jsonable_encoder(PDResponse(**in_message))

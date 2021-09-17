@@ -24,9 +24,11 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
 
     This is mostly glue around the heavy lifting in ranker_obj.Ranker
     """
+
+    dt_start = datetime.now()
+
     # get the message into a dict
     in_message = request.dict()
-
     # save the logs for the response (if any)
     if 'logs' not in in_message or in_message['logs'] is None:
         in_message['logs'] = []
@@ -55,6 +57,10 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
 
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+
+    if 'log_level' in in_message and in_message['log_level'] is not None and in_message['log_level'].upper().startswith('DEBUG'):
+        diff = datetime.now() - dt_start
+        in_message['logs'].append(create_log_entry(f'End of score processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 
     # validate the response and get it into json
     in_message = jsonable_encoder(PDResponse(**in_message))

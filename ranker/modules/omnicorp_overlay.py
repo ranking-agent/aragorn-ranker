@@ -10,9 +10,7 @@ from datetime import datetime
 from fastapi.responses import JSONResponse
 from ranker.shared.cache import Cache
 from ranker.shared.omnicorp import OmnicorpSupport
-from ranker.shared.util import batches
-from fastapi.encoders import jsonable_encoder
-
+from ranker.shared.util import batches, create_log_entry
 from reasoner_pydantic import Response as PDResponse
 
 logger = logging.getLogger(__name__)
@@ -100,25 +98,16 @@ async def count_shared_pmids(
         answers[sg]['edge_bindings'].update({f's{support_idx}': [{'id': uid}]})
 
 
-def create_log_entry(msg: str, err_level, code=None) -> dict:
-    # load the data
-    ret_val = {
-        'timestamp': str(datetime.now()),
-        'level': err_level,
-        'message': msg,
-        'code': code
-    }
-
-    # return to the caller
-    return ret_val
-
-
 async def query(request: PDResponse):
     """Add support to message.
 
     Add support edges to knowledge_graph and bindings to results.
     """
-    dt_start = datetime.now()
+    # get the debug environment variable
+    debug = os.environ.get('OO_DEBUG', False)
+
+    if debug:
+        dt_start = datetime.now()
 
     in_message = request.dict()
 
@@ -234,12 +223,9 @@ async def query(request: PDResponse):
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if 'log_level' in in_message and in_message['log_level'] is not None and in_message['log_level'].upper().startswith('DEBUG'):
+    if debug:
         diff = datetime.now() - dt_start
-        in_message['logs'].append(create_log_entry(f'End of score overlay. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
-
-    # validate the response again after normalization
-    in_message = jsonable_encoder(PDResponse(**in_message))
+        in_message['logs'].append(create_log_entry(f'End of omnicorp overlay processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 
     # return the result to the caller
     return JSONResponse(content=in_message, status_code=status_code)

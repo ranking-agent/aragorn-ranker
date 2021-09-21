@@ -11,6 +11,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 
+
+APP = FastAPI(title='ARAGORN Ranker', version='2.0.3')
+
+profiler = os.environ.get('PROFILER', False)
+if profiler:
+    from .profiler import profiler_middleware
+
 # Set up default logger.
 with pkg_resources.resource_stream('ranker', 'logging.yml') as f:
     config = yaml.safe_load(f.read())
@@ -25,8 +32,6 @@ config['handlers']['file']['filename'] = os.path.join(logdir, 'ranker.log')
 logging.config.dictConfig(config)
 
 LOGGER = logging.getLogger(__name__)
-
-APP = FastAPI(title='ARAGORN Ranker', version='2.0.2')
 
 def log_exception(method):
     """Wrap method."""
@@ -51,7 +56,7 @@ operations = [
 for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
 
-    APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))
+    APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))  # , response_model_exclude_unset=True
 
 
 def construct_open_api_schema():

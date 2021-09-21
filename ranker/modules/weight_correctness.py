@@ -1,14 +1,13 @@
 """Weight edges."""
 import math
-
+import os
 from collections import defaultdict
 from typing import Optional
 from fastapi import Query
 from datetime import datetime
 from reasoner_pydantic import Response as PDResponse
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-
+from ranker.shared.util import create_log_entry
 
 async def query(
         request: PDResponse,
@@ -34,10 +33,15 @@ async def query(
     "19 pubs from CTD is a 1, and 2 should at least be 0.5"
         - cbizon
     """
-    dt_start = datetime.now()
 
+    # get the debug environment variable
+    debug = os.environ.get('WC_DEBUG', False)
+
+    if debug:
+        dt_start = datetime.now()
+
+    # save the message
     in_message = request.dict()
-
 
     # save the logs for the response (if any)
     if 'logs' not in in_message or in_message['logs'] is None:
@@ -61,18 +65,6 @@ async def query(
         c = wt_max - 2 * wt_min
         k = 1 / p50 * (math.log(r + c) - math.log(a - r - c))
         return a / (1 + math.exp(-k * x)) - c
-
-    def create_log_entry(msg: str, err_level, code=None) -> dict:
-        # load the data
-        ret_val = {
-            'timestamp': str(datetime.now()),
-            'level': err_level,
-            'message': msg,
-            'code': code
-        }
-
-        # return to the caller
-        return ret_val
 
     try:
         # constant count of all publications
@@ -212,12 +204,9 @@ async def query(
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if 'log_level' in in_message and in_message['log_level'] is not None and in_message['log_level'].upper().startswith('DEBUG'):
+    if debug:
         diff = datetime.now() - dt_start
-        in_message['logs'].append(create_log_entry(f'End of score processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
-
-    # validate the response again after normalization
-    in_message = jsonable_encoder(PDResponse(**in_message))
+        in_message['logs'].append(create_log_entry(f'End of weight correctness processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 
     # return the result to the caller
     return JSONResponse(content=in_message, status_code=status_code)

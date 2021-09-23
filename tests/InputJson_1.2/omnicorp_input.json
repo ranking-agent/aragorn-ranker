@@ -12,7 +12,7 @@
                 },
                 "n1": {
                     "ids": [
-                        "CHEBI:45783"
+                        "CHEBI:5613"
                     ],
                     "categories": [
                         "biolink:SmallMolecule"

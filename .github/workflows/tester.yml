@@ -28,15 +28,22 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
+      - name: Install test dependencies
         run: |
           if [ -f tests/requirements.txt ]; then pip install -r tests/requirements.txt; fi
 
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.2.0
-        with:
-          redis-version: ${{ matrix.redis-version }}
-          
+      - name: Install app dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Startup helpers
+        run: |
+          bash tests/setup/startup_helpers.sh
+
       - name: Run the tests
         run: |
           python -m pytest tests/
+
+      - name: Cleanup
+        run: |
+          bash tests/setup/shutdown_helpers.sh

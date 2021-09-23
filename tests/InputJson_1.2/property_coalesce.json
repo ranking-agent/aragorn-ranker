@@ -3,11 +3,11 @@
     "query_graph": {
       "nodes": {
         "a": {
-          "category": "biolink:Disease",
-          "id": "MONDO:0005090"
+          "categories": ["biolink:Disease"],
+          "ids": ["MONDO:0005090"]
         },
         "b": {
-          "category": "biolink:ChemicalSubstance",
+          "categories": ["biolink:ChemicalSubstance"],
           "set": true
         }
       },
@@ -22,7 +22,7 @@
     "knowledge_graph": {
       "nodes": {
         "MONDO:0005090": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:Disease",
             "biolink:DiseaseOrPhenotypicFeature"
@@ -179,7 +179,7 @@
           ]
         },
         "CHEBI:10119": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -215,7 +215,7 @@
           ]
         },
         "CHEBI:135778": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -248,7 +248,7 @@
           ]
         },
         "MESH:D003990": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -266,7 +266,7 @@
           ]
         },
         "CHEBI:3766": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -303,7 +303,7 @@
           ]
         },
         "CHEBI:31981": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -329,7 +329,7 @@
           ]
         },
         "CHEBI:8707": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -366,7 +366,7 @@
           ]
         },
         "MESH:D013469": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -385,7 +385,7 @@
           ]
         },
         "MESH:C030265": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -404,7 +404,7 @@
           ]
         },
         "CHEBI:5613": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -445,7 +445,7 @@
           ]
         },
         "MESH:D000068882": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -465,7 +465,7 @@
           ]
         },
         "CHEBI:70735": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -498,7 +498,7 @@
           ]
         },
         "MESH:D000077582": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -517,7 +517,7 @@
           ]
         },
         "CHEBI:34605": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -550,7 +550,7 @@
           ]
         },
         "MESH:C515050": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -569,7 +569,7 @@
           ]
         },
         "MESH:C007761": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -588,7 +588,7 @@
           ]
         },
         "MESH:D012906": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -606,7 +606,7 @@
           ]
         },
         "CHEBI:92293": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -629,7 +629,7 @@
           ]
         },
         "CHEBI:65173": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -667,7 +667,7 @@
           ]
         },
         "MESH:D000069470": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -686,7 +686,7 @@
           ]
         },
         "CHEBI:31236": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -725,7 +725,7 @@
           ]
         },
         "MESH:D011433": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -744,7 +744,7 @@
           ]
         },
         "CHEBI:7735": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -781,7 +781,7 @@
           ]
         },
         "MESH:D011398": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -800,7 +800,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL2105481": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -822,7 +822,7 @@
           ]
         },
         "MESH:D014282": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -841,7 +841,7 @@
           ]
         },
         "MESH:D000077408": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -861,7 +861,7 @@
           ]
         },
         "CHEBI:8871": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -900,7 +900,7 @@
           ]
         },
         "MESH:D001712": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -919,7 +919,7 @@
           ]
         },
         "MESH:D011352": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -938,7 +938,7 @@
           ]
         },
         "MESH:C522667": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -957,7 +957,7 @@
           ]
         },
         "MESH:D005473": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -976,7 +976,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL2106135": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -998,7 +998,7 @@
           ]
         },
         "MESH:D008140": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1017,7 +1017,7 @@
           ]
         },
         "CHEBI:64050": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1041,7 +1041,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL218166": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1064,7 +1064,7 @@
           ]
         },
         "MESH:C060342": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1083,7 +1083,7 @@
           ]
         },
         "MESH:D013881": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1102,7 +1102,7 @@
           ]
         },
         "MESH:D008653": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1121,7 +1121,7 @@
           ]
         },
         "MESH:C100234": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1140,7 +1140,7 @@
           ]
         },
         "MESH:D008972": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1159,7 +1159,7 @@
           ]
         },
         "MESH:D012436": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1183,7 +1183,6 @@
           "subject": "CHEBI:10119",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1221,7 +1220,6 @@
           "subject": "CHEBI:135778",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1261,7 +1259,6 @@
           "subject": "MESH:D003990",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1301,7 +1298,6 @@
           "subject": "CHEBI:3766",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1339,7 +1335,6 @@
           "subject": "CHEBI:31981",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1379,7 +1374,6 @@
           "subject": "CHEBI:8707",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1417,7 +1411,6 @@
           "subject": "MESH:D013469",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1457,7 +1450,6 @@
           "subject": "MESH:C030265",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1497,7 +1489,6 @@
           "subject": "CHEBI:5613",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1535,7 +1526,6 @@
           "subject": "MESH:D000068882",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1578,7 +1568,6 @@
           "subject": "CHEBI:70735",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1616,7 +1605,6 @@
           "subject": "MESH:D000077582",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1670,7 +1658,6 @@
           "subject": "CHEBI:34605",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1710,7 +1697,6 @@
           "subject": "MESH:C515050",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1750,7 +1736,6 @@
           "subject": "MESH:C007761",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1791,7 +1776,6 @@
           "subject": "MESH:D012906",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1831,7 +1815,6 @@
           "subject": "CHEBI:92293",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1871,7 +1854,6 @@
           "subject": "CHEBI:65173",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1909,7 +1891,6 @@
           "subject": "MESH:D000069470",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1949,7 +1930,6 @@
           "subject": "CHEBI:31236",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -1987,7 +1967,6 @@
           "subject": "MESH:D011433",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2027,7 +2006,6 @@
           "subject": "CHEBI:7735",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2065,7 +2043,6 @@
           "subject": "MESH:D011398",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2105,7 +2082,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL2105481",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2145,7 +2121,6 @@
           "subject": "MESH:D014282",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2186,7 +2161,6 @@
           "subject": "MESH:D000077408",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2226,7 +2200,6 @@
           "subject": "CHEBI:8871",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2264,7 +2237,6 @@
           "subject": "MESH:D001712",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2304,7 +2276,6 @@
           "subject": "MESH:D011352",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2345,7 +2316,6 @@
           "subject": "MESH:C522667",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2385,7 +2355,6 @@
           "subject": "MESH:D005473",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2425,7 +2394,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL2106135",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2465,7 +2433,6 @@
           "subject": "MESH:D008140",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2506,7 +2473,6 @@
           "subject": "CHEBI:64050",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2546,7 +2512,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL218166",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2586,7 +2551,6 @@
           "subject": "MESH:C060342",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2626,7 +2590,6 @@
           "subject": "MESH:D013881",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2675,7 +2638,6 @@
           "subject": "MESH:D008653",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2715,7 +2677,6 @@
           "subject": "MESH:C100234",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2755,7 +2716,6 @@
           "subject": "MESH:D008972",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",
@@ -2797,7 +2757,6 @@
           "subject": "MESH:D012436",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "source_database",

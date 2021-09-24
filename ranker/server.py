@@ -11,8 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 
+# set the app version
+APP_VERSION = '2.0.4'
 
-APP = FastAPI(title='ARAGORN Ranker', version='2.0.3')
+APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 
 profiler = os.environ.get('PROFILER', False)
 if profiler:
@@ -66,7 +68,7 @@ def construct_open_api_schema():
 
     open_api_schema = get_openapi(
         title='ARAGORN Ranker',
-        version='2.0.3',
+        version=APP_VERSION,
         routes=APP.routes
     )
 

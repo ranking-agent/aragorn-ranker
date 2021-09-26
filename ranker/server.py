@@ -11,8 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 
+# set the app version
+APP_VERSION = '2.0.4'
 
-APP = FastAPI(title='ARAGORN Ranker', version='2.0.3')
+APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 
 profiler = os.environ.get('PROFILER', False)
 if profiler:
@@ -66,7 +68,7 @@ def construct_open_api_schema():
 
     open_api_schema = get_openapi(
         title='ARAGORN Ranker',
-        version='2.0.3',
+        version=APP_VERSION,
         routes=APP.routes
     )
 
@@ -107,11 +109,16 @@ def construct_open_api_schema():
     if title_override:
         open_api_schema["info"]["title"] = title_override
 
+    # adds support to override server root path
+    server_root = os.environ.get('SERVER_ROOT', '/')
+
+    # make sure not to add double slash at the end.
+    server_root = server_root.rstrip('/') + '/'
+
     if servers_conf:
         for s in servers_conf:
             if s['description'].startswith('Default'):
-                s['url'] = s['url'] + '/1.2'
-
+                s['url'] = server_root + '1.2' if server_root != '/' else s['url']
         open_api_schema["servers"] = servers_conf
 
     return open_api_schema

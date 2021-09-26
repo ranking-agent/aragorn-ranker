@@ -20,13 +20,13 @@
     "knowledge_graph": {
       "nodes": {
         "knode_0": {
-          "name": "Genex"
+          "name": "Gene:x"
         },
         "knode_1": {
-          "name": "Disease1"
+          "name": "Disease:1"
         },
         "knode_2": {
-          "name": "Disease2"
+          "name": "Disease:2"
         }
       },
       "edges": {

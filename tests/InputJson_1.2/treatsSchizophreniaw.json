@@ -3,15 +3,15 @@
     "query_graph": {
       "nodes": {
         "a": {
-          "category": "biolink:Disease",
-          "id": "MONDO:0005090"
+          "categories": ["biolink:Disease"],
+          "ids": ["MONDO:0005090"]
         },
         "b": {
-          "category": "biolink:ChemicalSubstance",
+          "categories": ["biolink:ChemicalSubstance"],
           "set": true
         },
         "extra_qn_0": {
-          "category": "biolink:Disease"
+          "categories": ["biolink:Disease"]
         }
       },
       "edges": {
@@ -29,7 +29,7 @@
     "knowledge_graph": {
       "nodes": {
         "MONDO:0005090": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:Disease",
             "biolink:DiseaseOrPhenotypicFeature"
@@ -191,7 +191,7 @@
           ]
         },
         "CHEBI:65173": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -234,7 +234,7 @@
           ]
         },
         "CHEBI:8707": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -276,7 +276,7 @@
           ]
         },
         "CHEBI:3766": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -318,7 +318,7 @@
           ]
         },
         "CHEBI:7735": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -360,7 +360,7 @@
           ]
         },
         "CHEBI:10119": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -401,7 +401,7 @@
           ]
         },
         "CHEBI:70735": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -439,7 +439,7 @@
           ]
         },
         "CHEBI:31236": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -483,7 +483,7 @@
           ]
         },
         "CHEBI:8871": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -527,7 +527,7 @@
           ]
         },
         "CHEBI:5613": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:ChemicalSubstance"
           ],
@@ -573,7 +573,7 @@
           ]
         },
         "CHEBI:31981": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -604,7 +604,7 @@
           ]
         },
         "MESH:D014282": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -628,7 +628,7 @@
           ]
         },
         "MESH:D000068882": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -653,7 +653,7 @@
           ]
         },
         "MESH:D011352": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -677,7 +677,7 @@
           ]
         },
         "MESH:D013469": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -701,7 +701,7 @@
           ]
         },
         "MESH:D011433": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -725,7 +725,7 @@
           ]
         },
         "MESH:D008972": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -749,7 +749,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL218166": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -777,7 +777,7 @@
           ]
         },
         "MESH:C515050": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -801,7 +801,7 @@
           ]
         },
         "CHEBI:135778": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -839,7 +839,7 @@
           ]
         },
         "MESH:C060342": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -863,7 +863,7 @@
           ]
         },
         "MESH:D012906": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -886,7 +886,7 @@
           ]
         },
         "MESH:D000077408": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -911,7 +911,7 @@
           ]
         },
         "MESH:C007761": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -935,7 +935,7 @@
           ]
         },
         "MESH:D012436": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -959,7 +959,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL2105481": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -986,7 +986,7 @@
           ]
         },
         "MESH:D000077582": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1010,7 +1010,7 @@
           ]
         },
         "CHEBI:64050": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1039,7 +1039,7 @@
           ]
         },
         "MESH:D005473": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1063,7 +1063,7 @@
           ]
         },
         "CHEMBL.COMPOUND:CHEMBL2106135": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1090,7 +1090,7 @@
           ]
         },
         "MESH:D008653": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1114,7 +1114,7 @@
           ]
         },
         "MESH:D011398": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1138,7 +1138,7 @@
           ]
         },
         "MESH:D008140": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1162,7 +1162,7 @@
           ]
         },
         "MESH:C100234": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1186,7 +1186,7 @@
           ]
         },
         "MESH:D013881": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1210,7 +1210,7 @@
           ]
         },
         "MESH:C030265": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1234,7 +1234,7 @@
           ]
         },
         "MESH:D001712": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1258,7 +1258,7 @@
           ]
         },
         "MESH:D000069470": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1282,7 +1282,7 @@
           ]
         },
         "CHEBI:92293": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1310,7 +1310,7 @@
           ]
         },
         "MESH:C522667": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1334,7 +1334,7 @@
           ]
         },
         "CHEBI:34605": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1372,7 +1372,7 @@
           ]
         },
         "MESH:D003990": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:ChemicalSubstance",
@@ -1395,7 +1395,7 @@
           ]
         },
         "MONDO:0004985": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1410,7 +1410,7 @@
           ]
         },
         "MONDO:0011552": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1425,7 +1425,7 @@
           ]
         },
         "MONDO:0019790": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1440,7 +1440,7 @@
           ]
         },
         "MONDO:0005804": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1455,7 +1455,7 @@
           ]
         },
         "MONDO:0006731": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1470,7 +1470,7 @@
           ]
         },
         "MONDO:0005466": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1485,7 +1485,7 @@
           ]
         },
         "MONDO:0001220": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1500,7 +1500,7 @@
           ]
         },
         "MONDO:0000947": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1515,7 +1515,7 @@
           ]
         },
         "MONDO:0001821": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1530,7 +1530,7 @@
           ]
         },
         "MONDO:0003996": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1545,7 +1545,7 @@
           ]
         },
         "MONDO:0011728": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1560,7 +1560,7 @@
           ]
         },
         "HP:0005986": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:DiseaseOrPhenotypicFeature",
@@ -1575,7 +1575,7 @@
           ]
         },
         "MONDO:0010096": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1590,7 +1590,7 @@
           ]
         },
         "MONDO:0002442": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1605,7 +1605,7 @@
           ]
         },
         "NCBIGene:3005": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -1623,7 +1623,7 @@
           ]
         },
         "MONDO:0004745": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1638,7 +1638,7 @@
           ]
         },
         "MONDO:0001442": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1653,7 +1653,7 @@
           ]
         },
         "MONDO:0001484": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1668,7 +1668,7 @@
           ]
         },
         "MONDO:0002025": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1683,7 +1683,7 @@
           ]
         },
         "MONDO:0016058": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1698,7 +1698,7 @@
           ]
         },
         "UMLS:C3665587": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1713,7 +1713,7 @@
           ]
         },
         "MONDO:0005478": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1728,7 +1728,7 @@
           ]
         },
         "MONDO:0045057": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1743,7 +1743,7 @@
           ]
         },
         "MONDO:0024290": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1758,7 +1758,7 @@
           ]
         },
         "MONDO:0004901": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1773,7 +1773,7 @@
           ]
         },
         "MONDO:0006966": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1788,7 +1788,7 @@
           ]
         },
         "MONDO:0003785": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1803,7 +1803,7 @@
           ]
         },
         "MONDO:0005146": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1818,7 +1818,7 @@
           ]
         },
         "HP:0001662": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:DiseaseOrPhenotypicFeature",
@@ -1833,7 +1833,7 @@
           ]
         },
         "MONDO:0005640": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1848,7 +1848,7 @@
           ]
         },
         "MONDO:0002265": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1863,7 +1863,7 @@
           ]
         },
         "MONDO:0005395": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1878,7 +1878,7 @@
           ]
         },
         "MONDO:0005359": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1893,7 +1893,7 @@
           ]
         },
         "MONDO:0003233": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1908,7 +1908,7 @@
           ]
         },
         "MONDO:0002050": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1923,7 +1923,7 @@
           ]
         },
         "MONDO:0005485": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -1938,7 +1938,7 @@
           ]
         },
         "MONDO:0005469": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",

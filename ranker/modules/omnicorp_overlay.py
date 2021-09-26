@@ -114,6 +114,11 @@ async def query(request: PDResponse):
     # save the logs for the response (if any)
     if 'logs' not in in_message or in_message['logs'] is None:
         in_message['logs'] = []
+    else:
+        # these timestamps are causing json serialization issues
+        # so here we convert them to strings.
+        for log in in_message['logs']:
+            log['timestamp'] = str(log['timestamp'])
 
     # init the status code
     status_code: int = 200

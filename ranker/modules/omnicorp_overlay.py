@@ -104,9 +104,9 @@ async def query(request: PDResponse):
     Add support edges to knowledge_graph and bindings to results.
     """
     # get the debug environment variable
-    debug = os.environ.get('OO_DEBUG', False)
+    debug = os.environ.get('DEBUG_TIMING', 'False')
 
-    if debug:
+    if debug == 'True':
         dt_start = datetime.now()
 
     in_message = request.dict()
@@ -228,7 +228,7 @@ async def query(request: PDResponse):
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if debug:
+    if debug == 'True':
         diff = datetime.now() - dt_start
         in_message['logs'].append(create_log_entry(f'End of omnicorp overlay processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 

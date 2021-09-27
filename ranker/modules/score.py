@@ -13,9 +13,9 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
     This is mostly glue around the heavy lifting in ranker_obj.Ranker
     """
     # get the debug environment variable
-    debug = os.environ.get('SC_DEBUG', False)
+    debug = os.environ.get('DEBUG_TIMING', 'False')
 
-    if debug:
+    if debug == 'True':
         dt_start = datetime.now()
 
     # get the message into a dict
@@ -55,7 +55,7 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if debug:
+    if debug == 'True':
         diff = datetime.now() - dt_start
         in_message['logs'].append(create_log_entry(f'End of score processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 

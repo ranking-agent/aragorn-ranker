@@ -35,9 +35,9 @@ async def query(
     """
 
     # get the debug environment variable
-    debug = os.environ.get('WC_DEBUG', False)
+    debug = os.environ.get('DEBUG_TIMING', 'False')
 
-    if debug:
+    if debug == 'True':
         dt_start = datetime.now()
 
     # save the message
@@ -209,7 +209,7 @@ async def query(
         # save any log entries
         in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if debug:
+    if debug == 'True':
         diff = datetime.now() - dt_start
         in_message['logs'].append(create_log_entry(f'End of weight correctness processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
 

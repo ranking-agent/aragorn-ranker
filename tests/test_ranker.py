@@ -5,7 +5,7 @@ from .fixtures import omnicorp_input
 
 client = TestClient(APP)
 
-def test_service(omnicorp_input):
+def xtest_service(omnicorp_input):
     """cascade through all ranker end points."""
     response = client.post('/omnicorp_overlay', json=omnicorp_input)
 

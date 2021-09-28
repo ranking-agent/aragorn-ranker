@@ -12,7 +12,7 @@ client = TestClient(APP)
 
 #this test is out of date because its input does not match the format of weight correctness.
 # the test data has weight in the edge bindings, rather than in the attribute of the edge bindings.
-def test_nonzero_score(weighted_answer):
+def xtest_nonzero_score(weighted_answer):
     """Test that score() runs without errors."""
     response = client.post('/score', json=weighted_answer)
 

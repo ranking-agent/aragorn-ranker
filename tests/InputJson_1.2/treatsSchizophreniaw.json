@@ -1958,7 +1958,6 @@
           "subject": "CHEBI:65173",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -1996,7 +1995,6 @@
           "subject": "CHEBI:8707",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2034,7 +2032,6 @@
           "subject": "CHEBI:3766",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2072,7 +2069,6 @@
           "subject": "CHEBI:7735",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2110,7 +2106,6 @@
           "subject": "CHEBI:10119",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2148,7 +2143,6 @@
           "subject": "CHEBI:70735",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2186,7 +2180,6 @@
           "subject": "CHEBI:31236",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2224,7 +2217,6 @@
           "subject": "CHEBI:8871",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2262,7 +2254,6 @@
           "subject": "CHEBI:5613",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "RO:0002606",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2300,7 +2291,6 @@
           "subject": "CHEBI:31981",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2340,7 +2330,6 @@
           "subject": "MESH:D014282",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2381,7 +2370,6 @@
           "subject": "MESH:D000068882",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2424,7 +2412,6 @@
           "subject": "MESH:D011352",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2465,7 +2452,6 @@
           "subject": "MESH:D013469",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2505,7 +2491,6 @@
           "subject": "MESH:D011433",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2545,7 +2530,6 @@
           "subject": "MESH:D008972",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2587,7 +2571,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL218166",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2627,7 +2610,6 @@
           "subject": "MESH:C515050",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2667,7 +2649,6 @@
           "subject": "CHEBI:135778",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2707,7 +2688,6 @@
           "subject": "MESH:C060342",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2747,7 +2727,6 @@
           "subject": "MESH:D012906",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2787,7 +2766,6 @@
           "subject": "MESH:D000077408",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2827,7 +2805,6 @@
           "subject": "MESH:C007761",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2868,7 +2845,6 @@
           "subject": "MESH:D012436",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2908,7 +2884,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL2105481",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -2948,7 +2923,6 @@
           "subject": "MESH:D000077582",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3002,7 +2976,6 @@
           "subject": "CHEBI:64050",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3042,7 +3015,6 @@
           "subject": "MESH:D005473",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3082,7 +3054,6 @@
           "subject": "CHEMBL.COMPOUND:CHEMBL2106135",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3122,7 +3093,6 @@
           "subject": "MESH:D008653",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3162,7 +3132,6 @@
           "subject": "MESH:D011398",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3202,7 +3171,6 @@
           "subject": "MESH:D008140",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3243,7 +3211,6 @@
           "subject": "MESH:C100234",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3283,7 +3250,6 @@
           "subject": "MESH:D013881",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3332,7 +3298,6 @@
           "subject": "MESH:C030265",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3372,7 +3337,6 @@
           "subject": "MESH:D001712",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3412,7 +3376,6 @@
           "subject": "MESH:D000069470",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3452,7 +3415,6 @@
           "subject": "CHEBI:92293",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3492,7 +3454,6 @@
           "subject": "MESH:C522667",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3532,7 +3493,6 @@
           "subject": "CHEBI:34605",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",
@@ -3572,7 +3532,6 @@
           "subject": "MESH:D003990",
           "object": "MONDO:0005090",
           "predicate": "biolink:treats",
-          "relation": "CTD:therapeutic",
           "attributes": [
             {
               "original_attribute_name": "ctime",

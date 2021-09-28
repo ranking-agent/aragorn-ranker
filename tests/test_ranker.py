@@ -1,13 +1,13 @@
 import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
-from .fixtures import omnicorp_input
+from .fixtures import svc_test
 
 client = TestClient(APP)
 
-def xtest_service(omnicorp_input):
+def xtest_service(svc_test):
     """cascade through all ranker end points."""
-    response = client.post('/omnicorp_overlay', json=omnicorp_input)
+    response = client.post('/omnicorp_overlay', json=svc_test)
 
     # was the request successful
     assert(response.status_code == 200)

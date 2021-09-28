@@ -3,22 +3,22 @@
     "query_graph": {
       "nodes": {
         "n0": {
-          "id": [
+          "ids": [
             "NCBIGene:6611"
           ],
-          "category": [
+          "categories": [
             "biolink:Gene"
           ],
           "is_set": false
         },
         "n1": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "is_set": true
         },
         "extra_qn_0": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -44,7 +44,7 @@
     "knowledge_graph": {
       "nodes": {
         "PUBCHEM.COMPOUND:5330286": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Palbociclib",
@@ -57,7 +57,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:44607360": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "N-[3-[[5-Chloro-2-[4-(4-methyl-1-piperazinyl)anilino]-4-pyrimidinyl]oxy]phenyl]-2-propenamide",
@@ -70,7 +70,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:122150": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Saclofen",
@@ -83,7 +83,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:119828": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Parecoxib",
@@ -96,7 +96,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:44589607": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Ethyl (Z)-3-[5-(3-chlorophenyl)tetrazol-2-yl]prop-2-enoate",
@@ -109,7 +109,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:4178": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Mexiletine",
@@ -122,7 +122,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:36462": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Etoposide",
@@ -135,7 +135,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:3926765": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "N-[4-(9-Acridinylmethyl)-3-methoxyphenyl]methanesulfonamide",
@@ -148,7 +148,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:932": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "5,7-Dihydroxy-2-(4-hydroxyphenyl)chroman-4-one",
@@ -161,7 +161,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:107867": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Otenzepad",
@@ -174,7 +174,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:72390": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Procysteine",
@@ -187,7 +187,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5284550": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Dosulepin",
@@ -200,7 +200,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:9865515": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Mocetinostat",
@@ -213,7 +213,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5573": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Trimebutine",
@@ -226,7 +226,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:65057": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Diphenylcyclopropenone",
@@ -239,7 +239,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:25260757": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "N-[4-[1-(1,4-Dioxaspiro[4.5]dec-8-yl)-4-(8-oxa-3-azabicyclo[3.2.1]oct-3-yl)-1H-pyrazolo[3,4-d]pyrimidin-6-yl]phenyl]-N'-methylurea",
@@ -252,7 +252,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5788723": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "1-(2-(Diphenylmethoxy)ethyl)-4-(3-phenyl-2-propenyl)piperazine",
@@ -265,7 +265,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:10219702": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "CID 10219702",
@@ -278,7 +278,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:65833": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Milnacipran",
@@ -291,7 +291,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:4075": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Mesalamine",
@@ -304,7 +304,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:16046239": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "(3-Bromo-2,5-dimethoxy-7-bicyclo[4.2.0]octa-1(6),2,4-trienyl)methanamine",
@@ -317,7 +317,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:10666": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Ricinine",
@@ -330,7 +330,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:68911": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Artemether",
@@ -343,7 +343,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:3335": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Fenbufen",
@@ -356,7 +356,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:11957586": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "(2S,3R,5R)-3,4-Dihydroxy-5-[6-[(3-iodophenyl)methylamino]-9-purinyl]-N-methyl-2-oxolanecarboxamide",
@@ -369,7 +369,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:1103": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Spermine",
@@ -382,7 +382,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:11977753": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Dactolisib",
@@ -395,7 +395,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5597": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Troxipide",
@@ -408,7 +408,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:3799": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "1-(2-Naphthalenyl)-2-propen-1-one",
@@ -421,7 +421,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:114924": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Tetradecylthioacetic acid",
@@ -434,7 +434,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:328236": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "9-(2,3-Dihydroxy-3-methylbutoxy)furo[3,2-g]chromen-7-one",
@@ -447,7 +447,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:60838": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Irinotecan",
@@ -460,7 +460,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5311281": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Cytochalasin B",
@@ -473,7 +473,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:44632017": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "4,7-Dichloro-3-hydroxy-3-[2-(4-methoxyphenyl)-2-oxoethyl]-1H-indol-2-one",
@@ -486,7 +486,7 @@
           ]
         },
         "NCBIGene:6611": {
-          "category": [
+          "categories": [
             "biolink:Gene"
           ],
           "attributes": [
@@ -498,7 +498,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:6708778": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "(8Ar,9R)-5-[[(2R,4aR,6R,7R,8R)-7,8-dihydroxy-2-thiophen-2-yl-4,4a,6,7,8,8a-hexahydropyrano[3,2-d][1,3]dioxin-6-yl]oxy]-9-(4-hydroxy-3,5-dimethoxyphenyl)-5a,6,8a,9-tetrahydro-5H-isobenzofuro[6,5-f][1,3]benzodioxol-8-one",
@@ -511,7 +511,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:5714": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "2-(3,4-Dimethoxyphenyl)-n-[2-(3,4-dimethoxyphenyl)ethyl]-n-methylethanamine",
@@ -524,7 +524,7 @@
           ]
         },
         "PUBCHEM.COMPOUND:439533": {
-          "category": [
+          "categories": [
             "biolink:ChemicalSubstance"
           ],
           "name": "Taxifolin",
@@ -537,7 +537,7 @@
           ]
         },
         "NCBIGENE:1576": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -555,7 +555,7 @@
           ]
         },
         "MONDO:0000744": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -570,7 +570,7 @@
           ]
         },
         "MONDO:0000709": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -585,7 +585,7 @@
           ]
         },
         "MONDO:0005365": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -600,7 +600,7 @@
           ]
         },
         "MONDO:0019121": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -615,7 +615,7 @@
           ]
         },
         "MONDO:0001673": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -630,7 +630,7 @@
           ]
         },
         "MONDO:0001442": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -645,7 +645,7 @@
           ]
         },
         "NCBIGENE:9429": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -663,7 +663,7 @@
           ]
         },
         "MONDO:0005335": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -678,7 +678,7 @@
           ]
         },
         "NCBIGENE:1555": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -696,7 +696,7 @@
           ]
         },
         "NCBIGENE:5925": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -714,7 +714,7 @@
           ]
         },
         "MONDO:0018874": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -729,7 +729,7 @@
           ]
         },
         "MONDO:0016812": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -744,7 +744,7 @@
           ]
         },
         "NCBIGENE:54658": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -762,7 +762,7 @@
           ]
         },
         "NCBIGENE:7153": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -780,7 +780,7 @@
           ]
         },
         "UMLS:C0854142": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:DiseaseOrPhenotypicFeature",
@@ -795,7 +795,7 @@
           ]
         },
         "HP:0002013": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:DiseaseOrPhenotypicFeature",
@@ -810,7 +810,7 @@
           ]
         },
         "MONDO:0005246": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -825,7 +825,7 @@
           ]
         },
         "NCBIGENE:355": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:MolecularEntity",
@@ -843,7 +843,7 @@
           ]
         },
         "UMLS:C0854327": {
-          "category": [
+          "categories": [
             "biolink:NamedThing",
             "biolink:BiologicalEntity",
             "biolink:Disease",
@@ -858,7 +858,7 @@
           ]
         },
         "UMLS:C0854471": {
-          "category": [
+          "categories": [
             "biolink:NamedThing"
           ],
           "attributes": [
@@ -2552,7 +2552,7 @@
           "n0": [
             {
               "id": "NCBIGene:6611",
-              "category": [
+              "categories": [
                 "biolink:Gene"
               ]
             }
@@ -2560,7 +2560,7 @@
           "n1": [
             {
               "id": "PUBCHEM.COMPOUND:1103",
-              "category": [
+              "categories": [
                 "biolink:ChemicalSubstance"
               ]
             }

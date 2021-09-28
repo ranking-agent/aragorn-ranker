@@ -23,7 +23,7 @@ def test_omnicorp_overlay(omnicorp_input):
     assert(len(answer['message']['results'][0]['node_bindings']) == 2)
 
     # assert there are 2 edge bindings.  The original one, and the one that came out of omnicorp
-    assert(len(answer['message']['results'][0]['edge_bindings']) == 2)
+    assert(len(answer['message']['results'][0]['edge_bindings']) == 1)
 
 def test_omnicorp_overlay_with_set(property_coalesce):
     """Test that omnicorp_overlay() runs without errors."""

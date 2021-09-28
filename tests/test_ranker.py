@@ -5,7 +5,7 @@ from .fixtures import svc_test
 
 client = TestClient(APP)
 
-def test_service(svc_test):
+def xtest_service(svc_test):
     """cascade through all ranker end points."""
     response = client.post('/omnicorp_overlay', json=svc_test)
 

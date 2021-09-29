@@ -1,4 +1,5 @@
 """Rank."""
+import logging
 from fastapi.responses import JSONResponse
 from reasoner_pydantic import Response as PDResponse
 from ranker.shared.ranker_obj import Ranker
@@ -6,6 +7,7 @@ from ranker.shared.util import create_log_entry
 import os
 from datetime import datetime
 
+logger = logging.getLogger(__name__)
 
 async def query(request: PDResponse, *, jaccard_like: bool = False):
     """Score answers.
@@ -51,9 +53,9 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
     except Exception as e:
         # put the error in the response
         status_code = 500
-
+        logger.exception(f"Aragorn-ranker/score exception {e}")
         # save any log entries
-        in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+        # in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
     if debug == 'True':
         diff = datetime.now() - dt_start

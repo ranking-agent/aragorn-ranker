@@ -1,6 +1,8 @@
 """Weight edges."""
 import math
 import os
+import logging
+
 from collections import defaultdict
 from typing import Optional
 from fastapi import Query
@@ -8,6 +10,8 @@ from datetime import datetime
 from reasoner_pydantic import Response as PDResponse
 from fastapi.responses import JSONResponse
 from ranker.shared.util import create_log_entry
+
+logger = logging.getLogger(__name__)
 
 async def query(
         request: PDResponse,
@@ -205,9 +209,9 @@ async def query(
     except Exception as e:
         # put the error in the response
         status_code = 500
-
+        logger.exception(f"Aragorn-ranker/weight correctness exception {e}")
         # save any log entries
-        in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+        # in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
     if debug == 'True':
         diff = datetime.now() - dt_start

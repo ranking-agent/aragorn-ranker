@@ -224,9 +224,9 @@ async def query(request: PDResponse):
     except Exception as e:
         # put the error in the response
         status_code = 500
-
+        logger.exception(f"Aragorn-ranker/omnicorp exception {e}")
         # save any log entries
-        in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
+        # in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
     if debug == 'True':
         diff = datetime.now() - dt_start

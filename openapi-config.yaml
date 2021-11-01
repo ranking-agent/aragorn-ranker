@@ -8,7 +8,7 @@ servers:
 - description: Default server
   url: https://aragorn-ranker.renci.org
 #- description: localhost
-#  url: http://127.0.0.1/5000
+#  url: http://127.0.0.1/5003
 termsOfService: http://robokop.renci.org:7055/tos?service_long=ARAGORN Ranker&provider_long=RENCI
 title: ARAGORN Ranker
 tags:
@@ -19,6 +19,7 @@ x-translator:
   component: ARA
   team:
   - Ranking Agent
+  infores: "infores:aragorn-ranker"
 x-trapi:
   version: 1.2.0
   operations:

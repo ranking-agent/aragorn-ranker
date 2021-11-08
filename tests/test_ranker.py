@@ -1,7 +1,7 @@
 import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
-from .fixtures import svc_test
+from .fixtures import svc_test, acet
 
 client = TestClient(APP)
 
@@ -100,3 +100,64 @@ def xtest_service(svc_test):
             break
 
     assert found
+
+#depends on live omnicorp overlay so not turned on by default.  But is a good test
+def xtest_omnicorp_overlay_publications(acet):
+    """Test that omnicorp_overlay() runs without errors."""
+    response = client.post('/omnicorp_overlay', json=acet)
+
+    # load the json
+    answer = response.json()
+
+    # make sure the there are the same number of results that went in
+    assert(len(answer['message']['results']) == len(acet['message']['results']))
+
+    # assert there are node bindings
+    assert(len(answer['message']['results'][0]['node_bindings']) == 2)
+
+    # assert there are 2 edge bindings.  The original one, and the one that came out of omnicorp
+    assert(len(answer['message']['results'][0]['edge_bindings']) == 2)
+
+    #Each node in the kgraph should have an omnicorp article count
+    for nodeid,node in answer['message']['knowledge_graph']['nodes'].items():
+        found = False
+        for att in node.get('attributes', {}):
+            if att['original_attribute_name'] == 'omnicorp_article_count':
+                assert att.get('value',-1) > 0
+                found = True
+        assert found
+
+    #each new edge should have the right predicate and counts.
+    support_edges = set()
+    for edgeid, edge in answer['message']['knowledge_graph']['edges'].items():
+        if edgeid in acet['message']['knowledge_graph']['edges']:
+            #this is an old edge
+            continue
+        #this is a new edge
+        support_edges.add(edgeid)
+        #check predicate
+        assert edge['predicate'] == 'biolink:occurs_together_in_literature_with'
+        #check attribute for shared count
+        found = False
+        for att in edge.get('attributes', {}):
+            if att.get('original_attribute_name','') == 'num_publications':
+                assert att.get('value',-1) > 0
+                found = True
+        assert found
+
+    #Now send the overlaid thing to get weighted
+    response = client.post('/weight_correctness', json=answer)
+    assert(response.status_code == 200)
+    weighted = response.json()
+
+    #We want to make sure that weighting accomplished something.  If things are borked in weighting either we won't get
+    # back a weight, or it will be set to a default value of 1.
+    for result in weighted['message']['results']:
+        for eb_id, edges in result['edge_bindings'].items():
+            for edge in edges:
+                if edge['id'] in support_edges:
+                    weight = 1
+                    for att in edge.get('attributes',[]):
+                        if att.get('original_attribute_name','') == 'weight':
+                            weight = att.get('value',1)
+                    assert weight != 1

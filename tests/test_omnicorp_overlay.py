@@ -39,3 +39,4 @@ def test_omnicorp_overlay_with_set(property_coalesce):
 
     assert(len(answer['message']['results'][0]['edge_bindings']) == 1)
     assert(len(answer['message']['results'][0]['edge_bindings']['ab']) == 10)
+

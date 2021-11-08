@@ -176,11 +176,9 @@ async def query(
                 if num_publications == 0:
                     num_publications = len(publications)
 
-                # now the nicer cleaner version when we have publications as an actual array
-                # edge_pubs = edge.get('num_publications', len(edge.get('publications', [])))
-                if edges[edge].get('predicate') == 'literature_co-occurrence':
-                    subject_pubs = int(node_pubs[edge['subject']])
-                    object_pubs = int(node_pubs[edge['object']])
+                if edges[edge].get('predicate') == 'biolink:occurs_together_in_literature_with':
+                    subject_pubs = int(node_pubs[edges[edge]['subject']])
+                    object_pubs = int(node_pubs[edges[edge]['object']])
 
                     cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (object_pubs / all_pubs)
                     cov = max((cov, 0.0))

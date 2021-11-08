@@ -1,0 +1,327 @@
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids": [
+                        "CHEMBL.COMPOUND:CHEMBL112"
+                    ],
+                    "categories": null,
+                    "is_set": false,
+                    "constraints": []
+                },
+                "n1": {
+                    "ids": [
+                        "NCBIGene:54600",
+                        "NCBIGene:5743"
+                    ],
+                    "categories": [
+                        "biolink:Gene"
+                    ],
+                    "is_set": false,
+                    "constraints": []
+                }
+            },
+            "edges": {
+                "e01": {
+                    "subject": "n0",
+                    "object": "n1",
+                    "predicates": [
+                        "biolink:molecularly_interacts_with"
+                    ],
+                    "constraints": []
+                }
+            }
+        },
+        "knowledge_graph": {
+            "nodes": {
+                "PUBCHEM.COMPOUND:1983": {
+                    "categories": [
+                        "biolink:Entity",
+                        "biolink:NamedThing",
+                        "biolink:PhysicalEssenceOrOccurrent",
+                        "biolink:PhysicalEssence",
+                        "biolink:SmallMolecule",
+                        "biolink:MolecularEntity",
+                        "biolink:ChemicalEntity"
+                    ],
+                    "name": "Acetaminophen",
+                    "attributes": [
+                        {
+                            "attribute_type_id": "biolink:same_as",
+                            "value": [
+                                "PUBCHEM.COMPOUND:1983",
+                                "CHEMBL.COMPOUND:CHEMBL112",
+                                "UNII:362O9ITL9D",
+                                "CHEBI:46195",
+                                "DRUGBANK:DB00316",
+                                "MESH:D000082",
+                                "CAS:103-90-2",
+                                "CAS:360769-21-7",
+                                "DrugCentral:52",
+                                "GTOPDB:5239",
+                                "HMDB:HMDB0001859",
+                                "KEGG.COMPOUND:C06804",
+                                "INCHIKEY:RZVAJINKPMORJF-UHFFFAOYSA-N"
+                            ],
+                            "value_type_id": "metatype:uriorcurie",
+                            "original_attribute_name": "equivalent_identifiers",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:automat-hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:aggregator_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        }
+                    ]
+                },
+                "NCBIGene:54600": {
+                    "categories": [
+                        "biolink:Entity",
+                        "biolink:NamedThing",
+                        "biolink:BiologicalEntity",
+                        "biolink:GeneOrGeneProduct",
+                        "biolink:Gene",
+                        "biolink:MacromolecularMachineMixin"
+                    ],
+                    "name": "UGT1A9",
+                    "attributes": [
+                        {
+                            "attribute_type_id": "biolink:same_as",
+                            "value": [
+                                "NCBIGene:54600",
+                                "ENSEMBL:ENSG00000241119",
+                                "HGNC:12541",
+                                "OMIM:606434",
+                                "UMLS:C1421333"
+                            ],
+                            "value_type_id": "metatype:uriorcurie",
+                            "original_attribute_name": "equivalent_identifiers",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:automat-hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:aggregator_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        }
+                    ]
+                },
+                "NCBIGene:5743": {
+                    "categories": [
+                        "biolink:Entity",
+                        "biolink:NamedThing",
+                        "biolink:BiologicalEntity",
+                        "biolink:GeneOrGeneProduct",
+                        "biolink:Gene",
+                        "biolink:MacromolecularMachineMixin"
+                    ],
+                    "name": "PTGS2",
+                    "attributes": [
+                        {
+                            "attribute_type_id": "biolink:same_as",
+                            "value": [
+                                "NCBIGene:5743",
+                                "ENSEMBL:ENSG00000073756",
+                                "HGNC:9605",
+                                "OMIM:600262",
+                                "UMLS:C1367485"
+                            ],
+                            "value_type_id": "metatype:uriorcurie",
+                            "original_attribute_name": "equivalent_identifiers",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:automat-hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:aggregator_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        }
+                    ]
+                }
+            },
+            "edges": {
+                "5d733470c9480666ddad898cd5edaf63": {
+                    "subject": "PUBCHEM.COMPOUND:1983",
+                    "object": "NCBIGene:54600",
+                    "predicate": "biolink:molecularly_interacts_with",
+                    "attributes": [
+                        {
+                            "attribute_type_id": "biolink:primary_knowledge_source",
+                            "value": "infores:hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:primary_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:Attribute",
+                            "value": [
+                                "DrugBank (enzyme)"
+                            ],
+                            "value_type_id": "EDAM:data_0006",
+                            "original_attribute_name": "hetio_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:relation",
+                            "value": "RO:0002436",
+                            "value_type_id": "EDAM:data_0006",
+                            "original_attribute_name": "relation",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:automat-hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:aggregator_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:aragorn"
+                        }
+                    ]
+                },
+                "3b21e7d518f10066eb3edb9375c92b84": {
+                    "subject": "PUBCHEM.COMPOUND:1983",
+                    "object": "NCBIGene:5743",
+                    "predicate": "biolink:molecularly_interacts_with",
+                    "attributes": [
+                        {
+                            "attribute_type_id": "biolink:primary_knowledge_source",
+                            "value": "infores:hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:primary_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:Attribute",
+                            "value": [
+                                "DrugBank (target)",
+                                "DrugCentral (ChEMBL)"
+                            ],
+                            "value_type_id": "EDAM:data_0006",
+                            "original_attribute_name": "hetio_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:relation",
+                            "value": "RO:0002436",
+                            "value_type_id": "EDAM:data_0006",
+                            "original_attribute_name": "relation",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:automat-hetio",
+                            "value_type_id": "biolink:InformationResource",
+                            "original_attribute_name": "biolink:aggregator_knowledge_source",
+                            "value_url": null,
+                            "attribute_source": null,
+                            "description": null,
+                            "attributes": null
+                        },
+                        {
+                            "attribute_type_id": "biolink:aggregator_knowledge_source",
+                            "value": "infores:aragorn"
+                        }
+                    ]
+                }
+            }
+        },
+        "results": [
+            {
+                "node_bindings": {
+                    "n0": [
+                        {
+                            "id": "PUBCHEM.COMPOUND:1983",
+                            "qnode_id": "PUBCHEM.COMPOUND:1983"
+                        }
+                    ],
+                    "n1": [
+                        {
+                            "id": "NCBIGene:54600",
+                            "qnode_id": "NCBIGene:54600"
+                        }
+                    ]
+                },
+                "edge_bindings": {
+                    "e01": [
+                        {
+                            "id": "5d733470c9480666ddad898cd5edaf63",
+                            "attributes": null
+                        }
+                    ]
+                }
+            },
+            {
+                "node_bindings": {
+                    "n0": [
+                        {
+                            "id": "PUBCHEM.COMPOUND:1983",
+                            "qnode_id": "PUBCHEM.COMPOUND:1983"
+                        }
+                    ],
+                    "n1": [
+                        {
+                            "id": "NCBIGene:5743",
+                            "qnode_id": "NCBIGene:5743"
+                        }
+                    ]
+                },
+                "edge_bindings": {
+                    "e01": [
+                        {
+                            "id": "3b21e7d518f10066eb3edb9375c92b84",
+                            "attributes": null
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "logs": []
+}

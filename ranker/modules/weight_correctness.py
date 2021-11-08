@@ -114,14 +114,13 @@ async def query(
                 # loop through the edge binding
                 for idx, binding_val in enumerate(result['edge_bindings'][eb]):
                     # get a reference to the weight for easy update later
-                    krmap[binding_val['id']] = result['edge_bindings'][eb][idx]
-
+                    ebi = result['edge_bindings'][eb][idx]
                     found = False
 
                     # is there already a list of attributes
-                    if 'attributes' in krmap[binding_val['id']] and krmap[binding_val['id']]['attributes'] is not None:
+                    if 'attributes' in ebi and ebi['attributes'] is not None:
                         # loop through the attributes
-                        for item in krmap[binding_val['id']]['attributes']:
+                        for item in ebi['attributes']:
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):
                                 found = True
@@ -129,15 +128,17 @@ async def query(
 
                     # was the attribute found
                     if not found:
-                        if 'attributes' not in krmap[binding_val['id']] or krmap[binding_val['id']]['attributes'] is None:
-                            krmap[binding_val['id']]['attributes'] = []
+                        if 'attributes' not in ebi or ebi['attributes'] is None:
+                            ebi['attributes'] = []
 
                         # create an Attribute
-                        krmap[binding_val['id']]['attributes'].append({
+                        ebi['attributes'].append({
                             'original_attribute_name': 'weight',
                             'attribute_type_id': 'biolink:has_numeric_value',
                             'value': 1,
                             'value_type_id': 'EDAM:data_1669'})
+
+                    krmap[binding_val['id']].append(ebi)
 
         # get the knowledge graph edges
         edges = kgraph['edges']
@@ -187,11 +188,11 @@ async def query(
                     effective_pubs = num_publications + 1  # consider the curation a pub
 
                 # if there is something to add this new attribute to
-                if len(krmap[edge]) != 0:
+                for edgebinding in krmap[edge]:
                     # is there already a list of attributes
-                    if 'attributes' in krmap[edge]:
+                    if 'attributes' in edgebinding:
                         # loop through the attributes
-                        for item in krmap[edge]['attributes']:
+                        for item in edgebinding['attributes']:
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):
                                 # update the params

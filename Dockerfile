@@ -20,14 +20,12 @@ RUN mkdir /repo
 # go to the directory where we are going to upload the repo
 WORKDIR /repo
 
-# get the latest code
-RUN git clone https://github.com/ranking-agent/aragorn-ranker.git
-
-# go to the repo dir
-WORKDIR /repo/aragorn-ranker
-
 # install requirements
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+# get the latest code
+COPY . .
 
 # expose the default port
 EXPOSE 4868

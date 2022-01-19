@@ -8,10 +8,6 @@ services:
 
     image: aragorn-ranker
 
-    volumes:
-      - ../logs:/d/dvols/logs
-      - ./:/home/murphy/aragorn-ranker
-
     command: 'gunicorn --bind 0.0.0.0:4868 -w 4 -k uvicorn.workers.UvicornWorker -t 600 ranker.server:APP'
 
     ports:

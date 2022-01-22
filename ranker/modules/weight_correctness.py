@@ -155,6 +155,7 @@ async def query(
             if attributes is not None:
                 # for each data attribute collect the needed params
                 for attribute in attributes:
+                    #This picks up omnicorp
                     if attribute['original_attribute_name'] is not None:
                         # is this the publication list
                         if attribute['original_attribute_name'].startswith('publications'):
@@ -162,6 +163,14 @@ async def query(
                         # else is this the number of publications
                         elif attribute['original_attribute_name'].startswith('num_publications'):
                             num_publications = attribute.get('value', 0)
+                    #This picks up Text Miner KP
+                    elif attribute['attribute_type_id'] == 'biolink:supporting_document':
+                        publications = attribute['value']
+                        if isinstance(publications,str):
+                            publications = [publications]
+                    #This picks up how BTE returns pubs
+                    elif attribute['attribute_type_id'] == 'biolink:publications':
+                        publications = attribute['value']
 
                 # if there was only 1 publication value found insure it wasnt a character separated list
                 if len(publications) == 1:

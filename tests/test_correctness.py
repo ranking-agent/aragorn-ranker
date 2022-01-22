@@ -6,7 +6,7 @@ import json
 from fastapi.testclient import TestClient
 
 from ranker.server import APP
-from .fixtures import to_weight
+from .fixtures import to_weight, pub_test
 
 client = TestClient(APP)
 
@@ -31,3 +31,37 @@ def test_weight(to_weight):
     #good publications array also has 2
     assert weights['correctpublicationsarray'] == weights['correctpublicationscount']
     assert weights['correctpublicationsarray'] > weights['emptypublicationsarray']
+
+def test_pubs(pub_test):
+    """We are getting results from KPs with different ways of encoding pubs.  This needs to be fixed at the EPC level,
+    but for now, we do want to handle them.
+    The test case contains a single answer with 4 edges defined in different ways
+    1. The way BTE does it (3 pubs)
+    2. The way BTE does it (0 pubs)
+    3. The way text miner kp does it (5 pubs)
+    4. The way omnicorp does it (497pubs).
+    For simplicity the omnicorp edge has been bound to the same query edge, which wouldn't happen really.
+    The test is going to check that the weights are correctly ordered.
+    omnicorp > text miner 5 > BTE 3 > BTE 0
+    This makes a couple of assumptions about how we relatively weight omnicorp, TM, and other sources, which might
+    change in the future, say if we decide to downweight TM."""
+    response = client.post('/weight_correctness', json=pub_test)
+
+    weightresponse = response.json()
+
+    weights = {}
+    ebs = weightresponse['message']['results'][0]['edge_bindings']
+
+    for e in ebs:
+        print(ebs[e])
+        for kedge in ebs[e]:
+            kedge_id = kedge['id']
+            for att in kedge['attributes']:
+                if att['original_attribute_name'] == 'weight':
+                    weights[kedge_id] = att['value']
+
+    # there are 3 pubs in the malformed array, and a pubcount of 2
+    assert weights['BTE_TM_5'] > weights['BTE_semmed_3']
+    assert weights['BTE_semmed_3'] > weights['omnicorp_497']
+    assert weights['omnicorp_497'] > weights['BTE_0']
+

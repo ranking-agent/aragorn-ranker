@@ -12,7 +12,7 @@ from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 
 # set the app version
-APP_VERSION = '2.0.10'
+APP_VERSION = '2.0.11'
 
 APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 

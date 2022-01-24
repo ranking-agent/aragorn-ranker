@@ -1,18 +1,5 @@
-# This Dockerfile is used to build the aragorn ranker image
-# starts with the python image
-# installs nano
-# creates a directory for the repo
-# gets the aragorn-ranker repo
-# and runs main which enables the gunicorn web server
-
-FROM python:3.8.5
-
-# get some credit
-LABEL maintainer="powen@renci.org"
-
-# install basic tools
-RUN apt-get update
-RUN apt-get install -yq vim
+# leverage the renci python base image
+FROM renciorg/renci-python-image:v0.0.1
 
 # make a directory for the repo
 RUN mkdir /repo
@@ -26,8 +13,14 @@ RUN git clone https://github.com/ranking-agent/aragorn-ranker.git
 # go to the repo dir
 WORKDIR /repo/aragorn-ranker
 
+# make sure all is writeable for the nru USER later on
+RUN chmod -R 777 .
+
 # install requirements
 RUN pip install -r requirements.txt
+
+# switch to the non-root user (nru). defined in the base image
+USER nru
 
 # expose the default port
 EXPOSE 4868

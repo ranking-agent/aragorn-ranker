@@ -135,6 +135,12 @@ class Ranker:
         rnodes = set()
         redges = []
 
+        # Checks if multiple nodes share node bindings 
+        rgraph_sets = [
+            node
+            for node in answer['node_bindings']
+            if len(answer['node_bindings'][node]) > 1 
+        ]
         # get list of nodes, and knode_map
         knode_map = defaultdict(set)
         for nb in answer['node_bindings']:
@@ -151,7 +157,7 @@ class Ranker:
                 rnodes.add(rnode_id)
                 knode_map[knode_id].add(rnode_id)
 
-                if qnode_id in self.leaf_sets:
+                if qnode_id in rgraph_sets:
                     anchor_id = (f'{qnode_id}_anchor', '')
                     rnodes.add(anchor_id)
                     redges.append({

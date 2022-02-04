@@ -140,9 +140,7 @@ class Ranker:
             for j in range(num_nodes):
                 weight = 0
                 for source, source_weight in weight_dict[i][j].items():
-                    #TODO apply source dependent weighting here
                     weight = weight + source_weight
-
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight
                 laplacian[i, i] += weight
@@ -234,8 +232,15 @@ class Ranker:
                         for item in kedge_binding['attributes']:
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):
+                                
+                                source_key = 'unspecified'
+                                for sub_attr in item.get('attributes',[]):
+                                    if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
+                                        source_key = sub_attr.get('value',source_key)
+                                        break
+
                                 edge = {
-                                    'weight': item['value'],
+                                    'weight': {source_key: item['value']},
                                     'subject': subject,
                                     'object': object
                                 }

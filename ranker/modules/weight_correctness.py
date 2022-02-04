@@ -136,13 +136,8 @@ async def query(
                         ebi['attributes'].append({
                             'original_attribute_name': 'weight',
                             'attribute_type_id': 'biolink:has_numeric_value',
-                            'value': {},
+                            'value': 1,
                             'value_type_id': 'EDAM:data_1669'})
-                    else:
-                        for index, item in enumerate(ebi['attributes']):
-                            if item['original_attribute_name'].startswith('weight'):
-                                if type(item['value']) == int or type(item['value']) == float:
-                                    ebi['attributes'][index]['value'] = {'from_results': item['value']}
                     krmap[binding_val['id']].append(ebi)
 
         # get the knowledge graph edges
@@ -178,20 +173,31 @@ async def query(
                         publications = attribute['value']
                 
                 # Record the source of origination
-                weight_source = 'aragorn_default_source_attribution'
-                for attribute in attributes:
-                    if attribute['attribute_type_id'] == 'biolink:original_knowledge_source':
-                        if type(attribute['value']) is list:
-                            weight_source = attribute['value'][0]
-                        else:
-                            weight_source = attribute['value']
-                        break
-                    elif attribute['attribute_type_id'] == 'biolink:primary_knowledge_source':
-                        if type(attribute['value']) is list:
-                            weight_source = attribute['value'][0]
-                        else:
-                            weight_source = attribute['value']
-
+                edge_info = {
+                    'biolink:aggregator_knowledge_source': 'not_found',
+                    'biolink:original_knowledge_source': 'not_found',
+                    'biolink:primary_knowledge_source': 'not_found',
+                }
+                for attribute in reversed(attributes):
+                    if attribute.get('attribute_type_id',None) is not None:
+                            if attribute['attribute_type_id'] in edge_info.keys():
+                                v = attribute.get('value',None)
+                                if type(v) is list: 
+                                    v = v[0]
+                                if v is not None:
+                                    edge_info[attribute['attribute_type_id']] = v
+                                else:
+                                    edge_info[attribute['attribute_type_id']] = 'unspecified'
+                
+                if edge_info['biolink:original_knowledge_source'] is not 'not_found':
+                    edge_info_final = edge_info['biolink:original_knowledge_source']
+                elif edge_info['biolink:primary_knowledge_source'] is not 'not_found':
+                    edge_info_final = edge_info['biolink:primary_knowledge_source']
+                elif edge_info['biolink:aggregator_knowledge_source'] is not 'not_found':
+                    edge_info_final = edge_info['biolink:aggregator_knowledge_source']
+                else:
+                    edge_info_final = None
+                
                 # if there was only 1 publication value found insure it wasnt a character separated list
                 if len(publications) == 1:
                     if '|' in publications[0]:
@@ -225,12 +231,18 @@ async def query(
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):
                                 # update the params
-                                if weight_source in item['value']:
-                                    item['value'][weight_source] = max([item['value'][weight_source], sigmoid(effective_pubs)])
-                                else:
-                                    item['value'][weight_source] = sigmoid(effective_pubs)
                                 item['attribute_type_id'] = 'biolink:has_numeric_value'
+                                item['value'] = item['value'] * sigmoid(effective_pubs)
                                 item['value_type_id'] = 'EDAM:data_1669'
+                                if edge_info_final is not None:
+                                    if 'attributes' not in item or item['attributes'] is None:
+                                        item['attributes'] = []
+
+                                    item['attributes'].append({
+                                        'original_attribute_name': 'aragorn_weight_source',
+                                        'attribute_type_id': 'biolink:has_qualitative_value',
+                                        'value': edge_info_final,
+                                        'value_type_id': 'biolink:InformationResource'})
                                 found = True
                                 break
 

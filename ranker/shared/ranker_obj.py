@@ -116,17 +116,37 @@ class Ranker:
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
-        # compute graph laplacian for this case with potentially duplicated nodes
+        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
-        laplacian = np.zeros((num_nodes, num_nodes))
+        weight_dict = []
+        for i in range(num_nodes):
+            weight_dict_i = []
+            for j in range(num_nodes):
+                weight_dict_i.append({})
+            weight_dict.append(weight_dict_i)
+
         index = {node_id: node_ids.index(node_id) for node_id in node_ids}
         for edge in edges:
-            subject_id, object_id, weight = edge['subject'], edge['object'], edge['weight']
+            subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
             i, j = index[subject_id], index[object_id]
-            laplacian[i, j] += -weight
-            laplacian[j, i] += -weight
-            laplacian[i, i] += weight
-            laplacian[j, j] += weight
+            for k, v in edge_weight.items():
+                if k in weight_dict[i][j]:
+                    weight_dict[i][j][k] = max(weight_dict[i][j][k], v)
+                else:
+                    weight_dict[i][j][k] = v
+            
+        laplacian = np.zeros((num_nodes, num_nodes))
+        for i in range(num_nodes):
+            for j in range(num_nodes):
+                weight = 0
+                for source, source_weight in weight_dict[i][j].items():
+                    #TODO apply source dependent weighting here
+                    weight = weight + source_weight
+
+                laplacian[i, j] += -weight
+                laplacian[j, i] += -weight
+                laplacian[i, i] += weight
+                laplacian[j, j] += weight
 
         return laplacian
 
@@ -161,7 +181,7 @@ class Ranker:
                     anchor_id = (f'{qnode_id}_anchor', '')
                     rnodes.add(anchor_id)
                     redges.append({
-                        'weight': 1e9,
+                        'weight': {"anchor_node": 1e9},
                         'subject': rnode_id,
                         'object': anchor_id
                     })

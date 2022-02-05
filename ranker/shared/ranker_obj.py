@@ -234,10 +234,11 @@ class Ranker:
                             if item['original_attribute_name'].startswith('weight'):
                                 
                                 source_key = 'unspecified'
-                                for sub_attr in item.get('attributes',[]):
-                                    if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
-                                        source_key = sub_attr.get('value',source_key)
-                                        break
+                                if item.get('attributes',[]) is not None:
+                                    for sub_attr in item.get('attributes',[]):
+                                        if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
+                                            source_key = sub_attr.get('value',source_key)
+                                            break
 
                                 edge = {
                                     'weight': {source_key: item['value']},

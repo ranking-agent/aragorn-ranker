@@ -189,11 +189,11 @@ async def query(
                                 else:
                                     edge_info[attribute['attribute_type_id']] = 'unspecified'
                 
-                if edge_info['biolink:original_knowledge_source'] is not 'not_found':
+                if edge_info['biolink:original_knowledge_source'] != 'not_found':
                     edge_info_final = edge_info['biolink:original_knowledge_source']
-                elif edge_info['biolink:primary_knowledge_source'] is not 'not_found':
+                elif edge_info['biolink:primary_knowledge_source'] != 'not_found':
                     edge_info_final = edge_info['biolink:primary_knowledge_source']
-                elif edge_info['biolink:aggregator_knowledge_source'] is not 'not_found':
+                elif edge_info['biolink:aggregator_knowledge_source'] != 'not_found':
                     edge_info_final = edge_info['biolink:aggregator_knowledge_source']
                 else:
                     edge_info_final = None

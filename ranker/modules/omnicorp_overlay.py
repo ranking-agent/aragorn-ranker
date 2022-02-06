@@ -15,41 +15,50 @@ from reasoner_pydantic import Response as PDResponse
 
 logger = logging.getLogger(__name__)
 
-CACHE_HOST = os.environ.get('CACHE_HOST', 'localhost')
-CACHE_PORT = os.environ.get('CACHE_PORT', '6379')
-CACHE_DB = os.environ.get('CACHE_DB', '0')
-CACHE_PASSWORD = os.environ.get('CACHE_PASSWORD', '')
+CACHE_HOST = os.environ.get("CACHE_HOST", "localhost")
+CACHE_PORT = os.environ.get("CACHE_PORT", "6379")
+CACHE_DB = os.environ.get("CACHE_DB", "0")
+CACHE_PASSWORD = os.environ.get("CACHE_PASSWORD", "")
 
 
 async def count_node_pmids(supporter, node, key, value, cache, kgraph):
     """Count node PMIDs and add as node property."""
     if value is not None:
-        logger.debug(f'{key} is cached')
+        logger.debug(f"{key} is cached")
         support_dict = value
     else:
-        logger.debug(f'Computing {key}...')
+        logger.debug(f"Computing {key}...")
         support_dict = await supporter.node_pmid_count(node)
-        if cache and support_dict['omnicorp_article_count']:
+        if cache and support_dict["omnicorp_article_count"]:
             cache.set(key, support_dict)
 
     # add omnicorp_article_count to nodes in networkx graph
-    attribute = {'original_attribute_name': 'omnicorp_article_count',
-                 'attribute_type_id': 'biolink:has_count',
-                 'value': support_dict['omnicorp_article_count'],
-                 'value_type_id': 'EDAM:data_0006'}
+    attribute = {
+        "original_attribute_name": "omnicorp_article_count",
+        "attribute_type_id": "biolink:has_count",
+        "value": support_dict["omnicorp_article_count"],
+        "value_type_id": "EDAM:data_0006",
+    }
 
     # if there is no attributes array add one
-    if kgraph[node]['attributes'] is None:
-        kgraph[node]['attributes'] = []
+    if kgraph[node]["attributes"] is None:
+        kgraph[node]["attributes"] = []
 
     # save the attributes
-    kgraph[node]['attributes'].append(attribute)
+    kgraph[node]["attributes"].append(attribute)
 
 
 async def count_shared_pmids(
-        supporter, support_idx, pair, key, value,
-        cache, cached_prefixes, kgraph, pair_to_answer,
-        answers,
+    supporter,
+    support_idx,
+    pair,
+    key,
+    value,
+    cache,
+    cached_prefixes,
+    kgraph,
+    pair_to_answer,
+    answers,
 ):
     """Count PMIDS shared by a pair of nodes and create a new support edge."""
     support_edge = value
@@ -61,42 +70,50 @@ async def count_shared_pmids(
         #    of a prefix pair that we evaluated all of.  In that case
         #    we can infer that getting nothing back means an empty list
         #    check cached_prefixes for this...
-        prefixes = tuple(ident.split(':')[0].upper() for ident in pair)
+        prefixes = tuple(ident.split(":")[0].upper() for ident in pair)
         if cached_prefixes and prefixes in cached_prefixes:
-            logger.debug(f'{pair} should be cached: assume 0')
+            logger.debug(f"{pair} should be cached: assume 0")
             support_edge = []
         else:
-            logger.debug(f'Computing {pair}...')
+            logger.debug(f"Computing {pair}...")
             support_edge = await supporter.term_to_term_pmid_count(pair[0], pair[1])
             if cache and support_edge:
                 cache.set(key, support_edge)
     else:
-        logger.debug(f'{pair} is cached')
+        logger.debug(f"{pair} is cached")
     if not support_edge:
         return
 
     uid = str(uuid4())
 
-    kgraph['edges'].update({uid: {
-        'predicate': 'biolink:occurs_together_in_literature_with',
-        'attributes': [
-            {'original_attribute_name': 'num_publications', 'attribute_type_id': 'biolink:has_count', 'value_type_id': 'EDAM:data_0006', 'value': support_edge},
-            #If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
-            #{'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
-            {
-                "attribute_type_id": "biolink:original_knowledge_source",  # the ‘key’*
-                "value": "infores:aragorn-ranker-ara",
-                "value_type_id": "biolink:InformationResource",
-                "attribute_source": "infores:aragorn-ranker-ara"
+    kgraph["edges"].update(
+        {
+            uid: {
+                "predicate": "biolink:occurs_together_in_literature_with",
+                "attributes": [
+                    {
+                        "original_attribute_name": "num_publications",
+                        "attribute_type_id": "biolink:has_count",
+                        "value_type_id": "EDAM:data_0006",
+                        "value": support_edge,
+                    },
+                    # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
+                    # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
+                    {
+                        "attribute_type_id": "biolink:original_knowledge_source",  # the ‘key’*
+                        "value": "infores:aragorn-ranker-ara",
+                        "value_type_id": "biolink:InformationResource",
+                        "attribute_source": "infores:aragorn-ranker-ara",
+                    },
+                ],
+                "subject": pair[0],
+                "object": pair[1],
             }
-
-        ],
-        'subject': pair[0],
-        'object': pair[1],
-    }})
+        }
+    )
 
     for sg in pair_to_answer[pair]:
-        answers[sg]['edge_bindings'].update({f's{support_idx}': [{'id': uid}]})
+        answers[sg]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
 
 
 async def query(request: PDResponse):
@@ -105,30 +122,30 @@ async def query(request: PDResponse):
     Add support edges to knowledge_graph and bindings to results.
     """
     # get the debug environment variable
-    debug = os.environ.get('DEBUG_TIMING', 'False')
+    debug = os.environ.get("DEBUG_TIMING", "False")
 
-    if debug == 'True':
+    if debug == "True":
         dt_start = datetime.now()
 
     in_message = request.dict()
 
     # save the logs for the response (if any)
-    if 'logs' not in in_message or in_message['logs'] is None:
-        in_message['logs'] = []
+    if "logs" not in in_message or in_message["logs"] is None:
+        in_message["logs"] = []
     else:
         # these timestamps are causing json serialization issues
         # so here we convert them to strings.
-        for log in in_message['logs']:
-            log['timestamp'] = str(log['timestamp'])
+        for log in in_message["logs"]:
+            log["timestamp"] = str(log["timestamp"])
 
     # init the status code
     status_code: int = 200
 
-    message = in_message['message']
+    message = in_message["message"]
 
-    qgraph = message['query_graph']
-    kgraph = message['knowledge_graph']
-    answers = message['results']
+    qgraph = message["query_graph"]
+    kgraph = message["knowledge_graph"]
+    answers = message["results"]
 
     # get cache if possible
     try:
@@ -148,18 +165,29 @@ async def query(request: PDResponse):
         async with OmnicorpSupport() as supporter:
             # get all node supports
 
-            keys = [f"{supporter.__class__.__name__}({node})" for node in kgraph['nodes']]
+            keys = [
+                f"{supporter.__class__.__name__}({node})" for node in kgraph["nodes"]
+            ]
             values = []
             for batch in batches(keys, redis_batch_size):
                 values.extend(cache.mget(*batch))
 
             jobs = [
-                count_node_pmids(supporter, node, key, value, cache, kgraph['nodes'])
-                for node, value, key in zip(kgraph['nodes'], values, keys)
+                count_node_pmids(supporter, node, key, value, cache, kgraph["nodes"])
+                for node, value, key in zip(kgraph["nodes"], values, keys)
             ]
 
             # which qgraph nodes are sets?
-            qgraph_setnodes = set([n for n in qgraph['nodes'] if (('is_set' in qgraph['nodes'][n]) and (qgraph['nodes'][n]['is_set']))])
+            qgraph_setnodes = set(
+                [
+                    n
+                    for n in qgraph["nodes"]
+                    if (
+                        ("is_set" in qgraph["nodes"][n])
+                        and (qgraph["nodes"][n]["is_set"])
+                    )
+                ]
+            )
 
             # Generate a set of pairs of node curies
             pair_to_answer = defaultdict(set)  # a map of node pairs to answers
@@ -171,12 +199,16 @@ async def query(request: PDResponse):
                 setnodes = {}
 
                 # node binding results is now a dict containing dicts that contain a list of dicts.
-                for nb in answer_map['node_bindings']:
+                for nb in answer_map["node_bindings"]:
                     if nb in qgraph_setnodes:
-                        setnodes[nb] = [node['id'] for node in answer_map['node_bindings'][nb]]
+                        setnodes[nb] = [
+                            node["id"] for node in answer_map["node_bindings"][nb]
+                        ]
                     else:
-                        if len(answer_map['node_bindings'][nb]) != 0:
-                            nonset_nodes.append(answer_map['node_bindings'][nb][0]['id'])
+                        if len(answer_map["node_bindings"][nb]) != 0:
+                            nonset_nodes.append(
+                                answer_map["node_bindings"][nb][0]["id"]
+                            )
 
                 nonset_nodes = sorted(nonset_nodes)
                 # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
@@ -201,26 +233,40 @@ async def query(request: PDResponse):
                             pair_to_answer[node_pair].add(ans_idx)
 
             # get all pair supports
-            cached_prefixes = cache.get('OmnicorpPrefixes') if cache else None
+            cached_prefixes = cache.get("OmnicorpPrefixes") if cache else None
 
-            keys = [f"{supporter.__class__.__name__}_count({pair[0]},{pair[1]})" for pair in pair_to_answer]
+            keys = [
+                f"{supporter.__class__.__name__}_count({pair[0]},{pair[1]})"
+                for pair in pair_to_answer
+            ]
             values = []
             for batch in batches(keys, redis_batch_size):
                 values.extend(cache.mget(*batch))
 
-            jobs.extend([
-                count_shared_pmids(
-                    supporter, support_idx, pair, key, value,
-                    cache, cached_prefixes, kgraph, pair_to_answer,
-                    answers,
-                )
-                for support_idx, (pair, value, key) in enumerate(zip(pair_to_answer, values, keys))
-            ])
+            jobs.extend(
+                [
+                    count_shared_pmids(
+                        supporter,
+                        support_idx,
+                        pair,
+                        key,
+                        value,
+                        cache,
+                        cached_prefixes,
+                        kgraph,
+                        pair_to_answer,
+                        answers,
+                    )
+                    for support_idx, (pair, value, key) in enumerate(
+                        zip(pair_to_answer, values, keys)
+                    )
+                ]
+            )
             await asyncio.gather(*jobs)
 
         # load the new results into the response
-        message['knowledge_graph'] = kgraph
-        message['results'] = answers
+        message["knowledge_graph"] = kgraph
+        message["results"] = answers
 
     except Exception as e:
         # put the error in the response
@@ -229,9 +275,14 @@ async def query(request: PDResponse):
         # save any log entries
         # in_message['logs'].append(create_log_entry(f'Exception: {str(e)}', 'ERROR'))
 
-    if debug == 'True':
+    if debug == "True":
         diff = datetime.now() - dt_start
-        in_message['logs'].append(create_log_entry(f'End of omnicorp overlay processing. Time elapsed: {diff.seconds} seconds', 'DEBUG'))
+        in_message["logs"].append(
+            create_log_entry(
+                f"End of omnicorp overlay processing. Time elapsed: {diff.seconds} seconds",
+                "DEBUG",
+            )
+        )
 
     # return the result to the caller
     return JSONResponse(content=in_message, status_code=status_code)

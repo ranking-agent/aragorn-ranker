@@ -42,7 +42,6 @@ class OmniCorp():
         except Exception as e:
             print(e)
 
-
     async def close(self):
         """Close PostgreSQL connection."""
         logger.debug('Closing PostgreSQL connection pool...')
@@ -88,7 +87,8 @@ class OmniCorp():
         try:
             if get_postgres_curie_prefix(node) not in self.prefixes:
                 return 0
-        except:
+        except Exception as e:
+            logger.exception(e)
             return 0
 
         prefix = get_postgres_curie_prefix(node)

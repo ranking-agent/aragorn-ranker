@@ -15,7 +15,7 @@ from reasoner_pydantic import CURIE
 from ranker.aux.omnicorp_shared_pmids import shared_pmids
 
 # set the app version
-APP_VERSION = '2.0.10'
+APP_VERSION = '2.1.0'
 
 APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 

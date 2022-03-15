@@ -116,17 +116,35 @@ class Ranker:
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
-        # compute graph laplacian for this case with potentially duplicated nodes
+        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
-        laplacian = np.zeros((num_nodes, num_nodes))
+        weight_dict = []
+        for i in range(num_nodes):
+            weight_dict_i = []
+            for j in range(num_nodes):
+                weight_dict_i.append({})
+            weight_dict.append(weight_dict_i)
+
         index = {node_id: node_ids.index(node_id) for node_id in node_ids}
         for edge in edges:
-            subject_id, object_id, weight = edge['subject'], edge['object'], edge['weight']
+            subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
             i, j = index[subject_id], index[object_id]
-            laplacian[i, j] += -weight
-            laplacian[j, i] += -weight
-            laplacian[i, i] += weight
-            laplacian[j, j] += weight
+            for k, v in edge_weight.items():
+                if k in weight_dict[i][j]:
+                    weight_dict[i][j][k] = max(weight_dict[i][j][k], v)
+                else:
+                    weight_dict[i][j][k] = v
+            
+        laplacian = np.zeros((num_nodes, num_nodes))
+        for i in range(num_nodes):
+            for j in range(num_nodes):
+                weight = 0
+                for source, source_weight in weight_dict[i][j].items():
+                    weight = weight + source_weight
+                laplacian[i, j] += -weight
+                laplacian[j, i] += -weight
+                laplacian[i, i] += weight
+                laplacian[j, j] += weight
 
         return laplacian
 
@@ -135,6 +153,12 @@ class Ranker:
         rnodes = set()
         redges = []
 
+        # Checks if multiple nodes share node bindings 
+        rgraph_sets = [
+            node
+            for node in answer['node_bindings']
+            if len(answer['node_bindings'][node]) > 1 
+        ]
         # get list of nodes, and knode_map
         knode_map = defaultdict(set)
         for nb in answer['node_bindings']:
@@ -151,11 +175,11 @@ class Ranker:
                 rnodes.add(rnode_id)
                 knode_map[knode_id].add(rnode_id)
 
-                if qnode_id in self.leaf_sets:
+                if qnode_id in rgraph_sets:
                     anchor_id = (f'{qnode_id}_anchor', '')
                     rnodes.add(anchor_id)
                     redges.append({
-                        'weight': 1e9,
+                        'weight': {"anchor_node": 1e9},
                         'subject': rnode_id,
                         'object': anchor_id
                     })
@@ -208,8 +232,16 @@ class Ranker:
                         for item in kedge_binding['attributes']:
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):
+                                
+                                source_key = 'unspecified'
+                                if item.get('attributes',[]) is not None:
+                                    for sub_attr in item.get('attributes',[]):
+                                        if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
+                                            source_key = sub_attr.get('value',source_key)
+                                            break
+
                                 edge = {
-                                    'weight': item['value'],
+                                    'weight': {source_key: item['value']},
                                     'subject': subject,
                                     'object': object
                                 }

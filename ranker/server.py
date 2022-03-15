@@ -11,6 +11,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
+from reasoner_pydantic import CURIE
+from ranker.aux.omnicorp_shared_pmids import shared_pmids
 
 # set the app version
 APP_VERSION = '2.0.10'
@@ -62,6 +64,8 @@ for operation in operations:
     md = import_module(f"ranker.modules.{operation}")
 
     APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))  # , response_model_exclude_unset=True
+
+APP.post('/shared_pubmedids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(shared_pmids))  # , response_model_exclude_unset=True
 
 
 def construct_open_api_schema():
@@ -130,7 +134,7 @@ def construct_open_api_schema():
     return open_api_schema
 
 # note: this must be commented out for local debugging
-# APP.openapi_schema = construct_open_api_schema()
+APP.openapi_schema = construct_open_api_schema()
 
 
 APP.add_middleware(

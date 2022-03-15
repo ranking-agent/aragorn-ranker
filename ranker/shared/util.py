@@ -2,6 +2,26 @@
 import random
 import string
 from datetime import datetime
+from typing import List
+
+from pydantic import BaseModel, Field
+
+
+class CurieList(BaseModel):
+    """Curie list input model"""
+
+    curies: List[str] = Field(
+        ...,  # Ellipsis means field is required
+        title='list of nodes formatted as curies',
+        min_items=1
+    )
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "curies": ["NCBIGene:1026", "NCBIGene:896"]
+            }
+        }
 
 
 def random_string(length=10):

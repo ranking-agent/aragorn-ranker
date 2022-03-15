@@ -1,11 +1,12 @@
 """aragorn ranker server."""
 import logging.config
 import os
+from typing import List
+from functools import wraps
+from importlib import import_module
 import pkg_resources
 import yaml
 
-from functools import wraps
-from importlib import import_module
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
@@ -35,6 +36,7 @@ logging.config.dictConfig(config)
 
 LOGGER = logging.getLogger(__name__)
 
+
 def log_exception(method):
     """Wrap method."""
     @wraps(method)
@@ -46,6 +48,7 @@ def log_exception(method):
             LOGGER.exception(err)
             raise
     return wrapper
+
 
 dirname = os.path.join(os.path.dirname(__file__), 'modules')
 
@@ -127,7 +130,8 @@ def construct_open_api_schema():
     return open_api_schema
 
 # note: this must be commented out for local debugging
-APP.openapi_schema = construct_open_api_schema()
+# APP.openapi_schema = construct_open_api_schema()
+
 
 APP.add_middleware(
     CORSMiddleware,

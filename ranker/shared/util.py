@@ -3,6 +3,7 @@ import random
 import string
 from datetime import datetime
 
+
 def random_string(length=10):
     """Return a random N-character-long string."""
     return ''.join(random.choice(string.ascii_lowercase) for x in range(length))
@@ -32,6 +33,7 @@ def get_curie_prefix(curie):
         raise ValueError(f'Curies ought to contain a colon: {curie}')
     return curie.upper().split(':')[0]
 
+
 def get_postgres_curie_prefix(curie):
     """The representation in postgres moves things to lowercase, and replaces . with _"""
     if ':' not in curie:
@@ -39,6 +41,7 @@ def get_postgres_curie_prefix(curie):
     prefix = curie.lower().split(':')
     prefix = '_'.join(prefix[0].split('.'))
     return prefix
+
 
 def create_log_entry(msg: str, err_level, code=None) -> dict:
     now = datetime.now()

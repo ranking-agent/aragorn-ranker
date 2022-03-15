@@ -17,7 +17,6 @@ WORKDIR /repo/aragorn-ranker
 RUN chmod -R 777 .
 
 # install requirements
-COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # switch to the non-root user (nru). defined in the base image

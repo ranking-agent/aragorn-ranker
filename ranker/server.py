@@ -65,7 +65,7 @@ for operation in operations:
 
     APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))  # , response_model_exclude_unset=True
 
-APP.post('/shared_pubmedids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(shared_pmids))  # , response_model_exclude_unset=True
+APP.post('/shared_pubmed_ids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(shared_pmids))  # , response_model_exclude_unset=True
 
 
 def construct_open_api_schema():

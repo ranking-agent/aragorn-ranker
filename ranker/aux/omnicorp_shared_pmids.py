@@ -20,8 +20,8 @@ async def shared_pmids(curies: CurieList):
         raise ValueError(f'nodeList must contain exactly 2 nodes: nodeList = {nodeList}')
 
     async with OmnicorpSupport() as supporter:
-        shared_pubmedids = await supporter.term_to_term_pmids(nodeList[0], nodeList[1])
+        shared_pubmed_ids = await supporter.term_to_term_pmids(nodeList[0], nodeList[1])
         status_code = 200
 
     # return the result to the caller
-    return JSONResponse(content=shared_pubmedids, status_code=status_code)
+    return JSONResponse(content=shared_pubmed_ids, status_code=status_code)

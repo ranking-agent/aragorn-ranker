@@ -7,8 +7,9 @@ from ranker.shared.util import CurieList
 async def shared_pmids(curies: CurieList):
     """Find the pubmed ids where node1 and node2 co-occur.
 
-    inputs: curies (CurieList): a dictionarie contianing the key "curies"
-            whose value is a list of curie-strings (see util.py).
+    inputs: curies (CurieList): a dictionary contianing the key "curies"
+            whose value is a list of curie-strings (see util.py). The length of
+            this list is exactly two.
             Example:
             curies = {
                 "curies": ['MESH:D014867', 'NCIT:C34373']

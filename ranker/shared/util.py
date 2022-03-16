@@ -2,6 +2,27 @@
 import random
 import string
 from datetime import datetime
+from typing import List
+
+from pydantic import BaseModel, Field
+
+
+class CurieList(BaseModel):
+    """Curie list input model"""
+
+    curies: List[str] = Field(
+        ...,  # Ellipsis means field is required
+        title='list of nodes formatted as curies',
+        min_items=1
+    )
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "curies": ["NCBIGene:1026", "NCBIGene:896"]
+            }
+        }
+
 
 def random_string(length=10):
     """Return a random N-character-long string."""
@@ -32,6 +53,7 @@ def get_curie_prefix(curie):
         raise ValueError(f'Curies ought to contain a colon: {curie}')
     return curie.upper().split(':')[0]
 
+
 def get_postgres_curie_prefix(curie):
     """The representation in postgres moves things to lowercase, and replaces . with _"""
     if ':' not in curie:
@@ -39,6 +61,7 @@ def get_postgres_curie_prefix(curie):
     prefix = curie.lower().split(':')
     prefix = '_'.join(prefix[0].split('.'))
     return prefix
+
 
 def create_log_entry(msg: str, err_level, code=None) -> dict:
     now = datetime.now()

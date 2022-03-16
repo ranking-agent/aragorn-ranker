@@ -42,7 +42,6 @@ class OmniCorp():
         except Exception as e:
             print(e)
 
-
     async def close(self):
         """Close PostgreSQL connection."""
         logger.debug('Closing PostgreSQL connection pool...')
@@ -58,6 +57,34 @@ class OmniCorp():
             rows = await conn.fetch(statement)
         prefixes = [ row['table_name'] for row in rows ]
         return prefixes
+
+    async def get_shared_pmids(self, node1, node2):
+        """Get shared PMIDs."""
+        prefix1 = get_postgres_curie_prefix(node1)
+        prefix2 = get_postgres_curie_prefix(node2)
+        if (
+                prefix1 not in self.prefixes or
+                prefix2 not in self.prefixes
+        ):
+            return 0
+        statement = (
+            "SELECT DISTINCT a.pubmedid\n"
+            f"FROM omnicorp.{prefix1} a\n"
+            f"JOIN omnicorp.{prefix2} b ON a.pubmedid = b.pubmedid\n"
+            "WHERE a.curie = $1\n"
+            "AND b.curie = $2"
+        )
+        async with self.pool.acquire() as conn:
+            rows = await conn.fetch(statement, node1, node2)
+
+        if rows is None:
+            # logger.error("OmniCorp could not find row.")
+            return []
+        pubmedids = [row.get('pubmedid') for row in rows]
+        if pubmedids is None:
+            logger.error("OmniCorp gave up")
+            return None
+        return pubmedids
 
     async def get_shared_pmids_count(self, node1, node2):
         """Get shared PMIDs."""
@@ -88,7 +115,8 @@ class OmniCorp():
         try:
             if get_postgres_curie_prefix(node) not in self.prefixes:
                 return 0
-        except:
+        except Exception as e:
+            logger.exception(e)
             return 0
 
         prefix = get_postgres_curie_prefix(node)

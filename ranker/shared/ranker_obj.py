@@ -30,7 +30,7 @@ class Ranker:
                      'attribute_source': None}
 
         for kedge in kedges:
-            if kedges[kedge]['attributes'] is None:
+            if kedges[kedge].get('attributes') is None:
                 kedges[kedge]['attributes'] = [attribute]
             else:
                 found = False
@@ -202,20 +202,11 @@ class Ranker:
 
                 try:
                     qedge = self.qedge_by_id[qedge_id]
-                    pairs = list(product(
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in (qedge['subject'], qedge['object']) and rnode[1] == kedge['subject']
-                        ],
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in (qedge['subject'], qedge['object']) and rnode[1] == kedge['object']
-                        ],
-                    ))
+                    pairs = [((qedge['subject'], kedge['subject']), (qedge['object'], kedge['object']))]
                 except KeyError:
-                    # a support edge
-                    # qedge just needs to contain regex patterns for source and target ids
-                    pairs = list(product(
+                    # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
+                    # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
+                    pairs = set(tuple(sorted(pair)) for pair in product(
                         [
                             rnode for rnode in rnodes
                             if rnode[1] == kedge['subject']
@@ -224,11 +215,11 @@ class Ranker:
                             rnode for rnode in rnodes
                             if rnode[1] == kedge['object']
                         ],
-                    ))
+                    ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
 
                 for subject, object in pairs:
                     # get the weight from the edge binding
-                    if kedge_binding['attributes'] is not None:
+                    if kedge_binding.get('attributes') is not None:
                         for item in kedge_binding['attributes']:
                             # search for the weight attribute
                             if item['original_attribute_name'].startswith('weight'):

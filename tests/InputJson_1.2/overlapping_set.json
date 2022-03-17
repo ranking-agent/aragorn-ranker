@@ -1,0 +1,147 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n0": {
+          "categories": ["biolink:Gene"]
+        },
+        "n1": {
+          "categories": ["biolink:Gene"],
+          "is_set": "True"
+        }
+      },
+      "edges": {
+        "e01": {
+          "subject": "n0",
+          "object": "n1"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "knode_0": {
+          "name": "Gene:x"
+        },
+        "knode_1": {
+          "name": "Gene:y"
+        },
+        "knode_2": {
+          "name": "Gene:z"
+        }
+      },
+      "edges": {
+        "edge_0": {
+          "subject": "knode_0",
+          "object": "knode_0",
+          "predicate": "biolink:related_to"
+        },
+        "edge_1": {
+          "subject": "knode_0",
+          "object": "knode_1",
+          "predicate": "biolink:related_to"
+        },
+        "edge_2": {
+          "subject": "knode_0",
+          "object": "knode_2",
+          "predicate": "biolink:related_to"
+        },
+        "support_edge": {
+          "subject": "knode_0",
+          "object": "knode_0",
+          "predicate": "biolink:occurs_together_in_literature_with",
+          "attributes": [
+            {
+              "attribute_type_id": "biolink:has_count",
+              "value": 1,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "num_publications",
+              "value_url": null,
+              "attribute_source": null,
+              "description": null,
+              "attributes": null
+            },
+            {
+              "attribute_type_id": "biolink:original_knowledge_source",
+              "value": "infores:aragorn-ranker-ara",
+              "value_type_id": "biolink:InformationResource",
+              "original_attribute_name": null,
+              "value_url": null,
+              "attribute_source": "infores:aragorn-ranker-ara",
+              "description": null,
+              "attributes": null
+            }
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "knode_0"
+            }
+          ],
+          "n1": [
+            {
+              "id": "knode_0"
+            },
+            {
+              "id": "knode_1"
+            },
+            {
+              "id": "knode_2"
+            }
+          ]
+        },
+        "edge_bindings": {
+          "e01": [
+            {
+              "id": "edge_1",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 2,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            },
+            {
+              "id": "edge_2",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669"
+                }
+              ]
+            }
+          ],
+          "s01": [
+            {
+              "id": "support_edge",
+              "attributes": [
+                {
+                  "original_attribute_name": "weight",
+                  "attribute_type_id": "biolink:has_numeric_value",
+                  "value": 1,
+                  "value_type_id": "EDAM:data_1669",
+                  "attributes": [
+                    {
+                      "original_attribute_name": "aragorn_weight_source",
+                      "attribute_type_id": "biolink:has_qualitative_value",
+                      "value": "infores:aragorn-ranker-ara",
+                      "value_type_id": "biolink:InformationResource"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

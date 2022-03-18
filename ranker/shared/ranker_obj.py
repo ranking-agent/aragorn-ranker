@@ -191,29 +191,54 @@ class Ranker:
 
         # get "result" edges
         for qedge_id, kedge_bindings in answer['edge_bindings'].items():
-            # find source and target rnode(s)
-            # qedge direction may not match kedge direction
-            # we'll go with the kedge direction
-            # note that a single support edge may in theory result in multiple redges
-            # if the same knode is bound to multiple qnodes
-
             for kedge_binding in kedge_bindings:
-                kedge = self.kedge_by_id[kedge_binding['id']]
+                """
+                The code for generating pairs below appears unusual, but we need
+                it in order to properly handle unlikely set situations.
 
+                Consider this question graph: n0 --e0--> n1.
+
+                Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2, and
+                e0 is bound to this knowledge graph edge: D1 --> D2.
+
+                Following the direction of the kedge, we expect the following
+                edges in the rgraph:
+                (n0, D1) --> (n1, D2)
+                (n1, D1) --> (n0, D2)
+
+                The `product` used below can generate these pairs, but it can
+                also create the following edges:
+                (n1, D1) --> (n1, D2)
+                (n0, D1) --> (n0, D2)
+            
+                The `if pair[0][0] != pair[1][0]` prevents this from happening.
+                """
+                kedge = self.kedge_by_id[kedge_binding['id']]
+                ksubject, kobject = kedge['subject'], kedge['object']
                 try:
                     qedge = self.qedge_by_id[qedge_id]
-                    pairs = [((qedge['subject'], kedge['subject']), (qedge['object'], kedge['object']))]
+                    qedge_nodes = qedge['subject'], qedge['object']
+                    pairs = [pair for pair in product(
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[0] in qedge_nodes and rnode[1] == ksubject
+                        ],
+                        [
+                            rnode for rnode in rnodes
+                            if rnode[0] in qedge_nodes and rnode[1] == kobject
+                        ],
+                    ) if pair[0][0] != pair[1][0]]
                 except KeyError:
                     # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
                     # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
                     pairs = set(tuple(sorted(pair)) for pair in product(
                         [
                             rnode for rnode in rnodes
-                            if rnode[1] == kedge['subject']
+                            if rnode[1] == ksubject
                         ],
                         [
                             rnode for rnode in rnodes
-                            if rnode[1] == kedge['object']
+                            if rnode[1] == kobject
                         ],
                     ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
 

@@ -62,7 +62,7 @@ class OmniCorp():
         """Get shared PMIDs."""
         prefix = get_postgres_curie_prefix(node)
         if prefix not in self.prefixes:
-            return 0
+            return []
         statement = (
             "SELECT DISTINCT a.pubmedid\n"
             f"FROM omnicorp.{prefix} a\n"

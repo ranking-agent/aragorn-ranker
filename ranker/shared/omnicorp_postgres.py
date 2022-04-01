@@ -61,9 +61,7 @@ class OmniCorp():
     async def get_pmids(self, node):
         """Get shared PMIDs."""
         prefix = get_postgres_curie_prefix(node)
-        if (
-                prefix not in self.prefixes
-        ):
+        if prefix not in self.prefixes:
             return 0
         statement = (
             "SELECT DISTINCT a.pubmedid\n"

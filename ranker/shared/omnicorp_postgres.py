@@ -88,7 +88,7 @@ class OmniCorp():
                 prefix1 not in self.prefixes or
                 prefix2 not in self.prefixes
         ):
-            return 0
+            return []
         statement = (
             "SELECT DISTINCT a.pubmedid\n"
             f"FROM omnicorp.{prefix1} a\n"

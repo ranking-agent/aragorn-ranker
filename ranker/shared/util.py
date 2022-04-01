@@ -24,6 +24,24 @@ class CurieList(BaseModel):
         }
 
 
+class Curie(BaseModel):
+    """Curie list input model"""
+
+    curies: List[str] = Field(
+        ...,  # Ellipsis means field is required
+        title='list of single node formatted as curies',
+        min_items=1,
+        max_items=1
+    )
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "curies": ["NCBIGene:1026"]
+            }
+        }
+
+
 def random_string(length=10):
     """Return a random N-character-long string."""
     return ''.join(random.choice(string.ascii_lowercase) for x in range(length))

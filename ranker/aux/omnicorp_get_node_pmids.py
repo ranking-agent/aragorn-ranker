@@ -1,26 +1,26 @@
-"""Literature co-occurrence support."""
+"""Literature related to node."""
 from fastapi.responses import JSONResponse
 from ranker.shared.omnicorp import OmnicorpSupport
-from ranker.shared.util import CurieList
+from ranker.shared.util import Curie
 
 
-async def shared_pmids(curies: CurieList):
-    """Find the pubmed ids where node1 and node2 co-occur.
+async def get_node_pmids(curies: Curie):
+    """Find the pubmed ids where the specified node appears.
 
     inputs: curies (CurieList): a dictionary contianing the key "curies"
             whose value is a list of curie-strings (see util.py). The length of
-            this list is exactly two.
+            this list is exactly one.
             Example:
             curies = {
-                "curies": ['MESH:D014867', 'NCIT:C34373']
+                "curies": ['MESH:D014867']
             }
     """
     nodeList = curies.curies
-    if len(nodeList) != 2:
-        raise ValueError(f'nodeList must contain exactly 2 nodes: nodeList = {nodeList}')
+    if len(nodeList) != 1:
+        raise ValueError(f'nodeList must contain exactly 1 node: nodeList = {nodeList}')
 
     async with OmnicorpSupport() as supporter:
-        shared_pubmed_ids = await supporter.term_to_term_pmids(nodeList[0], nodeList[1])
+        shared_pubmed_ids = await supporter.node_pmids(nodeList[0])
         status_code = 200
 
     # return the result to the caller

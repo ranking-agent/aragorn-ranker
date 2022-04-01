@@ -13,6 +13,7 @@ from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 from reasoner_pydantic import CURIE
 from ranker.aux.omnicorp_shared_pmids import shared_pmids
+from ranker.aux.omnicorp_get_node_pmids import get_node_pmids
 
 # set the app version
 APP_VERSION = '2.1.0'
@@ -65,7 +66,8 @@ for operation in operations:
 
     APP.post('/' + operation, tags=["ARAGORN-Ranker"], response_model=PDResponse, response_model_exclude_none=True, status_code=200)(log_exception(md.query))  # , response_model_exclude_unset=True
 
-APP.post('/shared_pubmedids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(shared_pmids))  # , response_model_exclude_unset=True
+APP.post('/get_shared_pubmed_ids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(shared_pmids))  # , response_model_exclude_unset=True
+APP.post('/get_node_pubmed_ids', tags=["ARAGORN-Ranker"], response_model=List[CURIE], response_model_exclude_none=True, status_code=200)(log_exception(get_node_pmids))  # , response_model_exclude_unset=True
 
 
 def construct_open_api_schema():

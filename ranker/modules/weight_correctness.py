@@ -13,6 +13,11 @@ from ranker.shared.util import create_log_entry
 
 logger = logging.getLogger(__name__)
 
+SOURCE_WEIGHT = {
+    "infores:automat-pharos": 0.7,
+    "infores:aragorn-ranker-ara": 0.25,
+    "infores:semmeddb": 0.05,
+}
 
 async def query(
     request: PDResponse,
@@ -249,7 +254,11 @@ async def query(
                             if item["original_attribute_name"].startswith("weight"):
                                 # update the params
                                 item["attribute_type_id"] = "biolink:has_numeric_value"
-                                item["value"] = item["value"] * sigmoid(effective_pubs)
+                                item["value"] = (
+                                    item["value"]
+                                    * sigmoid(effective_pubs)
+                                    * SOURCE_WEIGHT.get(edge_info_final, 0)
+                                )
                                 item["value_type_id"] = "EDAM:data_1669"
                                 if edge_info_final is not None:
                                     if (

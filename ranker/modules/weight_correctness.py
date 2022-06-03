@@ -93,7 +93,7 @@ async def query(
             omnicorp_article_count: int = 0
 
             # get the article count atribute
-            for p in kgraph["nodes"][n]["attributes"]:
+            for p in kgraph["nodes"][n].get("attributes",[]):
                 # is this what we are looking for
                 if p["original_attribute_name"] == "omnicorp_article_count":
                     # save it

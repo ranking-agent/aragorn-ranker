@@ -1,19 +1,19 @@
 """ROBOKOP ranking."""
 
-from operator import itemgetter
+import logging
 from collections import defaultdict
 from itertools import combinations, permutations, product
-import logging
+from operator import itemgetter
+
 import numpy as np
-# import re
-# from uuid import uuid4
-# from ranker.shared.util import flatten_semilist
+from ranker.shared.sources import source_weight
 
 logger = logging.getLogger(__name__)
 
-
 class Ranker:
     """Ranker."""
+
+    DEFAULT_WEIGHT = 1e-2
 
     def __init__(self, message):
         """Create ranker."""
@@ -35,7 +35,7 @@ class Ranker:
             else:
                 found = False
                 for attrib in kedges[kedge]['attributes']:
-                    if attrib['original_attribute_name'] == 'weight':
+                    if attrib.get('original_attribute_name', None) == 'weight':
                         found = True
 
                 if not found:
@@ -77,7 +77,7 @@ class Ranker:
         # answer is a list of dicts with fields 'id' and 'bound'
         rgraph = self.get_rgraph(answer)
 
-        laplacian = self.graph_laplacian(rgraph)
+        laplacian = self.graph_laplacian(rgraph, answer)
         if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
             answer['score'] = 0
             return answer
@@ -112,7 +112,7 @@ class Ranker:
             answer['score'] = score
         return answer
 
-    def graph_laplacian(self, rgraph):
+    def graph_laplacian(self, rgraph, answer):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
@@ -134,13 +134,20 @@ class Ranker:
                     weight_dict[i][j][k] = max(weight_dict[i][j][k], v)
                 else:
                     weight_dict[i][j][k] = v
-            
+
+        qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
         laplacian = np.zeros((num_nodes, num_nodes))
         for i in range(num_nodes):
+            q_node_id_i = node_ids[i][0]
             for j in range(num_nodes):
-                weight = 0
-                for source, source_weight in weight_dict[i][j].items():
-                    weight = weight + source_weight
+                q_node_id_j = node_ids[j][0]
+                edge_qnode_ids = frozenset((q_node_id_i, q_node_id_j))
+
+                # Set default weight (or 0 when edge is not a qedge)
+                weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
+
+                for source, source_w in weight_dict[i][j].items():
+                    weight = weight + source_w * source_weight(source)
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight
                 laplacian[i, i] += weight

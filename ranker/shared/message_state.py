@@ -1,8 +1,4 @@
 """Message state analysis tools."""
-import pkg_resources
-import jsonschema
-import yaml
-
 
 def is_answered(message):
     """Check whether results exist."""

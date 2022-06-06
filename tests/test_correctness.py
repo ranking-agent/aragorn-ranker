@@ -6,7 +6,8 @@ import json
 from fastapi.testclient import TestClient
 
 from ranker.server import APP
-from .fixtures import to_weight, pub_test
+
+from .fixtures import pub_test, to_weight
 
 client = TestClient(APP)
 
@@ -62,6 +63,6 @@ def test_pubs(pub_test):
 
     # there are 3 pubs in the malformed array, and a pubcount of 2
     assert weights['BTE_TM_5'] < weights['BTE_semmed_3'] # For now, we weigh text-miner as 0
-    assert weights['BTE_semmed_3'] < weights['omnicorp_497'] # For now, we weigh semmed significantly higher than omnicorp
+    assert weights['BTE_semmed_3'] > weights['omnicorp_497']
     assert weights['omnicorp_497'] > weights['BTE_0']
 

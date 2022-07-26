@@ -4,6 +4,7 @@ import os
 import logging
 import asyncpg
 from ranker.shared.util import get_postgres_curie_prefix
+from collections import defaultdict
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class OmniCorp():
         self.pool = None
         self.nsingle = 0
         self.total_single_call = datetime.timedelta()
-        self.npair = 0
+        self.npair = defaultdict(int)
         self.total_pair_call = datetime.timedelta()
 
     async def connect(self):
@@ -117,6 +118,8 @@ class OmniCorp():
                 prefix2 not in self.prefixes
         ):
             return 0
+        self.npairs[f'{prefix1}:{prefix2}'] += 1
+        start = datetime.datetime.now()
         statement = (
             "SELECT COUNT(a.pubmedid)\n"
             f"FROM omnicorp.{prefix1} a\n"
@@ -127,9 +130,19 @@ class OmniCorp():
         async with self.pool.acquire() as conn:
             row = await conn.fetchrow(statement, node1, node2)
         pmid_count = row['count']
+        end = datetime.datetime.now()
+        self.total_single_call += (end - start)
         if pmid_count is None:
             logger.error("OmniCorp gave up")
             return None
+        tpair = sum(self.npair.values())
+        paircounts =  '\n'.join( [ f'{dk}: {dv}' for dk,dv in self.npair.items() ] )
+        if tpair % 100 == 0:
+            logger.info(f"Pairs\n" +
+                        f"{paircounts}\n" +
+                        #f"NCalls: {self.nsingle}\n" +
+                        f"Total time: {self.total_pair_call}\n" +
+                        f"Avg Time: {self.total_pair_call/tpair}")
         return pmid_count
 
     async def count_pmids(self, node):

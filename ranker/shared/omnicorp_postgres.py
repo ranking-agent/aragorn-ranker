@@ -118,7 +118,7 @@ class OmniCorp():
                 prefix2 not in self.prefixes
         ):
             return 0
-        self.npairs[f'{prefix1}:{prefix2}'] += 1
+        self.npair[f'{prefix1}:{prefix2}'] += 1
         start = datetime.datetime.now()
         statement = (
             "SELECT COUNT(a.pubmedid)\n"

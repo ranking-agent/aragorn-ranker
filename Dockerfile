@@ -1,6 +1,9 @@
 # leverage the renci python base image
 FROM renciorg/renci-python-image:v0.0.1
 
+#Build from this branch.  Default to master
+ARG BRANCH_NAME=master
+
 # make a directory for the repo
 RUN mkdir /repo
 
@@ -8,7 +11,7 @@ RUN mkdir /repo
 WORKDIR /repo
 
 # get the latest code
-RUN git clone https://github.com/ranking-agent/aragorn-ranker.git
+RUN git clone --branch $BRANCH_NAME --single-branch https://github.com/ranking-agent/aragorn-ranker.git
 
 # go to the repo dir
 WORKDIR /repo/aragorn-ranker

@@ -9,7 +9,7 @@ from collections import defaultdict
 logger = logging.getLogger(__name__)
 
 
-OMNICORP_DB = os.environ.get('OMNICORP_DB', 'robokop')
+OMNICORP_DB = os.environ.get('OMNICORP_DB', 'omnicorp')
 OMNICORP_USER = os.environ.get('OMNICORP_USER', 'murphy')
 OMNICORP_PORT = os.environ.get('OMNICORP_PORT', '5432')
 OMNICORP_HOST = os.environ.get('OMNICORP_HOST', 'localhost')
@@ -30,7 +30,6 @@ class OmniCorp():
 
     async def connect(self):
         """Connect to PostgreSQL."""
-        print('connect')
         logger.debug("Creating PostgreSQL connection pool...")
         try:
             self.pool = await asyncpg.create_pool(
@@ -41,10 +40,7 @@ class OmniCorp():
                 port=OMNICORP_PORT,
             )
             self.prefixes = await self.get_prefixes()
-            print('!!!!!!!!!!!!!!!!')
-            print(self.prefixes)
         except Exception as e:
-            print('LOOK Exception')
             print(e)
 
     async def close(self):

@@ -40,5 +40,5 @@ def test_omnicorp_overlay_with_set(property_coalesce):
     #There are 9 of them, for 10 in total
 
     assert(len(answer['message']['results'][0]['edge_bindings']) == 1)
-    assert(len(answer['message']['results'][0]['edge_bindings']['ab']) == 10)
+    assert(len(answer['message']['results'][0]['edge_bindings']['e00']) == 3)
 

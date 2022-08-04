@@ -30,6 +30,7 @@ class OmniCorp():
 
     async def connect(self):
         """Connect to PostgreSQL."""
+        print('connect')
         logger.debug("Creating PostgreSQL connection pool...")
         try:
             self.pool = await asyncpg.create_pool(
@@ -40,7 +41,10 @@ class OmniCorp():
                 port=OMNICORP_PORT,
             )
             self.prefixes = await self.get_prefixes()
+            print('!!!!!!!!!!!!!!!!')
+            print(self.prefixes)
         except Exception as e:
+            print('LOOK Exception')
             print(e)
 
     async def close(self):

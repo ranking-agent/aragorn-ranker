@@ -28,9 +28,11 @@ def test_omnicorp_overlay(omnicorp_input):
 def test_omnicorp_overlay_with_set(property_coalesce):
     """Test that omnicorp_overlay() runs without errors."""
     response = client.post('/omnicorp_overlay', json=property_coalesce)
+    assert response.status_code==200
 
     # load the json
-    answer = json.loads(response.content)
+    #answer = json.loads(response.content)
+    answer = response.json()
 
     x = answer['message']['results'][0]
 

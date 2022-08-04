@@ -21,7 +21,7 @@ x-translator:
   - Ranking Agent
   infores: "infores:aragorn-ranker"
 x-trapi:
-  version: 1.2.0
+  version: 1.3.0
   operations:
   - Rank by OmniCorp overlay
   - Rank by score

@@ -10,7 +10,7 @@ from fastapi import Query
 from fastapi.responses import JSONResponse
 from reasoner_pydantic import Response as PDResponse
 
-from ranker.shared.sources import source_sigmoid
+from ranker.shared.sources import source_sigmoid, DEFAULT_SOURCE_STEEPNESS
 from ranker.shared.util import create_log_entry
 
 logger = logging.getLogger(__name__)
@@ -72,7 +72,7 @@ async def query(
     # return the result to the caller
     return JSONResponse(content=in_message, status_code=status_code)
 
-def correct_weights(message, relevance=0.0025):
+def correct_weights(message, relevance=0.0025, source_steepness=DEFAULT_SOURCE_STEEPNESS):
     # constant count of all publications
     all_pubs = 27840000
 
@@ -245,7 +245,7 @@ def correct_weights(message, relevance=0.0025):
                         if item["original_attribute_name"].startswith("weight"):
                             # update the params
                             item["attribute_type_id"] = "biolink:has_numeric_value"
-                            item["value"] = item["value"] * source_sigmoid(edge_info_final, effective_pubs)
+                            item["value"] = item["value"] * source_sigmoid(edge_info_final, effective_pubs, source_steepness=source_steepness)
                             item["value_type_id"] = "EDAM:data_1669"
                             if edge_info_final is not None:
                                 if (

@@ -13,6 +13,8 @@ from reasoner_pydantic import Response as PDResponse
 from ranker.shared.sources import source_sigmoid, DEFAULT_SOURCE_STEEPNESS
 from ranker.shared.util import create_log_entry
 
+SOURCE_STEEPNESS = DEFAULT_SOURCE_STEEPNESS
+
 logger = logging.getLogger(__name__)
 
 async def query(
@@ -52,7 +54,7 @@ async def query(
     message = in_message["message"]
 
     try:
-        correct_weights(message, relevance)
+        correct_weights(message, relevance, source_steepness=SOURCE_STEEPNESS)
     except Exception as e:
         # put the error in the response
         status_code = 500

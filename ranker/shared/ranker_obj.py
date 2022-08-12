@@ -2,7 +2,7 @@
 
 import logging
 from collections import defaultdict
-from itertools import combinations, permutations, product
+from itertools import combinations, product
 from operator import itemgetter
 
 import numpy as np

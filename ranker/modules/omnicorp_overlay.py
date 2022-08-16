@@ -101,9 +101,9 @@ async def count_shared_pmids(
                     # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
                     {
                         "attribute_type_id": "biolink:original_knowledge_source",  # the ‘key’*
-                        "value": "infores:aragorn-ranker-ara",
+                        "value": "infores:omnicorp",
                         "value_type_id": "biolink:InformationResource",
-                        "attribute_source": "infores:aragorn-ranker-ara",
+                        "attribute_source": "infores:aragorn",
                     },
                 ],
                 "subject": pair[0],

@@ -6,7 +6,7 @@ from itertools import combinations, product
 from operator import itemgetter
 
 import numpy as np
-from ranker.shared.sources import source_weight, DEFAULT_SOURCE_WEIGHTS
+from ranker.shared.sources import source_weight, DEFAULT_SOURCE_WEIGHTS, UNKNOWN_SOURCE_WEIGHT
 
 logger = logging.getLogger(__name__)
 
@@ -15,11 +15,12 @@ class Ranker:
 
     DEFAULT_WEIGHT = 1e-2
 
-    def __init__(self, message, source_weights = DEFAULT_SOURCE_WEIGHTS):
+    def __init__(self, message, source_weights = DEFAULT_SOURCE_WEIGHTS, unknown_source_weight = UNKNOWN_SOURCE_WEIGHT):
         """Create ranker."""
         self.kgraph = message['knowledge_graph']
         self.qgraph = message['query_graph']
         self.source_weights = source_weights
+        self.unknown_source_weight = unknown_source_weight
 
         kedges = self.kgraph['edges']
 
@@ -148,12 +149,12 @@ class Ranker:
                 weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
 
                 for source, source_w in weight_dict[i][j].items():
-                    weight = weight + source_w * source_weight(source, self.source_weights)
+                    weight = weight + source_w * source_weight(source, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight
                 laplacian[i, i] += weight
                 laplacian[j, j] += weight
-
+        
         return laplacian
 
     def get_rgraph(self, answer):

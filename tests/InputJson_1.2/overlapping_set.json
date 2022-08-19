@@ -3,7 +3,8 @@
     "query_graph": {
       "nodes": {
         "n0": {
-          "categories": ["biolink:Gene"]
+          "categories": ["biolink:Gene"],
+          "is_set": "True"
         },
         "n1": {
           "categories": ["biolink:Gene"],
@@ -80,6 +81,9 @@
           "n0": [
             {
               "id": "knode_0"
+            },
+            {
+              "id": "knode_1"
             }
           ],
           "n1": [

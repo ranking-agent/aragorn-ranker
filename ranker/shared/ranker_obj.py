@@ -74,34 +74,16 @@ class Ranker:
 
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
-        # answer is a list of dicts with fields 'id' and 'bound'
-        rgraph = self.get_rgraph(answer)
 
-        laplacian = self.graph_laplacian(rgraph)
+        rnodes, redges = self.get_rgraph(answer)
+
+        laplacian = self.graph_laplacian((rnodes, redges))
         if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
             answer['score'] = 0
             return answer
 
-        #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
-        # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
-        # rgraph[0] is structured as a list of (qg_id, kg_id) tuples.  So we want the indices of rgraph[0] that have qg_id that occur only once in rgraph[0]
-        counts = defaultdict(int)
-        for q,k in rgraph[0]:
-            counts[q] += 1
-        nonset_node_ids = [ idx for idx,rnode_id in enumerate(rgraph[0]) if ( counts[rnode_id[0]] == 1 ) ]
-        #nonset_node_ids = [
-        #    idx for idx, rnode_id in enumerate(rgraph[0])
-        #    if (
-        #        (rnode_id[0] not in self.qnode_by_id) or
-        #        (not self.qnode_by_id[rnode_id[0]].get('is_set', False))
-        #    )
-        #]
-
-        # the nonset node count has to be at least 2 nodes
-        if len(nonset_node_ids) < 2:
-            score = 0
-        else:
-            score = 1 / kirchhoff(laplacian, nonset_node_ids)
+        probe_positions = range(len(rnodes))
+        score = 1 / kirchhoff(laplacian, probe_positions)
 
         # fail safe to nuke nans
         score = score if np.isfinite(score) and score >= 0 else -1
@@ -114,155 +96,157 @@ class Ranker:
 
     def graph_laplacian(self, rgraph):
         """Generate graph Laplacian."""
-        node_ids, edges = rgraph
-
-        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
-        num_nodes = len(node_ids)
-        weight_dict = []
-        for i in range(num_nodes):
-            weight_dict_i = []
-            for j in range(num_nodes):
-                weight_dict_i.append({})
-            weight_dict.append(weight_dict_i)
-
-        index = {node_id: node_ids.index(node_id) for node_id in node_ids}
-        for edge in edges:
-            subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
-            i, j = index[subject_id], index[object_id]
-            for k, v in edge_weight.items():
-                if k in weight_dict[i][j]:
-                    weight_dict[i][j][k] = max(weight_dict[i][j][k], v)
-                else:
-                    weight_dict[i][j][k] = v
+        rnodes, redges = rgraph
+        rnode_indices = {node: idx for idx, node in enumerate(rnodes)}
+        num_nodes = len(rnodes)
             
         laplacian = np.zeros((num_nodes, num_nodes))
-        for i in range(num_nodes):
-            for j in range(num_nodes):
-                weight = 0
-                for source, source_weight in weight_dict[i][j].items():
-                    weight = weight + source_weight
-                laplacian[i, j] += -weight
-                laplacian[j, i] += -weight
-                laplacian[i, i] += weight
-                laplacian[j, j] += weight
+        for redge in redges:
+            i, j = [rnode_indices[rnode] for rnode in redge['rnodes']]
+            weight = redge['weight']
+            laplacian[i, j] += -weight
+            laplacian[j, i] += -weight
+            laplacian[i, i] += weight
+            laplacian[j, j] += weight
 
         return laplacian
 
+    def merge_weights(self, weights, across=None):
+        if across == 'knode_pairs':
+            return np.mean(weights)
+        elif across == 'sources':
+            return sum(weights)
+        elif across == 'attributes':
+            return max(weights)
+        else:
+            raise ValueError(across)
+
     def get_rgraph(self, answer):
-        """Get "ranker" subgraph."""
-        rnodes = set()
-        redges = []
+        """
+        Builds the ranker graph.
 
-        # Checks if multiple nodes share node bindings 
-        rgraph_sets = [
-            node
-            for node in answer['node_bindings']
-            if len(answer['node_bindings'][node]) > 1 
-        ]
-        # get list of nodes, and knode_map
-        knode_map = defaultdict(set)
-        for nb in answer['node_bindings']:
-            # get the query node binding entry
-            qnode_id = nb
-            knode_ids: list = []
+        The ranker graph (rgraph) is a weighted version of the question graph. 
+        To compute the weights of each qedge, we aggregate weights from multiple
+        sources. There are several one-to-many relationships between the given
+        weights and the qedges.
 
-            # get all the knowledge node entries
-            for knode_id in answer['node_bindings'][nb]:
-                knode_ids.append(knode_id['id'])
+          1. A single qedge can be bound to multiple kedges.
 
-            for knode_id in knode_ids:
-                rnode_id = (qnode_id, knode_id)
-                rnodes.add(rnode_id)
-                knode_map[knode_id].add(rnode_id)
+          2. A single kedge can have weights from multiple sources.
 
-                if qnode_id in rgraph_sets:
-                    anchor_id = (f'{qnode_id}_anchor', '')
-                    rnodes.add(anchor_id)
-                    redges.append({
-                        'weight': {"anchor_node": 1e9},
-                        'subject': rnode_id,
-                        'object': anchor_id
-                    })
-        rnodes = list(rnodes)
+          3. Weights of a single source can come from multiple attributes.
 
-        # for eb in answer['edge_bindings']:
-        # qedge_id = eb
-        # kedges = answer['edge_bindings'][eb]
+        We repeatedly merge the weights from the attribute level up to the qedge
+        level using `merge_weights` to assign each qedge a single weight.
+        """
 
-        # get "result" edges
+        # Create ranker graph nodes; one node per qnode_id
+        rnodes = list(answer['node_bindings'].keys())
+
+        # Build mapping to and from qnodes and their knodes
+        knode_to_qnodes = defaultdict(lambda: [])
+        qnode_to_knodes = defaultdict(lambda: set())
+        for qnode_id, qnode_bindings in answer['node_bindings'].items():
+            for qnode_binding in qnode_bindings:
+                knode_to_qnodes[qnode_binding['id']].append(qnode_id)
+                qnode_to_knodes[qnode_id].add(qnode_binding['id'])
+
+        # Tree of pre-merge edge weights where for each edge/qnode pair, we branch on
+        # (1) distinct knode pairs for each qnode pair
+        # (2) distinct weight sources for each knode pair
+        # which then map to weights (from different attributes) for each weight source
+        weight_tree = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: [])))
+
+        # Loop over each kedge bound to this result
         for qedge_id, kedge_bindings in answer['edge_bindings'].items():
             for kedge_binding in kedge_bindings:
-                """
-                The code for generating pairs below appears unusual, but we need
-                it in order to properly handle unlikely set situations.
-
-                Consider this question graph: n0 --e0--> n1.
-
-                Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2, and
-                e0 is bound to this knowledge graph edge: D1 --> D2.
-
-                Following the direction of the kedge, we expect the following
-                edges in the rgraph:
-                (n0, D1) --> (n1, D2)
-                (n1, D1) --> (n0, D2)
-
-                The `product` used below can generate these pairs, but it can
-                also create the following edges:
-                (n1, D1) --> (n1, D2)
-                (n0, D1) --> (n0, D2)
-            
-                The `if pair[0][0] != pair[1][0]` prevents this from happening.
-                """
                 kedge = self.kedge_by_id[kedge_binding['id']]
                 ksubject, kobject = kedge['subject'], kedge['object']
-                try:
+
+                # Skip this kedge if it has no attributes (meaning no weight)
+                if kedge_binding.get('attributes') is None:
+                    continue
+
+                # Get the sources and weights of this kedge 
+                weights = defaultdict(lambda: [])
+                for attribute in kedge_binding['attributes']:
+                    # Search for the weight attribute
+                    if attribute['original_attribute_name'].startswith('weight'):
+                        source = 'unspecified'
+                        if attribute.get('attributes', []) is not None:
+                            for sub_attr in attribute.get('attributes', []):
+                                if sub_attr.get('original_attribute_name', None) == 'aragorn_weight_source':
+                                    source = sub_attr.get('value', source)
+                                    break
+
+                        weights[source].append(attribute['value'])
+
+                # Skip this kedge if it has no weights
+                if len(weights) == 0:
+                    continue
+
+
+                if qedge_id in self.qedge_by_id:
+                    # If the kedge is bound to a qedge, just use the endpoints of the qedge
                     qedge = self.qedge_by_id[qedge_id]
-                    qedge_nodes = qedge['subject'], qedge['object']
-                    pairs = [pair for pair in product(
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in qedge_nodes and rnode[1] == ksubject
-                        ],
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in qedge_nodes and rnode[1] == kobject
-                        ],
-                    ) if pair[0][0] != pair[1][0]]
-                except KeyError:
-                    # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
-                    # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
-                    pairs = set(tuple(sorted(pair)) for pair in product(
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[1] == ksubject
-                        ],
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[1] == kobject
-                        ],
-                    ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
+                    qsubject, qobject = qedge['subject'], qedge['object']
+                    """
+                    This kedge can create up to 2 edges in our pre-merged rgraph
 
-                for subject, object in pairs:
-                    # get the weight from the edge binding
-                    if kedge_binding.get('attributes') is not None:
-                        for item in kedge_binding['attributes']:
-                            # search for the weight attribute
-                            if item['original_attribute_name'].startswith('weight'):
-                                
-                                source_key = 'unspecified'
-                                if item.get('attributes',[]) is not None:
-                                    for sub_attr in item.get('attributes',[]):
-                                        if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
-                                            source_key = sub_attr.get('value',source_key)
-                                            break
+                    Consider this question graph: n0 --e0--> n1.
 
-                                edge = {
-                                    'weight': {source_key: item['value']},
-                                    'subject': subject,
-                                    'object': object
-                                }
+                    Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2,
+                    and e0 is bound to this knowledge graph edge: D1 --> D2.
 
-                                redges.append(edge)
+                    Following the direction of the kedge, we expect the
+                    following edges in the rgraph:
+                    (n0, D1) --> (n1, D2)
+                    (n1, D1) --> (n0, D2)
+                    """
+                    knode_pairs = []
+                    if ksubject in qnode_to_knodes[qsubject] and kobject in qnode_to_knodes[qobject]:
+                        knode_pairs.append(frozenset(((qsubject, ksubject), (qobject, kobject))))
+                    if ksubject in qnode_to_knodes[qobject] and kobject in qnode_to_knodes[qsubject]:
+                        knode_pairs.append(frozenset(((qobject, ksubject), (qsubject, kobject))))
+                else:
+                    # Support edges aren't bound to particular qnodes, so we place them everywhere they fit
+                    """
+                    We store both the qnode_id and knode_id in each knode_pair
+                    because a pair of knode_id is insufficient. Consider this
+                    example:
+                    (n0, D1) --> (n1, D2)
+                    (n1, D1) --> (n0, D2)
+
+                    These are different edges, but storing only knode_id info
+                    would treat them as identical.
+                    """
+                    knode_pairs = set(frozenset(pair) for pair in product(
+                        [(qnode_id, ksubject) for qnode_id in knode_to_qnodes[ksubject]],
+                        [(qnode_id, kobject) for qnode_id in knode_to_qnodes[kobject]]
+                    ) if pair[0][0] != pair[1][0])  # Excludes edges between qnode_id/knode_id pairs with same qnode_id (e.g., n1 -> n1)
+                    
+
+                for knode_pair in knode_pairs:
+                    qnode_pair = frozenset((min(knode_pair)[0], max(knode_pair)[0]))
+                    for source, values in weights.items():
+                        weight_tree[qnode_pair][knode_pair][source].extend(values)
+
+        # Now let's merge weights of the tree from bottom to top
+        redges = []
+        for qnode_pair in weight_tree:
+            # Merge weights with the same qnodes but different knodes
+            knode_pair_weights = []
+            for knode_pair in weight_tree[qnode_pair]:
+                # Merge weights with the same qnodes and knodes from different sources
+                source_weights = []
+                for source, weights in weight_tree[qnode_pair][knode_pair].items():
+                    # Merge weights with the same qnodes, knodes, and source from different attributes
+                    source_weights.append(self.merge_weights(weights, 'attributes'))
+                knode_pair_weights.append(self.merge_weights(source_weights, 'sources'))
+            redges.append({
+                'rnodes': qnode_pair,
+                'weight': self.merge_weights(knode_pair_weights, 'knode_pairs')
+            })
 
         return rnodes, redges
 

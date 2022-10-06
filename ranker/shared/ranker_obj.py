@@ -259,7 +259,7 @@ class Ranker:
                     edge_vals = self.rank_vals.get(kedge_binding['id'],None)
                     if edge_vals is not None:
                         edge = {
-                            'weight': {edge_vals.pop('source'): edge_vals},
+                            'weight': {edge_vals['source']: {k:v for k,v in edge_vals.items() if k != 'source'}},
                             'subject': subject,
                             'object': object
                         }
@@ -310,7 +310,7 @@ def get_vals(edges,source_steepness=DEFAULT_SOURCE_STEEPNESS, unknown_source_ste
         # init storage for the publications and their count
         publications = []
         num_publications = 0
-        edge_vals[edge] = {}    
+            
         p_value = None    
         if attributes is not None:
             # for each data attribute collect the needed params
@@ -386,6 +386,7 @@ def get_vals(edges,source_steepness=DEFAULT_SOURCE_STEEPNESS, unknown_source_ste
                 num_publications = len(publications)
 
             effective_pubs = num_publications + 1  # consider the curation a pub
+            edge_vals[edge] = {}
             if p_value is not None:
                 edge_vals[edge]['p-value'] = 1/p_value
             edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, effective_pubs, source_steepness=source_steepness, unknown_source_steepness=unknown_source_steepness)

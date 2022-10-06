@@ -7,6 +7,9 @@ from operator import itemgetter
 
 import numpy as np
 from ranker.shared.sources import source_weight, DEFAULT_SOURCE_WEIGHTS, UNKNOWN_SOURCE_WEIGHT
+from ranker.shared.sources import source_sigmoid, DEFAULT_SOURCE_STEEPNESS, UNKNOWN_SOURCE_STEEPNESS
+
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +45,7 @@ class Ranker:
 
                 if not found:
                     kedges[kedge]['attributes'].append(attribute)
-
+        self.rank_vals = get_vals(kedges)
         self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
         self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}
         self.kedge_by_id = {n: self.kgraph['edges'][n] for n in kedges}
@@ -253,25 +256,15 @@ class Ranker:
 
                 for subject, object in pairs:
                     # get the weight from the edge binding
-                    if kedge_binding.get('attributes') is not None:
-                        for item in kedge_binding['attributes']:
-                            # search for the weight attribute
-                            if item['original_attribute_name'].startswith('weight'):
-                                
-                                source_key = 'unspecified'
-                                if item.get('attributes',[]) is not None:
-                                    for sub_attr in item.get('attributes',[]):
-                                        if sub_attr.get('original_attribute_name',None) == 'aragorn_weight_source':
-                                            source_key = sub_attr.get('value',source_key)
-                                            break
+                    edge_vals = self.rank_vals.get(kedge_binding['id'],None)
+                    if edge_vals is not None:
+                        edge = {
+                            'weight': {edge_vals.pop('source'): edge_vals},
+                            'subject': subject,
+                            'object': object
+                        }
 
-                                edge = {
-                                    'weight': {source_key: item['value']},
-                                    'subject': subject,
-                                    'object': object
-                                }
-
-                                redges.append(edge)
+                        redges.append(edge)
 
         return rnodes, redges
 
@@ -301,3 +294,100 @@ def matching_subsets(patterns, superset):
         if patterns(subset):
             subsets.append(subset)
     return subsets
+
+def get_vals(edges,source_steepness=DEFAULT_SOURCE_STEEPNESS, unknown_source_steepness = UNKNOWN_SOURCE_STEEPNESS):
+    # constant count of all publications
+    all_pubs = 27840000
+
+    # get the knowledge graph edges
+    #edges = kgraph["edges"]
+    edge_vals = {}
+    # for each knowledge graph edge
+    for edge in edges:
+        # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
+        attributes = edges[edge].get("attributes", None)
+
+        # init storage for the publications and their count
+        publications = []
+        num_publications = 0
+        edge_vals[edge] = {}    
+        p_value = None    
+        if attributes is not None:
+            # for each data attribute collect the needed params
+            for attribute in attributes:
+                # This picks up omnicorp
+                if attribute.get("original_attribute_name", None) is not None:
+                    # is this the publication list
+                    if attribute["original_attribute_name"].startswith(
+                        "publications"
+                    ):
+                        publications = attribute["value"]
+                    # else is this the number of publications
+                    elif attribute["original_attribute_name"].startswith(
+                        "num_publications"
+                    ):
+                        num_publications = attribute.get("value", 0)
+                    elif 'p_value' in attribute["original_attribute_name"] or 'p-value' in attribute["original_attribute_name"]:
+                        p_value = attribute["value"]
+                # This picks up Text Miner KP
+                elif (
+                    attribute["attribute_type_id"] == "biolink:supporting_document"
+                ):
+                    publications = attribute["value"]
+                    if isinstance(publications, str):
+                        publications = [publications]
+                # This picks up how BTE returns pubs
+                elif attribute["attribute_type_id"] == "biolink:publications":
+                    publications = attribute["value"]
+                elif 'p_value' in attribute["attribute_type_id"] or 'p-value' in attribute["attribute_type_id"]:
+                    p_value = attribute["value"]
+                
+
+            # Record the source of origination
+            edge_info = {
+                "biolink:aggregator_knowledge_source": "not_found",
+                "biolink:original_knowledge_source": "not_found",
+                "biolink:primary_knowledge_source": "not_found",
+            }
+            for attribute in reversed(attributes):
+                if attribute.get("attribute_type_id", None) is not None:
+                    if attribute["attribute_type_id"] in edge_info.keys():
+                        v = attribute.get("value", None)
+                        if type(v) is list:
+                            v = v[0]
+                        if v is not None:
+                            edge_info[attribute["attribute_type_id"]] = v
+                        else:
+                            edge_info[
+                                attribute["attribute_type_id"]
+                            ] = "unspecified"
+
+            if edge_info["biolink:original_knowledge_source"] != "not_found":
+                edge_info_final = edge_info["biolink:original_knowledge_source"]
+            elif edge_info["biolink:primary_knowledge_source"] != "not_found":
+                edge_info_final = edge_info["biolink:primary_knowledge_source"]
+            elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
+                edge_info_final = edge_info["biolink:aggregator_knowledge_source"]
+            else:
+                edge_info_final = "unspecified"
+
+            # if there was only 1 publication value found insure it wasnt a character separated list
+            if len(publications) == 1:
+                if "|" in publications[0]:
+                    publications = publications[0].split("|")
+                elif "," in publications[0]:
+                    publications = publications[0].split(",")
+
+                # get the real publication count
+                num_publications = len(publications)
+
+            # if there was no publication count found revert to the number of individual values
+            if num_publications == 0:
+                num_publications = len(publications)
+
+            effective_pubs = num_publications + 1  # consider the curation a pub
+            if p_value is not None:
+                edge_vals[edge]['p-value'] = 1/p_value
+            edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, effective_pubs, source_steepness=source_steepness, unknown_source_steepness=unknown_source_steepness)
+            edge_vals[edge]['source'] = edge_info_final
+    return edge_vals

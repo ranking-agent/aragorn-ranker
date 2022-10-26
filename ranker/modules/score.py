@@ -42,6 +42,9 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
     # get a reference to the results
     answers = message["results"]
 
+    # get profile
+    profile = in_message.get("profile")
+
     try:
         # resistance distance ranking
         pr = Ranker(message)

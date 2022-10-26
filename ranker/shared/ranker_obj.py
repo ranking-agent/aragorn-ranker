@@ -6,7 +6,7 @@ from itertools import combinations, product
 from operator import itemgetter
 
 import numpy as np
-from ranker.shared.sources import source_weight, DEFAULT_SOURCE_WEIGHTS, UNKNOWN_SOURCE_WEIGHT
+from ranker.shared.sources import source_weight, get_profile, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
 from ranker.shared.sources import source_sigmoid, DEFAULT_SOURCE_STEEPNESS, UNKNOWN_SOURCE_STEEPNESS
 
 import re
@@ -18,12 +18,16 @@ class Ranker:
 
     DEFAULT_WEIGHT = 1e-2
 
-    def __init__(self, message, source_weights = DEFAULT_SOURCE_WEIGHTS, unknown_source_weight = UNKNOWN_SOURCE_WEIGHT):
+    def __init__(self, message, profile = "blended"):
         """Create ranker."""
         self.kgraph = message['knowledge_graph']
         self.qgraph = message['query_graph']
+
+        source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
+        self.source_transformation = source_transformation
+        self.unknown_source_transformation = unknown_source_transformation
 
         kedges = self.kgraph['edges']
 
@@ -45,7 +49,7 @@ class Ranker:
 
                 if not found:
                     kedges[kedge]['attributes'].append(attribute)
-        self.rank_vals = get_vals(kedges)
+        self.rank_vals = get_vals(kedges, self.source_transformation, self.unknown_source_transformation)
         self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
         self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}
         self.kedge_by_id = {n: self.kgraph['edges'][n] for n in kedges}
@@ -134,11 +138,17 @@ class Ranker:
         for edge in edges:
             subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
             i, j = index[subject_id], index[object_id]
-            for k, v in edge_weight.items():
-                if k in weight_dict[i][j]:
-                    weight_dict[i][j][k] = max(weight_dict[i][j][k], v)
-                else:
-                    weight_dict[i][j][k] = v
+            for k in edge_weight.keys():
+                for l in edge_weight[k].keys():
+                    for v in edge_weight[k][l]:
+                        if k in weight_dict[i][j]:
+                            if l in weight[i][j][k]:
+                                weight_dict[i][j][k][l] = max(weight_dict[i][j][k][l], v)
+                            else:
+                                weight_dict[i][j][k][l] = v
+                        else:
+                            weight_dict[i][j][k] = {}
+                            weight_dict[i][j][k][l] = v
 
         qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
         laplacian = np.zeros((num_nodes, num_nodes))
@@ -151,8 +161,10 @@ class Ranker:
                 # Set default weight (or 0 when edge is not a qedge)
                 weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
 
-                for source, source_w in weight_dict[i][j].items():
-                    weight = weight + source_w * source_weight(source, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
+                for source, source_w, property in weight_dict[i][j].keys():
+                    for property in weight_dict[i][j][source].keys:
+                        for source_w in weight_dict[i][j][source][property].items:
+                            weight = weight + source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight
                 laplacian[i, i] += weight
@@ -295,7 +307,7 @@ def matching_subsets(patterns, superset):
             subsets.append(subset)
     return subsets
 
-def get_vals(edges,source_steepness=DEFAULT_SOURCE_STEEPNESS, unknown_source_steepness = UNKNOWN_SOURCE_STEEPNESS):
+def get_vals(edges, source_transfroamtion, unknown_source_transformation):
     # constant count of all publications
     all_pubs = 27840000
 
@@ -388,7 +400,7 @@ def get_vals(edges,source_steepness=DEFAULT_SOURCE_STEEPNESS, unknown_source_ste
             effective_pubs = num_publications + 1  # consider the curation a pub
             edge_vals[edge] = {}
             if p_value is not None:
-                edge_vals[edge]['p-value'] = 1/p_value
-            edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, effective_pubs, source_steepness=source_steepness, unknown_source_steepness=unknown_source_steepness)
+                edge_vals[edge]['p-value'] = source_sigmoid(edge_info_final, "p-value", p_value, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+            edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             edge_vals[edge]['source'] = edge_info_final
     return edge_vals

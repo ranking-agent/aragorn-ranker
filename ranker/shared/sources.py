@@ -20,30 +20,24 @@ BLENDED_PROFILE = {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:semmeddb": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         }
     },
@@ -55,18 +49,14 @@ BLENDED_PROFILE = {
         "publications": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         },
         "unkown_property": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         }
     }
 }
@@ -88,30 +78,24 @@ CURATED_PROFILE = {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:semmeddb": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         }
     },
@@ -123,18 +107,14 @@ CURATED_PROFILE = {
         "publications": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         },
         "unkown_property": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         }
     }
 }
@@ -156,30 +136,24 @@ CORRELATED_PROFILE = {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:semmeddb": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         }
     },
@@ -191,18 +165,14 @@ CORRELATED_PROFILE = {
         "publications": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         },
         "unkown_property": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         }
     }
 }
@@ -224,30 +194,24 @@ CLINICAL_PROFILE = {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         },
         "infores:semmeddb": {
             "publications": {
                 "lower": 0,
                 "upper": 1,
-                "start": 0,
-                "initial_value": 1,
-                "explanatory_value": .1,
-                "response_value": .5
+                "midpoint": 0,
+                "rate": 5.574213221
             }
         }
     },
@@ -259,18 +223,14 @@ CLINICAL_PROFILE = {
         "publications": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         },
         "unkown_property": {
             "lower": 0,
             "upper": 1,
-            "start": 0,
-            "initial_value": 1,
-            "explanatory_value": .1,
-            "response_value": .5
+            "midpoint": 0,
+            "rate": 5.574213221
         }
     }
 }
@@ -294,12 +254,9 @@ def source_sigmoid(source, property, value, source_transformation = BLENDED_PROF
     parameters = source_transformation.get(source, unknown_source_transformation).get(property, unknown_source_transformation["unknown_property"])
     upper = parameters["upper"]
     lower = parameters["lower"]
-    initial = parameters["initial_value"]
-    start = parameters["start"]
-    explanatory = parameters["explanatory_value"]
-    response = parameters["response_value"]
-    rate = (math.log((upper - response) / (initial * (response - lower))) / (math.log(math.e) * (explanatory - start))) * -1
-    return lower + ((upper - lower) / (1 + initial * exp(-1 * rate * (value - start))))
+    midpoint = parameters["midpoint"]
+    rate = parameters["rate"]
+    return lower + ((upper - lower) / (1 + math.exp(-1 * rate * (value - midpoint))))
 
 def get_profile(profile = "blended"):
     if profile == "clinical":

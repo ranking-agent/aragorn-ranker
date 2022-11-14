@@ -52,7 +52,7 @@ BLENDED_PROFILE = {
             "midpoint": 0,
             "rate": 5.574213221
         },
-        "unkown_property": {
+        "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
@@ -110,7 +110,7 @@ CURATED_PROFILE = {
             "midpoint": 0,
             "rate": 5.574213221
         },
-        "unkown_property": {
+        "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
@@ -168,7 +168,7 @@ CORRELATED_PROFILE = {
             "midpoint": 0,
             "rate": 5.574213221
         },
-        "unkown_property": {
+        "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
@@ -226,7 +226,7 @@ CLINICAL_PROFILE = {
             "midpoint": 0,
             "rate": 5.574213221
         },
-        "unkown_property": {
+        "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,

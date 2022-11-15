@@ -3,61 +3,24 @@ from cmath import exp
 import math
 from symbol import parameters
 
-BLENDED_PROFILE = {
+BLENDED_PROFILE = { 
     "source_weights": {
-        "infores:automat-pharos": {
-            "publications": 0.7,
-        },
-        "infores:aragorn-ranker-ara": {
-            "publications": 0.25,
-        },
-        "infores:semmeddb": {
-            "publications": 0.05,
-        }
-    },
+
+    },   
     "source_transformation": {
-        "infores:automat-pharos": {
-            "publications": {
-                "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": 5.574213221
-            }
-        },
-        "infores:aragorn-ranker-ara": {
-            "publications": {
-                "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": 5.574213221
-            }
-        },
-        "infores:semmeddb": {
-            "publications": {
-                "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": 5.574213221
-            }
-        }
     },
     "unknown_source_weight": {
-        "publicaitons": 1,
+        "publications": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
         "publications": {
-            "lower": 0,
-            "upper": 1,
-            "midpoint": 0,
-            "rate": 5.574213221
-        },
-        "unknown_property": {
-            "lower": 0,
-            "upper": 1,
-            "midpoint": 0,
-            "rate": 5.574213221
-        }
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 0.549306144334055
+            }
+        
     }
 }
 
@@ -79,7 +42,13 @@ CURATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
@@ -87,7 +56,13 @@ CURATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:semmeddb": {
@@ -95,12 +70,18 @@ CURATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         }
     },
     "unknown_source_weight": {
-        "publicaitons": 1,
+        "publications": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
@@ -108,13 +89,19 @@ CURATED_PROFILE = {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
+        },
+        "p-value": {
+            "lower": 1,
+            "upper": 0,
+            "midpoint": 0.055,
+            "rate": 200.574213221
         },
         "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
         }
     }
 }
@@ -137,7 +124,13 @@ CORRELATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
@@ -145,7 +138,13 @@ CORRELATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:semmeddb": {
@@ -153,12 +152,18 @@ CORRELATED_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         }
     },
     "unknown_source_weight": {
-        "publicaitons": 1,
+        "publications": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
@@ -166,13 +171,19 @@ CORRELATED_PROFILE = {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
+        },
+        "p-value": {
+            "lower": 1,
+            "upper": 0,
+            "midpoint": 0.055,
+            "rate": 200.574213221
         },
         "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
         }
     }
 }
@@ -195,7 +206,13 @@ CLINICAL_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:aragorn-ranker-ara": {
@@ -203,7 +220,13 @@ CLINICAL_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         },
         "infores:semmeddb": {
@@ -211,12 +234,18 @@ CLINICAL_PROFILE = {
                 "lower": 0,
                 "upper": 1,
                 "midpoint": 0,
-                "rate": 5.574213221
+                "rate": .574213221
+            },
+            "p-value": {
+                "lower": 1,
+                "upper": 0,
+                "midpoint": 0.055,
+                "rate": 200.574213221
             }
         }
     },
     "unknown_source_weight": {
-        "publicaitons": 1,
+        "publications": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
@@ -224,13 +253,19 @@ CLINICAL_PROFILE = {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
+        },
+        "p-value": {
+            "lower": 1,
+            "upper": 0,
+            "midpoint": 0.055,
+            "rate": 200.574213221
         },
         "unknown_property": {
             "lower": 0,
             "upper": 1,
             "midpoint": 0,
-            "rate": 5.574213221
+            "rate": .574213221
         }
     }
 }

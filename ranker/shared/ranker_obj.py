@@ -138,16 +138,18 @@ class Ranker:
             subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
             subject_index, object_id = index[subject_id], index[object_id]
             for edge_source in edge_weight.keys():
+                if not isinstance(edge_weight[edge_source], dict):
+                    continue
                 for edge_property in edge_weight[edge_source].keys():
-                    for val in edge_weight[edge_source][edge_property]:
-                        if edge_source in weight_dict[subject_index][object_id]:
-                            if edge_property in weight[subject_index][object_id][edge_source]:
-                                weight_dict[subject_index][object_id][edge_source][edge_property] = max(weight_dict[subject_index][object_id][edge_source][edge_property], val)
-                            else:
-                                weight_dict[subject_index][object_id][edge_source][edge_property] = val
+                    val = edge_weight[edge_source][edge_property]
+                    if edge_source in weight_dict[subject_index][object_id]:
+                        if edge_property in weight_dict[subject_index][object_id][edge_source]:
+                            weight_dict[subject_index][object_id][edge_source][edge_property] = max(weight_dict[subject_index][object_id][edge_source][edge_property], val)
                         else:
-                            weight_dict[subject_index][object_id][edge_source] = {}
                             weight_dict[subject_index][object_id][edge_source][edge_property] = val
+                    else:
+                        weight_dict[subject_index][object_id][edge_source] = {}
+                        weight_dict[subject_index][object_id][edge_source][edge_property] = val
 
         qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
         laplacian = np.zeros((num_nodes, num_nodes))
@@ -162,8 +164,8 @@ class Ranker:
 
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
-                        for source_w in weight_dict[subject_index][object_id][source][property].items():
-                            weight = weight + source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
+                        source_w = weight_dict[subject_index][object_id][source][property]
+                        weight = weight + source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
                 laplacian[subject_index, object_id] += -weight
                 laplacian[object_id, subject_index] += -weight
                 laplacian[subject_index, subject_index] += weight

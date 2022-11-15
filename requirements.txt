@@ -11,5 +11,5 @@ uvicorn==0.13.3
 uvloop==0.14.0
 numpy==1.19.4
 httptools==0.1.1
-reasoner-pydantic==1.2.0.4
+reasoner-pydantic==3.0.0
 yappi==1.3.2

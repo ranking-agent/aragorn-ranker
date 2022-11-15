@@ -16,7 +16,7 @@ from ranker.util.omnicorp_shared_pmids import shared_pmids
 from ranker.util.omnicorp_get_node_pmids import get_node_pmids
 
 # set the app version
-APP_VERSION = '2.2.2'
+APP_VERSION = '2.3.1'
 
 APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 
@@ -127,7 +127,7 @@ def construct_open_api_schema():
     if servers_conf:
         for s in servers_conf:
             if s['description'].startswith('Default'):
-                s['url'] = server_root + '1.2' if server_root != '/' else s['url']
+                s['url'] = server_root + '1.3' if server_root != '/' else s['url']
                 s['x-maturity'] = os.environ.get("MATURITY_VALUE", "maturity")
                 s['x-location'] = os.environ.get("LOCATION_VALUE", "location")
 

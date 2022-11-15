@@ -138,8 +138,6 @@ class Ranker:
             subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
             subject_index, object_id = index[subject_id], index[object_id]
             for edge_source in edge_weight.keys():
-                if not isinstance(edge_weight[edge_source], dict):
-                    continue
                 for edge_property in edge_weight[edge_source].keys():
                     val = edge_weight[edge_source][edge_property]
                     if edge_source in weight_dict[subject_index][object_id]:
@@ -204,7 +202,7 @@ class Ranker:
                     anchor_id = (f'{qnode_id}_anchor', '')
                     rnodes.add(anchor_id)
                     redges.append({
-                        'weight': {"anchor_node": 1e9},
+                        'weight': {"anchor_node":{"anchor_node":1e9}},
                         'subject': rnode_id,
                         'object': anchor_id
                     })

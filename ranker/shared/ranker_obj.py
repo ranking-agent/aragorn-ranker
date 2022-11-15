@@ -6,8 +6,7 @@ from itertools import combinations, product
 from operator import itemgetter
 
 import numpy as np
-from ranker.shared.sources import source_weight, get_profile, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
-from ranker.shared.sources import source_sigmoid, DEFAULT_SOURCE_STEEPNESS, UNKNOWN_SOURCE_STEEPNESS
+from ranker.shared.sources import source_weight, get_profile, source_sigmoid, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
 
 import re
 

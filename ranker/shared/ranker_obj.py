@@ -162,8 +162,8 @@ class Ranker:
                 weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
 
                 for source in weight_dict[subject_index][object_id].keys():
-                    for property in weight_dict[subject_index][object_id][source].keys:
-                        for source_w in weight_dict[subject_index][object_id][source][property].items:
+                    for property in weight_dict[subject_index][object_id][source].keys():
+                        for source_w in weight_dict[subject_index][object_id][source][property].items():
                             weight = weight + source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
                 laplacian[subject_index, object_id] += -weight
                 laplacian[object_id, subject_index] += -weight

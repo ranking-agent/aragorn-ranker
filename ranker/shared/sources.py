@@ -15,12 +15,17 @@ BLENDED_PROFILE = {
     },
     "unknown_source_transformation": {
         "publications": {
-                "lower": -1,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": 0.549306144334055
-            }
-        
+            "lower": -1,
+            "upper": 1,
+            "midpoint": 0,
+            "rate": 0.549306144334055
+        },
+        "unknown_property": {
+            "lower": 0,
+            "upper": 0,
+            "midpoint": 0,
+            "rate": 0
+        }
     }
 }
 

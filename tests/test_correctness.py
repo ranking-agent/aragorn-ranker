@@ -62,7 +62,7 @@ def test_pubs(pub_test):
                     weights[kedge_id] = att['value']
 
     # there are 3 pubs in the malformed array, and a pubcount of 2
-    assert weights['BTE_TM_5'] < weights['BTE_semmed_3'] # For now, we weigh text-miner as 0
+    assert weights['BTE_TM_5'] > weights['BTE_semmed_3'] # For now, we weigh text-miner as 0
     assert weights['BTE_semmed_3'] > weights['omnicorp_497']
     assert weights['omnicorp_497'] > weights['BTE_0']
 

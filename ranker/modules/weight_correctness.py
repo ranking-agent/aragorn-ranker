@@ -248,7 +248,7 @@ def correct_weights(message, relevance=0.0025, source_steepness=BLENDED_PROFILE[
                         if item["original_attribute_name"].startswith("weight"):
                             # update the params
                             item["attribute_type_id"] = "biolink:has_numeric_value"
-                            item["value"] = item["value"] * source_sigmoid(edge_info_final, "publications", effective_pubs, source_steepness=source_steepness, unknown_source_steepness=unknown_source_steepness)
+                            item["value"] = item["value"] * source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_steepness, unknown_source_transformation=unknown_source_steepness)
                             item["value_type_id"] = "EDAM:data_1669"
                             if edge_info_final is not None:
                                 if (

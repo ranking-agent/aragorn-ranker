@@ -12,8 +12,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from reasoner_pydantic import Response as PDResponse
 from reasoner_pydantic import CURIE
-from ranker.aux.omnicorp_shared_pmids import shared_pmids
-from ranker.aux.omnicorp_get_node_pmids import get_node_pmids
+from ranker.util.omnicorp_shared_pmids import shared_pmids
+from ranker.util.omnicorp_get_node_pmids import get_node_pmids
 
 # set the app version
 APP_VERSION = '2.3.1'

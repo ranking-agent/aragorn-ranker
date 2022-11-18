@@ -22,12 +22,12 @@ class Ranker:
         self.kgraph = message['knowledge_graph']
         self.qgraph = message['query_graph']
 
-        source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
+        source_weights, unknown_source_weight, source_transformation, unknown_source_transformation, omnicorp_relevence = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
-
+        self.omnicorp_relevence = omnicorp_relevence
         kedges = self.kgraph['edges']
 
         attribute = {'original_attribute_name': 'weight',
@@ -48,7 +48,8 @@ class Ranker:
 
                 if not found:
                     kedges[kedge]['attributes'].append(attribute)
-        self.rank_vals = get_vals(kedges, self.source_transformation, self.unknown_source_transformation)
+        self.node_pubs = get_node_pubs(self.kgraph)
+        self.rank_vals = get_vals(kedges, self.node_pubs, self.source_transformation, self.unknown_source_transformation,self.omnicorp_relevence)
         self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
         self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}
         self.kedge_by_id = {n: self.kgraph['edges'][n] for n in kedges}
@@ -306,10 +307,30 @@ def matching_subsets(patterns, superset):
             subsets.append(subset)
     return subsets
 
-def get_vals(edges, source_transfroamtion, unknown_source_transformation):
+def get_node_pubs(kgraph):
+    node_pubs: dict = {}
+    for n in kgraph["nodes"]:
+            # init the count value
+            omnicorp_article_count: int = 0
+
+            # get the article count atribute
+            for p in kgraph["nodes"][n].get("attributes",[]):
+                # is this what we are looking for
+                if p["original_attribute_name"] == "omnicorp_article_count":
+                    # save it
+                    omnicorp_article_count = p["value"]
+
+                    # no need to continue
+                    break
+
+            # add the node d and count to the dict
+            node_pubs.update({n: omnicorp_article_count})
+    return node_pubs
+
+def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformation,omnicorp_relevence):
     # constant count of all publications
     all_pubs = 27840000
-
+    
     # get the knowledge graph edges
     #edges = kgraph["edges"]
     edge_vals = {}
@@ -395,8 +416,20 @@ def get_vals(edges, source_transfroamtion, unknown_source_transformation):
             # if there was no publication count found revert to the number of individual values
             if num_publications == 0:
                 num_publications = len(publications)
+            if (
+                    edges[edge].get("predicate")
+                    == "biolink:occurs_together_in_literature_with"
+                ):
+                    subject_pubs = int(node_pubs[edges[edge]["subject"]])
+                    object_pubs = int(node_pubs[edges[edge]["object"]])
 
-            effective_pubs = num_publications + 1  # consider the curation a pub
+                    cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (
+                        object_pubs / all_pubs
+                    )
+                    cov = max((cov, 0.0))
+                    effective_pubs = cov * all_pubs * omnicorp_relevence
+            else:
+                effective_pubs = num_publications + 1  # consider the curation a pub
             edge_vals[edge] = {}
             if p_value is not None:
                 edge_vals[edge]['p-value'] = source_sigmoid(edge_info_final, "p-value", p_value, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)

@@ -22,12 +22,11 @@ class Ranker:
         self.kgraph = message['knowledge_graph']
         self.qgraph = message['query_graph']
 
-        source_weights, unknown_source_weight, source_transformation, unknown_source_transformation, omnicorp_relevence = get_profile(profile)
+        source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
-        self.omnicorp_relevence = omnicorp_relevence
         kedges = self.kgraph['edges']
 
         attribute = {'original_attribute_name': 'weight',
@@ -49,7 +48,7 @@ class Ranker:
                 if not found:
                     kedges[kedge]['attributes'].append(attribute)
         self.node_pubs = get_node_pubs(self.kgraph)
-        self.rank_vals = get_vals(kedges, self.node_pubs, self.source_transformation, self.unknown_source_transformation,self.omnicorp_relevence)
+        self.rank_vals = get_vals(kedges, self.node_pubs, self.source_transformation, self.unknown_source_transformation)
         self.qnode_by_id = {n: self.qgraph['nodes'][n] for n in self.qgraph['nodes']}
         self.qedge_by_id = {n: self.qgraph['edges'][n] for n in self.qgraph['edges']}
         self.kedge_by_id = {n: self.kgraph['edges'][n] for n in kedges}
@@ -327,7 +326,7 @@ def get_node_pubs(kgraph):
             node_pubs.update({n: omnicorp_article_count})
     return node_pubs
 
-def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformation,omnicorp_relevence):
+def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformation):
     # constant count of all publications
     all_pubs = 27840000
     
@@ -416,6 +415,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
             # if there was no publication count found revert to the number of individual values
             if num_publications == 0:
                 num_publications = len(publications)
+            literature_coocurrence = None
             if (
                     edges[edge].get("predicate")
                     == "biolink:occurs_together_in_literature_with"
@@ -427,12 +427,16 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                         object_pubs / all_pubs
                     )
                     cov = max((cov, 0.0))
-                    effective_pubs = cov * all_pubs * omnicorp_relevence
+                    literature_coocurrence = cov * all_pubs
+                    effective_pubs = None
             else:
                 effective_pubs = num_publications + 1  # consider the curation a pub
             edge_vals[edge] = {}
             if p_value is not None:
                 edge_vals[edge]['p-value'] = source_sigmoid(edge_info_final, "p-value", p_value, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
-            edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+            if literature_coocurrence is not None:
+                edge_vals[edge]['literature_co-occurrence'] = source_sigmoid(edge_info_final, "literature_co-occurrence", literature_coocurrence, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+            if effective_pubs is not None:
+                edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             edge_vals[edge]['source'] = edge_info_final
     return edge_vals

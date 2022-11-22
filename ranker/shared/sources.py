@@ -11,6 +11,7 @@ BLENDED_PROFILE = {
     },
     "unknown_source_weight": {
         "publications": 1,
+        "literature_co-occurrence": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
@@ -18,7 +19,13 @@ BLENDED_PROFILE = {
             "lower": -1,
             "upper": 1,
             "midpoint": 0,
-            "rate": 0.549306144334055
+            "rate": .574213221
+        },
+        "literature_co-occurrence": {
+           "lower": -1,
+            "upper": 1,
+            "midpoint": 0,
+            "rate": 0.001373265360835
         },
         "unknown_property": {
             "lower": 0,
@@ -312,26 +319,22 @@ def get_profile(profile = "blended"):
         unknown_source_weight = CLINICAL_PROFILE["unknown_source_weight"]
         source_transformation = CLINICAL_PROFILE["source_transformation"]
         unknown_source_transformation = CLINICAL_PROFILE["unknown_source_transformation"]
-        omnicorp_relevence = CLINICAL_PROFILE["omnicorp_relevence"]
     elif profile == "correlated":
         source_weights = CORRELATED_PROFILE["source_weights"]
         unknown_source_weight = CORRELATED_PROFILE["unknown_source_weight"]
         source_transformation = CORRELATED_PROFILE["source_transformation"]
         unknown_source_transformation = CORRELATED_PROFILE["unknown_source_transformation"]
-        omnicorp_relevence = CORRELATED_PROFILE["omnicorp_relevence"]
 
     elif profile == "curated":
         source_weights = CURATED_PROFILE["source_weights"]
         unknown_source_weight = CURATED_PROFILE["unknown_source_weight"]
         source_transformation = CURATED_PROFILE["source_transformation"]
         unknown_source_transformation = CURATED_PROFILE["unknown_source_transformation"]
-        omnicorp_relevence = CURATED_PROFILE["omnicorp_relevence"]
 
     else:
         source_weights = BLENDED_PROFILE["source_weights"]
         unknown_source_weight = BLENDED_PROFILE["unknown_source_weight"]
         source_transformation = BLENDED_PROFILE["source_transformation"]
         unknown_source_transformation = BLENDED_PROFILE["unknown_source_transformation"]
-        omnicorp_relevence = BLENDED_PROFILE["omnicorp_relevence"]
     
-    return source_weights, unknown_source_weight, source_transformation, unknown_source_transformation, omnicorp_relevence
+    return source_weights, unknown_source_weight, source_transformation, unknown_source_transformation

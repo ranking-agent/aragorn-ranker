@@ -311,9 +311,10 @@ def get_node_pubs(kgraph):
     for n in kgraph["nodes"]:
             # init the count value
             omnicorp_article_count: int = 0
-
+            if not kgraph["nodes"][n].get("attributes"):
+                kgraph["nodes"][n]["attributes"] = []
             # get the article count atribute
-            for p in kgraph["nodes"][n].get("attributes",[]):
+            for p in kgraph["nodes"][n]["attributes"]:
                 # is this what we are looking for
                 if p["original_attribute_name"] == "omnicorp_article_count":
                     # save it
@@ -433,10 +434,10 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                 effective_pubs = num_publications + 1  # consider the curation a pub
             edge_vals[edge] = {}
             if p_value is not None:
-                edge_vals[edge]['p-value'] = source_sigmoid(edge_info_final, "p-value", p_value, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+                edge_vals[edge]['p-value'] = source_sigmoid(p_value, edge_info_final, "p-value", source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             if literature_coocurrence is not None:
-                edge_vals[edge]['literature_co-occurrence'] = source_sigmoid(edge_info_final, "literature_co-occurrence", literature_coocurrence, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+                edge_vals[edge]['literature_co-occurrence'] = source_sigmoid(literature_coocurrence, edge_info_final, "literature_co-occurrence", source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             if effective_pubs is not None:
-                edge_vals[edge]['publications'] = source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
+                edge_vals[edge]['publications'] = source_sigmoid(effective_pubs, edge_info_final, "publications", source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             edge_vals[edge]['source'] = edge_info_final
     return edge_vals

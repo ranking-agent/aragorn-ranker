@@ -1,4 +1,4 @@
-"""Test correctness (publication) weighting."""
+"""Test correctness (publication) weighting. This is soon deprecated."""
 # pylint: disable=redefined-outer-name,no-name-in-module,unused-import
 # ^^^ this stuff happens because of the incredible way we do pytest fixtures
 import json
@@ -27,11 +27,7 @@ def test_weight(to_weight):
     for e in ebs:
         weights[ebs[e][0]['id']] = ebs[e][0]['attributes'][0]['value']
 
-    #there are 3 pubs in the malformed array, and a pubcount of 2
-    assert weights['badpublicationsarray'] > weights['correctpublicationscount']
-    #good publications array also has 2
-    assert weights['correctpublicationsarray'] == weights['correctpublicationscount']
-    assert weights['correctpublicationsarray'] > weights['emptypublicationsarray']
+    assert weights['correctpublicationsarray'] == 0
 
 def test_pubs(pub_test):
     """We are getting results from KPs with different ways of encoding pubs.  This needs to be fixed at the EPC level,
@@ -62,7 +58,5 @@ def test_pubs(pub_test):
                     weights[kedge_id] = att['value']
 
     # there are 3 pubs in the malformed array, and a pubcount of 2
-    assert weights['BTE_TM_5'] > weights['BTE_semmed_3'] # For now, we weigh text-miner as 0
-    assert weights['BTE_semmed_3'] > weights['omnicorp_497']
-    assert weights['omnicorp_497'] > weights['BTE_0']
+    assert weights['BTE_TM_5'] == 0
 

@@ -293,7 +293,7 @@ CLINICAL_PROFILE = {
 def source_weight(source, property, source_weights = BLENDED_PROFILE["source_weights"], unknown_source_weight = BLENDED_PROFILE["unknown_source_weight"]):
     return source_weights.get(source, unknown_source_weight).get(property, unknown_source_weight["unknown_property"])
 
-def source_sigmoid(source, property, value, source_transformation = BLENDED_PROFILE["source_transformation"], unknown_source_transformation = BLENDED_PROFILE["source_transformation"]):
+def source_sigmoid(value, source="unknown", property="unknown", source_transformation = BLENDED_PROFILE["source_transformation"], unknown_source_transformation = BLENDED_PROFILE["unknown_source_transformation"]):
     """
     0-centered sigmoid used to map the number of publications found by a source
     to its weight. For all unknown sources, this function evaluates to 0.

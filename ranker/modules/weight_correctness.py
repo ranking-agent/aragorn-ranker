@@ -55,7 +55,205 @@ async def query(
     message = in_message["message"]
 
     try:
+<<<<<<< HEAD
         correct_weights(message, relevance, source_steepness=LOCAL_SOURCE_STEEPNESS, unknown_source_steepness=LOCAL_UNKNOWN_SOURCE_STEEPNESS)
+=======
+        # constant count of all publications
+        all_pubs = 27840000
+
+        # get the data nodes we need
+        results = message["results"]
+        kgraph = message["knowledge_graph"]
+
+        # storage for the publication counts for the node
+        node_pubs: dict = {}
+
+        # for each node in the knowledge graph
+        for n in kgraph["nodes"]:
+            # init the count value
+            omnicorp_article_count: int = 0
+
+            # get the article count atribute
+            for p in kgraph["nodes"][n].get("attributes",[]):
+                # is this what we are looking for
+                if p["original_attribute_name"] == "omnicorp_article_count":
+                    # save it
+                    omnicorp_article_count = p["value"]
+
+                    # no need to continue
+                    break
+
+            # add the node d and count to the dict
+            node_pubs.update({n: omnicorp_article_count})
+
+        # map kedges to result edge bindings
+        krmap = defaultdict(list)
+
+        # for each result listed in the data get a map reference and default the weight attribute
+        for result in results:
+            # for every edge binding result
+            for eb in result["edge_bindings"]:
+                # loop through the edge binding
+                for idx, binding_val in enumerate(result["edge_bindings"][eb]):
+                    # get a reference to the weight for easy update later
+                    ebi = result["edge_bindings"][eb][idx]
+                    found = False
+
+                    # is there already a list of attributes
+                    if "attributes" in ebi and ebi["attributes"] is not None:
+                        # loop through the attributes
+                        for item in ebi["attributes"]:
+                            # search for the weight attribute
+                            if item["original_attribute_name"].startswith("weight"):
+                                found = True
+
+                                break
+
+                    # was the attribute found
+                    if not found:
+                        if "attributes" not in ebi or ebi["attributes"] is None:
+                            ebi["attributes"] = []
+
+                        # create an Attribute
+                        ebi["attributes"].append(
+                            {
+                                "original_attribute_name": "weight",
+                                "attribute_type_id": "biolink:has_numeric_value",
+                                "value": 1,
+                                "value_type_id": "EDAM:data_1669",
+                            }
+                        )
+                    krmap[binding_val["id"]].append(ebi)
+
+        # get the knowledge graph edges
+        edges = kgraph["edges"]
+
+        # for each knowledge graph edge
+        for edge in edges:
+            # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
+            attributes = edges[edge].get("attributes", None)
+
+            # init storage for the publications and their count
+            publications = []
+            num_publications = 0
+
+            if attributes is not None:
+                # for each data attribute collect the needed params
+                for attribute in attributes:
+                    # This picks up omnicorp
+                    if attribute.get("original_attribute_name", None) is not None:
+                        # is this the publication list
+                        if attribute["original_attribute_name"].startswith(
+                            "publications"
+                        ):
+                            publications = attribute["value"]
+                        # else is this the number of publications
+                        elif attribute["original_attribute_name"].startswith(
+                            "num_publications"
+                        ):
+                            num_publications = attribute.get("value", 0)
+                    # This picks up Text Miner KP
+                    elif (
+                        attribute["attribute_type_id"] == "biolink:supporting_document"
+                    ):
+                        publications = attribute["value"]
+                        if isinstance(publications, str):
+                            publications = [publications]
+                    # This picks up how BTE returns pubs
+                    elif attribute["attribute_type_id"] == "biolink:publications":
+                        publications = attribute["value"]
+
+                # Record the source of origination
+                edge_info = {
+                    "biolink:aggregator_knowledge_source": "not_found",
+                    "biolink:original_knowledge_source": "not_found",
+                    "biolink:primary_knowledge_source": "not_found",
+                }
+                for attribute in reversed(attributes):
+                    if attribute.get("attribute_type_id", None) is not None:
+                        if attribute["attribute_type_id"] in edge_info.keys():
+                            v = attribute.get("value", None)
+                            if type(v) is list:
+                                v = v[0]
+                            if v is not None:
+                                edge_info[attribute["attribute_type_id"]] = v
+                            else:
+                                edge_info[
+                                    attribute["attribute_type_id"]
+                                ] = "unspecified"
+
+                if edge_info["biolink:original_knowledge_source"] != "not_found":
+                    edge_info_final = edge_info["biolink:original_knowledge_source"]
+                elif edge_info["biolink:primary_knowledge_source"] != "not_found":
+                    edge_info_final = edge_info["biolink:primary_knowledge_source"]
+                elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
+                    edge_info_final = edge_info["biolink:aggregator_knowledge_source"]
+                else:
+                    edge_info_final = None
+
+                # if there was only 1 publication value found insure it wasnt a character separated list
+                if len(publications) == 1:
+                    if "|" in publications[0]:
+                        publications = publications[0].split("|")
+                    elif "," in publications[0]:
+                        publications = publications[0].split(",")
+
+                    # get the real publication count
+                    num_publications = len(publications)
+
+                # if there was no publication count found revert to the number of individual values
+                if num_publications == 0:
+                    num_publications = len(publications)
+
+                if (
+                    edges[edge].get("predicate")
+                    == "biolink:occurs_together_in_literature_with"
+                ):
+                    subject_pubs = int(node_pubs[edges[edge]["subject"]])
+                    object_pubs = int(node_pubs[edges[edge]["object"]])
+
+                    cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (
+                        object_pubs / all_pubs
+                    )
+                    cov = max((cov, 0.0))
+                    effective_pubs = cov * all_pubs * relevance
+                else:
+                    effective_pubs = num_publications + 1  # consider the curation a pub
+
+                # if there is something to add this new attribute to
+                for edgebinding in krmap[edge]:
+                    # is there already a list of attributes
+                    if "attributes" in edgebinding:
+                        # loop through the attributes
+                        for item in edgebinding["attributes"]:
+                            # search for the weight attribute
+                            if item["original_attribute_name"].startswith("weight"):
+                                # update the params
+                                item["attribute_type_id"] = "biolink:has_numeric_value"
+                                item["value"] = item["value"] * source_sigmoid(effective_pubs)
+                                item["value_type_id"] = "EDAM:data_1669"
+                                if edge_info_final is not None:
+                                    if (
+                                        "attributes" not in item
+                                        or item["attributes"] is None
+                                    ):
+                                        item["attributes"] = []
+
+                                    item["attributes"].append(
+                                        {
+                                            "original_attribute_name": "aragorn_weight_source",
+                                            "attribute_type_id": "biolink:has_qualitative_value",
+                                            "value": edge_info_final,
+                                            "value_type_id": "biolink:InformationResource",
+                                        }
+                                    )
+                                found = True
+                                break
+
+        # save the new knowledge graph data
+        message["knowledge_graph"] = kgraph
+        
+>>>>>>> 8f4b334 (fix tests)
     except Exception as e:
         # put the error in the response
         status_code = 500
@@ -248,7 +446,7 @@ def correct_weights(message, relevance=0.0025, source_steepness=BLENDED_PROFILE[
                         if item["original_attribute_name"].startswith("weight"):
                             # update the params
                             item["attribute_type_id"] = "biolink:has_numeric_value"
-                            item["value"] = item["value"] * source_sigmoid(edge_info_final, "publications", effective_pubs, source_transformation=source_steepness, unknown_source_transformation=unknown_source_steepness)
+                            item["value"] = item["value"] * source_sigmoid(effective_pubs, edge_info_final, "publications", source_transformation=source_steepness, unknown_source_transformation=unknown_source_steepness)
                             item["value_type_id"] = "EDAM:data_1669"
                             if edge_info_final is not None:
                                 if (

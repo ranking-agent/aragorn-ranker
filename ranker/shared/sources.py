@@ -1,7 +1,6 @@
 
 from cmath import exp
 import math
-from symbol import parameters
 
 BLENDED_PROFILE = { 
     "source_weights": {

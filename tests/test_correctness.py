@@ -27,7 +27,7 @@ def test_weight(to_weight):
     for e in ebs:
         weights[ebs[e][0]['id']] = ebs[e][0]['attributes'][0]['value']
 
-    assert weights['correctpublicationsarray'] == 0
+    assert weights['correctpublicationsarray'] == 1
 
 def test_pubs(pub_test):
     """We are getting results from KPs with different ways of encoding pubs.  This needs to be fixed at the EPC level,
@@ -58,5 +58,5 @@ def test_pubs(pub_test):
                     weights[kedge_id] = att['value']
 
     # there are 3 pubs in the malformed array, and a pubcount of 2
-    assert weights['BTE_TM_5'] == 0
+    assert weights['BTE_TM_5'] == 1
 

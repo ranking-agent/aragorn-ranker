@@ -61,7 +61,11 @@ class OmniCorp():
 
     async def get_pmids(self, node):
         """Get shared PMIDs."""
-        prefix = get_postgres_curie_prefix(node)
+        try:
+            prefix = get_postgres_curie_prefix(node)
+        except ValueError as e:
+            logger.error(e)
+            return []
         if prefix not in self.prefixes:
             return []
         statement = (
@@ -83,8 +87,12 @@ class OmniCorp():
 
     async def get_shared_pmids(self, node1, node2):
         """Get shared PMIDs."""
-        prefix1 = get_postgres_curie_prefix(node1)
-        prefix2 = get_postgres_curie_prefix(node2)
+        try:
+            prefix1 = get_postgres_curie_prefix(node1)
+            prefix2 = get_postgres_curie_prefix(node2)
+        except ValueError as e:
+            logger.error(e)
+            return []
         if (
                 prefix1 not in self.prefixes or
                 prefix2 not in self.prefixes
@@ -111,8 +119,12 @@ class OmniCorp():
 
     async def get_shared_pmids_count(self, node1, node2):
         """Get shared PMIDs."""
-        prefix1 = get_postgres_curie_prefix(node1)
-        prefix2 = get_postgres_curie_prefix(node2)
+        try:
+            prefix1 = get_postgres_curie_prefix(node1)
+            prefix2 = get_postgres_curie_prefix(node2)
+        except ValueError as e:
+            logger.error(e)
+            return []
         if (
                 prefix1 not in self.prefixes or
                 prefix2 not in self.prefixes
@@ -148,13 +160,13 @@ class OmniCorp():
     async def count_pmids(self, node):
         """Count PMIDs and return result."""
         try:
-            if get_postgres_curie_prefix(node) not in self.prefixes:
-                return 0
+            prefix = get_postgres_curie_prefix(node)
         except Exception as e:
             logger.exception(e)
             return 0
 
-        prefix = get_postgres_curie_prefix(node)
+        if prefix not in self.prefixes:
+            return 0
         start = datetime.datetime.now()
         statement = (
             f"SELECT COUNT(pubmedid) from omnicorp.{prefix}\n"

@@ -21,7 +21,7 @@ class OmniCorp():
 
     def __init__(self):
         """Create and omnicorp service object."""
-        self.prefixes = None
+        self.prefixes = []
         self.pool = None
         self.nsingle = 0
         self.total_single_call = datetime.timedelta()

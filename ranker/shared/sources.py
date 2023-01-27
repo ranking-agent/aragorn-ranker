@@ -1,7 +1,8 @@
 
 from cmath import exp
 import math
-from symbol import parameters
+#Commenting out b/c symbol seems to be missing and parameters is unused?
+#from symbol import parameters
 
 BLENDED_PROFILE = { 
     "source_weights": {

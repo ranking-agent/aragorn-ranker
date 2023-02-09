@@ -39,6 +39,11 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
     # get a reference to the entire message
     message = in_message["message"]
 
+    message = in_message["message"]
+    if ("results" not in message) or (message["results"] is None):
+        #No results to weight. abort
+        return JSONResponse(content=in_message, status_code=status_code)
+
     # get a reference to the results
     answers = message["results"]
 

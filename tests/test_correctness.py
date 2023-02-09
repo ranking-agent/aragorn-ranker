@@ -12,6 +12,12 @@ from .fixtures import pub_test, to_weight
 client = TestClient(APP)
 
 
+def test_null_results(to_weight):
+    """Test that weight() runs without errors. Even for null results"""
+    to_weight["message"]["results"] = None
+    response = client.post('/weight_correctness', json=to_weight)
+    assert response.status_code == 200
+
 def test_weight(to_weight):
     """Test that weight() runs without errors and that the weights are correctly ordered."""
     response = client.post('/weight_correctness', json=to_weight)

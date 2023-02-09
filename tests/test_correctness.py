@@ -3,6 +3,7 @@
 # ^^^ this stuff happens because of the incredible way we do pytest fixtures
 import json
 
+from copy import deepcopy
 from fastapi.testclient import TestClient
 
 from ranker.server import APP
@@ -11,6 +12,13 @@ from .fixtures import pub_test, to_weight
 
 client = TestClient(APP)
 
+
+def test_null_results(to_weight):
+    """Test that weight() runs without errors. Even for null results"""
+    null_results = deepcopy(to_weight)
+    null_results["message"]["results"] = None
+    response = client.post('/weight_correctness', json=null_results)
+    assert response.status_code == 200
 
 def test_weight(to_weight):
     """Test that weight() runs without errors and that the weights are correctly ordered."""

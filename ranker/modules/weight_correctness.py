@@ -53,6 +53,9 @@ async def query(
     status_code: int = 200
 
     message = in_message["message"]
+    if ("results" not in message) or (message["results"] is None):
+        #No results to weight. abort
+        return JSONResponse(content=in_message, status_code=status_code)
 
     try:
         correct_weights(message, relevance, source_steepness=LOCAL_SOURCE_STEEPNESS, unknown_source_steepness=LOCAL_UNKNOWN_SOURCE_STEEPNESS)

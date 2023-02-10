@@ -127,7 +127,7 @@ async def query(request: PDResponse):
     if debug == "True":
         dt_start = datetime.now()
 
-    in_message = request.dict()
+    in_message = request.dict(exclude_none=True)
 
     # save the logs for the response (if any)
     if "logs" not in in_message or in_message["logs"] is None:

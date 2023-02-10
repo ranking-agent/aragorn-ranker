@@ -38,7 +38,7 @@ async def query(
         dt_start = datetime.now()
 
     # save the message
-    in_message = request.dict()
+    in_message = request.dict(exclude_none=True)
 
     # save the logs for the response (if any)
     if "logs" not in in_message or in_message["logs"] is None:
@@ -95,9 +95,9 @@ def correct_weights(message, relevance=0.0025, source_steepness=BLENDED_PROFILE[
         omnicorp_article_count: int = 0
 
         # get the article count atribute
-        for p in kgraph["nodes"][n]["attributes"]:
+        for p in kgraph["nodes"][n].get("attributes",[]):
             # is this what we are looking for
-            if p["original_attribute_name"] == "omnicorp_article_count":
+            if p.get("original_attribute_name","") == "omnicorp_article_count":
                 # save it
                 omnicorp_article_count = p["value"]
 

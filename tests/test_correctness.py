@@ -61,9 +61,9 @@ def test_pubs(pub_test):
         print(ebs[e])
         for kedge in ebs[e]:
             kedge_id = kedge['id']
-            for att in kedge.get('attributes',[]):
-                if att['original_attribute_name'] == 'weight':
-                    weights[kedge_id] = att['value']
+            for att in kedge.get("attributes",[]):
+                if att.get("original_attribute_name","") == "weight":
+                    weights[kedge_id] = att["value"]
 
     # there are 3 pubs in the malformed array, and a pubcount of 2
     assert weights['BTE_TM_5'] > 0

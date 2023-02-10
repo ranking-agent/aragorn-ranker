@@ -61,7 +61,7 @@ def test_pubs(pub_test):
         print(ebs[e])
         for kedge in ebs[e]:
             kedge_id = kedge['id']
-            for att in kedge['attributes']:
+            for att in kedge.get('attributes',[]):
                 if att['original_attribute_name'] == 'weight':
                     weights[kedge_id] = att['value']
 

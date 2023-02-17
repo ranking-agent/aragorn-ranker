@@ -41,58 +41,40 @@ BLENDED_PROFILE = {
 
 CURATED_PROFILE = {
     "source_weights": {
-        "infores:automat-pharos": {
-            "publications": 0.7,
+        "infores:text-mining-provider-cooccurrence": {
+            "publications": 0,
         },
-        "infores:aragorn-ranker-ara": {
-            "publications": 0.25,
+        "infores:text-mining-provider-targeted": {
+            "publications": 0,
         },
         "infores:semmeddb": {
             "publications": 0.05,
         }
     },
     "source_transformation": {
-        "infores:automat-pharos": {
+        "infores:text-mining-provider-cooccurrence": {
             "publications": {
                 "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
                 "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
+                "midpoint": 0,
+                "rate": 0
             }
         },
-        "infores:aragorn-ranker-ara": {
+        "infores:text-mining-provider-targeted": {
             "publications": {
                 "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
                 "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
+                "midpoint": 0,
+                "rate": 0
             }
         },
         "infores:semmeddb": {
             "publications": {
                 "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
                 "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
-            }
+                "midpoint": 0,
+                "rate": 0
+            },
         }
     },
     "unknown_source_weight": {
@@ -103,20 +85,14 @@ CURATED_PROFILE = {
         "publications": {
             "lower": 0,
             "upper": 1,
-            "midpoint": 0,
-            "rate": .574213221
-        },
-        "p-value": {
-            "lower": 1,
-            "upper": 0,
-            "midpoint": 0.055,
-            "rate": 200.574213221
+            "midpoint": 3,
+            "rate": 2.4
         },
         "unknown_property": {
             "lower": 0,
-            "upper": 1,
+            "upper": 0,
             "midpoint": 0,
-            "rate": .574213221
+            "rate": 0
         }
     },
     "omnicorp_relevence": 0.0025
@@ -209,82 +185,40 @@ CORRELATED_PROFILE = {
 
 CLINICAL_PROFILE = {
     "source_weights": {
-        "infores:automat-pharos": {
-            "publications": 0.7,
+        "infores:cohd": {
+            "p-value": 1,
         },
-        "infores:aragorn-ranker-ara": {
-            "publications": 0.25,
+        "infores:icees": {
+            "p-value": 1,
         },
-        "infores:semmeddb": {
-            "publications": 0.05,
-        }
     },
     "source_transformation": {
-        "infores:automat-pharos": {
-            "publications": {
+        "infores:icees": {
+            "p-value": {
                 "lower": 0,
                 "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
-                "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
+                "midpoint": 1,
+                "rate": 6.2
             }
         },
-        "infores:aragorn-ranker-ara": {
-            "publications": {
+        "infores:cohd": {
+            "p-value": {
                 "lower": 0,
                 "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
-                "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
+                "midpoint": 1,
+                "rate": 6.2
             }
         },
-        "infores:semmeddb": {
-            "publications": {
-                "lower": 0,
-                "upper": 1,
-                "midpoint": 0,
-                "rate": .574213221
-            },
-            "p-value": {
-                "lower": 1,
-                "upper": 0,
-                "midpoint": 0.055,
-                "rate": 200.574213221
-            }
-        }
     },
     "unknown_source_weight": {
-        "publications": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
-        "publications": {
-            "lower": 0,
-            "upper": 1,
-            "midpoint": 0,
-            "rate": .574213221
-        },
-        "p-value": {
-            "lower": 1,
-            "upper": 0,
-            "midpoint": 0.055,
-            "rate": 200.574213221
-        },
         "unknown_property": {
             "lower": 0,
-            "upper": 1,
+            "upper": 0,
             "midpoint": 0,
-            "rate": .574213221
+            "rate": 0
         }
     },
     "omnicorp_relevence": 0.0025

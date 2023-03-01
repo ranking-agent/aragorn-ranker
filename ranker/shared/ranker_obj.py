@@ -19,8 +19,8 @@ class Ranker:
 
     def __init__(self, message, profile = "blended"):
         """Create ranker."""
-        self.kgraph = message['knowledge_graph']
-        self.qgraph = message['query_graph']
+        self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
+        self.qgraph = message.get("query_graph", {"nodes":{}, "edges":{}} )
 
         source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights

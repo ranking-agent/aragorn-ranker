@@ -22,7 +22,7 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
         dt_start = datetime.now()
 
     # get the message into a dict
-    in_message = request.dict(exclude_none=True)
+    in_message = request.dict(exclude_none=True, exclude_unset=True)
 
     # save the logs for the response (if any)
     if "logs" not in in_message or in_message["logs"] is None:

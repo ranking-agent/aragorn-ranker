@@ -316,7 +316,7 @@ def get_node_pubs(kgraph):
             # get the article count atribute
             for p in kgraph["nodes"][n]["attributes"]:
                 # is this what we are looking for
-                if p["original_attribute_name"] == "omnicorp_article_count":
+                if p.get("original_attribute_name","") == "omnicorp_article_count":
                     # save it
                     omnicorp_article_count = p["value"]
 

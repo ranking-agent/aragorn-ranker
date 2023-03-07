@@ -40,8 +40,8 @@ async def count_node_pmids(supporter, node, key, value, cache, kgraph):
         "value_type_id": "EDAM:data_0006",
     }
 
-    # if there is no attributes array add one
-    if kgraph[node]["attributes"] is None:
+    # if there is no attributes array add one.  We used exclude_None=True so we don't need to check for it here.
+    if "attributes" not in kgraph[node]:
         kgraph[node]["attributes"] = []
 
     # save the attributes
@@ -127,7 +127,7 @@ async def query(request: PDResponse):
     if debug == "True":
         dt_start = datetime.now()
 
-    in_message = request.dict(exclude_none=True)
+    in_message = request.dict(exclude_none=True, exclude_unset=True)
 
     # save the logs for the response (if any)
     if "logs" not in in_message or in_message["logs"] is None:

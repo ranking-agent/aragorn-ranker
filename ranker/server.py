@@ -14,12 +14,14 @@ from reasoner_pydantic import Response as PDResponse
 from reasoner_pydantic import CURIE
 from ranker.util.omnicorp_shared_pmids import shared_pmids
 from ranker.util.omnicorp_get_node_pmids import get_node_pmids
+from ranker.otel_config import configure_otel
 
 # set the app version
 APP_VERSION = '2.4.6'
 
 APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
-
+service_name = os.environ.get('SERVICE_NAME', 'ARAGORN_RANKER')
+configure_otel(service_name=service_name, APP=APP)
 profiler = os.environ.get('PROFILER', False)
 if profiler:
     from .profiler import profiler_middleware

@@ -187,7 +187,6 @@ def correct_weights(message, relevance=0.0025, source_steepness=BLENDED_PROFILE[
             # Record the source of origination
             edge_info = {
                 "biolink:aggregator_knowledge_source": "not_found",
-                "biolink:original_knowledge_source": "not_found",
                 "biolink:primary_knowledge_source": "not_found",
             }
             for attribute in reversed(attributes):
@@ -203,9 +202,7 @@ def correct_weights(message, relevance=0.0025, source_steepness=BLENDED_PROFILE[
                                 attribute["attribute_type_id"]
                             ] = "unspecified"
 
-            if edge_info["biolink:original_knowledge_source"] != "not_found":
-                edge_info_final = edge_info["biolink:original_knowledge_source"]
-            elif edge_info["biolink:primary_knowledge_source"] != "not_found":
+            if edge_info["biolink:primary_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:primary_knowledge_source"]
             elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:aggregator_knowledge_source"]

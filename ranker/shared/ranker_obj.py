@@ -378,7 +378,6 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
             # Record the source of origination
             edge_info = {
                 "biolink:aggregator_knowledge_source": "not_found",
-                "biolink:original_knowledge_source": "not_found",
                 "biolink:primary_knowledge_source": "not_found",
             }
             for attribute in reversed(attributes):
@@ -394,9 +393,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                                 attribute["attribute_type_id"]
                             ] = "unspecified"
 
-            if edge_info["biolink:original_knowledge_source"] != "not_found":
-                edge_info_final = edge_info["biolink:original_knowledge_source"]
-            elif edge_info["biolink:primary_knowledge_source"] != "not_found":
+            if edge_info["biolink:primary_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:primary_knowledge_source"]
             elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:aggregator_knowledge_source"]

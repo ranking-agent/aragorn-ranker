@@ -100,7 +100,7 @@ async def count_shared_pmids(
                     # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
                     # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
                     {
-                        "attribute_type_id": "biolink:original_knowledge_source",  # the ‘key’*
+                        "attribute_type_id": "biolink:primary_knowledge_source",  # the ‘key’*
                         "value": "infores:omnicorp",
                         "value_type_id": "biolink:InformationResource",
                         "attribute_source": "infores:aragorn",

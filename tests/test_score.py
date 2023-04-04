@@ -101,5 +101,5 @@ def test_basic_scoring(score_test):
     answer = resp['message']['results']
     assert response.status_code == 200
     assert len(answer) == 2
-    assert answer[0]['score'] == approx(0.29946956885576703)
-    assert answer[1]['score'] == approx(0.29946956885576703)
+    assert answer[0]['score'] == approx(0.2794695688557669)
+    assert answer[1]['score'] == approx(0.2794695688557669)

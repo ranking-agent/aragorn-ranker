@@ -1,5 +1,6 @@
 """ROBOKOP ranking."""
 
+import itertools
 import logging
 from collections import defaultdict
 from itertools import combinations, product
@@ -19,8 +20,8 @@ class Ranker:
 
     def __init__(self, message, profile = "blended"):
         """Create ranker."""
-        self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
-        self.qgraph = message.get("query_graph", {"nodes":{}, "edges":{}} )
+        self.kgraph = message['knowledge_graph']
+        self.qgraph = message['query_graph']
 
         source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
@@ -85,10 +86,30 @@ class Ranker:
         # answer is a list of dicts with fields 'id' and 'bound'
         rgraph = self.get_rgraph(answer)
 
-        laplacian = self.graph_laplacian(rgraph, answer)
-        if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
+        weighted_graph = self.weight_graph(rgraph, answer)
+        if np.any(np.all(np.abs(weighted_graph) == 0, axis=0)):
             answer['score'] = 0
             return answer
+
+        q_node_ids = list(self.qgraph['nodes'].keys())
+        n_q_nodes = len(q_node_ids)
+        q_conn = np.full((n_q_nodes, n_q_nodes),0)
+        for e in self.qgraph['edges'].values():
+            e_sub = q_node_ids.index(e['subject'])
+            e_obj = q_node_ids.index(e['object'])
+            if e_sub is not None and e_obj is not None:
+                q_conn[e_sub, e_obj] = 1
+
+        node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
+        probe_nodes = []
+        for conn in range(np.max(node_conn)):
+            is_this_conn = node_conn == (conn+1)
+            probe_nodes += list(np.where(is_this_conn)[0])
+            if len(probe_nodes) > 1:
+                break
+        probes = list(itertools.combinations(probe_nodes,2))
+
+        measurement = [self.path_collapse(weighted_graph, probe) for probe in probes]
 
         #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
         # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
@@ -109,7 +130,7 @@ class Ranker:
         if len(nonset_node_ids) < 2:
             score = 0
         else:
-            score = 1 / kirchhoff(laplacian, nonset_node_ids)
+            score = np.mean(measurement)
 
         # fail safe to nuke nans
         score = score if np.isfinite(score) and score >= 0 else -1
@@ -120,7 +141,32 @@ class Ranker:
             answer['score'] = score
         return answer
 
-    def graph_laplacian(self, rgraph, answer):
+    def path_collapse(self, weighted_graph, probe):
+        if probe[0] == probe[1]:
+            return 1
+        parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
+        parallel_parts = []
+        if parallel_steps:
+            for step in parallel_steps:
+                new_p = (step[0], probe[1])
+                parallel_parts.append(self.series_combine([step[1], self.path_collapse(weighted_graph, new_p)]))
+                
+            out = self.parallel_combine(parallel_parts)
+            return out
+    
+    def series_combine(self, ws):
+        return np.prod(ws)
+
+    def parallel_combine(self, ws):
+        out = 0
+        for i, w in enumerate(ws):
+            remaining = 1
+            for w2 in ws[:i]:
+                remaining = remaining * (1 - w2)
+            out = out + remaining*w
+        return out
+
+    def weight_graph(self, rgraph, answer):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
@@ -150,7 +196,7 @@ class Ranker:
                         weight_dict[subject_index][object_id][edge_source][edge_property] = val
 
         qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
-        laplacian = np.zeros((num_nodes, num_nodes))
+        weighted_graph = np.zeros((num_nodes, num_nodes))
         for subject_index in range(num_nodes):
             q_node_id_subject = node_ids[subject_index][0]
             for object_id in range(num_nodes):
@@ -163,13 +209,11 @@ class Ranker:
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
                         source_w = weight_dict[subject_index][object_id][source][property]
-                        weight = weight + source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
-                laplacian[subject_index, object_id] += -weight
-                laplacian[object_id, subject_index] += -weight
-                laplacian[subject_index, subject_index] += weight
-                laplacian[object_id, object_id] += weight
+                        weight = max(weight, source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight))
+
+                weighted_graph[subject_index, object_id] = weighted_graph[subject_index, object_id] + ((1 - weighted_graph[subject_index, object_id]) * weight)
         
-        return laplacian
+        return weighted_graph
 
     def get_rgraph(self, answer):
         """Get "ranker" subgraph."""
@@ -316,7 +360,7 @@ def get_node_pubs(kgraph):
             # get the article count atribute
             for p in kgraph["nodes"][n]["attributes"]:
                 # is this what we are looking for
-                if p.get("original_attribute_name","") == "omnicorp_article_count":
+                if p["original_attribute_name"] == "omnicorp_article_count":
                     # save it
                     omnicorp_article_count = p["value"]
 
@@ -384,6 +428,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
             # Record the source of origination
             edge_info = {
                 "biolink:aggregator_knowledge_source": "not_found",
+                "biolink:original_knowledge_source": "not_found",
                 "biolink:primary_knowledge_source": "not_found",
             }
             for attribute in reversed(attributes):
@@ -399,7 +444,9 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                                 attribute["attribute_type_id"]
                             ] = "unspecified"
 
-            if edge_info["biolink:primary_knowledge_source"] != "not_found":
+            if edge_info["biolink:original_knowledge_source"] != "not_found":
+                edge_info_final = edge_info["biolink:original_knowledge_source"]
+            elif edge_info["biolink:primary_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:primary_knowledge_source"]
             elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:aggregator_knowledge_source"]

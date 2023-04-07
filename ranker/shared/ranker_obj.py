@@ -69,7 +69,7 @@ class Ranker:
         ]
 
 
-    def rank(self, answers):
+    def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
         # get subgraph statistics
         #print(f'{len(answers)} answers')
@@ -117,7 +117,7 @@ class Ranker:
         rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
         probes = list(itertools.combinations(rgraph_probe_nodes,2))
         
-        measurement = [ranker.path_collapse(weighted_graph, probe) for probe in probes]
+        measurement = [path_collapse(weighted_graph, probe) for probe in probes]
 
         #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
         # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
@@ -145,42 +145,6 @@ class Ranker:
 
         answer['score'] = score
         return answer
-
-    def path_collapse(self, weighted_graph, probe):
-        if probe[0] == probe[1]:
-            return 1
-        if probe[0]>probe[1]:
-            probe = (probe[1],probe[0])
-        parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
-        parallel_steps_transpose = [(i,w) for i, w in enumerate(weighted_graph[:,probe[0]]) if w > 0]
-        parallel_steps = parallel_steps+parallel_steps_transpose
-        parallel_parts = []
-        weight_graph_temp = weighted_graph.copy()
-        if parallel_steps:
-            #this step takes out parallel connections as paths when they get sent to the recursion
-            for step in parallel_steps:
-                weight_graph_temp[probe[0],step[0]] = 0.
-                weight_graph_temp[step[0],probe[0]] = 0.
-            for step in parallel_steps:
-                new_p = (step[0], probe[1])
-                parallel_parts.append(self.series_combine([step[1], self.path_collapse(weight_graph_temp, new_p)]))
-                
-            out = self.parallel_combine(parallel_parts)
-        else:
-            return 0 #no connections. return 1
-        return out
-    
-    def series_combine(self, ws):
-        return np.prod(ws)
-
-    def parallel_combine(self, ws):
-        out = 0
-        for i, w in enumerate(ws):
-            remaining = 1
-            for w2 in ws[:i]:
-                remaining = remaining * (1 - w2)
-            out = out + remaining*w
-        return out
 
     def weight_graph(self, rgraph, answer):
         """Generate graph Laplacian."""
@@ -342,6 +306,44 @@ class Ranker:
                         redges.append(edge)
 
         return rnodes, redges
+    
+
+    
+def path_collapse(weighted_graph, probe):
+    if probe[0] == probe[1]:
+        return 1
+    if probe[0]>probe[1]:
+        probe = (probe[1],probe[0])
+    parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
+    parallel_steps_transpose = [(i,w) for i, w in enumerate(weighted_graph[:,probe[0]]) if w > 0]
+    parallel_steps = parallel_steps+parallel_steps_transpose
+    parallel_parts = []
+    weight_graph_temp = weighted_graph.copy()
+    if parallel_steps:
+        #this step takes out parallel connections as paths when they get sent to the recursion
+        for step in parallel_steps:
+            weight_graph_temp[probe[0],step[0]] = 0.
+            weight_graph_temp[step[0],probe[0]] = 0.
+        for step in parallel_steps:
+            new_p = (step[0], probe[1])
+            parallel_parts.append(series_combine([step[1], path_collapse(weight_graph_temp, new_p)]))
+            
+        out = parallel_combine(parallel_parts)
+    else:
+        return 0 #no connections. return 1
+    return out
+
+def series_combine(ws):
+    return np.prod(ws)
+
+def parallel_combine(ws):
+    out = 0
+    for i, w in enumerate(ws):
+        remaining = 1
+        for w2 in ws[:i]:
+            remaining = remaining * (1 - w2)
+        out = out + remaining*w
+    return out
 
 
 def matching_subsets(patterns, superset):

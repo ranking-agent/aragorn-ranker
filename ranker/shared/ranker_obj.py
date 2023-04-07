@@ -156,14 +156,20 @@ class Ranker:
         if probe[0]>probe[1]:
             probe = (probe[1],probe[0])
         parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
+        parallel_steps_transpose = [(i,w) for i, w in enumerate(weighted_graph[:,probe[0]]) if w > 0]
+        parallel_steps = parallel_steps+parallel_steps_transpose
         parallel_parts = []
         if parallel_steps:
             for step in parallel_steps:
                 new_p = (step[0], probe[1])
+                weighted_graph[probe[0],step[0]] = 0.
+                weighted_graph[step[0],probe[0]] = 0.
                 parallel_parts.append(self.series_combine([step[1], self.path_collapse(weighted_graph, new_p)]))
                 
             out = self.parallel_combine(parallel_parts)
-            return out
+        else:
+            return 1 #no connections. return 1
+        return out
     
     def series_combine(self, ws):
         return np.prod(ws)

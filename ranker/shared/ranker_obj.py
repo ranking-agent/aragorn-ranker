@@ -222,8 +222,8 @@ class Ranker:
                 edge_qnode_ids = frozenset((q_node_id_subject, q_node_id_object))
 
                 # Set default weight (or 0 when edge is not a qedge)
-                weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
-
+                # weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
+                weight = 0
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
                         source_w = weight_dict[subject_index][object_id][source][property]

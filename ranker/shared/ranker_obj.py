@@ -162,9 +162,10 @@ class Ranker:
         if parallel_steps:
             for step in parallel_steps:
                 new_p = (step[0], probe[1])
-                weighted_graph[probe[0],step[0]] = 0.
-                weighted_graph[step[0],probe[0]] = 0.
-                parallel_parts.append(self.series_combine([step[1], self.path_collapse(weighted_graph, new_p)]))
+                weight_graph_temp = weighted_graph.copy()
+                weight_graph_temp[probe[0],step[0]] = 0.
+                weight_graph_temp[step[0],probe[0]] = 0.
+                parallel_parts.append(self.series_combine([step[1], self.path_collapse(weight_graph_temp, new_p)]))
                 
             out = self.parallel_combine(parallel_parts)
         else:

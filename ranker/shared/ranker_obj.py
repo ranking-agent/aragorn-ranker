@@ -87,9 +87,9 @@ class Ranker:
         rgraph = self.get_rgraph(answer)
 
         weighted_graph = self.weight_graph(rgraph, answer)
-        if np.any(np.all(np.abs(weighted_graph) == 0, axis=0)):
-            answer['score'] = 0
-            return answer
+        # if np.any(np.all(np.abs(weighted_graph) == 0, axis=0)):
+        #     answer['score'] = 0
+        #     return answer
         r_node_ids, edges = rgraph
         index = {node_id[0]: r_node_ids.index(node_id) for node_id in r_node_ids}
         q_node_ids = list(self.qgraph['nodes'].keys())
@@ -101,46 +101,24 @@ class Ranker:
             if e_sub is not None and e_obj is not None:
                 q_conn[e_sub, e_obj] = 1
 
-        # node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
-        # probe_nodes = []
-        # for conn in range(np.max(node_conn)):
-        #     is_this_conn = node_conn == (conn+1)
-        #     probe_nodes += list(np.where(is_this_conn)[0])
-        #     if len(probe_nodes) > 1:
-        #         break
-        # probes = list(itertools.combinations(probe_nodes,2))
-        node_conn_obj = np.sum(q_conn,0)
-        node_conn_sub = np.sum(q_conn,1)
-        # node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T #needs directionality
+        node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
         probe_nodes = []
-        obj_min = 10000
-        obj_probes = []
-        sub_min = 10000
-        sub_probes = []
-        for node_ind in range(len(q_node_ids)):
-            if node_conn_obj[node_ind]<obj_min and node_conn_obj[node_ind]>0:
-                obj_probes = [node_ind]
-                obj_min = node_conn_obj[node_ind]
-            elif node_conn_obj[node_ind]==obj_min and node_conn_obj[node_ind]>0:
-                obj_probes.append(node_ind)
-
-            if node_conn_sub[node_ind]<sub_min and node_conn_sub[node_ind]>0:
-                sub_probes = [node_ind]
-                sub_min = node_conn_sub[node_ind]
-            elif node_conn_sub[node_ind]==sub_min and node_conn_sub[node_ind]>0:
-                sub_probes.append(node_ind)
-            
+        for conn in range(np.max(node_conn)):
+            is_this_conn = node_conn == (conn+1)
+            probe_nodes += list(np.where(is_this_conn)[0])
+            if len(probe_nodes) > 1:
+                break
         #converting qgraph inds to rgraph inds:
+        
         rgraph_inds = []
         for node_ind in range(len(q_node_ids)):
             node_label = q_node_ids[node_ind]
             rgraph_inds.append(index[node_label])
         
-        rgraph_sub_probs = [rgraph_inds[i] for i in sub_probes]
-        rgraph_obj_probs = [rgraph_inds[i] for i in obj_probes]
+        rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
+        probes = list(itertools.combinations(rgraph_probe_nodes,2))
         
-        probes = list(itertools.product(rgraph_sub_probs,rgraph_obj_probs))
-        measurement = [self.path_collapse(weighted_graph, probe) for probe in probes]
+        measurement = [ranker.path_collapse(weighted_graph, probe) for probe in probes]
 
         #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
         # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
@@ -175,6 +153,8 @@ class Ranker:
     def path_collapse(self, weighted_graph, probe):
         if probe[0] == probe[1]:
             return 1
+        if probe[0]>probe[1]:
+            probe = (probe[1],probe[0])
         parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
         parallel_parts = []
         if parallel_steps:
@@ -243,8 +223,12 @@ class Ranker:
                         weight = weight + (1-weight)*source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
                         # I think we don't actually want to take the max here 
                         # weight = max(weight, source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight))
-
-                weighted_graph[subject_index, object_id] = weight
+                # This puts it in the weighted graph and ensures upper triangular weighted_graph
+                if subject_index<object_id:
+                    weighted_graph[subject_index, object_id] = weighted_graph[subject_index, object_id] + (1-weighted_graph[subject_index, object_id])*weight                     
+                else:
+                    weighted_graph[object_id, subject_index] = weighted_graph[object_id, subject_index] + (1-weighted_graph[object_id, subject_index])*weight
+                    
         
         return weighted_graph
 

@@ -344,24 +344,6 @@ class Ranker:
         return rnodes, redges
 
 
-def kirchhoff(L, keep):
-    """Compute Kirchhoff index, including only specific nodes."""
-    try:
-        num_nodes = L.shape[0]
-        cols = []
-        for x, y in combinations(keep, 2):
-            d = np.zeros(num_nodes)
-            d[x] = -1
-            d[y] = 1
-            cols.append(d)
-        x = np.stack(cols, axis=1)
-    except:
-        print(cols)
-        return
-
-    return np.trace(x.T @ np.linalg.lstsq(L, x, rcond=None)[0])
-
-
 def matching_subsets(patterns, superset):
     """Return subsets matching the regular expressions."""
     subsets = []

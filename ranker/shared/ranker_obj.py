@@ -168,7 +168,7 @@ class Ranker:
                 
             out = self.parallel_combine(parallel_parts)
         else:
-            return 1 #no connections. return 1
+            return 0 #no connections. return 1
         return out
     
     def series_combine(self, ws):

@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 class Ranker:
     """Ranker."""
 
-    DEFAULT_WEIGHT = 1e-2
 
     def __init__(self, message, profile = "blended"):
         """Create ranker."""
@@ -70,18 +69,18 @@ class Ranker:
         ]
 
 
-    def rank(self, answers, jaccard_like=False):
+    def rank(self, answers):
         """Generate a sorted list and scores for a set of subgraphs."""
         # get subgraph statistics
         #print(f'{len(answers)} answers')
         answers_ = []
         for answer in answers:
-            answers_.append(self.score(answer, jaccard_like=jaccard_like))
+            answers_.append(self.score(answer))
 
         answers.sort(key=itemgetter('score'), reverse=True)
         return answers
 
-    def score(self, answer, jaccard_like=False):
+    def score(self, answer):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
         rgraph = self.get_rgraph(answer)
@@ -144,10 +143,7 @@ class Ranker:
         # fail safe to nuke nans
         score = score if np.isfinite(score) and score >= 0 else -1
 
-        if jaccard_like:
-            answer['score'] = score / (1 - score)
-        else:
-            answer['score'] = score
+        answer['score'] = score
         return answer
 
     def path_collapse(self, weighted_graph, probe):
@@ -159,12 +155,14 @@ class Ranker:
         parallel_steps_transpose = [(i,w) for i, w in enumerate(weighted_graph[:,probe[0]]) if w > 0]
         parallel_steps = parallel_steps+parallel_steps_transpose
         parallel_parts = []
+        weight_graph_temp = weighted_graph.copy()
         if parallel_steps:
+            #this step takes out parallel connections as paths when they get sent to the recursion
             for step in parallel_steps:
-                new_p = (step[0], probe[1])
-                weight_graph_temp = weighted_graph.copy()
                 weight_graph_temp[probe[0],step[0]] = 0.
                 weight_graph_temp[step[0],probe[0]] = 0.
+            for step in parallel_steps:
+                new_p = (step[0], probe[1])
                 parallel_parts.append(self.series_combine([step[1], self.path_collapse(weight_graph_temp, new_p)]))
                 
             out = self.parallel_combine(parallel_parts)
@@ -188,7 +186,7 @@ class Ranker:
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
-        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
+        # compute graph connection matrix for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
         weight_dict = []
         for subject_index in range(num_nodes):
@@ -221,15 +219,13 @@ class Ranker:
                 q_node_id_object = node_ids[object_id][0]
                 edge_qnode_ids = frozenset((q_node_id_subject, q_node_id_object))
 
-                # Set default weight (or 0 when edge is not a qedge)
-                # weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0
+                
                 weight = 0
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
                         source_w = weight_dict[subject_index][object_id][source][property]
                         weight = weight + (1-weight)*source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
-                        # I think we don't actually want to take the max here 
-                        # weight = max(weight, source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight))
+
                 # This puts it in the weighted graph and ensures upper triangular weighted_graph
                 if subject_index<object_id:
                     weighted_graph[subject_index, object_id] = weighted_graph[subject_index, object_id] + (1-weighted_graph[subject_index, object_id])*weight                     

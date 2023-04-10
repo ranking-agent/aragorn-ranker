@@ -185,16 +185,18 @@ class Ranker:
 
                 
                 weight = 0
+                source_ws = []
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
                         source_w = weight_dict[subject_index][object_id][source][property]
-                        weight = weight + (1-weight)*source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
+                        source_ws.append(source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight))
+                weight = parallel_combine(source_ws)
 
                 # This puts it in the weighted graph and ensures upper triangular weighted_graph
                 if subject_index<object_id:
-                    weighted_graph[subject_index, object_id] = weighted_graph[subject_index, object_id] + (1-weighted_graph[subject_index, object_id])*weight                     
+                    weighted_graph[subject_index, object_id] = parallel_combine([weighted_graph[subject_index, object_id], weight])                     
                 else:
-                    weighted_graph[object_id, subject_index] = weighted_graph[object_id, subject_index] + (1-weighted_graph[object_id, subject_index])*weight
+                    weighted_graph[object_id, subject_index] = parallel_combine([weighted_graph[object_id, subject_index], weight])
                     
         
         return weighted_graph

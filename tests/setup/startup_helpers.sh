@@ -6,7 +6,8 @@ echo "Waiting for redisgraph to start..."
 until echo $(docker logs omnicorp_redis 2>&1) | grep -q "Ready to accept connections"; do sleep 1; done
 echo "redisgraph started."
 
-cd ../OmnicorpTestData
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd $DIR/../OmnicorpTestData
 redisgraph-bulk-insert OMNICORP -N CURIE curie_to_pmids.txt -R cooccurs curie_pairs.txt -o $'\t'
 
 echo "Omnicorp initialized."

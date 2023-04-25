@@ -14,7 +14,7 @@ jsonschema==3.2.0
 lru-dict==1.1.8
 pydantic>=1.8.1
 pyyaml==5.3.1
-redis==3.5.3
+redis==4.5.4
 uvicorn==0.13.3
 uvloop==0.17.0
 numpy==1.24.1

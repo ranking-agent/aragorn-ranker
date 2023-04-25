@@ -125,6 +125,18 @@ class Cache:
                 stream.write(self.serializer.dumps(value))
             self.cache[key] = value
 
+    def mquery(self, keys, graphname, cypher):
+        """Run a batched cypherquery"""
+        result = None
+        if not self.enabled:
+            return result
+        result = []
+        if self.redis:
+            graph = self.redis.graph(graphname)
+            results = graph.query(f"UNWIND {keys} {cypher}")
+            result = {r[0]: r[1] for r in results.result_set}
+        return result
+
     def flush(self):
         """Flush redis cache."""
         self.redis.flushdb()

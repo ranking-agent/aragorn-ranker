@@ -1,20 +1,12 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd $DIR/../helpers
-docker-compose up -d
+docker run -d --name omnicorp_redis -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
 
-echo "Waiting for Postgres to start..."
-until echo $(docker logs omnicorp_postgres 2>&1) | grep -q "ready to accept connections"; do sleep 1; done
-echo "Postgres started."
+echo "Waiting for redisgraph to start..."
+until echo $(docker logs omnicorp_redis 2>&1) | grep -q "Ready to accept connections"; do sleep 1; done
+echo "redisgraph started."
 
-docker exec omnicorp_postgres mkdir -p /data
-docker cp ../InputJson_1.2/omnicorp_mesh.csv omnicorp_postgres:/data/omnicorp_mesh.csv
-docker cp ../InputJson_1.2/omnicorp_mondo.csv omnicorp_postgres:/data/omnicorp_mondo.csv
-docker cp ../InputJson_1.2/omnicorp_ncbigene.csv omnicorp_postgres:/data/omnicorp_ncbigene.csv
-docker cp ../InputJson_1.2/omnicorp_ncbitaxon.csv omnicorp_postgres:/data/omnicorp_ncbitaxon.csv
-docker cp ../InputJson_1.2/omnicorp_chebi.csv omnicorp_postgres:/data/omnicorp_chebi.csv
-docker cp ../InputJson_1.2/omnicorp_chembl.compound.csv omnicorp_postgres:/data/omnicorp_chembl.compound.csv
+cd ../OmnicorpTestData
+redisgraph-bulk-insert OMNICORP -N CURIE curie_to_pmids.txt -R cooccurs curie_pairs.txt -o $'\t'
 
-python3 ../setup/init_omnicorp.py
-echo "Postgres initialized."
+echo "Omnicorp initialized."

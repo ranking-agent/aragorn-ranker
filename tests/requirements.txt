@@ -15,7 +15,7 @@ lru-dict==1.1.8
 pydantic>=1.8.1
 pyyaml==5.3.1
 redis==4.5.4
-uvicorn==0.13.3
+uvicorn==0.17.6
 uvloop==0.17.0
 numpy==1.24.1
 httptools==0.5.0

@@ -1,4 +1,4 @@
-Curie	1
+concept	publication_count
 CHEBI:5613	22010
 CHEBI:3766	12369
 CHEBI:8707	5479

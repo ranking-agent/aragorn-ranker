@@ -1,6 +1,6 @@
 """Literature related to node."""
 from fastapi.responses import JSONResponse
-from ranker.shared.omnicorp import OmnicorpSupport
+#from ranker.shared.omnicorp import OmnicorpSupport
 from ranker.shared.util import Curie
 
 
@@ -19,9 +19,14 @@ async def get_node_pmids(curies: Curie):
     if len(nodeList) != 1:
         raise ValueError(f'nodeList must contain exactly 1 node: nodeList = {nodeList}')
 
-    async with OmnicorpSupport() as supporter:
-        shared_pubmed_ids = await supporter.node_pmids(nodeList[0])
-        status_code = 200
+    #The new omnicorp doesn't support this yet, so we'll just return an empty list
+    #it would be straightforward to implement, but it would require adding the pmids to the redisgraph
+
+    #async with OmnicorpSupport() as supporter:
+    #    shared_pubmed_ids = await supporter.node_pmids(nodeList[0])
+    #    status_code = 200
+    shared_pubmed_ids = []
+    status_code = 200
 
     # return the result to the caller
     return JSONResponse(content=shared_pubmed_ids, status_code=status_code)

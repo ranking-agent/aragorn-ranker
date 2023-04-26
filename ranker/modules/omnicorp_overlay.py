@@ -136,7 +136,7 @@ async def query(request: PDResponse):
 
         values = {}
         for batch in batches(keys, redis_batch_size):
-            values.update(cache.mquery(*batch,"OMNICORP",
+            values.update(cache.mquery(batch,"OMNICORP",
                                        "as x MATCH (q:CURIE {concept:x}) return q.concept, q.publication_count"))
 
         await add_node_pmid_counts(kgraph,values)

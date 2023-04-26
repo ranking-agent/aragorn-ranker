@@ -135,11 +135,12 @@ class Cache:
         result = None
         if not self.enabled:
             return result
-        result = []
         if self.redis:
             graph = self.redis.graph(graphname)
             results = graph.query(f"UNWIND {keys} {cypher}")
-            if len(results.result_set[0]) == 2:
+            if len(results.result_set) == 0:
+                result = {}
+            elif len(results.result_set[0]) == 2:
                 result = {r[0]: r[1] for r in results.result_set}
             else:
                 result = {tuple(r[0:-1]): r[-1] for r in results.result_set}

@@ -9,7 +9,6 @@ from itertools import combinations
 from datetime import datetime
 from fastapi.responses import JSONResponse
 from ranker.shared.cache import Cache
-from ranker.shared.omnicorp import OmnicorpSupport
 from ranker.shared.util import batches, create_log_entry
 from reasoner_pydantic import Response as PDResponse
 

@@ -145,7 +145,3 @@ class Cache:
             else:
                 result = {tuple(r[0:-1]): r[-1] for r in results.result_set}
         return result
-
-    def flush(self):
-        """Flush redis cache."""
-        self.redis.flushdb()

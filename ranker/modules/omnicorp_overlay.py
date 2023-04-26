@@ -37,11 +37,11 @@ async def add_node_pmid_counts(kgraph, counts):
         }
 
         # if there is no attributes array add one.  We used exclude_None=True so we don't need to check for it here.
-        if "attributes" not in kgraph[node_id]:
-            kgraph[node_id]["attributes"] = []
+        if "attributes" not in kgraph["nodes"][node_id]:
+            kgraph["nodes"][node_id]["attributes"] = []
 
         # save the attributes
-        kgraph[node_id]["attributes"].append(attribute)
+        kgraph["nodes"][node_id]["attributes"].append(attribute)
 
 async def add_shared_pmid_counts(
     kgraph,
@@ -155,10 +155,10 @@ async def query(request: PDResponse):
 
         pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes)
 
-        keys = list(pair_to_answer.keys())
+        keys = [ list(x) for x in pair_to_answer.keys() ]
         values = {}
         for batch in batches(keys, redis_batch_size):
-            values.update(cache.mquery(*batch,"OMNICORP",
+            values.update(cache.mquery(batch,"OMNICORP",
                                        "as q MATCH (a:CURIE {concept:q[0]})-[x]-(b:CURIE {concept:q[1]}) return q[0],q[1],x.publication_count"))
 
         await add_shared_pmid_counts(kgraph,values,pair_to_answer,answers)

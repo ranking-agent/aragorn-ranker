@@ -1,4 +1,4 @@
-codecov==2.1.10
+codecov==2.1.13
 pytest==7.2.1
 pytest-asyncio==0.14.0
 pytest-cov==2.8.1
@@ -14,10 +14,11 @@ jsonschema==3.2.0
 lru-dict==1.1.8
 pydantic>=1.8.1
 pyyaml==5.3.1
-redis==3.5.3
-uvicorn==0.13.3
+redis==4.5.4
+redisgraph-bulk-loader==0.10.2
+uvicorn==0.17.6
 uvloop==0.17.0
 numpy==1.24.1
 httptools==0.5.0
-reasoner-pydantic==1.2.0.3
+reasoner-pydantic==3.0.1
 

@@ -9,7 +9,6 @@ from itertools import combinations
 from datetime import datetime
 from fastapi.responses import JSONResponse
 from ranker.shared.cache import Cache
-from ranker.shared.omnicorp import OmnicorpSupport
 from ranker.shared.util import batches, create_log_entry
 from reasoner_pydantic import Response as PDResponse
 
@@ -21,99 +20,67 @@ CACHE_DB = os.environ.get("CACHE_DB", "0")
 CACHE_PASSWORD = os.environ.get("CACHE_PASSWORD", "")
 
 
-async def count_node_pmids(supporter, node, key, value, cache, kgraph):
-    """Count node PMIDs and add as node property."""
-    if value is not None:
-        logger.debug(f"{key} is cached")
-        support_dict = value
-    else:
-        logger.debug(f"Computing {key}...")
-        support_dict = await supporter.node_pmid_count(node)
-        if cache and support_dict["omnicorp_article_count"]:
-            cache.set(key, support_dict)
+async def add_node_pmid_counts(kgraph, counts):
+    for node_id in kgraph["nodes"]:
+        if node_id in counts:
+            count = counts[node_id]
+        else:
+            count = 0
 
-    # add omnicorp_article_count to nodes in networkx graph
-    attribute = {
-        "original_attribute_name": "omnicorp_article_count",
-        "attribute_type_id": "biolink:has_count",
-        "value": support_dict["omnicorp_article_count"],
-        "value_type_id": "EDAM:data_0006",
-    }
+        # add omnicorp_article_count to nodes in networkx graph
+        attribute = {
+            "original_attribute_name": "omnicorp_article_count",
+            "attribute_type_id": "biolink:has_count",
+            "value": count,
+            "value_type_id": "EDAM:data_0006",
+        }
 
-    # if there is no attributes array add one.  We used exclude_None=True so we don't need to check for it here.
-    if "attributes" not in kgraph[node]:
-        kgraph[node]["attributes"] = []
+        # if there is no attributes array add one.  We used exclude_None=True so we don't need to check for it here.
+        if "attributes" not in kgraph["nodes"][node_id]:
+            kgraph["nodes"][node_id]["attributes"] = []
 
-    # save the attributes
-    kgraph[node]["attributes"].append(attribute)
+        # save the attributes
+        kgraph["nodes"][node_id]["attributes"].append(attribute)
 
-
-async def count_shared_pmids(
-    supporter,
-    support_idx,
-    pair,
-    key,
-    value,
-    cache,
-    cached_prefixes,
+async def add_shared_pmid_counts(
     kgraph,
+    values,
     pair_to_answer,
     answers,
 ):
     """Count PMIDS shared by a pair of nodes and create a new support edge."""
-    support_edge = value
-
-    if support_edge is None:
-        # There are two reasons that we don't get anything back:
-        # 1. We haven't evaluated that pair
-        # 2. We evaluated, and found it to be zero, and it was part
-        #    of a prefix pair that we evaluated all of.  In that case
-        #    we can infer that getting nothing back means an empty list
-        #    check cached_prefixes for this...
-        prefixes = tuple(ident.split(":")[0].upper() for ident in pair)
-        if cached_prefixes and prefixes in cached_prefixes:
-            logger.debug(f"{pair} should be cached: assume 0")
-            support_edge = []
-        else:
-            logger.debug(f"Computing {pair}...")
-            support_edge = await supporter.term_to_term_pmid_count(pair[0], pair[1])
-            if cache and support_edge:
-                cache.set(key, support_edge)
-    else:
-        logger.debug(f"{pair} is cached")
-    if not support_edge:
-        return
-
-    uid = str(uuid4())
-
-    kgraph["edges"].update(
-        {
-            uid: {
-                "predicate": "biolink:occurs_together_in_literature_with",
-                "attributes": [
-                    {
-                        "original_attribute_name": "num_publications",
-                        "attribute_type_id": "biolink:has_count",
-                        "value_type_id": "EDAM:data_0006",
-                        "value": support_edge,
-                    },
-                    # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
-                    # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
-                    {
-                        "attribute_type_id": "biolink:primary_knowledge_source",  # the ‘key’*
-                        "value": "infores:omnicorp",
-                        "value_type_id": "biolink:InformationResource",
-                        "attribute_source": "infores:aragorn",
-                    },
-                ],
-                "subject": pair[0],
-                "object": pair[1],
+    support_idx = 0
+    for pair, publication_count in values.items():
+        support_idx += 1
+        uid = str(uuid4())
+        kgraph["edges"].update(
+            {
+                uid: {
+                    "predicate": "biolink:occurs_together_in_literature_with",
+                    "attributes": [
+                        {
+                            "original_attribute_name": "num_publications",
+                            "attribute_type_id": "biolink:has_count",
+                            "value_type_id": "EDAM:data_0006",
+                            "value": publication_count,
+                        },
+                        # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
+                        # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
+                        {
+                            "attribute_type_id": "biolink:primary_knowledge_source",  # the ‘key’*
+                            "value": "infores:omnicorp",
+                            "value_type_id": "biolink:InformationResource",
+                            "attribute_source": "infores:aragorn",
+                        },
+                    ],
+                    "subject": pair[0],
+                    "object": pair[1],
+                }
             }
-        }
-    )
+        )
 
-    for sg in pair_to_answer[pair]:
-        answers[sg]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
+        for sg in pair_to_answer[pair]:
+            answers[sg]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
 
 
 async def query(request: PDResponse):
@@ -162,107 +129,38 @@ async def query(request: PDResponse):
     redis_batch_size = 100
 
     try:
-        async with OmnicorpSupport() as supporter:
-            # get all node supports
+        # get all node supports
 
-            keys = [
-                f"{supporter.__class__.__name__}({node})" for node in kgraph["nodes"]
+        keys = list(kgraph["nodes"].keys())
+
+        values = {}
+        for batch in batches(keys, redis_batch_size):
+            values.update(cache.mquery(batch,"OMNICORP",
+                                       "as x MATCH (q:CURIE {concept:x}) return q.concept, q.publication_count"))
+
+        await add_node_pmid_counts(kgraph,values)
+
+        # which qgraph nodes are sets?
+        qgraph_setnodes = set(
+            [
+                n
+                for n in qgraph["nodes"]
+                if (
+                    ("is_set" in qgraph["nodes"][n])
+                    and (qgraph["nodes"][n]["is_set"])
+                )
             ]
-            values = []
-            for batch in batches(keys, redis_batch_size):
-                values.extend(cache.mget(*batch))
+        )
 
-            jobs = [
-                count_node_pmids(supporter, node, key, value, cache, kgraph["nodes"])
-                for node, value, key in zip(kgraph["nodes"], values, keys)
-            ]
+        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes)
 
-            # which qgraph nodes are sets?
-            qgraph_setnodes = set(
-                [
-                    n
-                    for n in qgraph["nodes"]
-                    if (
-                        ("is_set" in qgraph["nodes"][n])
-                        and (qgraph["nodes"][n]["is_set"])
-                    )
-                ]
-            )
+        keys = [ list(x) for x in pair_to_answer.keys() ]
+        values = {}
+        for batch in batches(keys, redis_batch_size):
+            values.update(cache.mquery(batch,"OMNICORP",
+                                       "as q MATCH (a:CURIE {concept:q[0]})-[x]-(b:CURIE {concept:q[1]}) return q[0],q[1],x.publication_count"))
 
-            # Generate a set of pairs of node curies
-            pair_to_answer = defaultdict(set)  # a map of node pairs to answers
-            for ans_idx, answer_map in enumerate(answers):
-
-                # Get all nodes that are not part of sets and densely connect them
-                # can be str (not a set) or list (could be a set or not a set)
-                nonset_nodes = []
-                setnodes = {}
-
-                # node binding results is now a dict containing dicts that contain a list of dicts.
-                for nb in answer_map["node_bindings"]:
-                    if nb in qgraph_setnodes:
-                        setnodes[nb] = [
-                            node["id"] for node in answer_map["node_bindings"][nb]
-                        ]
-                    else:
-                        if len(answer_map["node_bindings"][nb]) != 0:
-                            nonset_nodes.append(
-                                answer_map["node_bindings"][nb][0]["id"]
-                            )
-
-                nonset_nodes = sorted(nonset_nodes)
-                # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
-                for node_pair in combinations(nonset_nodes, 2):
-                    pair_to_answer[node_pair].add(ans_idx)
-
-                # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
-                # set_nodes = [n for el in set_nodes_list_list for n in el]
-                # For all nodes that are within sets, connect them to all nodes that are not in sets
-                for qg_id, snodes in setnodes.items():
-                    for snode in snodes:
-                        for node in nonset_nodes:
-                            node_pair = tuple(sorted((node, snode)))
-                            pair_to_answer[node_pair].add(ans_idx)
-
-                # now all nodes in set a to all nodes in set b
-                for qga, qgb in combinations(setnodes.keys(), 2):
-                    for anode in setnodes[qga]:
-                        for bnode in setnodes[qgb]:
-                            # node_pair = tuple(sorted(anode, bnode))
-                            node_pair = tuple(sorted((anode, bnode)))
-                            pair_to_answer[node_pair].add(ans_idx)
-
-            # get all pair supports
-            cached_prefixes = cache.get("OmnicorpPrefixes") if cache else None
-
-            keys = [
-                f"{supporter.__class__.__name__}_count({pair[0]},{pair[1]})"
-                for pair in pair_to_answer
-            ]
-            values = []
-            for batch in batches(keys, redis_batch_size):
-                values.extend(cache.mget(*batch))
-
-            jobs.extend(
-                [
-                    count_shared_pmids(
-                        supporter,
-                        support_idx,
-                        pair,
-                        key,
-                        value,
-                        cache,
-                        cached_prefixes,
-                        kgraph,
-                        pair_to_answer,
-                        answers,
-                    )
-                    for support_idx, (pair, value, key) in enumerate(
-                        zip(pair_to_answer, values, keys)
-                    )
-                ]
-            )
-            await asyncio.gather(*jobs)
+        await add_shared_pmid_counts(kgraph,values,pair_to_answer,answers)
 
         # load the new results into the response
         message["knowledge_graph"] = kgraph
@@ -286,3 +184,49 @@ async def query(request: PDResponse):
 
     # return the result to the caller
     return JSONResponse(content=in_message, status_code=status_code)
+
+
+async def generate_curie_pairs(answers, qgraph_setnodes):
+    # Generate a set of pairs of node curies
+    pair_to_answer = defaultdict(set)  # a map of node pairs to answers
+    for ans_idx, answer_map in enumerate(answers):
+
+        # Get all nodes that are not part of sets and densely connect them
+        # can be str (not a set) or list (could be a set or not a set)
+        nonset_nodes = []
+        setnodes = {}
+
+        # node binding results is now a dict containing dicts that contain a list of dicts.
+        for nb in answer_map["node_bindings"]:
+            if nb in qgraph_setnodes:
+                setnodes[nb] = [
+                    node["id"] for node in answer_map["node_bindings"][nb]
+                ]
+            else:
+                if len(answer_map["node_bindings"][nb]) != 0:
+                    nonset_nodes.append(
+                        answer_map["node_bindings"][nb][0]["id"]
+                    )
+
+        nonset_nodes = sorted(nonset_nodes)
+        # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
+        for node_pair in combinations(nonset_nodes, 2):
+            pair_to_answer[node_pair].add(ans_idx)
+
+        # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
+        # set_nodes = [n for el in set_nodes_list_list for n in el]
+        # For all nodes that are within sets, connect them to all nodes that are not in sets
+        for qg_id, snodes in setnodes.items():
+            for snode in snodes:
+                for node in nonset_nodes:
+                    node_pair = tuple(sorted((node, snode)))
+                    pair_to_answer[node_pair].add(ans_idx)
+
+        # now all nodes in set a to all nodes in set b
+        for qga, qgb in combinations(setnodes.keys(), 2):
+            for anode in setnodes[qga]:
+                for bnode in setnodes[qgb]:
+                    # node_pair = tuple(sorted(anode, bnode))
+                    node_pair = tuple(sorted((anode, bnode)))
+                    pair_to_answer[node_pair].add(ans_idx)
+    return pair_to_answer

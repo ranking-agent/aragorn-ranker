@@ -1,17 +1,7 @@
 version: "3"
 services:
   redis:
-    image: redis
+    image: redis-stack
     container_name: omnicorp_redis
     ports:
       - 6379:6379
-
-  postgres:
-    image: postgres
-    container_name: omnicorp_postgres
-    environment:
-      - POSTGRES_USER=murphy
-      - POSTGRES_DB=omnicorp
-      - POSTGRES_PASSWORD=pword
-    ports:
-      - 5432:5432

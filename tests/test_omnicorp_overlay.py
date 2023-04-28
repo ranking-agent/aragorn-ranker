@@ -29,3 +29,4 @@ def test_omnicorp_overlay_with_set(property_coalesce):
     """Test that omnicorp_overlay() runs without errors."""
     response = client.post('/omnicorp_overlay', json=property_coalesce)
     assert response.status_code==200
+

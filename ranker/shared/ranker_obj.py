@@ -1,6 +1,5 @@
 """ROBOKOP ranking."""
 
-import itertools
 import logging
 from collections import defaultdict
 from itertools import combinations, product
@@ -16,11 +15,12 @@ logger = logging.getLogger(__name__)
 class Ranker:
     """Ranker."""
 
+    DEFAULT_WEIGHT = 1e-2
 
     def __init__(self, message, profile = "blended"):
         """Create ranker."""
-        self.kgraph = message.get('knowledge_graph', {"nodes": {}, "edges": {}})
-        self.qgraph = message.get('query_graph', {"nodes":{}, "edges":{}})
+        self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
+        self.qgraph = message.get("query_graph", {"nodes":{}, "edges":{}} )
 
         source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
@@ -75,20 +75,21 @@ class Ranker:
         #print(f'{len(answers)} answers')
         answers_ = []
         for answer in answers:
-            answers_.append(self.score(answer))
+            answers_.append(self.score(answer, jaccard_like=jaccard_like))
 
         answers.sort(key=itemgetter('score'), reverse=True)
         return answers
 
-    def score(self, answer):
+    def score(self, answer, jaccard_like=False):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
         rgraph = self.get_rgraph(answer)
 
-        weighted_graph = self.weight_graph(rgraph, answer)
-        # if np.any(np.all(np.abs(weighted_graph) == 0, axis=0)):
-        #     answer['score'] = 0
-        #     return answer
+        laplacian = self.graph_laplacian(rgraph, answer)
+        if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
+            answer['score'] = 0
+            return answer
+
         r_node_ids, edges = rgraph
         index = {node_id[0]: r_node_ids.index(node_id) for node_id in r_node_ids}
         q_node_ids = list(self.qgraph['nodes'].keys())
@@ -115,42 +116,23 @@ class Ranker:
             rgraph_inds.append(index[node_label])
         
         rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
-        probes = list(itertools.combinations(rgraph_probe_nodes,2))
-        
-        measurement = [path_collapse(weighted_graph, probe) for probe in probes]
-
-        #We want nodes that are not sets.  We could look in the QG, but that doesn't work very well because if only a single node is bound
-        # in the answer, we want to consider that a non-set, even if the qg node is a set.  So let's just look at how many are bound.
-        # rgraph[0] is structured as a list of (qg_id, kg_id) tuples.  So we want the indices of rgraph[0] that have qg_id that occur only once in rgraph[0]
-        counts = defaultdict(int)
-        for q,k in rgraph[0]:
-            counts[q] += 1
-        nonset_node_ids = [ idx for idx,rnode_id in enumerate(rgraph[0]) if ( counts[rnode_id[0]] == 1 ) ]
-        #nonset_node_ids = [
-        #    idx for idx, rnode_id in enumerate(rgraph[0])
-        #    if (
-        #        (rnode_id[0] not in self.qnode_by_id) or
-        #        (not self.qnode_by_id[rnode_id[0]].get('is_set', False))
-        #    )
-        #]
-
-        # the nonset node count has to be at least 2 nodes
-        if len(nonset_node_ids) < 2:
-            score = 0
-        else:
-            score = np.mean(measurement)
+        probes = list(combinations(rgraph_probe_nodes,2))
+        score = np.exp(-kirchhoff(laplacian, probes))
 
         # fail safe to nuke nans
         score = score if np.isfinite(score) and score >= 0 else -1
 
-        answer['score'] = score
+        if jaccard_like:
+            answer['score'] = score / (1 - score)
+        else:
+            answer['score'] = score
         return answer
 
-    def weight_graph(self, rgraph, answer):
+    def graph_laplacian(self, rgraph, answer):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
-        # compute graph connection matrix for this case while removing duplicate sources for each edge in the result graph
+        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
         weight_dict = []
         for subject_index in range(num_nodes):
@@ -176,30 +158,30 @@ class Ranker:
                         weight_dict[subject_index][object_id][edge_source][edge_property] = val
 
         qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
-        weighted_graph = np.zeros((num_nodes, num_nodes))
+        laplacian = np.zeros((num_nodes, num_nodes))
         for subject_index in range(num_nodes):
             q_node_id_subject = node_ids[subject_index][0]
             for object_id in range(num_nodes):
                 q_node_id_object = node_ids[object_id][0]
                 edge_qnode_ids = frozenset((q_node_id_subject, q_node_id_object))
 
-                
-                weight = 0
-                source_ws = []
+                # Set default weight (or 0 when edge is not a qedge)
+                weight = self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
+
                 for source in weight_dict[subject_index][object_id].keys():
                     for property in weight_dict[subject_index][object_id][source].keys():
                         source_w = weight_dict[subject_index][object_id][source][property]
-                        source_ws.append(source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight))
-                weight = parallel_combine(source_ws)
-
-                # This puts it in the weighted graph and ensures upper triangular weighted_graph
-                if subject_index<object_id:
-                    weighted_graph[subject_index, object_id] = parallel_combine([weighted_graph[subject_index, object_id], weight])                     
-                else:
-                    weighted_graph[object_id, subject_index] = parallel_combine([weighted_graph[object_id, subject_index], weight])
-                    
+                        source_weighted = source_w * source_weight(source, property, source_weights=self.source_weights, unknown_source_weight=self.unknown_source_weight)
+                        if source_weighted==1:
+                            source_weighted=0.99999999
+                        weight = weight + -1/(np.log(source_weighted))
+                
+                laplacian[subject_index, object_id] += -weight
+                laplacian[object_id, subject_index] += -weight
+                laplacian[subject_index, subject_index] += weight
+                laplacian[object_id, object_id] += weight
         
-        return weighted_graph
+        return laplacian
 
     def get_rgraph(self, answer):
         """Get "ranker" subgraph."""
@@ -308,44 +290,24 @@ class Ranker:
                         redges.append(edge)
 
         return rnodes, redges
-    
 
-    
-def path_collapse(weighted_graph, probe):
-    if probe[0] == probe[1]:
-        return 1
-    if probe[0]>probe[1]:
-        probe = (probe[1],probe[0])
-    parallel_steps = [(i,w) for i, w in enumerate(weighted_graph[probe[0],:]) if w > 0]
-    parallel_steps_transpose = [(i,w) for i, w in enumerate(weighted_graph[:,probe[0]]) if w > 0]
-    parallel_steps = parallel_steps+parallel_steps_transpose
-    parallel_parts = []
-    weight_graph_temp = weighted_graph.copy()
-    if parallel_steps:
-        #this step takes out parallel connections as paths when they get sent to the recursion
-        for step in parallel_steps:
-            weight_graph_temp[probe[0],step[0]] = 0.
-            weight_graph_temp[step[0],probe[0]] = 0.
-        for step in parallel_steps:
-            new_p = (step[0], probe[1])
-            parallel_parts.append(series_combine([step[1], path_collapse(weight_graph_temp, new_p)]))
-            
-        out = parallel_combine(parallel_parts)
-    else:
-        return 0 #no connections. return 0
-    return out
 
-def series_combine(ws):
-    return np.prod(ws)
+def kirchhoff(L, probes):
+    """Compute Kirchhoff index, including only specific nodes."""
+    try:
+        num_nodes = L.shape[0]
+        cols = []
+        for x, y in probes:
+            d = np.zeros(num_nodes)
+            d[x] = -1
+            d[y] = 1
+            cols.append(d)
+        x = np.stack(cols, axis=1)
+    except:
+        print(cols)
+        return
 
-def parallel_combine(ws):
-    out = 0
-    for i, w in enumerate(ws):
-        remaining = 1
-        for w2 in ws[:i]:
-            remaining = remaining * (1 - w2)
-        out = out + remaining*w
-    return out
+    return np.trace(x.T @ np.linalg.lstsq(L, x, rcond=None)[0])
 
 
 def matching_subsets(patterns, superset):
@@ -366,7 +328,7 @@ def get_node_pubs(kgraph):
             # get the article count atribute
             for p in kgraph["nodes"][n]["attributes"]:
                 # is this what we are looking for
-                if p.get("original_attribute_name") == "omnicorp_article_count":
+                if p.get("original_attribute_name","") == "omnicorp_article_count":
                     # save it
                     omnicorp_article_count = p["value"]
 
@@ -434,7 +396,6 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
             # Record the source of origination
             edge_info = {
                 "biolink:aggregator_knowledge_source": "not_found",
-                "biolink:original_knowledge_source": "not_found",
                 "biolink:primary_knowledge_source": "not_found",
             }
             for attribute in reversed(attributes):
@@ -450,9 +411,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                                 attribute["attribute_type_id"]
                             ] = "unspecified"
 
-            if edge_info["biolink:original_knowledge_source"] != "not_found":
-                edge_info_final = edge_info["biolink:original_knowledge_source"]
-            elif edge_info["biolink:primary_knowledge_source"] != "not_found":
+            if edge_info["biolink:primary_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:primary_knowledge_source"]
             elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
                 edge_info_final = edge_info["biolink:aggregator_knowledge_source"]

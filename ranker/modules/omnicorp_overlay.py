@@ -1,4 +1,5 @@
 """Literature co-occurrence support."""
+import heapq
 import logging
 import os
 import asyncio
@@ -11,6 +12,8 @@ from fastapi.responses import JSONResponse
 from ranker.shared.cache import Cache
 from ranker.shared.util import batches, create_log_entry
 from reasoner_pydantic import Response as PDResponse
+
+from typing import List, Dict, Tuple, Set
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +86,15 @@ async def add_shared_pmid_counts(
             answers[sg]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
 
 
+def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]] :
+    """Create a dictionary of node to pairs."""
+    node2pairs = defaultdict(list)
+    for pair in pairs:
+        for node in pair:
+            node2pairs[node].append(pair)
+    return node2pairs
+
+
 async def query(request: PDResponse):
     """Add support to message.
 
@@ -129,16 +141,17 @@ async def query(request: PDResponse):
     redis_batch_size = 100
 
     try:
-        # get all node supports
+        # get all node supports.
 
+        # first, get the publication counts for all nodes in the kgraph
         keys = list(kgraph["nodes"].keys())
 
-        values = {}
+        node_pub_counts = {}
         for batch in batches(keys, redis_batch_size):
-            values.update(cache.mquery(batch,"OMNICORP",
+            node_pub_counts.update(cache.mquery(batch,"OMNICORP",
                                        "as x MATCH (q:CURIE {concept:x}) return q.concept, q.publication_count"))
 
-        await add_node_pmid_counts(kgraph,values)
+        await add_node_pmid_counts(kgraph, node_pub_counts)
 
         # which qgraph nodes are sets?
         qgraph_setnodes = set(
@@ -152,13 +165,54 @@ async def query(request: PDResponse):
             ]
         )
 
-        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes)
+        #Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
+        # are part of the same answer
+        #Note, this will be affected by TRAPI 1.4
+        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts)
 
-        keys = [ list(x) for x in pair_to_answer.keys() ]
+        #Now, the simplest thing to do would be to go to redisgraph and look up each pair.   However, it turns out that
+        # the query (a)-[x]-(b) with a and b specified is unreasonably slow.  It's slow because it is getting all the
+        # nodes connected to a and all the nodes connected to b and then intersecting.  Frankly, it seems stupid.
+        # Because the same node will be repeated in many pairs, not only are you doing a slow query, but you're doing
+        # it over and over again.   So, we take a different approach
+
+        # We are just going to do all the onehops from each node in any pair and then do everything else in python.
+        # What that looks like is: first, remove any nodes that didn't have publications from above, because they
+        # by definition won't have any lit co-occurrence edges.  Then find all the pairs and group them by nodes.
+        # Starting with the node in the most pairs, query each node for all of its neighbors.  Collect all the relevant
+        # counts, and remove the pairs that have been accounted for.  Repeat until all pairs have been accounted for.
+
+        # The only other caveat concerns batching.   We actually query for the top N nodes at a time, which means
+        # we might get the same pair coming back twice times in the same batch.  But it doesn't matter much.
+
+        # the pairs are tuples (sorted)
+        pairs = set(list( pair_to_answer.keys() ))
+
         values = {}
-        for batch in batches(keys, redis_batch_size):
-            values.update(cache.mquery(batch,"OMNICORP",
-                                       "as q MATCH (a:CURIE {concept:q[0]})-[x]-(b:CURIE {concept:q[1]}) return q[0],q[1],x.publication_count"))
+        #The batch size here is a bit tricky.   Every time we get back a batch of counts, we are removing pairs,
+        # which also means that we may be removing nodes.   So if we did everything at once, we're checking
+        # for a lot of nodes that we just don't need to.   But if we query on smaller batches to make sure that never
+        # happens, then lots of queries.  But redisgraph is already pretty low latency, so maybe it doesn't hurt that
+        # badly.  Also - it turns out that the one hop query is pretty slow, so the latency makes up a smaller
+        # fraction of the total cost anyway.
+        redis_batch_size = 10
+        while len(pairs) > 0:
+            node2pairs = create_node2pairs(pairs)
+            top_node_items = heapq.nlargest(redis_batch_size, node2pairs.items(), key=lambda x: len(x[1]))
+            top_nodes = [x[0] for x in top_node_items]
+            all_counts = cache.mquery(top_nodes,"OMNICORP", "as q MATCH (a:CURIE {concept:q})-[x]-(b:CURIE) return q,b.concept,x.publication_count")
+            #collect the counts
+            for (node1, node2), count in all_counts.items():
+                pair = tuple(sorted([node1, node2]))
+                #We're getting everything linked to top node, whether it's in our answer or not
+                if pair in pairs:
+                    values[pair] = count
+            # remove all the related pairs whether they come back in all_counts or not
+            for node in top_nodes:
+                for pair in node2pairs[node]:
+                    # it's possible that the pair has already been removed
+                    if pair in pairs:
+                        pairs.remove(pair)
 
         await add_shared_pmid_counts(kgraph,values,pair_to_answer,answers)
 
@@ -186,8 +240,9 @@ async def query(request: PDResponse):
     return JSONResponse(content=in_message, status_code=status_code)
 
 
-async def generate_curie_pairs(answers, qgraph_setnodes):
+async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts):
     # Generate a set of pairs of node curies
+    # if we don't have a node in node_pub_counts, we don't need to add it to the pairs to check.
     pair_to_answer = defaultdict(set)  # a map of node pairs to answers
     for ans_idx, answer_map in enumerate(answers):
 
@@ -208,6 +263,8 @@ async def generate_curie_pairs(answers, qgraph_setnodes):
                         answer_map["node_bindings"][nb][0]["id"]
                     )
 
+        # remove nodes that are not in node_pub_counts
+        nonset_nodes = [n for n in nonset_nodes if n in node_pub_counts]
         nonset_nodes = sorted(nonset_nodes)
         # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
         for node_pair in combinations(nonset_nodes, 2):

@@ -36,10 +36,11 @@
                 "subject": "CHEBI:8871",
                 "object": "MONDO:0004995",
                 "predicate": "biolink:treats",
+                "sources" : [{"resource": "infores:abc", "resource_role":  "biolink:primary_knowledge_source"}],
                 "attributes": [
                     {
                         "attribute_type_id": "biolink:support_graphs",
-                        "values": [
+                        "value": [
                             "a0"
                         ]
                     }
@@ -48,12 +49,14 @@
             "drug-associated_with-gene": {
                 "subject": "CHEBI:8871",
                 "object": "NCBIGene:7124",
-                "predicate": "biolink:associated_with"
+                "predicate": "biolink:associated_with",
+                "sources" : [{"resource": "infores:abc", "resource_role":  "biolink:primary_knowledge_source"}]
             } ,
             "gene-related_to-disease": {
                 "subject": "NCBIGene:7124",
                 "object": "MONDO:0004995",
-                "predicate": "biolink:related_to"
+                "predicate": "biolink:related_to",
+                "sources" : [{"resource": "infores:abc", "resource_role":  "biolink:primary_knowledge_source"}]
             }
         }
     },

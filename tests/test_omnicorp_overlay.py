@@ -2,6 +2,7 @@
 import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
+from reasoner_pydantic import Response
 # this will load all the json test files into global objects to use in a test
 from .fixtures import omnicorp_input, property_coalesce
 
@@ -11,6 +12,10 @@ client = TestClient(APP)
 
 def test_omnicorp_overlay(omnicorp_input):
     """Test that omnicorp_overlay() runs without errors."""
+
+    #Is the input valid
+    pydantic_input = Response.parse_obj(omnicorp_input)
+
     response = client.post('/omnicorp_overlay', json=omnicorp_input)
 
     # load the json

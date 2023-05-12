@@ -27,7 +27,16 @@ def test_omnicorp_overlay(omnicorp_input):
     # assert there are node bindings
     assert(len(answer['message']['results'][0]['node_bindings']) == 2)
 
-    # assert there are 2 edge bindings.  The original one, and the one that came out of omnicorp
-    assert(len(answer['message']['results'][0]['edge_bindings']) == 1)
+    #assert that there are now two auxiliary graphs
+    assert(len(answer['message']['auxiliary_graphs'])) == 2
 
+    # assert that the analysis support is in auxiliary graphs
+    omnicorp_graph = answer["message"]["results"][0]["analyses"][0]["support_graphs"][0]
+    assert omnicorp_graph in answer["message"]["auxiliary_graphs"]
+
+    #assert that the edges in the omnicorp support graph are the right # and the right predicate
+    omnicorp_edges = answer["message"]["auxiliary_graphs"][omnicorp_graph]["edges"]
+    assert len(omnicorp_edges) == 2
+    assert omnicorp_edges[0]["predicate"] == "literature_co-occurrence"
+    assert omnicorp_edges[1]["predicate"] == "literature_co-occurrence"
 

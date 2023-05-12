@@ -1,7 +1,8 @@
 import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
-from .fixtures import svc_test, acet
+#temp
+#from .fixtures import svc_test, acet
 
 client = TestClient(APP)
 

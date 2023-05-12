@@ -50,6 +50,7 @@ async def add_shared_pmid_counts(
     values,
     pair_to_answer,
     answers,
+    aux_graphs
 ):
     """Count PMIDS shared by a pair of nodes and create a new support edge."""
     support_idx = 0
@@ -85,7 +86,14 @@ async def add_shared_pmid_counts(
         # pair_to_answer is a dictionary of pairs to tuples.
         # Each tuple is a pair of (answer_idx, analysis_idx)
         for answer_idx, analysis_idx in pair_to_answer[pair]:
-            answers[answer_idx]["analyses"][analysis_idx]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
+            analysis = answers[answer_idx]["analyses"][analysis_idx]
+            # see if the analysis has a support graph
+            if "support_graphs" not in analysis:
+                analysis["support_graphs"] = [f"OMNICORP_support_graph_{support_idx}"]
+            omnisupport = analysis["support_graphs"][0]
+            if omnisupport not in aux_graphs:
+                aux_graphs[omnisupport] = { "edges": [] }
+            aux_graphs[omnisupport]["edges"].append(uid)
 
 
 def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]] :
@@ -282,7 +290,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             for kedge_id in relevant_kedge_ids:
                 kedge = message["knowledge_graph"]["edges"][kedge_id]
                 for attribute in kedge["attributes"]:
-                    if attribute["attribute_type_id"] == "biolink:support_graphs":
+                    if attribute["attribute_type_id"] == "support_graphs":
                         auxgraph_ids.extend(attribute["value"])
             #for every supporting graph, get the edges
             all_relevant_edge_ids = set()

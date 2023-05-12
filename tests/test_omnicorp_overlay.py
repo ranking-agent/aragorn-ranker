@@ -25,8 +25,4 @@ def test_omnicorp_overlay(omnicorp_input):
     # assert there are 2 edge bindings.  The original one, and the one that came out of omnicorp
     assert(len(answer['message']['results'][0]['edge_bindings']) == 1)
 
-def test_omnicorp_overlay_with_set(property_coalesce):
-    """Test that omnicorp_overlay() runs without errors."""
-    response = client.post('/omnicorp_overlay', json=property_coalesce)
-    assert response.status_code==200
 

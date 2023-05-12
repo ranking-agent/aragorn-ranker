@@ -40,7 +40,7 @@ def test_omnicorp_overlay(omnicorp_input):
 
     #assert that the edges in the omnicorp support graph are the right # and the right predicate
     # there are counts for every pair in this set of 3 curies in the test data.
-    omnicorp_edges = answer["message"]["auxiliary_graphs"][omnicorp_graph]["edges"]
+    omnicorp_edges = answer["message"]["auxiliary_graphs"][omnicorp_graph]["edges"].values()
     assert len(omnicorp_edges) == 3
     for edge in omnicorp_edges:
         assert edge["predicate"] == "literature_co-occurrence"

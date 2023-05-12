@@ -84,8 +84,10 @@ async def add_shared_pmid_counts(
             }
         )
 
-        # pair_to_answer is a dictionary of pairs to an analysis.
-        for analysis in pair_to_answer[pair]:
+        # pair_to_answer is a dictionary of pairs to tuples.
+        # Each tuple is a pair of (answer_idx, analysis_idx)
+        for answer_idx, analysis_idx in pair_to_answer[pair]:
+            analysis = answers[answer_idx]["analyses"][analysis_idx]
             # see if the analysis has a support graph
             if "support_graphs" not in analysis:
                 analysis["support_graphs"] = [f"OMNICORP_support_graph_{support_idx}"]
@@ -177,7 +179,7 @@ async def query(request: PDResponse):
         #Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
         # are part of the same answer
         #Note, this will be affected by TRAPI 1.4
-        pair_to_analysis = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
+        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
 
         #Now, the simplest thing to do would be to go to redisgraph and look up each pair.   However, it turns out that
         # the query (a)-[x]-(b) with a and b specified is unreasonably slow.  It's slow because it is getting all the
@@ -195,7 +197,7 @@ async def query(request: PDResponse):
         # we might get the same pair coming back twice times in the same batch.  But it doesn't matter much.
 
         # the pairs are tuples (sorted)
-        pairs = set(list( pair_to_analysis.keys() ))
+        pairs = set(list( pair_to_answer.keys() ))
 
         values = {}
         #The batch size here is a bit tricky.   Every time we get back a batch of counts, we are removing pairs,
@@ -223,7 +225,7 @@ async def query(request: PDResponse):
                     if pair in pairs:
                         pairs.remove(pair)
 
-        await add_shared_pmid_counts(message,values,pair_to_analysis)
+        await add_shared_pmid_counts(message,values,pair_to_answer)
 
         # load the new results into the response
         message["knowledge_graph"] = kgraph
@@ -252,8 +254,8 @@ async def query(request: PDResponse):
 async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message):
     # Generate a set of pairs of node curies
     # if we don't have a node in node_pub_counts, we don't need to add it to the pairs to check.
-    pair_to_analysis = defaultdict(set)  # a map of node pairs to answers
-    for answer_map in answers:
+    pair_to_answer = defaultdict(set)  # a map of node pairs to answers
+    for ans_idx, answer_map in enumerate(answers):
 
         # Get all nodes that are not part of sets and densely connect them
         # can be str (not a set) or list (could be a set or not a set)
@@ -279,7 +281,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                         answer_map["node_bindings"][nb][0]["id"]
                     )
 
-        for analysis in answer_map["analyses"]:
+        for analysis_idx, analysis in enumerate(answer_map["analyses"]):
             new_nonset_nodes = set()
             # find the knowledge edges that are bound in the analysis
             relevant_kedge_id_lists = [ [x["id"] for x in eb] for eb in analysis["edge_bindings"].values()]
@@ -306,14 +308,14 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             lookup_nodes = [n for n in lookup_nodes if n in node_pub_counts]
             lookup_nodes = sorted(lookup_nodes)
             for node_pair in combinations(lookup_nodes, 2):
-                pair_to_analysis[node_pair].add( analysis )
+                pair_to_answer[node_pair].add((ans_idx, analysis_idx))
 
             # For all nodes that are within sets, connect them to all nodes that are not in sets
             for qg_id, snodes in setnodes.items():
                 for snode in snodes:
                     for node in lookup_nodes:
                         node_pair = tuple(sorted((node, snode)))
-                        pair_to_analysis[node_pair].add(analysis)
+                        pair_to_answer[node_pair].add((ans_idx,analysis_idx))
 
             # now all nodes in set a to all nodes in set b
             for qga, qgb in combinations(setnodes.keys(), 2):
@@ -321,5 +323,5 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                     for bnode in setnodes[qgb]:
                         # node_pair = tuple(sorted(anode, bnode))
                         node_pair = tuple(sorted((anode, bnode)))
-                        pair_to_analysis[node_pair].add(analysis)
-    return pair_to_analysis
+                        pair_to_answer[node_pair].add((ans_idx, analysis_idx))
+    return pair_to_answer

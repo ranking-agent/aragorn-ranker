@@ -282,7 +282,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             for kedge_id in relevant_kedge_ids:
                 kedge = message["knowledge_graph"]["edges"][kedge_id]
                 for attribute in kedge["attributes"]:
-                    if attribute["attribute_type_id"] == "support graph":
+                    if attribute["attribute_type_id"] == "biolink:support_graphs":
                         auxgraph_ids.extend(attribute["value"])
             #for every supporting graph, get the edges
             all_relevant_edge_ids = set()

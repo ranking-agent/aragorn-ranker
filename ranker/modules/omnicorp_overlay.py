@@ -46,13 +46,14 @@ async def add_node_pmid_counts(kgraph, counts):
         kgraph["nodes"][node_id]["attributes"].append(attribute)
 
 async def add_shared_pmid_counts(
-    kgraph,
+    message,
     values,
     pair_to_answer,
-    answers,
-    aux_graphs
 ):
     """Count PMIDS shared by a pair of nodes and create a new support edge."""
+    kgraph = message["knowledge_graph"]
+    aux_graphs = message["auxiliary_graphs"]
+    answers = message["results"]
     support_idx = 0
     for pair, publication_count in values.items():
         support_idx += 1
@@ -224,7 +225,7 @@ async def query(request: PDResponse):
                     if pair in pairs:
                         pairs.remove(pair)
 
-        await add_shared_pmid_counts(kgraph,values,pair_to_answer,answers)
+        await add_shared_pmid_counts(message,values,pair_to_answer)
 
         # load the new results into the response
         message["knowledge_graph"] = kgraph
@@ -290,7 +291,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             for kedge_id in relevant_kedge_ids:
                 kedge = message["knowledge_graph"]["edges"][kedge_id]
                 for attribute in kedge["attributes"]:
-                    if attribute["attribute_type_id"] == "support_graphs":
+                    if attribute["attribute_type_id"] == "biolink:support_graphs":
                         auxgraph_ids.extend(attribute["value"])
             #for every supporting graph, get the edges
             all_relevant_edge_ids = set()
@@ -300,12 +301,13 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                 edge = message["knowledge_graph"]["edges"][edge_id]
                 new_nonset_nodes.add(edge["subject"])
                 new_nonset_nodes.add(edge["object"])
-            lookup_nodes = nonset_nodes + list(new_nonset_nodes)
+            new_nonset_nodes.update(nonset_nodes)
+            lookup_nodes = list(new_nonset_nodes)
 
             # remove nodes that are not in node_pub_counts
             lookup_nodes = [n for n in lookup_nodes if n in node_pub_counts]
             lookup_nodes = sorted(lookup_nodes)
-            for node_pair in combinations(nonset_nodes, 2):
+            for node_pair in combinations(lookup_nodes, 2):
                 pair_to_answer[node_pair].add((ans_idx, analysis_idx))
 
             # For all nodes that are within sets, connect them to all nodes that are not in sets

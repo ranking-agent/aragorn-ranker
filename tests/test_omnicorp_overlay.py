@@ -17,12 +17,16 @@ def test_omnicorp_overlay(omnicorp_input):
     pydantic_input = Response.parse_obj(omnicorp_input)
 
     response = client.post('/omnicorp_overlay', json=omnicorp_input)
+    assert response.status_code == 200
 
     # load the json
     answer = response.json()
 
     # make sure the there are the same number of results that went in
     assert(len(answer['message']['results']) == len(omnicorp_input['message']['results']))
+
+    # There should be new edges
+    assert(len(answer['message']['knowledge_graph']["edges"]) > len(omnicorp_input['message']['knowledge_graph']['edges']))
 
     # assert there are node bindings
     assert(len(answer['message']['results'][0]['node_bindings']) == 2)

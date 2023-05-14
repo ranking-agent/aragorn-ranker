@@ -43,5 +43,5 @@ def test_omnicorp_overlay(omnicorp_input):
     omnicorp_edges = answer["message"]["auxiliary_graphs"][omnicorp_graph]["edges"]
     assert len(omnicorp_edges) == 3
     for omni_edge in omnicorp_edges:
-        assert answer["message"]["knowledge_graph"][omni_edge]["predicate"] == "literature_co-occurrence"
+        assert answer["message"]["knowledge_graph"]["edges"][omni_edge]["predicate"] == "biolink:occurs_together_in_literature_with"
 

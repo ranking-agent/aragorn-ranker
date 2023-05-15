@@ -77,55 +77,56 @@ class Ranker:
         for answer in answers:
             answers_.append(self.score(answer, jaccard_like=jaccard_like))
 
-        answers.sort(key=itemgetter('score'), reverse=True)
         return answers
 
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
-        rgraph = self.get_rgraph(answer)
-
-        laplacian = self.graph_laplacian(rgraph, answer)
-        if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
-            answer['score'] = 0
-            return answer
-
-        r_node_ids, edges = rgraph
-        index = {node_id[0]: r_node_ids.index(node_id) for node_id in r_node_ids}
-        q_node_ids = list(self.qgraph['nodes'].keys())
-        n_q_nodes = len(q_node_ids)
-        q_conn = np.full((n_q_nodes, n_q_nodes),0)
-        for e in self.qgraph['edges'].values():
-            e_sub = q_node_ids.index(e['subject'])
-            e_obj = q_node_ids.index(e['object'])
-            if e_sub is not None and e_obj is not None:
-                q_conn[e_sub, e_obj] = 1
-
-        node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
-        probe_nodes = []
-        for conn in range(np.max(node_conn)):
-            is_this_conn = node_conn == (conn+1)
-            probe_nodes += list(np.where(is_this_conn)[0])
-            if len(probe_nodes) > 1:
-                break
-        #converting qgraph inds to rgraph inds:
+        r_node_ids, edges_all = self.get_rgraph(answer)
         
-        rgraph_inds = []
-        for node_ind in range(len(q_node_ids)):
-            node_label = q_node_ids[node_ind]
-            rgraph_inds.append(index[node_label])
         
-        rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
-        probes = list(combinations(rgraph_probe_nodes,2))
-        score = np.exp(-kirchhoff(laplacian, probes))
 
-        # fail safe to nuke nans
-        score = score if np.isfinite(score) and score >= 0 else -1
+        
+        for i_analysis,edges in enumerate(edges_all):
+            laplacian = self.graph_laplacian((r_node_ids,edges), answer)
+            if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
+                answer['analyses'][i_analysis]['score'] = 0
+                continue
+            index = {node_id[0]: r_node_ids.index(node_id) for node_id in r_node_ids}
+            q_node_ids = list(self.qgraph['nodes'].keys())
+            n_q_nodes = len(q_node_ids)
+            q_conn = np.full((n_q_nodes, n_q_nodes),0)
+            for e in self.qgraph['edges'].values():
+                e_sub = q_node_ids.index(e['subject'])
+                e_obj = q_node_ids.index(e['object'])
+                if e_sub is not None and e_obj is not None:
+                    q_conn[e_sub, e_obj] = 1
 
-        if jaccard_like:
-            answer['score'] = score / (1 - score)
-        else:
-            answer['score'] = score
+            node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
+            probe_nodes = []
+            for conn in range(np.max(node_conn)):
+                is_this_conn = node_conn == (conn+1)
+                probe_nodes += list(np.where(is_this_conn)[0])
+                if len(probe_nodes) > 1:
+                    break
+            #converting qgraph inds to rgraph inds:
+            
+            rgraph_inds = []
+            for node_ind in range(len(q_node_ids)):
+                node_label = q_node_ids[node_ind]
+                rgraph_inds.append(index[node_label])
+            
+            rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
+            probes = list(combinations(rgraph_probe_nodes,2))
+            score = np.exp(-kirchhoff(laplacian, probes))
+
+            # fail safe to nuke nans
+            score = score if np.isfinite(score) and score >= 0 else -1
+
+            if jaccard_like:
+                answer['analyses'][i_analysis]['score'] = score / (1 - score)
+            else:
+                answer['analyses'][i_analysis]['score'] = score
         return answer
 
     def graph_laplacian(self, rgraph, answer):
@@ -223,73 +224,75 @@ class Ranker:
         # for eb in answer['edge_bindings']:
         # qedge_id = eb
         # kedges = answer['edge_bindings'][eb]
-
+        analysis_edges = []
+        for i_analysis in range(len(answer['analyses'])):
         # get "result" edges
-        for qedge_id, kedge_bindings in answer['edge_bindings'].items():
-            for kedge_binding in kedge_bindings:
-                """
-                The code for generating pairs below appears unusual, but we need
-                it in order to properly handle unlikely set situations.
+            for qedge_id, kedge_bindings in answer['analyses'][i_analysis]['edge_bindings'].items():
+                for kedge_binding in kedge_bindings:
+                    """
+                    The code for generating pairs below appears unusual, but we need
+                    it in order to properly handle unlikely set situations.
 
-                Consider this question graph: n0 --e0--> n1.
+                    Consider this question graph: n0 --e0--> n1.
 
-                Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2, and
-                e0 is bound to this knowledge graph edge: D1 --> D2.
+                    Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2, and
+                    e0 is bound to this knowledge graph edge: D1 --> D2.
 
-                Following the direction of the kedge, we expect the following
-                edges in the rgraph:
-                (n0, D1) --> (n1, D2)
-                (n1, D1) --> (n0, D2)
+                    Following the direction of the kedge, we expect the following
+                    edges in the rgraph:
+                    (n0, D1) --> (n1, D2)
+                    (n1, D1) --> (n0, D2)
 
-                The `product` used below can generate these pairs, but it can
-                also create the following edges:
-                (n1, D1) --> (n1, D2)
-                (n0, D1) --> (n0, D2)
-            
-                The `if pair[0][0] != pair[1][0]` prevents this from happening.
-                """
-                kedge = self.kedge_by_id[kedge_binding['id']]
-                ksubject, kobject = kedge['subject'], kedge['object']
-                try:
-                    qedge = self.qedge_by_id[qedge_id]
-                    qedge_nodes = qedge['subject'], qedge['object']
-                    pairs = [pair for pair in product(
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in qedge_nodes and rnode[1] == ksubject
-                        ],
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[0] in qedge_nodes and rnode[1] == kobject
-                        ],
-                    ) if pair[0][0] != pair[1][0]]
-                except KeyError:
-                    # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
-                    # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
-                    pairs = set(tuple(sorted(pair)) for pair in product(
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[1] == ksubject
-                        ],
-                        [
-                            rnode for rnode in rnodes
-                            if rnode[1] == kobject
-                        ],
-                    ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
+                    The `product` used below can generate these pairs, but it can
+                    also create the following edges:
+                    (n1, D1) --> (n1, D2)
+                    (n0, D1) --> (n0, D2)
+                
+                    The `if pair[0][0] != pair[1][0]` prevents this from happening.
+                    """
+                    kedge = self.kedge_by_id[kedge_binding['id']]
+                    ksubject, kobject = kedge['subject'], kedge['object']
+                    try:
+                        qedge = self.qedge_by_id[qedge_id]
+                        qedge_nodes = qedge['subject'], qedge['object']
+                        pairs = [pair for pair in product(
+                            [
+                                rnode for rnode in rnodes
+                                if rnode[0] in qedge_nodes and rnode[1] == ksubject
+                            ],
+                            [
+                                rnode for rnode in rnodes
+                                if rnode[0] in qedge_nodes and rnode[1] == kobject
+                            ],
+                        ) if pair[0][0] != pair[1][0]]
+                    except KeyError:
+                        # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
+                        # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
+                        pairs = set(tuple(sorted(pair)) for pair in product(
+                            [
+                                rnode for rnode in rnodes
+                                if rnode[1] == ksubject
+                            ],
+                            [
+                                rnode for rnode in rnodes
+                                if rnode[1] == kobject
+                            ],
+                        ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
 
-                for subject, object in pairs:
-                    # get the weight from the edge binding
-                    edge_vals = self.rank_vals.get(kedge_binding['id'],None)
-                    if edge_vals is not None:
-                        edge = {
-                            'weight': {edge_vals['source']: {k:v for k,v in edge_vals.items() if k != 'source'}},
-                            'subject': subject,
-                            'object': object
-                        }
+                    for subject, object in pairs:
+                        # get the weight from the edge binding
+                        edge_vals = self.rank_vals.get(kedge_binding['id'],None)
+                        if edge_vals is not None:
+                            edge = {
+                                'weight': {edge_vals['source']: {k:v for k,v in edge_vals.items() if k != 'source'}},
+                                'subject': subject,
+                                'object': object
+                            }
 
-                        redges.append(edge)
+                            redges.append(edge)
+            analysis_edges.append(redges)
 
-        return rnodes, redges
+        return rnodes, analysis_edges
 
 
 def kirchhoff(L, probes):
@@ -354,6 +357,15 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
         # init storage for the publications and their count
         publications = []
         num_publications = 0
+
+        #Get source information
+        sources = edges[edge].get("sources", None)
+        if sources is not None:
+            for source in sources:
+                if 'primary_knowledge_source' in source['resource_role']:
+                    edge_info_final = source['resource_id']
+
+
             
         p_value = None    
         if attributes is not None:
@@ -394,10 +406,11 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                 
 
             # Record the source of origination
-            edge_info = {
-                "biolink:aggregator_knowledge_source": "not_found",
-                "biolink:primary_knowledge_source": "not_found",
-            }
+            # edge_info = {
+            #     "biolink:aggregator_knowledge_source": "not_found",
+            #     "biolink:primary_knowledge_source": "not_found",
+            # }
+            edge_info = {}
             for attribute in reversed(attributes):
                 if attribute.get("attribute_type_id", None) is not None:
                     if attribute["attribute_type_id"] in edge_info.keys():
@@ -411,12 +424,13 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                                 attribute["attribute_type_id"]
                             ] = "unspecified"
 
-            if edge_info["biolink:primary_knowledge_source"] != "not_found":
-                edge_info_final = edge_info["biolink:primary_knowledge_source"]
-            elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
-                edge_info_final = edge_info["biolink:aggregator_knowledge_source"]
-            else:
-                edge_info_final = "unspecified"
+            # if edge_info["biolink:primary_knowledge_source"] != "not_found":
+            #     edge_info_final = edge_info["biolink:primary_knowledge_source"]
+            # elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
+            #     edge_info_final = edge_info["biolink:aggregator_knowledge_source"]
+            # else:
+            #     edge_info_final = "unspecified"
+             
 
             # if there was only 1 publication value found insure it wasnt a character separated list
             if len(publications) == 1:

@@ -68,16 +68,11 @@ async def add_shared_pmid_counts(
                             "attribute_type_id": "biolink:has_count",
                             "value_type_id": "EDAM:data_0006",
                             "value": publication_count,
-                        },
-                        # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
-                        # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
-                        {
-                            "attribute_type_id": "primary_knowledge_source",  # the ‘key’*
-                            "value": "infores:omnicorp",
-                            "value_type_id": "biolink:InformationResource",
-                            "attribute_source": "infores:aragorn",
-                        },
-                    ],
+                        }],
+                    "sources": [{
+                            "resource": "infores:omnicorp",
+                            "resource_role": "primary_knowledge_source",
+                    }],
                     "subject": pair[0],
                     "object": pair[1],
                 }
@@ -88,10 +83,16 @@ async def add_shared_pmid_counts(
         # Each tuple is a pair of (answer_idx, analysis_idx)
         for answer_idx, analysis_idx in pair_to_answer[pair]:
             analysis = answers[answer_idx]["analyses"][analysis_idx]
-            # see if the analysis has a support graph
+            # see if the analysis has an omnicoprot support graph
             if "support_graphs" not in analysis:
-                analysis["support_graphs"] = [f"OMNICORP_support_graph_{support_idx}"]
-            omnisupport = analysis["support_graphs"][0]
+                analysis["support_graphs"] = []
+            omnisupport = None
+            for sg in analysis["support_graphs"]:
+                if sg.startswith("OMNICORP_support_graph"):
+                    omnisupport = sg
+            if omnisupport is None:
+                omnisupport = f"OMNICORP_support_graph_{support_idx}"
+                analysis["support_graphs"].append(omnisupport)
             if omnisupport not in aux_graphs:
                 aux_graphs[omnisupport] = { "edges": [] }
             aux_graphs[omnisupport]["edges"].append(uid)

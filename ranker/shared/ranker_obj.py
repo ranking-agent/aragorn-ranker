@@ -77,7 +77,7 @@ class Ranker:
         scores_for_sort = []
         for answer in answers:
             answers_.append(self.score(answer, jaccard_like=jaccard_like))
-            scores_for_sort.append(max(analysis['score'] for analysis in answer['analyses']))
+            scores_for_sort.append(max(analysis['score'] for analysis in answer.get('analyses',[{'score':0}])))
         answers = [x for _, x in sorted(zip(scores_for_sort, answers), key=lambda pair: pair[0])]
         return answers
 

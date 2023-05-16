@@ -405,12 +405,6 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                     else:
                         p_value = attribute["value"]
                 
-
-            # Record the source of origination
-            # edge_info = {
-            #     "biolink:aggregator_knowledge_source": "not_found",
-            #     "biolink:primary_knowledge_source": "not_found",
-            # }
             edge_info = {}
             for attribute in reversed(attributes):
                 if attribute.get("attribute_type_id", None) is not None:
@@ -423,15 +417,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                         else:
                             edge_info[
                                 attribute["attribute_type_id"]
-                            ] = "unspecified"
-
-            # if edge_info["biolink:primary_knowledge_source"] != "not_found":
-            #     edge_info_final = edge_info["biolink:primary_knowledge_source"]
-            # elif edge_info["biolink:aggregator_knowledge_source"] != "not_found":
-            #     edge_info_final = edge_info["biolink:aggregator_knowledge_source"]
-            # else:
-            #     edge_info_final = "unspecified"
-             
+                            ] = "unspecified"           
 
             # if there was only 1 publication value found insure it wasnt a character separated list
             if len(publications) == 1:

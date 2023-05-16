@@ -74,9 +74,11 @@ class Ranker:
         # get subgraph statistics
         #print(f'{len(answers)} answers')
         answers_ = []
+        scores_for_sort = []
         for answer in answers:
             answers_.append(self.score(answer, jaccard_like=jaccard_like))
-
+            scores_for_sort.append(max(analysis['score'] for analysis in answer['analyses']))
+        answers = [x for _, x in sorted(zip(scores_for_sort, answers), key=lambda pair: pair[0])]
         return answers
 
     def score(self, answer, jaccard_like=False):

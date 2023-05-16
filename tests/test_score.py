@@ -24,7 +24,7 @@ def xtest_nonzero_score(weighted_answer):
     # make sure the there are 3 results
     assert(len(answer) == 1)
 
-    assert(answer[0]['score'] > 0)
+    assert(answer[0]['analyses'][0]['score'] > 0)
 
 #this test is out of date because its input does not match the format of weight correctness.
 # the test data has weight in the edge bindings, rather than in the attribute of the edge bindings.
@@ -84,14 +84,14 @@ def test_score_set_symmetry(weighted_set):
     response = client.post('/score', json=weighted_set)
     resp = response.json()
     answer = resp['message']['results']
-    score_one = answer[0]['score']
+    score_one = answer[0]['analyses'][0]['score']
     #Reverse the weights, score it
     edge_bindings[0]['attributes'][0]['value'] = 1
     edge_bindings[1]['attributes'][0]['value'] = 2
     response = client.post('/score', json=weighted_set)
     resp = response.json()
     answer = resp['message']['results']
-    score_two = answer[0]['score']
+    score_two = answer[0]['analyses'][0]['score']
     assert score_one == approx(score_two)
 
 
@@ -101,5 +101,5 @@ def test_basic_scoring(score_test):
     answer = resp['message']['results']
     assert response.status_code == 200
     assert len(answer) == 2
-    assert answer[0]['score'] == approx(0.2884698783406143)
-    assert answer[1]['score'] == approx(0.2884698783406143)
+    assert answer[0]['analyses'][0]['score'] == approx(0.2884698783406143)
+    assert answer[1]['analyses'][0]['score'] == approx(0.2884698783406143)

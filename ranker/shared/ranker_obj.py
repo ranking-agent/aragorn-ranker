@@ -225,7 +225,7 @@ class Ranker:
         # qedge_id = eb
         # kedges = answer['edge_bindings'][eb]
         analysis_edges = []
-        for i_analysis in range(len(answer.get('analyses',None))):
+        for i_analysis in range(len(answer.get('analyses',[]]))):
         # get "result" edges
             for qedge_id, kedge_bindings in answer['analyses'][i_analysis]['edge_bindings'].items():
                 for kedge_binding in kedge_bindings:

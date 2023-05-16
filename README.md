@@ -1,6 +1,6 @@
 # ARAGORN-ranker
 
-The ARAGORN ranker used by the ARAGORN ARA, which takes a TRAPI 1.1 message containing answers, and calculates numerical scores for each answer.
+The ARAGORN ranker used by the ARAGORN ARA, which takes a TRAPI 1.4 message containing answers, and calculates numerical scores for each answer.
 
 This is a upgraded port of code from robokop-messenger to perform omnicorp overlay, score and weight-correctness answer ranking.
 
@@ -8,7 +8,7 @@ ARAGORN-ranker uses the omnicorp database to retrieve ontologies. Please see the
 
 ## Demonstration
 
-A live version of the API can be found [here](https://aragorn-ranker.renci.org/docs).
+A live version of the API can be found [here](https://aragorn-ranker.renci.org/1.4/docs).
 
 ## Related Source Code
 Below you will find references that detail the standards, web services and supporting tools that are part of ARAGORN. 

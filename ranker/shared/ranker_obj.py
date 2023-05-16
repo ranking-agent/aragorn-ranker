@@ -193,7 +193,7 @@ class Ranker:
         dummy_ind = 0
         #adds edges and nodes from support graphs into the answer edge bindings and node bindings
         for i_analysis in range(len(answer.get('analyses',[]))):
-            for sg in answer['analyses'][i_analysis]['support_graphs']:
+            for sg in answer['analyses'][i_analysis].get('support_graphs',[]):
                 for edge in self.agraph[sg]['edges']:
                     answer['analyses'][i_analysis]['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':edge}]
                     dummy_ind =+ 1

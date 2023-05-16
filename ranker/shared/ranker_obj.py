@@ -362,7 +362,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
         sources = edges[edge].get("sources", None)
         if sources is not None:
             for source in sources:
-                if 'primary_knowledge_source' in source['resource_role']:
+                if 'primary_knowledge_source' in source.get("resource_role",None):
                     edge_info_final = source['resource_id']
 
 

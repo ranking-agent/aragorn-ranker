@@ -21,7 +21,7 @@ class Ranker:
         """Create ranker."""
         self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
         self.qgraph = message.get("query_graph", {"nodes":{}, "edges":{}} )
-
+        self.agraph = message.get("auxiliary_graphs",{})
         source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
@@ -190,6 +190,14 @@ class Ranker:
         """Get "ranker" subgraph."""
         rnodes = set()
         redges = []
+        dummy_ind = 0
+        #adds edges and nodes from support graphs into the answer edge bindings and node bindings
+        for i_analysis in range(len(answer.get('analyses',[]))):
+            for sg in answer['analyses'][i_analysis]['support_graphs']:
+                for edge in self.agraph[sg]['edges']:
+                    answer['analyses'][i_analysis]['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':edge}]
+                    dummy_ind =+ 1
+
 
         # Checks if multiple nodes share node bindings 
         rgraph_sets = [

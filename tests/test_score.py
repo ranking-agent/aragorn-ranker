@@ -72,7 +72,7 @@ def test_score_set(weighted_set):
     response = client.post('/score', json=weighted_set)
     resp = response.json()
     answer = resp['message']['results']
-    print(answer[0]['score'])
+    print(answer[0]['analyses'][0]['score'])
     assert response.status_code == 200
 
 def test_score_set_symmetry(weighted_set):

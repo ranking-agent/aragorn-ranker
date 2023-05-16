@@ -357,13 +357,14 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
         # init storage for the publications and their count
         publications = []
         num_publications = 0
-
+        
         #Get source information
+        edge_info_final = "unspecified"
         sources = edges[edge].get("sources", None)
         if sources is not None:
             for source in sources:
                 if 'primary_knowledge_source' in source.get("resource_role",None):
-                    edge_info_final = source['resource_id']
+                    edge_info_final = source.get("resource_id","unspecified")
 
 
             

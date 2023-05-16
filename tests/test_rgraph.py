@@ -1,5 +1,6 @@
 from ranker.shared.ranker_obj import Ranker
-from .fixtures import overlapping_set
+#temp
+#from .fixtures import overlapping_set
 
 def test_rgraph_edges_between_same_qnode(overlapping_set):
     message =  overlapping_set['message']

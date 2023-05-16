@@ -1,0 +1,99 @@
+{ "message": {
+    "query_graph": {
+        "nodes": {
+            "n1": {
+                "ids": [
+                    "CHEBI:6801"
+                ],
+                "categories": [
+                    "biolink:ChemicalSubstance"
+                ]
+            },
+            "n2": {
+                "categories": [
+                    "biolink:Disease"
+                ]
+            }
+        },
+        "edges": {
+            "n1n2": {
+                "subject": "n1",
+                "object": "n2",
+                "predicates": [
+                    "biolink:related_to"
+                ]
+            }
+        }
+    },
+    "knowledge_graph": {
+        "nodes": {
+            "CHEBI:8871": {},
+            "MONDO:0004995": {},
+            "NCBIGene:7124": {}
+        },
+        "edges": {
+            "drug-treats-disease": {
+                "subject": "CHEBI:8871",
+                "object": "MONDO:0004995",
+                "predicate": "biolink:treats",
+                "sources" : [{"resource_id": "infores:abc", "resource_role":  "primary_knowledge_source"}],
+                "attributes": [
+                    {
+                        "attribute_type_id": "biolink:support_graphs",
+                        "value": [
+                            "a0"
+                        ]
+                    }
+                ]
+            },
+            "drug-associated_with-gene": {
+                "subject": "CHEBI:8871",
+                "object": "NCBIGene:7124",
+                "predicate": "biolink:associated_with",
+                "sources" : [{"resource_id": "infores:abc", "resource_role":  "primary_knowledge_source"}]
+            } ,
+            "gene-related_to-disease": {
+                "subject": "NCBIGene:7124",
+                "object": "MONDO:0004995",
+                "predicate": "biolink:related_to",
+                "sources" : [{"resource_id": "infores:abc", "resource_role":  "primary_knowledge_source"}]
+            }
+        }
+    },
+    "results": [
+        {
+            "node_bindings": {
+                "n1": [
+                    {
+                        "id": "CHEBI:8871"
+                    }
+                ],
+                "n2": [
+                    {
+                        "id": "MONDO:0004995"
+                    }
+                ]
+            },
+            "analyses": [
+                {
+                    "resource_id": "ara0",
+                    "edge_bindings": {
+                        "n1n2": [
+                            {
+                                "id": "drug-treats-disease"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "auxiliary_graphs": {
+        "a0": {
+            "edges": [
+                "drug-associated_with-gene",
+                "gene-related_to-disease"
+            ]
+        }
+    }
+}}

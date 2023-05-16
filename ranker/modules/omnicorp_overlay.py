@@ -46,12 +46,14 @@ async def add_node_pmid_counts(kgraph, counts):
         kgraph["nodes"][node_id]["attributes"].append(attribute)
 
 async def add_shared_pmid_counts(
-    kgraph,
+    message,
     values,
     pair_to_answer,
-    answers,
 ):
     """Count PMIDS shared by a pair of nodes and create a new support edge."""
+    kgraph = message["knowledge_graph"]
+    aux_graphs = message["auxiliary_graphs"]
+    answers = message["results"]
     support_idx = 0
     for pair, publication_count in values.items():
         support_idx += 1
@@ -66,24 +68,34 @@ async def add_shared_pmid_counts(
                             "attribute_type_id": "biolink:has_count",
                             "value_type_id": "EDAM:data_0006",
                             "value": publication_count,
-                        },
-                        # If we're returning a count, then returning an empty list here is gibberish, and causes an error in weighting.
-                        # {'original_attribute_name': 'publications', 'attribute_type_id': 'biolink:publications', 'value_type_id': 'EDAM:data_0006', 'value': []},
-                        {
-                            "attribute_type_id": "biolink:primary_knowledge_source",  # the ‘key’*
-                            "value": "infores:omnicorp",
-                            "value_type_id": "biolink:InformationResource",
-                            "attribute_source": "infores:aragorn",
-                        },
-                    ],
+                        }],
+                    "sources": [{
+                            "resource": "infores:omnicorp",
+                            "resource_role": "primary_knowledge_source",
+                    }],
                     "subject": pair[0],
                     "object": pair[1],
                 }
             }
         )
 
-        for sg in pair_to_answer[pair]:
-            answers[sg]["edge_bindings"].update({f"s{support_idx}": [{"id": uid}]})
+        # pair_to_answer is a dictionary of pairs to tuples.
+        # Each tuple is a pair of (answer_idx, analysis_idx)
+        for answer_idx, analysis_idx in pair_to_answer[pair]:
+            analysis = answers[answer_idx]["analyses"][analysis_idx]
+            # see if the analysis has an omnicoprot support graph
+            if "support_graphs" not in analysis:
+                analysis["support_graphs"] = []
+            omnisupport = None
+            for sg in analysis["support_graphs"]:
+                if sg.startswith("OMNICORP_support_graph"):
+                    omnisupport = sg
+            if omnisupport is None:
+                omnisupport = f"OMNICORP_support_graph_{support_idx}"
+                analysis["support_graphs"].append(omnisupport)
+            if omnisupport not in aux_graphs:
+                aux_graphs[omnisupport] = { "edges": [] }
+            aux_graphs[omnisupport]["edges"].append(uid)
 
 
 def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]] :
@@ -168,7 +180,7 @@ async def query(request: PDResponse):
         #Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
         # are part of the same answer
         #Note, this will be affected by TRAPI 1.4
-        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts)
+        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
 
         #Now, the simplest thing to do would be to go to redisgraph and look up each pair.   However, it turns out that
         # the query (a)-[x]-(b) with a and b specified is unreasonably slow.  It's slow because it is getting all the
@@ -214,7 +226,7 @@ async def query(request: PDResponse):
                     if pair in pairs:
                         pairs.remove(pair)
 
-        await add_shared_pmid_counts(kgraph,values,pair_to_answer,answers)
+        await add_shared_pmid_counts(message,values,pair_to_answer)
 
         # load the new results into the response
         message["knowledge_graph"] = kgraph
@@ -240,7 +252,7 @@ async def query(request: PDResponse):
     return JSONResponse(content=in_message, status_code=status_code)
 
 
-async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts):
+async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message):
     # Generate a set of pairs of node curies
     # if we don't have a node in node_pub_counts, we don't need to add it to the pairs to check.
     pair_to_answer = defaultdict(set)  # a map of node pairs to answers
@@ -250,6 +262,13 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts):
         # can be str (not a set) or list (could be a set or not a set)
         nonset_nodes = []
         setnodes = {}
+
+        #What counts as a node in the answer for TRAPI 1.4?
+        #It can be in the node_bindings
+        #Or, you can go into each analysis, go to the edges in the edge binding, and some of those many have
+        # an auxiliary supporting graph, which has edges.  The edges have nodes. Those nodes count.
+        # for the ones in this case, the support graph goes in the analysis, and involves both the
+        # bound nodes and the analysis nodes.
 
         # node binding results is now a dict containing dicts that contain a list of dicts.
         for nb in answer_map["node_bindings"]:
@@ -263,27 +282,47 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts):
                         answer_map["node_bindings"][nb][0]["id"]
                     )
 
-        # remove nodes that are not in node_pub_counts
-        nonset_nodes = [n for n in nonset_nodes if n in node_pub_counts]
-        nonset_nodes = sorted(nonset_nodes)
-        # nodes = sorted([nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], str)])
-        for node_pair in combinations(nonset_nodes, 2):
-            pair_to_answer[node_pair].add(ans_idx)
+        for analysis_idx, analysis in enumerate(answer_map["analyses"]):
+            new_nonset_nodes = set()
+            # find the knowledge edges that are bound in the analysis
+            relevant_kedge_id_lists = [ [x["id"] for x in eb] for eb in analysis["edge_bindings"].values()]
+            relevant_kedge_ids = [x for el in relevant_kedge_id_lists for x in el]
+            #for bound knowledge edges, find their supporting graphs
+            auxgraph_ids = []
+            for kedge_id in relevant_kedge_ids:
+                kedge = message["knowledge_graph"]["edges"][kedge_id]
+                for attribute in kedge["attributes"]:
+                    if attribute["attribute_type_id"] == "biolink:support_graphs":
+                        auxgraph_ids.extend(attribute["value"])
+            #for every supporting graph, get the edges
+            all_relevant_edge_ids = set()
+            for auxgraph_id in auxgraph_ids:
+                all_relevant_edge_ids.update(message["auxiliary_graphs"][auxgraph_id]["edges"])
+            for edge_id in all_relevant_edge_ids:
+                edge = message["knowledge_graph"]["edges"][edge_id]
+                new_nonset_nodes.add(edge["subject"])
+                new_nonset_nodes.add(edge["object"])
+            new_nonset_nodes.update(nonset_nodes)
+            lookup_nodes = list(new_nonset_nodes)
 
-        # set_nodes_list_list = [nb['kg_id'] for nb in answer_map['node_bindings'] if isinstance(nb['kg_id'], list)]
-        # set_nodes = [n for el in set_nodes_list_list for n in el]
-        # For all nodes that are within sets, connect them to all nodes that are not in sets
-        for qg_id, snodes in setnodes.items():
-            for snode in snodes:
-                for node in nonset_nodes:
-                    node_pair = tuple(sorted((node, snode)))
-                    pair_to_answer[node_pair].add(ans_idx)
+            # remove nodes that are not in node_pub_counts
+            lookup_nodes = [n for n in lookup_nodes if n in node_pub_counts]
+            lookup_nodes = sorted(lookup_nodes)
+            for node_pair in combinations(lookup_nodes, 2):
+                pair_to_answer[node_pair].add((ans_idx, analysis_idx))
 
-        # now all nodes in set a to all nodes in set b
-        for qga, qgb in combinations(setnodes.keys(), 2):
-            for anode in setnodes[qga]:
-                for bnode in setnodes[qgb]:
-                    # node_pair = tuple(sorted(anode, bnode))
-                    node_pair = tuple(sorted((anode, bnode)))
-                    pair_to_answer[node_pair].add(ans_idx)
+            # For all nodes that are within sets, connect them to all nodes that are not in sets
+            for qg_id, snodes in setnodes.items():
+                for snode in snodes:
+                    for node in lookup_nodes:
+                        node_pair = tuple(sorted((node, snode)))
+                        pair_to_answer[node_pair].add((ans_idx,analysis_idx))
+
+            # now all nodes in set a to all nodes in set b
+            for qga, qgb in combinations(setnodes.keys(), 2):
+                for anode in setnodes[qga]:
+                    for bnode in setnodes[qgb]:
+                        # node_pair = tuple(sorted(anode, bnode))
+                        node_pair = tuple(sorted((anode, bnode)))
+                        pair_to_answer[node_pair].add((ans_idx, analysis_idx))
     return pair_to_answer

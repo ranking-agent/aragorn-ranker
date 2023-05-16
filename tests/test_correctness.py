@@ -8,7 +8,8 @@ from fastapi.testclient import TestClient
 
 from ranker.server import APP
 
-from .fixtures import pub_test, to_weight
+#temp
+#from .fixtures import pub_test, to_weight
 
 client = TestClient(APP)
 

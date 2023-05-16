@@ -3,7 +3,8 @@ import json
 from fastapi.testclient import TestClient
 from ranker.server import APP
 # this will load all the json test files into global objects to use in a test
-from .fixtures import score_test, weighted2, weighted_answer, schizo, treatsSchizophreniaw, weighted_set
+#temp
+#from .fixtures import score_test, weighted2, weighted_answer, schizo, treatsSchizophreniaw, weighted_set
 from pytest import approx
 
 # start a client

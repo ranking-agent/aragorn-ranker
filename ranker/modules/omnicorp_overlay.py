@@ -137,6 +137,8 @@ async def query(request: PDResponse):
     qgraph = message["query_graph"]
     kgraph = message["knowledge_graph"]
     answers = message["results"]
+    if "auxiliary_graphs" not in message:
+        message["auxiliary_graphs"] = {}
 
     # get cache if possible
     try:

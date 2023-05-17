@@ -3,7 +3,7 @@ contact:
   name: Chris Bizon
   x-id: https://github.com/cbizon
   x-role: responsible developer
-description: 'ARAGORN Ranker: The ranker used by the ARAGORN ARA, which takes a TRAPI 1.2 message containing answers, and calculates numerical scores for each answer.'
+description: 'ARAGORN Ranker: The ranker used by the ARAGORN ARA, which takes a TRAPI 1.4 message containing answers, and calculates numerical scores for each answer.'
 servers:
 - description: Default server
   url: https://aragorn-ranker.renci.org
@@ -21,7 +21,7 @@ x-translator:
   - Ranking Agent
   infores: "infores:aragorn-ranker"
 x-trapi:
-  version: 1.3.0
+  version: 1.4.0
   operations:
   - Rank by OmniCorp overlay
   - Rank by score

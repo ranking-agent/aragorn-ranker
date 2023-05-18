@@ -70,7 +70,7 @@ async def add_shared_pmid_counts(
                             "value": publication_count,
                         }],
                     "sources": [{
-                            "resource": "infores:omnicorp",
+                            "resource_id": "infores:omnicorp",
                             "resource_role": "primary_knowledge_source",
                     }],
                     "subject": pair[0],

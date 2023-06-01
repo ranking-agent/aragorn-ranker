@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 from itertools import combinations, product
 from operator import itemgetter
-
+import copy
 import numpy as np
 from ranker.shared.sources import source_weight, get_profile, source_sigmoid, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
 
@@ -186,11 +186,12 @@ class Ranker:
         
         return laplacian
 
-    def get_rgraph(self, answer):
+    def get_rgraph(self, result):
         """Get "ranker" subgraph."""
         rnodes = set()
         redges = []
         dummy_ind = 0
+        answer = copy.deepcopy(result)
         #adds edges and nodes from support graphs into the answer edge bindings and node bindings
         for i_analysis in range(len(answer.get('analyses',[]))):
             for sg in answer['analyses'][i_analysis].get('support_graphs',[]):

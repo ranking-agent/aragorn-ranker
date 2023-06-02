@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 from itertools import combinations, product
 from operator import itemgetter
-
+import copy
 import numpy as np
 from ranker.shared.sources import source_weight, get_profile, source_sigmoid, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
 
@@ -21,7 +21,7 @@ class Ranker:
         """Create ranker."""
         self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
         self.qgraph = message.get("query_graph", {"nodes":{}, "edges":{}} )
-        self.agraph = message.get("auxiliary_graphs",{})
+        self.agraphs = message.get("auxiliary_graphs",{})
         source_weights, unknown_source_weight, source_transformation, unknown_source_transformation = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
@@ -86,15 +86,12 @@ class Ranker:
         # answer is a list of dicts with fields 'id' and 'bound'
         r_node_ids, edges_all = self.get_rgraph(answer)
         
-        
-
-        
         for i_analysis,edges in enumerate(edges_all):
-            laplacian = self.graph_laplacian((r_node_ids,edges), answer)
+            laplacian = self.graph_laplacian((r_node_ids[i_analysis],edges), answer)
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer['analyses'][i_analysis]['score'] = 0
                 continue
-            index = {node_id[0]: r_node_ids.index(node_id) for node_id in r_node_ids}
+            index = {node_id[0]: r_node_ids[i_analysis].index(node_id) for node_id in r_node_ids[i_analysis]}
             q_node_ids = list(self.qgraph['nodes'].keys())
             n_q_nodes = len(q_node_ids)
             q_conn = np.full((n_q_nodes, n_q_nodes),0)
@@ -186,17 +183,64 @@ class Ranker:
         
         return laplacian
 
-    def get_rgraph(self, answer):
+    def get_rgraph(self, result):
         """Get "ranker" subgraph."""
         rnodes = set()
         redges = []
         dummy_ind = 0
+        answer = copy.deepcopy(result)
+        result_kg = {
+            "node_ids": set(),
+            "edge_ids": set()
+        }
+
+        for nb_id, nbs in answer.get('node_bindings', {}).items():
+            for nb in nbs:
+                n_id = nb.get('id', None)
+                if n_id:
+                    result_kg['node_ids'].add(n_id)
+
+        nodes_list = []
+        for anal in answer['analyses']:
+            anal_kg = copy.deepcopy(result_kg)
+            
+            for eb_id, ebs in anal['edge_bindings'].items():
+                for eb in ebs:
+                    e_id = eb.get('id', None)
+                    if e_id:
+                        anal_kg['edge_ids'].add(e_id)
+            
+            sg_ids = anal.get('support_graphs', [])
+            for sg_id in sg_ids:
+                sg = self.agraphs.get(sg_id, None)
+                if sg:        
+                    sg_nodes = sg.get('nodes',[])
+                    for sgn in sg_nodes:
+                        anal_kg['node_ids'].add(sgn)
+                    
+                    sg_edges = sg.get('edges',[])
+                    for sge in sg_edges:
+                        anal_kg['edge_ids'].add(sge)
+
+            for edge_id in copy.deepcopy(anal_kg['edge_ids']):
+                anal_kg = get_edge_support_kg(edge_id, self.kgraph, self.agraphs, anal_kg)
+            dummy_ind = 0
+            extra_nodes = set()
+            for e_id in anal_kg.get('edge_ids',[]):
+                anal['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':e_id}]
+                extra_nodes.add(self.kgraph['edges'][e_id]['subject'])
+                extra_nodes.add(self.kgraph['edges'][e_id]['object'])
+                dummy_ind += 1
+            nodes_list.append(extra_nodes)
+        
+            
+             
         #adds edges and nodes from support graphs into the answer edge bindings and node bindings
-        for i_analysis in range(len(answer.get('analyses',[]))):
-            for sg in answer['analyses'][i_analysis].get('support_graphs',[]):
-                for edge in self.agraph[sg]['edges']:
-                    answer['analyses'][i_analysis]['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':edge}]
-                    dummy_ind =+ 1
+        # for i_analysis in range(len(answer.get('analyses',[]))):
+        #     for sg in answer['analyses'][i_analysis].get('support_graphs',[]):
+        #         for edge in self.agraphs[sg]['edges']:
+        #             answer['analyses'][i_analysis]['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':edge}]
+        #             dummy_ind =+ 1
 
 
         # Checks if multiple nodes share node bindings 
@@ -230,6 +274,16 @@ class Ranker:
                         'object': anchor_id
                     })
         rnodes = list(rnodes)
+        #adding rnodes (for each results) to each nodes_list (for each analyses)
+        [dump,knode_ids] = zip(*rnodes) #don't want to duplicate rnodes already in there
+        analyses_rnodes = []
+        for i_analysis,nl in enumerate(nodes_list):
+            dummy_node_count = 0
+            anal_rnode = rnodes
+            for n in nl:
+                if n not in knode_ids:
+                    anal_rnode.append(('dummy_node_'+str(dummy_node_count),n))
+            analyses_rnodes.append(anal_rnode)
 
         # for eb in answer['edge_bindings']:
         # qedge_id = eb
@@ -267,11 +321,11 @@ class Ranker:
                         qedge_nodes = qedge['subject'], qedge['object']
                         pairs = [pair for pair in product(
                             [
-                                rnode for rnode in rnodes
+                                rnode for rnode in analyses_rnodes[i_analysis]
                                 if rnode[0] in qedge_nodes and rnode[1] == ksubject
                             ],
                             [
-                                rnode for rnode in rnodes
+                                rnode for rnode in analyses_rnodes[i_analysis]
                                 if rnode[0] in qedge_nodes and rnode[1] == kobject
                             ],
                         ) if pair[0][0] != pair[1][0]]
@@ -280,11 +334,11 @@ class Ranker:
                         # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
                         pairs = set(tuple(sorted(pair)) for pair in product(
                             [
-                                rnode for rnode in rnodes
+                                rnode for rnode in analyses_rnodes[i_analysis]
                                 if rnode[1] == ksubject
                             ],
                             [
-                                rnode for rnode in rnodes
+                                rnode for rnode in analyses_rnodes[i_analysis]
                                 if rnode[1] == kobject
                             ],
                         ) if pair[0][0] != pair[1][0]) # Prevents edges between nodes of the same qnode_id
@@ -302,7 +356,7 @@ class Ranker:
                             redges.append(edge)
             analysis_edges.append(redges)
 
-        return rnodes, analysis_edges
+        return analyses_rnodes, analysis_edges
 
 
 def kirchhoff(L, probes):
@@ -467,3 +521,51 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                 edge_vals[edge]['publications'] = source_sigmoid(effective_pubs, edge_info_final, "publications", source_transformation=source_transfroamtion, unknown_source_transformation=unknown_source_transformation)
             edge_vals[edge]['source'] = edge_info_final
     return edge_vals
+
+    
+def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
+    if edge_kg is None:
+        edge_kg = {
+            "node_ids": set(),
+            "edge_ids": set()
+        }
+    edge = kg['edges'].get(edge_id, None)
+    if not edge:
+        return edge_kg
+    
+    edge_attr = edge.get('attributes', None)
+    if not edge_attr:
+        return edge_kg
+
+    for attr in edge_attr:
+        attr_type = attr.get('attribute_type_id', None)
+        if attr_type == 'biolink:support_graphs':
+            # We actually have a biolink support graph
+            more_support_graphs = attr.get('value', [])
+            for sg_id in more_support_graphs:
+                sg = aux_graphs.get(sg_id, None)
+                if not sg:
+                    continue
+
+                sg_edges = sg.get('edges',[])
+                sg_nodes = sg.get('nodes',[])
+                for sgn in sg_nodes:
+                    edge_kg['node_ids'].add(sgn)
+
+                for add_edge_id in sg_edges:
+                    # Get this edge and add it to the edge_kg
+                    edge_kg['edge_ids'].add(add_edge_id)
+                    
+                    add_edge = kg['edges'][add_edge_id]
+
+                    add_edge_sub = add_edge.get('subject', None)
+                    if add_edge_sub:
+                        edge_kg['node_ids'].add(add_edge_sub)
+
+                    add_edge_object = add_edge.get('object', None)
+                    if add_edge_object:
+                        edge_kg['node_ids'].add(add_edge_object)
+
+                    edge_kg = get_edge_support_kg(add_edge_id, kg, aux_graphs, edge_kg)
+
+    return edge_kg

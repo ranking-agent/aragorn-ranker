@@ -230,7 +230,7 @@ class Ranker:
                 anal['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':e_id}]
                 extra_nodes.add(self.kgraph['edges'][e_id]['subject'])
                 extra_nodes.add(self.kgraph['edges'][e_id]['object'])
-                dummy_ind =+ 1
+                dummy_ind += 1
             nodes_list.append(extra_nodes)
         
             

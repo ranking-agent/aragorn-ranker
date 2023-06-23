@@ -156,7 +156,7 @@ async def query(request: PDResponse):
 
     try:
         # get all node supports.
-
+        start_node_time = datetime.now()
         # first, get the publication counts for all nodes in the kgraph
         keys = list(kgraph["nodes"].keys())
 
@@ -166,7 +166,11 @@ async def query(request: PDResponse):
                                        "as x MATCH (q:CURIE {concept:x}) return q.concept, q.publication_count"))
 
         await add_node_pmid_counts(kgraph, node_pub_counts)
+        end_node_time = datetime.now()
+        if debug == "True":
+            logger.info(f"Node time: {end_node_time - start_node_time}")
 
+        start_pair_time = datetime.now()
         # which qgraph nodes are sets?
         qgraph_setnodes = set(
             [
@@ -299,7 +303,12 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             #for every supporting graph, get the edges
             all_relevant_edge_ids = set()
             for auxgraph_id in auxgraph_ids:
-                all_relevant_edge_ids.update(message["auxiliary_graphs"][auxgraph_id]["edges"])
+                try:
+                    all_relevant_edge_ids.update(message["auxiliary_graphs"][auxgraph_id]["edges"])
+                except:
+                    #It looks like there are some upstream errors leading to auxgraph_ids that don't exist
+                    logger.warning("Auxgraph id not found:", auxgraph_id)
+                    pass
             for edge_id in all_relevant_edge_ids:
                 edge = message["knowledge_graph"]["edges"][edge_id]
                 new_nonset_nodes.add(edge["subject"])

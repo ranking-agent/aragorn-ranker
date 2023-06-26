@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 from ranker.server import APP
 from reasoner_pydantic import Response
 # this will load all the json test files into global objects to use in a test
-from .fixtures import omnicorp_input, property_coalesce, treatsMONDO0018912
+from .fixtures import omnicorp_input, property_coalesce
 
 # start a client
 client = TestClient(APP)

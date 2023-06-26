@@ -8,6 +8,7 @@ echo "redisgraph started."
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR/../OmnicorpTestData
-redisgraph-bulk-insert OMNICORP -N CURIE curie_to_pmids.txt -R cooccurs curie_pairs.txt -o $'\t'
+cat redis_curies | redis-cli -p 6380
+cat redis_curie_pairs | redis-cli -p 6380
 
 echo "Omnicorp initialized."

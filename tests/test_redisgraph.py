@@ -2,7 +2,7 @@ from ranker.shared.cache import Cache
 
 def test_get_counts():
     keys=['CHEBI:92293', 'baddie',  'MONDO:0005249', 'NCBITaxon:2697049', 'MONDO:0004730']
-    cache = Cache()
+    cache = Cache(redis_port=6380)
     result = cache.curie_query(keys)
     assert result["baddie"] == {}
     assert result["CHEBI:92293"]["pmc"] == 9

@@ -19,5 +19,5 @@ def test_get_counts():
     key2 = f"{min(pair2)}_{max(pair2)}"
     keys = [key1, key2]
     results = cache.shared_count_query(keys)
-    assert results[key1] == 0
+    assert results[key1] is None
     assert results[key2] == 114

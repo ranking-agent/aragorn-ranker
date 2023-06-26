@@ -11,9 +11,8 @@ client = TestClient(APP)
 
 
 #def test_omnicorp_overlay(omnicorp_input):
-def test_omnicorp_overlay(treatsMONDO0018912):
+def test_omnicorp_overlay(omnicorp_input):
     """Test that omnicorp_overlay() runs without errors."""
-    omnicorp_input = treatsMONDO0018912
 
     #Is the input valid
     pydantic_input = Response.parse_obj(omnicorp_input)

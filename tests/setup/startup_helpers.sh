@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run -d --name omnicorp_redis -p 6380:6380 -p 8001:8001 redis/redis-stack:latest
+docker run -d --name omnicorp_redis -p 6380:6379 -p 8001:8001 redis/redis-stack:latest
 #Need redis-cli for loading
 sudo apt-get install -y redis-tools
 

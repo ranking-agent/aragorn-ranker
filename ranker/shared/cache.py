@@ -39,12 +39,14 @@ class Cache:
                     host=redis_host,
                     port=redis_port,
                     db=redis_db,
-                    password=redis_password)
+                    password=redis_password,
+                    decode_responses=True)
             else:
                 self.redis = redis.StrictRedis(
                     host=redis_host,
                     port=redis_port,
-                    db=redis_db)
+                    db=redis_db,
+                    decode_responses=True)
 
             self.redis.get('x')
             logger.debug("Cache connected to redis at %s:%s/%s",
@@ -65,6 +67,20 @@ class Cache:
                 self.cache_path = None
         self.cache = LRU(1000)
         self.serializer = serializer()
+
+    def curie_query(self,keys):
+        pipeline = self.redis.pipeline()
+        for key in keys:
+            pipeline.hgetall(key)
+        result = pipeline.execute()
+        return {key: value for key, value in zip(keys, result)}
+
+    def shared_count_query(self,keys):
+        pipeline = self.redis.pipeline()
+        for key in keys:
+            pipeline.get(key)
+        result = pipeline.execute()
+        return {key: value for key, value in zip(keys, result)}
 
     def get(self, key):
         """Get a cached item by key."""
@@ -124,6 +140,7 @@ class Cache:
             with open(path, 'wb') as stream:
                 stream.write(self.serializer.dumps(value))
             self.cache[key] = value
+
 
     def mquery(self, keys, graphname, cypher):
         """Run a batched cypherquery.  Takes a list of keys and a cypher chunk.  The full query will be constructed as

@@ -4,14 +4,16 @@ from fastapi.testclient import TestClient
 from ranker.server import APP
 from reasoner_pydantic import Response
 # this will load all the json test files into global objects to use in a test
-from .fixtures import omnicorp_input, property_coalesce
+from .fixtures import omnicorp_input, property_coalesce, treatsMONDO0018912
 
 # start a client
 client = TestClient(APP)
 
 
-def test_omnicorp_overlay(omnicorp_input):
+#def test_omnicorp_overlay(omnicorp_input):
+def test_omnicorp_overlay(treatsMONDO0018912):
     """Test that omnicorp_overlay() runs without errors."""
+    omnicorp_input = treatsMONDO0018912
 
     #Is the input valid
     pydantic_input = Response.parse_obj(omnicorp_input)

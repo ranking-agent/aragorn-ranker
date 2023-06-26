@@ -5,8 +5,8 @@ def test_get_counts():
     cache = Cache(redis_port=6380)
     result = cache.curie_query(keys)
     assert result["baddie"] == {}
-    assert result["CHEBI:92293"]["pmc"] == 9
-    assert result["MONDO:0005249"]["pmc"] == 128504
+    assert int(result["CHEBI:92293"]["pmc"]) == 9
+    assert int(result["MONDO:0005249"]["pmc"]) == 128504
     CHEBI_92293_index = int(result["CHEBI:92293"]["index"])
     MONDO_0005249_index = int(result["MONDO:0005249"]["index"])
     NCBI_2697049_index = int(result["NCBITaxon:2697049"]["index"])

@@ -20,4 +20,4 @@ def test_get_counts():
     keys = [key1, key2]
     results = cache.shared_count_query(keys)
     assert results[key1] is None
-    assert results[key2] == 114
+    assert int(results[key2]) == 114

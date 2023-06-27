@@ -39,12 +39,14 @@ class Cache:
                     host=redis_host,
                     port=redis_port,
                     db=redis_db,
-                    password=redis_password)
+                    password=redis_password,
+                    decode_responses=True)
             else:
                 self.redis = redis.StrictRedis(
                     host=redis_host,
                     port=redis_port,
-                    db=redis_db)
+                    db=redis_db,
+                    decode_responses=True)
 
             self.redis.get('x')
             logger.debug("Cache connected to redis at %s:%s/%s",
@@ -65,6 +67,20 @@ class Cache:
                 self.cache_path = None
         self.cache = LRU(1000)
         self.serializer = serializer()
+
+    def curie_query(self,keys):
+        pipeline = self.redis.pipeline()
+        for key in keys:
+            pipeline.hgetall(key)
+        result = pipeline.execute()
+        return {key: value for key, value in zip(keys, result)}
+
+    def shared_count_query(self,keys):
+        pipeline = self.redis.pipeline()
+        for key in keys:
+            pipeline.get(key)
+        result = pipeline.execute()
+        return {key: value for key, value in zip(keys, result)}
 
     def get(self, key):
         """Get a cached item by key."""
@@ -124,24 +140,3 @@ class Cache:
             with open(path, 'wb') as stream:
                 stream.write(self.serializer.dumps(value))
             self.cache[key] = value
-
-    def mquery(self, keys, graphname, cypher):
-        """Run a batched cypherquery.  Takes a list of keys and a cypher chunk.  The full query will be constructed as
-        UNWIND {keys} {cypher}.
-        It is expected that the cypher will return a list of items, r.  The return will be a dictionary from a tuple of
-        all but the last item in r to the last item in r.
-        If the tuple is only a single element, then it will be replaced with the single element
-        """
-        result = None
-        if not self.enabled:
-            return result
-        if self.redis:
-            graph = self.redis.graph(graphname)
-            results = graph.query(f"UNWIND {keys} {cypher}")
-            if len(results.result_set) == 0:
-                result = {}
-            elif len(results.result_set[0]) == 2:
-                result = {r[0]: r[1] for r in results.result_set}
-            else:
-                result = {tuple(r[0:-1]): r[-1] for r in results.result_set}
-        return result

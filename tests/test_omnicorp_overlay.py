@@ -10,6 +10,7 @@ from .fixtures import omnicorp_input, property_coalesce
 client = TestClient(APP)
 
 
+#def test_omnicorp_overlay(omnicorp_input):
 def test_omnicorp_overlay(omnicorp_input):
     """Test that omnicorp_overlay() runs without errors."""
 

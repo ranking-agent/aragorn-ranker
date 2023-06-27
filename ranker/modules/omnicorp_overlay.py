@@ -177,7 +177,6 @@ async def query(request: PDResponse):
 
         node_pub_counts = {}
         node_indices = {}
-        index_to_node = {}
         cache.curie_query(keys)
         for batch in batches(keys, redis_batch_size):
             results = cache.curie_query(batch)
@@ -186,7 +185,6 @@ async def query(request: PDResponse):
                     continue
                 node_pub_counts[curie] = result["pmc"]
                 node_indices[curie] = int(result["index"])
-                index_to_node[result["index"]] = curie
         await add_node_pmid_counts(kgraph, node_pub_counts)
         end_node_time = datetime.now()
         logger.info(f"Node time: {end_node_time - start_node_time}")

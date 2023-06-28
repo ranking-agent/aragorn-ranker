@@ -177,7 +177,6 @@ async def query(request: PDResponse):
 
         node_pub_counts = {}
         node_indices = {}
-        cache.curie_query(keys)
         for batch in batches(keys, redis_batch_size):
             results = cache.curie_query(batch)
             for curie, result in results.items():

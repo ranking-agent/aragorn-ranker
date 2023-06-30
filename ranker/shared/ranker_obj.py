@@ -503,6 +503,8 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                 ):
                     subject_pubs = int(node_pubs[edges[edge]["subject"]])
                     object_pubs = int(node_pubs[edges[edge]["object"]])
+                    # cast num_publications from json 
+                    num_publications = int(num_publications)
 
                     cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (
                         object_pubs / all_pubs

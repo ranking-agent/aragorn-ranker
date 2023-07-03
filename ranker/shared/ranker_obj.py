@@ -564,10 +564,14 @@ def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
                     edge_kg['node_ids'].add(sgn)
 
                 for add_edge_id in sg_edges:
+                    try:
+                        add_edge = kg['edges'][add_edge_id]
+                    except KeyError:
+                        # This shouldn't happen, but it's defending against some malformed TRAPI
+                        continue
+
                     # Get this edge and add it to the edge_kg
                     edge_kg['edge_ids'].add(add_edge_id)
-                    
-                    add_edge = kg['edges'][add_edge_id]
 
                     add_edge_sub = add_edge.get('subject', None)
                     if add_edge_sub:

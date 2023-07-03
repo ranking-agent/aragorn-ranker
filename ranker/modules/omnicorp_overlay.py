@@ -308,7 +308,11 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                     logger.warning(f"Auxgraph id not found: {auxgraph_id}")
                     pass
             for edge_id in all_relevant_edge_ids:
-                edge = message["knowledge_graph"]["edges"][edge_id]
+                try:
+                    edge = message["knowledge_graph"]["edges"][edge_id]
+                except KeyError:
+                    #this can only happen if the trapi is malformed, but we don't want to die if it is.
+                    continue
                 new_nonset_nodes.add(edge["subject"])
                 new_nonset_nodes.add(edge["object"])
             new_nonset_nodes.update(nonset_nodes)

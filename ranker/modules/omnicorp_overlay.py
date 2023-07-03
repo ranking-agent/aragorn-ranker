@@ -56,6 +56,8 @@ async def add_shared_pmid_counts(
     answers = message["results"]
     support_idx = 0
     for pair, publication_count in values.items():
+        if publication_count == 0:
+            continue
         support_idx += 1
         uid = str(uuid4())
         kgraph["edges"].update(
@@ -222,8 +224,10 @@ async def query(request: PDResponse):
             for input,output in results.items():
                 if output is not None:
                     curie_pair = keypairs[input]
-                    values[curie_pair] = output
-
+                    try:
+                        values[curie_pair] = int(output)
+                    except Exception as e:
+                        values[curie_pair] = 0
         await add_shared_pmid_counts(message,values,pair_to_answer)
         end_pair_time = datetime.now()
         logger.info(f"Pair time: {end_pair_time - start_pair_time}")

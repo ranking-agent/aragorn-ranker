@@ -501,10 +501,19 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                     edges[edge].get("predicate")
                     == "biolink:occurs_together_in_literature_with"
                 ):
-                    subject_pubs = int(node_pubs[edges[edge]["subject"]])
-                    object_pubs = int(node_pubs[edges[edge]["object"]])
-                    # cast num_publications from json 
-                    num_publications = int(num_publications)
+                    try:
+                        subject_pubs = int(node_pubs[edges[edge]["subject"]])
+                    except:
+                        subject_pubs = 0
+                    try:
+                        object_pubs = int(node_pubs[edges[edge]["object"]])
+                    except:
+                        object_pubs = 0
+                    # cast num_publications from json
+                    try:
+                        num_publications = int(num_publications)
+                    except:
+                        num_publications = 0
 
                     cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (
                         object_pubs / all_pubs

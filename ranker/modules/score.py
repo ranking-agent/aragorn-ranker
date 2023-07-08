@@ -15,6 +15,7 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
 
     This is mostly glue around the heavy lifting in ranker_obj.Ranker
     """
+    logger.info(f"Begin score")
     # get the debug environment variable
     debug = os.environ.get("DEBUG_TIMING", "False")
 
@@ -76,4 +77,5 @@ async def query(request: PDResponse, *, jaccard_like: bool = False):
         )
 
     # return the result to the caller
+    logger.info(f"Score complete. Returning")
     return JSONResponse(content=in_message, status_code=status_code)

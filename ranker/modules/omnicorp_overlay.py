@@ -125,6 +125,7 @@ async def query(request: PDResponse):
 
     Add support edges to knowledge_graph and bindings to results.
     """
+    logger.info("Start omnicorp")
     # get the debug environment variable
     debug = os.environ.get("DEBUG_TIMING", "False")
 
@@ -253,6 +254,7 @@ async def query(request: PDResponse):
         )
 
     # return the result to the caller
+    logger.info("Omnicorp complete. Returning.")
     return JSONResponse(content=in_message, status_code=status_code)
 
 

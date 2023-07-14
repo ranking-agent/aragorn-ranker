@@ -227,6 +227,10 @@ class Ranker:
             dummy_ind = 0
             extra_nodes = set()
             for e_id in anal_kg.get('edge_ids',[]):
+                #This shouldn't happen, but sometimes it does
+                if e_id not in self.kgraph["edges"]:
+                    logger.warning(f"Edge {e_id} not found in knowledge graph")
+                    continue
                 anal['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':e_id}]
                 extra_nodes.add(self.kgraph['edges'][e_id]['subject'])
                 extra_nodes.add(self.kgraph['edges'][e_id]['object'])

@@ -468,7 +468,7 @@ def get_vals(edges, node_pubs,source_transfroamtion, unknown_source_transformati
                 elif attribute["attribute_type_id"] == "biolink:publications":
                     publications = attribute["value"]
                 elif 'p_value' in attribute["attribute_type_id"] or 'p-value' in attribute["attribute_type_id"]:
-                    if type(attribute["value"], list):
+                    if isinstance(attribute["value"], list):
                         p_value = attribute["value"][0] if len(attribute["value"]) > 0 else None
                     else:
                         p_value = attribute["value"]

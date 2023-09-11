@@ -73,7 +73,6 @@ class Ranker:
     def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
         # get subgraph statistics
-        #print(f'{len(answers)} answers')
         answers_ = []
         scores_for_sort = []
         for answer in answers:
@@ -110,16 +109,20 @@ class Ranker:
                 probe_nodes += list(np.where(is_this_conn)[0])
                 if len(probe_nodes) > 1:
                     break
+            q_probes = list(combinations(probe_nodes, 2))
 
             # Converting qgraph inds to rgraph inds:
-            index = {node_id[0]: r_node_ids[i_analysis].index(node_id) for node_id in r_node_ids[i_analysis]}
-            rgraph_inds = []
-            for node_ind in range(len(q_node_ids)):
-                node_label = q_node_ids[node_ind]
-                rgraph_inds.append(index[node_label])
+            qr_index = defaultdict(list)
+            for node_id in r_node_ids[i_analysis]:
+                qr_index[node_id[0]].append(r_node_ids[i_analysis].index(node_id))
 
-            rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
-            probes = list(combinations(rgraph_probe_nodes,2))
+            probes = []
+            for probe in q_probes:
+                left = qr_index[q_node_ids[probe[0]]]
+                right = qr_index[q_node_ids[probe[1]]]
+                for le in left:
+                    for ri in right:
+                        probes.append((le, ri))
 
             # Clean up Laplacian (remove extra nodes etc.)
             laplacian = unused_node_pruning(laplacian, probes)

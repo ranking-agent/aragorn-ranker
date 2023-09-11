@@ -1,16 +1,17 @@
 """ROBOKOP ranking."""
 
+import copy
 import logging
 from collections import defaultdict
 from itertools import combinations, product
-from operator import itemgetter
-import copy
-import numpy as np
-from ranker.shared.sources import source_weight, get_profile, source_sigmoid, BLENDED_PROFILE, CLINICAL_PROFILE, CORRELATED_PROFILE, CURATED_PROFILE
 
-import re
+import numpy as np
+
+from ranker.shared.sources import get_profile, source_sigmoid, source_weight
 
 logger = logging.getLogger(__name__)
+
+NUM_NODES_GRAPH_APPROX = 25
 
 class Ranker:
     """Ranker."""
@@ -85,13 +86,13 @@ class Ranker:
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
         r_node_ids, edges_all = self.get_rgraph(answer)
-        
+
         for i_analysis,edges in enumerate(edges_all):
             laplacian = self.graph_laplacian((r_node_ids[i_analysis],edges), answer)
-            if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
-                answer['analyses'][i_analysis]['score'] = 0
-                continue
-            index = {node_id[0]: r_node_ids[i_analysis].index(node_id) for node_id in r_node_ids[i_analysis]}
+
+            # Identify Probes
+            #################
+            # Q Graph Connectivity Matrix
             q_node_ids = list(self.qgraph['nodes'].keys())
             n_q_nodes = len(q_node_ids)
             q_conn = np.full((n_q_nodes, n_q_nodes),0)
@@ -101,6 +102,7 @@ class Ranker:
                 if e_sub is not None and e_obj is not None:
                     q_conn[e_sub, e_obj] = 1
 
+            # Determine probes based on connectivity
             node_conn = np.sum(q_conn,0) + np.sum(q_conn,1).T
             probe_nodes = []
             for conn in range(np.max(node_conn)):
@@ -108,15 +110,24 @@ class Ranker:
                 probe_nodes += list(np.where(is_this_conn)[0])
                 if len(probe_nodes) > 1:
                     break
-            #converting qgraph inds to rgraph inds:
-            
+
+            # Converting qgraph inds to rgraph inds:
+            index = {node_id[0]: r_node_ids[i_analysis].index(node_id) for node_id in r_node_ids[i_analysis]}
             rgraph_inds = []
             for node_ind in range(len(q_node_ids)):
                 node_label = q_node_ids[node_ind]
                 rgraph_inds.append(index[node_label])
-            
+
             rgraph_probe_nodes = [rgraph_inds[i] for i in probe_nodes]
             probes = list(combinations(rgraph_probe_nodes,2))
+
+            # Clean up Laplacian (remove extra nodes etc.)
+            laplacian = unused_node_pruning(laplacian, probes)
+            # If this still happens at this point it is because a probe has a problem
+            if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
+                answer['analyses'][i_analysis]['score'] = 0
+                continue
+
             score = np.exp(-kirchhoff(laplacian, probes))
 
             # fail safe to nuke nans
@@ -131,7 +142,7 @@ class Ranker:
     def graph_laplacian(self, rgraph, answer):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
-
+        
         # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
         weight_dict = []
@@ -144,18 +155,18 @@ class Ranker:
         index = {node_id: node_ids.index(node_id) for node_id in node_ids}
         for edge in edges:
             subject_id, object_id, edge_weight = edge['subject'], edge['object'], edge['weight']
-            subject_index, object_id = index[subject_id], index[object_id]
+            subject_index, object_index = index[subject_id], index[object_id]
             for edge_source in edge_weight.keys():
                 for edge_property in edge_weight[edge_source].keys():
                     val = edge_weight[edge_source][edge_property]
-                    if edge_source in weight_dict[subject_index][object_id]:
-                        if edge_property in weight_dict[subject_index][object_id][edge_source]:
-                            weight_dict[subject_index][object_id][edge_source][edge_property] = max(weight_dict[subject_index][object_id][edge_source][edge_property], val)
+                    if edge_source in weight_dict[subject_index][object_index]:
+                        if edge_property in weight_dict[subject_index][object_index][edge_source]:
+                            weight_dict[subject_index][object_index][edge_source][edge_property] = max(weight_dict[subject_index][object_id][edge_source][edge_property], val)
                         else:
-                            weight_dict[subject_index][object_id][edge_source][edge_property] = val
+                            weight_dict[subject_index][object_index][edge_source][edge_property] = val
                     else:
-                        weight_dict[subject_index][object_id][edge_source] = {}
-                        weight_dict[subject_index][object_id][edge_source][edge_property] = val
+                        weight_dict[subject_index][object_index][edge_source] = {}
+                        weight_dict[subject_index][object_index][edge_source][edge_property] = val
 
         qedge_qnode_ids = set([frozenset((e['subject'], e['object'])) for e in self.qedge_by_id.values()])
         laplacian = np.zeros((num_nodes, num_nodes))
@@ -222,8 +233,10 @@ class Ranker:
                     for sge in sg_edges:
                         anal_kg['edge_ids'].add(sge)
 
-            for edge_id in copy.deepcopy(anal_kg['edge_ids']):
+            current_edge_ids = copy.deepcopy(anal_kg['edge_ids'])
+            for edge_id in current_edge_ids:
                 anal_kg = get_edge_support_kg(edge_id, self.kgraph, self.agraphs, anal_kg)
+
             dummy_ind = 0
             extra_nodes = set()
             for e_id in anal_kg.get('edge_ids',[]):
@@ -287,6 +300,7 @@ class Ranker:
             for n in nl:
                 if n not in knode_ids:
                     anal_rnode.append(('dummy_node_'+str(dummy_node_count),n))
+                    dummy_node_count += 1
             analyses_rnodes.append(anal_rnode)
 
         # for eb in answer['edge_bindings']:
@@ -362,6 +376,17 @@ class Ranker:
 
         return analyses_rnodes, analysis_edges
 
+def unused_node_pruning(L, probes):
+
+    removal_candidate = np.all(np.abs(L) == 0, axis=0)
+    # Don't permit removing probes
+    for probe in probes:
+        removal_candidate[probe[0]] = False 
+        removal_candidate[probe[1]] = False 
+    
+    keep = np.logical_not(removal_candidate)
+    
+    return L[keep,:][:,keep]
 
 def kirchhoff(L, probes):
     """Compute Kirchhoff index, including only specific nodes."""
@@ -375,9 +400,9 @@ def kirchhoff(L, probes):
             cols.append(d)
         x = np.stack(cols, axis=1)
     except:
-        print(cols)
-        return
-
+        # print(cols)
+        return -np.inf
+    
     return np.trace(x.T @ np.linalg.lstsq(L, x, rcond=None)[0])
 
 
@@ -544,6 +569,7 @@ def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
             "node_ids": set(),
             "edge_ids": set()
         }
+
     edge = kg['edges'].get(edge_id, None)
     if not edge:
         return edge_kg
@@ -551,6 +577,17 @@ def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
     edge_attr = edge.get('attributes', None)
     if not edge_attr:
         return edge_kg
+
+    edge_kg['edge_ids'].add(edge_id)
+
+    # If we have edge attrs we might be adding new nodes
+    sub = edge.get("subject", None)
+    if sub:
+        edge_kg['node_ids'].add(sub)
+
+    obj = edge.get("object", None)
+    if obj:
+        edge_kg['node_ids'].add(obj)
 
     for attr in edge_attr:
         attr_type = attr.get('attribute_type_id', None)

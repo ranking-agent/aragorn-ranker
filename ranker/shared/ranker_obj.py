@@ -196,7 +196,7 @@ class Ranker:
                             weight_dict[subject_index][object_index][edge_source][
                                 edge_property
                             ] = max(
-                                weight_dict[subject_index][object_id][edge_source][
+                                weight_dict[subject_index][object_index][edge_source][
                                     edge_property
                                 ],
                                 val,

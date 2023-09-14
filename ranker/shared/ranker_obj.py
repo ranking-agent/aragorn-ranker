@@ -107,8 +107,6 @@ class Ranker:
         r_node_ids, edges_all = self.get_rgraph(answer)
 
         for i_analysis, edges in enumerate(edges_all):
-            laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), answer)
-
             # Identify Probes
             #################
             # Q Graph Connectivity Matrix
@@ -144,8 +142,7 @@ class Ranker:
                     for ri in right:
                         probes.append((le, ri))
 
-            # Clean up Laplacian (remove extra nodes etc.)
-            laplacian = unused_node_pruning(laplacian, probes)
+            laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
             # If this still happens at this point it is because a probe has a problem
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0
@@ -162,7 +159,7 @@ class Ranker:
                 answer["analyses"][i_analysis]["score"] = score
         return answer
 
-    def graph_laplacian(self, rgraph, answer):
+    def graph_laplacian(self, rgraph, probes):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
 
@@ -246,7 +243,17 @@ class Ranker:
                 laplacian[subject_index, subject_index] += weight
                 laplacian[object_id, object_id] += weight
 
-        return laplacian
+        # Clean up Laplacian (remove extra nodes etc.)
+        removal_candidate = np.all(np.abs(laplacian) == 0, axis=0)
+        # Don't permit removing probes
+        for probe in probes:
+            removal_candidate[probe[0]] = False
+            removal_candidate[probe[1]] = False
+
+        keep = np.logical_not(removal_candidate)
+
+        return laplacian[keep, :][:, keep]
+    
 
     def get_rgraph(self, result):
         """Get "ranker" subgraph."""
@@ -449,18 +456,6 @@ class Ranker:
             analysis_edges.append(redges)
 
         return analyses_rnodes, analysis_edges
-
-
-def unused_node_pruning(L, probes):
-    removal_candidate = np.all(np.abs(L) == 0, axis=0)
-    # Don't permit removing probes
-    for probe in probes:
-        removal_candidate[probe[0]] = False
-        removal_candidate[probe[1]] = False
-
-    keep = np.logical_not(removal_candidate)
-
-    return L[keep, :][:, keep]
 
 
 def kirchhoff(L, probes):

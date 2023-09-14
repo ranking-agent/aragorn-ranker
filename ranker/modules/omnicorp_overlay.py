@@ -91,6 +91,7 @@ async def add_shared_pmid_counts(
             for sg in analysis["support_graphs"]:
                 if sg.startswith("OMNICORP_support_graph"):
                     omnisupport = sg
+                    break
             if omnisupport is None:
                 omnisupport = f"OMNICORP_support_graph_{support_idx}"
                 support_idx += 1

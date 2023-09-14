@@ -11,8 +11,6 @@ from ranker.shared.sources import get_profile, source_sigmoid, source_weight
 
 logger = logging.getLogger(__name__)
 
-NUM_NODES_GRAPH_APPROX = 25
-
 
 class Ranker:
     """Ranker."""

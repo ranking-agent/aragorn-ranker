@@ -58,7 +58,6 @@ async def add_shared_pmid_counts(
     for pair, publication_count in values.items():
         if publication_count == 0:
             continue
-        support_idx += 1
         uid = str(uuid4())
         kgraph["edges"].update(
             {
@@ -92,8 +91,10 @@ async def add_shared_pmid_counts(
             for sg in analysis["support_graphs"]:
                 if sg.startswith("OMNICORP_support_graph"):
                     omnisupport = sg
+                    break
             if omnisupport is None:
                 omnisupport = f"OMNICORP_support_graph_{support_idx}"
+                support_idx += 1
                 analysis["support_graphs"].append(omnisupport)
             if omnisupport not in aux_graphs:
                 aux_graphs[omnisupport] = { "edges": [] }

@@ -163,15 +163,14 @@ class Ranker:
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
         num_nodes = len(node_ids)
-        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
-        
-        # weight_dict = []
-        # for subject_index in range(num_nodes):
-        #     weight_dict_i = []
-        #     for object_id in range(num_nodes):
-        #         weight_dict_i.append({})
-        #     weight_dict.append(weight_dict_i)
-        
+
+        # For each potential edge in the dense answer graph
+        # Make a dictionary of edge source / properties.
+        # For the case where there are redundant edges,
+        # same subject, object, source, property type,
+        # Take the max of the property values
+        # This might happen if two KPs have the same underlying data sources
+        # But for some reason return different publication counts        
         weight_dict = defaultdict(lambda: defaultdict(\
             lambda: defaultdict( lambda: defaultdict(float))))
         for edge in edges:
@@ -187,6 +186,10 @@ class Ranker:
         qedge_qnode_ids = set(
             [frozenset((e["subject"], e["object"])) for e in self.qedge_by_id.values()]
         )
+
+        # Now go through these edges
+        # Turn each value into an edge weight
+        # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
         for i, sub_id_mapping in enumerate(node_ids):
             q_node_id_subject = sub_id_mapping[0]
@@ -218,6 +221,10 @@ class Ranker:
                 laplacian[j, j] += weight
 
         # Clean up Laplacian (remove extra nodes etc.)
+        # Sometimes, mostly because of a bug of some kind,
+        # There will be rows of all zeros in the laplacian.
+        # This will cause numerical issues.
+        # We can remove these, as long as they aren't probes.
         removal_candidate = np.all(np.abs(laplacian) == 0, axis=0)
         # Don't permit removing probes
         for probe in probes:

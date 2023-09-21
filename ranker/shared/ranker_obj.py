@@ -191,6 +191,7 @@ class Ranker:
         # Turn each value into an edge weight
         # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
+        weight_mat = np.zeros((num_nodes, num_nodes))
         for i, sub_id_mapping in enumerate(node_ids):
             q_node_id_subject = sub_id_mapping[0]
             for j, obj_id_mapping in enumerate(node_ids):
@@ -214,6 +215,8 @@ class Ranker:
                         if source_weighted == 1:
                             source_weighted = 0.99999999
                         weight = weight + -1 / (np.log(source_weighted))
+
+                weight_mat[i,j] = weight
 
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight

@@ -162,58 +162,37 @@ class Ranker:
     def graph_laplacian(self, rgraph, probes):
         """Generate graph Laplacian."""
         node_ids, edges = rgraph
-
-        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
         num_nodes = len(node_ids)
-        weight_dict = []
-        for subject_index in range(num_nodes):
-            weight_dict_i = []
-            for object_id in range(num_nodes):
-                weight_dict_i.append({})
-            weight_dict.append(weight_dict_i)
-
-        index = {node_id: node_ids.index(node_id) for node_id in node_ids}
+        # compute graph laplacian for this case while removing duplicate sources for each edge in the result graph
+        
+        # weight_dict = []
+        # for subject_index in range(num_nodes):
+        #     weight_dict_i = []
+        #     for object_id in range(num_nodes):
+        #         weight_dict_i.append({})
+        #     weight_dict.append(weight_dict_i)
+        
+        weight_dict = defaultdict(lambda: defaultdict(\
+            lambda: defaultdict( lambda: defaultdict(float))))
         for edge in edges:
-            subject_id, object_id, edge_weight = (
-                edge["subject"],
-                edge["object"],
-                edge["weight"],
-            )
-            subject_index, object_index = index[subject_id], index[object_id]
-            for edge_source in edge_weight.keys():
-                for edge_property in edge_weight[edge_source].keys():
-                    val = edge_weight[edge_source][edge_property]
-                    if edge_source in weight_dict[subject_index][object_index]:
-                        if (
-                            edge_property
-                            in weight_dict[subject_index][object_index][edge_source]
-                        ):
-                            weight_dict[subject_index][object_index][edge_source][
-                                edge_property
-                            ] = max(
-                                weight_dict[subject_index][object_index][edge_source][
-                                    edge_property
-                                ],
-                                val,
-                            )
-                        else:
-                            weight_dict[subject_index][object_index][edge_source][
-                                edge_property
-                            ] = val
-                    else:
-                        weight_dict[subject_index][object_index][edge_source] = {}
-                        weight_dict[subject_index][object_index][edge_source][
-                            edge_property
-                        ] = val
+            subject = edge["subject"]
+            object = edge["object"]
+            edge_weight = edge["weight"]
+
+            for edge_source, edge_properties in edge_weight.items():
+                for edge_property, edge_val in edge_properties.items():
+                    weight_dict[subject][object][edge_source][edge_property] = \
+                        max(weight_dict[subject][object][edge_source][edge_property], edge_val)
 
         qedge_qnode_ids = set(
             [frozenset((e["subject"], e["object"])) for e in self.qedge_by_id.values()]
         )
         laplacian = np.zeros((num_nodes, num_nodes))
-        for subject_index in range(num_nodes):
-            q_node_id_subject = node_ids[subject_index][0]
-            for object_id in range(num_nodes):
-                q_node_id_object = node_ids[object_id][0]
+        for i, sub_id_mapping in enumerate(node_ids):
+            q_node_id_subject = sub_id_mapping[0]
+            for j, obj_id_mapping in enumerate(node_ids):
+                q_node_id_object = obj_id_mapping[0]
+
                 edge_qnode_ids = frozenset((q_node_id_subject, q_node_id_object))
 
                 # Set default weight (or 0 when edge is not a qedge)
@@ -221,13 +200,8 @@ class Ranker:
                     self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
                 )
 
-                for source in weight_dict[subject_index][object_id].keys():
-                    for property in weight_dict[subject_index][object_id][
-                        source
-                    ].keys():
-                        source_w = weight_dict[subject_index][object_id][source][
-                            property
-                        ]
+                for source, properties in weight_dict[sub_id_mapping][obj_id_mapping].items():
+                    for property, source_w in properties.items():
                         source_weighted = source_w * source_weight(
                             source,
                             property,
@@ -238,10 +212,10 @@ class Ranker:
                             source_weighted = 0.99999999
                         weight = weight + -1 / (np.log(source_weighted))
 
-                laplacian[subject_index, object_id] += -weight
-                laplacian[object_id, subject_index] += -weight
-                laplacian[subject_index, subject_index] += weight
-                laplacian[object_id, object_id] += weight
+                laplacian[i, j] += -weight
+                laplacian[j, i] += -weight
+                laplacian[i, i] += weight
+                laplacian[j, j] += weight
 
         # Clean up Laplacian (remove extra nodes etc.)
         removal_candidate = np.all(np.abs(laplacian) == 0, axis=0)

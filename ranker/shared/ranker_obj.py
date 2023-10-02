@@ -101,46 +101,51 @@ class Ranker:
         ]
         return answers
 
+    def probes(self, r_node_ids):
+        # Identify Probes
+        #################
+        # Q Graph Connectivity Matrix
+        q_node_ids = list(self.qgraph["nodes"].keys())
+        n_q_nodes = len(q_node_ids)
+        q_conn = np.full((n_q_nodes, n_q_nodes), 0)
+        for e in self.qgraph["edges"].values():
+            e_sub = q_node_ids.index(e["subject"])
+            e_obj = q_node_ids.index(e["object"])
+            if e_sub is not None and e_obj is not None:
+                q_conn[e_sub, e_obj] = 1
+
+        # Determine probes based on connectivity
+        node_conn = np.sum(q_conn, 0) + np.sum(q_conn, 1).T
+        probe_nodes = []
+        for conn in range(np.max(node_conn)):
+            is_this_conn = node_conn == (conn + 1)
+            probe_nodes += list(np.where(is_this_conn)[0])
+            if len(probe_nodes) > 1:
+                break
+        q_probes = list(combinations(probe_nodes, 2))
+
+        # Converting qgraph inds to rgraph inds:
+        qr_index = defaultdict(list)
+        for node_id in r_node_ids:
+            qr_index[node_id[0]].append(r_node_ids.index(node_id))
+
+        probes = []
+        for probe in q_probes:
+            left = qr_index[q_node_ids[probe[0]]]
+            right = qr_index[q_node_ids[probe[1]]]
+            for le in left:
+                for ri in right:
+                    probes.append((le, ri))
+        
+        return probes
+    
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
         r_node_ids, edges_all = self.get_rgraph(answer)
 
         for i_analysis, edges in enumerate(edges_all):
-            # Identify Probes
-            #################
-            # Q Graph Connectivity Matrix
-            q_node_ids = list(self.qgraph["nodes"].keys())
-            n_q_nodes = len(q_node_ids)
-            q_conn = np.full((n_q_nodes, n_q_nodes), 0)
-            for e in self.qgraph["edges"].values():
-                e_sub = q_node_ids.index(e["subject"])
-                e_obj = q_node_ids.index(e["object"])
-                if e_sub is not None and e_obj is not None:
-                    q_conn[e_sub, e_obj] = 1
-
-            # Determine probes based on connectivity
-            node_conn = np.sum(q_conn, 0) + np.sum(q_conn, 1).T
-            probe_nodes = []
-            for conn in range(np.max(node_conn)):
-                is_this_conn = node_conn == (conn + 1)
-                probe_nodes += list(np.where(is_this_conn)[0])
-                if len(probe_nodes) > 1:
-                    break
-            q_probes = list(combinations(probe_nodes, 2))
-
-            # Converting qgraph inds to rgraph inds:
-            qr_index = defaultdict(list)
-            for node_id in r_node_ids[i_analysis]:
-                qr_index[node_id[0]].append(r_node_ids[i_analysis].index(node_id))
-
-            probes = []
-            for probe in q_probes:
-                left = qr_index[q_node_ids[probe[0]]]
-                right = qr_index[q_node_ids[probe[1]]]
-                for le in left:
-                    for ri in right:
-                        probes.append((le, ri))
+            probes = self.probes(r_node_ids[i_analysis])
 
             laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
             # If this still happens at this point it is because a probe has a problem
@@ -149,6 +154,7 @@ class Ranker:
                 continue
 
             score = np.exp(-kirchhoff(laplacian, probes))
+            print(laplacian, probes, score)
 
             # fail safe to nuke nans
             score = score if np.isfinite(score) and score >= 0 else -1
@@ -182,6 +188,8 @@ class Ranker:
                 for edge_property, edge_val in edge_properties.items():
                     weight_dict[subject][object][edge_source][edge_property] = \
                         max(weight_dict[subject][object][edge_source][edge_property], edge_val)
+                    weight_dict[object][subject][edge_source][edge_property] = \
+                        max(weight_dict[object][subject][edge_source][edge_property], edge_val)
 
         qedge_qnode_ids = set(
             [frozenset((e["subject"], e["object"])) for e in self.qedge_by_id.values()]
@@ -191,7 +199,7 @@ class Ranker:
         # Turn each value into an edge weight
         # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
-        weight_mat = np.zeros((num_nodes, num_nodes))
+        weight_mat = np.zeros((num_nodes, num_nodes)) # For debugging
         for i, sub_id_mapping in enumerate(node_ids):
             q_node_id_subject = sub_id_mapping[0]
             for j, obj_id_mapping in enumerate(node_ids):
@@ -216,12 +224,17 @@ class Ranker:
                             source_weighted = 0.99999999
                         weight = weight + -1 / (np.log(source_weighted))
 
-                weight_mat[i,j] = weight
+                weight_mat[i, j] += weight # For debugging
 
                 laplacian[i, j] += -weight
                 laplacian[j, i] += -weight
                 laplacian[i, i] += weight
                 laplacian[j, j] += weight
+        
+        # weight_row_sums = np.sum(weight_mat,axis=1)
+        # laplacian = -1 * weight_mat.copy()
+        # for i in range(num_nodes):
+        #     laplacian[i, i] = weight_row_sums[i]
 
         # Clean up Laplacian (remove extra nodes etc.)
         # Sometimes, mostly because of a bug of some kind,

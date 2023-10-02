@@ -231,6 +231,7 @@ class Ranker:
                 laplacian[i, i] += weight
                 laplacian[j, j] += weight
         
+        # Using weight_mat you can calculated the laplacian, however we did this above.
         # weight_row_sums = np.sum(weight_mat,axis=1)
         # laplacian = -1 * weight_mat.copy()
         # for i in range(num_nodes):

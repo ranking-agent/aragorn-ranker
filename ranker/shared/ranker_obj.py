@@ -154,7 +154,6 @@ class Ranker:
                 continue
 
             score = np.exp(-kirchhoff(laplacian, probes))
-            print(laplacian, probes, score)
 
             # fail safe to nuke nans
             score = score if np.isfinite(score) and score >= 0 else -1

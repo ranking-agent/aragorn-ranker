@@ -152,6 +152,11 @@ class Ranker:
             probes = self.probes(r_node_ids[i_analysis])
 
             laplacian, probes, anal_details = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
+            anal_details['rgraph'] = {
+                    "nodes": r_node_ids,
+                    "edges": edges
+                }
+            
             # If this still happens at this point it is because a probe has a problem
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0

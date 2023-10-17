@@ -140,20 +140,28 @@ class Ranker:
         return probes
     
     def score(self, answer, jaccard_like=False):
+        scored_answer, _ = self.score_verbose(answer, jaccard_like)
+        return scored_answer
+    
+    def score_verbose(self, answer, jaccard_like=False):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
         r_node_ids, edges_all = self.get_rgraph(answer)
-
+        details = []
         for i_analysis, edges in enumerate(edges_all):
             probes = self.probes(r_node_ids[i_analysis])
 
-            laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
+            laplacian, probes, anal_details = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
             # If this still happens at this point it is because a probe has a problem
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0
                 continue
 
-            score = np.exp(-kirchhoff(laplacian, probes))
+            log_kirchoff = kirchhoff(laplacian, probes)
+            score = np.exp(-log_kirchoff)
+
+            anal_details['log_kirchoff'] = log_kirchoff
+            anal_details['score'] = score
 
             # fail safe to nuke nans
             score = score if np.isfinite(score) and score >= 0 else -1
@@ -162,7 +170,10 @@ class Ranker:
                 answer["analyses"][i_analysis]["score"] = score / (1 - score)
             else:
                 answer["analyses"][i_analysis]["score"] = score
-        return answer
+
+            details.append(anal_details)
+
+        return answer, details
 
     def graph_laplacian(self, rgraph, probes):
         """Generate graph Laplacian."""
@@ -230,6 +241,12 @@ class Ranker:
                 laplacian[i, i] += weight
                 laplacian[j, j] += weight
         
+        details = {
+            "weight_dict": weight_dict,
+            "weight_mat": weight_mat,
+            "laplacian": laplacian
+        }
+
         # Using weight_mat you can calculated the laplacian, however we did this above.
         # weight_row_sums = np.sum(weight_mat,axis=1)
         # laplacian = -1 * weight_mat.copy()
@@ -248,8 +265,12 @@ class Ranker:
             removal_candidate[probe[1]] = False
 
         keep = np.logical_not(removal_candidate)
+        
+        laplacian_pruned = laplacian[keep, :][:, keep]
+        
+        details['laplacian_pruned'] = laplacian_pruned
 
-        return laplacian[keep, :][:, keep]
+        return laplacian_pruned, probes, details
     
 
     def get_rgraph(self, result):
@@ -453,7 +474,6 @@ class Ranker:
             analysis_edges.append(redges)
 
         return analyses_rnodes, analysis_edges
-
 
 def kirchhoff(L, probes):
     """Compute Kirchhoff index, including only specific nodes."""

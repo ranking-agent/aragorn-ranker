@@ -269,13 +269,23 @@ class Ranker:
             removal_candidate[probe[0]] = False
             removal_candidate[probe[1]] = False
 
+        removed_before = np.cumsum(np.int64(removal_candidate))
+
+        new_probes = []
+        for probe in probes:
+            new_probes.append((
+                probe[0] - removed_before[probe[0]], 
+                probe[1] - removed_before[probe[1]]
+            ))
+            
         keep = np.logical_not(removal_candidate)
         
         laplacian_pruned = laplacian[keep, :][:, keep]
         
         details['laplacian_pruned'] = laplacian_pruned
+        details['probes'] = new_probes
 
-        return laplacian_pruned, probes, details
+        return laplacian_pruned, new_probes, details
     
 
     def get_rgraph(self, result):

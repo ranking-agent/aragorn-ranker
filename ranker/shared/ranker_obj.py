@@ -141,22 +141,39 @@ class Ranker:
     
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
-        # answer is a list of dicts with fields 'id' and 'bound'
-        r_node_ids, edges_all = self.get_rgraph(answer)
+        
 
-        for i_analysis, edges in enumerate(edges_all):
-            probes = self.probes(r_node_ids[i_analysis])
+        # Each analysis is scored differently
+        for i_analysis, anal in enumerate(answer["analyses"]):
+            # Each analysis may result in multiple rgraphs
+            rgraphs = self.get_rgraphs(answer, anal) # Make this function do the right thing.
 
-            laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
-            # If this still happens at this point it is because a probe has a problem
-            if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
-                answer["analyses"][i_analysis]["score"] = 0
-                continue
+            # Each rgraph is then scored
+            # Weighted by it's confidence (from the attributes)
+            for rgraph in rgraphs:
+                probes = self.probes(rgraph["r_node_ids"])
+            
+                laplacian = self.graph_laplacian((rgraph["r_node_ids"], rgraph["edges"]), probes)
+                # If this still happens at this point it is because a probe has a problem
+                if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
+                    # answer["analyses"][i_analysis]["score"] = 0
+                    # continue
 
-            score = np.exp(-kirchhoff(laplacian, probes))
+                rgraph_score = np.exp(-kirchhoff(laplacian, probes))
 
-            # fail safe to nuke nans
-            score = score if np.isfinite(score) and score >= 0 else -1
+                # fail safe to nuke nans
+                rgraph_score = rgraph_score if np.isfinite(rgraph_score) and rgraph_score >= 0 else -1
+
+                # Scores are now back in weight space
+                # We can put them back in the rgraph list
+                rgraph["aragorn_scores"] = rgraph_score
+            
+            # We now have a list of scores for each rgraph
+            # Each must be weighted by the corresponding confidence
+            # And then paralell combine
+            
+            # TODO: parallel combine here
+            score = rgraph_score # This is wrong!?!?!?!?!!
 
             if jaccard_like:
                 answer["analyses"][i_analysis]["score"] = score / (1 - score)
@@ -252,8 +269,12 @@ class Ranker:
         return laplacian[keep, :][:, keep]
     
 
-    def get_rgraph(self, result):
+    def get_rgraphs(self, result, anal):
         """Get "ranker" subgraph."""
+
+        # TODO: Edit this so that it outputs a list of rgraph objects
+        # One for each "rule" identified via attributes attached to an aux graph
+
         rnodes = set()
         redges = []
         dummy_ind = 0

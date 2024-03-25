@@ -101,7 +101,7 @@ class Ranker:
         ]
         return answers
 
-    def probes(self, r_node_ids):
+    def probes(self, r_node_ids, anchor_info):
         # Identify Probes
         #################
         # Q Graph Connectivity Matrix
@@ -142,12 +142,12 @@ class Ranker:
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
         # answer is a list of dicts with fields 'id' and 'bound'
-        r_node_ids, edges_all = self.get_rgraph(answer)
+        r_node_ids, edges_all, anchor_info_all = self.get_rgraph(answer)
 
         for i_analysis, edges in enumerate(edges_all):
-            probes = self.probes(r_node_ids[i_analysis])
+            probes = self.probes(r_node_ids[i_analysis], anchor_info_all[i_analysis])
 
-            laplacian = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
+            laplacian, probes = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
             # If this still happens at this point it is because a probe has a problem
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0
@@ -248,8 +248,14 @@ class Ranker:
             removal_candidate[probe[1]] = False
 
         keep = np.logical_not(removal_candidate)
+        
+        # Remap probe indicies
+        new_inds = np.cumsum(np.int64(keep)) - 1
+        new_probes = []
+        for p in probes:
+            new_probes.append((new_inds[p[0]], new_inds[p[1]]))
 
-        return laplacian[keep, :][:, keep]
+        return laplacian[keep, :][:, keep], new_probes
     
 
     def get_rgraph(self, result):
@@ -321,6 +327,7 @@ class Ranker:
             if len(answer["node_bindings"][node]) > 1
         ]
         # get list of nodes, and knode_map
+        rnode_anchor_info = defaultdict(list)
         knode_map = defaultdict(set)
         for nb in answer["node_bindings"]:
             # get the query node binding entry
@@ -339,6 +346,7 @@ class Ranker:
                 if qnode_id in rgraph_sets:
                     anchor_id = (f"{qnode_id}_anchor", "")
                     rnodes.add(anchor_id)
+                    rnode_anchor_info[anchor_id].append(qnode_id)
                     redges.append(
                         {
                             "weight": {"anchor_node": {"anchor_node": 1e9}},
@@ -352,6 +360,7 @@ class Ranker:
             *rnodes
         )  # don't want to duplicate rnodes already in there
         analyses_rnodes = []
+        analysis_rnode_anchor_info = []
         for i_analysis, nl in enumerate(nodes_list):
             dummy_node_count = 0
             anal_rnode = rnodes
@@ -360,6 +369,7 @@ class Ranker:
                     anal_rnode.append(("dummy_node_" + str(dummy_node_count), n))
                     dummy_node_count += 1
             analyses_rnodes.append(anal_rnode)
+            analysis_rnode_anchor_info.append(rnode_anchor_info)
 
         # for eb in answer['edge_bindings']:
         # qedge_id = eb
@@ -452,7 +462,7 @@ class Ranker:
                             redges.append(edge)
             analysis_edges.append(redges)
 
-        return analyses_rnodes, analysis_edges
+        return analyses_rnodes, analysis_edges, analysis_rnode_anchor_info
 
 
 def kirchhoff(L, probes):

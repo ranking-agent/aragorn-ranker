@@ -285,8 +285,8 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                 ]
             else:
                 if len(answer_map["node_bindings"][nb]) != 0:
-                    nonset_nodes.append(
-                        answer_map["node_bindings"][nb][0]["id"]
+                    nonset_nodes.extend(
+                        [x["id"] for x in answer_map["node_bindings"][nb]]
                     )
 
         for analysis_idx, analysis in enumerate(answer_map["analyses"]):

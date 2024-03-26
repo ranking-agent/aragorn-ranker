@@ -101,11 +101,12 @@ class Ranker:
         ]
         return answers
 
-    def probes(self, r_node_ids, anchor_info):
+    def probes(self):
+        
         # Identify Probes
         #################
         # Q Graph Connectivity Matrix
-        q_node_ids = list(self.qgraph["nodes"].keys())
+        q_node_ids = list(self.qgraph["nodes"].keys()) # Need to preserve order!
         n_q_nodes = len(q_node_ids)
         q_conn = np.full((n_q_nodes, n_q_nodes), 0)
         for e in self.qgraph["edges"].values():
@@ -124,38 +125,45 @@ class Ranker:
                 break
         q_probes = list(combinations(probe_nodes, 2))
 
-        # Converting qgraph inds to rgraph inds:
-        qr_index = defaultdict(list)
-        for node_id in r_node_ids:
-            qr_index[node_id[0]].append(r_node_ids.index(node_id))
+        # Convert probes back to q_node_ids
+        probes = [(q_node_ids[p[0]],q_node_ids[p[1]]) for p in q_probes]
 
-        probes = []
-        for probe in q_probes:
-            left = qr_index[q_node_ids[probe[0]]]
-            right = qr_index[q_node_ids[probe[1]]]
-            for le in left:
-                for ri in right:
-                    probes.append((le, ri))
-        
         return probes
     
     def score(self, answer, jaccard_like=False):
         """Compute answer score."""
-        # answer is a list of dicts with fields 'id' and 'bound'
-        r_node_ids, edges_all, anchor_info_all = self.get_rgraph(answer)
+        
+        # Probes used for scoring are based on the q_graph
+        # This will be a list of q_node_id tuples
+        probes = self.probes()
 
-        for i_analysis, edges in enumerate(edges_all):
-            probes = self.probes(r_node_ids[i_analysis], anchor_info_all[i_analysis])
+        # The r_graph is all of the information we need to score each analysis
+        # This includes walking through all of the support graphs
+        # And organizing nodes and edges into a more manageable form scoring
+        # There is some repeated work accross analyses so we calculate all r_graphs
+        # at once
+        r_gaphs = self.get_rgraph(answer)
 
-            laplacian, probes = self.graph_laplacian((r_node_ids[i_analysis], edges), probes)
+        # For each analysis we have a unique r_graph to score
+        for i_analysis, r_graph in enumerate(r_gaphs):
+            # First we calculate the graph laplacian
+            # The probes are needed to make sure we don't remove anything
+            # that we actually wanted to use for scoring
+            laplacian, probe_inds = self.graph_laplacian(r_graph, probes)
+
+            # For various reasons (malformed responses typicall), we might have a 
+            # weird laplacian. We already checked and tried to clean up above
             # If this still happens at this point it is because a probe has a problem
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0
                 continue
+ 
+            # Once we have the graph laplacian we can find the effective resistance
+            # Between all of the probes
+            # The exp(-1 * .) here converts us back to normalized space
+            score = np.exp(-kirchhoff(laplacian, probe_inds))
 
-            score = np.exp(-kirchhoff(laplacian, probes))
-
-            # fail safe to nuke nans
+            # Fail safe to get rid of NaNs.
             score = score if np.isfinite(score) and score >= 0 else -1
 
             if jaccard_like:
@@ -164,12 +172,17 @@ class Ranker:
                 answer["analyses"][i_analysis]["score"] = score
         return answer
 
-    def graph_laplacian(self, rgraph, probes):
+    def graph_laplacian(self, r_graph, probes):
         """Generate graph Laplacian."""
-        node_ids, edges = rgraph
-        num_nodes = len(node_ids)
+        
+        nodes = list(r_graph['nodes']) # Must convert to list
+        edges = list(r_graph['edges']) # Must have consistent order
+        
+        # The graph laplacian will be a square matrix
+        # If all goes well it will be len(nodes) by len(nodes)
+        num_nodes = len(nodes)
 
-        # For each potential edge in the dense answer graph
+        # For each edge in the answer graph
         # Make a dictionary of edge source / properties.
         # For the case where there are redundant edges,
         # same subject, object, source, property type,
@@ -179,17 +192,36 @@ class Ranker:
         weight_dict = defaultdict(lambda: defaultdict(\
             lambda: defaultdict( lambda: defaultdict(float))))
         for edge in edges:
-            subject = edge["subject"]
-            object = edge["object"]
-            edge_weight = edge["weight"]
+            # Recall that edge is a tuple
+            # This will contain
+            # (r_node_subject_id, r_node_subject_id, k_edge_id)
+            r_subject = edge[0]
+            r_object = edge[1]
+            k_edge_id = edge[2]
+
+            # The edge weight can be found via lookup
+            # With a little messaging
+            edge_vals = self.rank_vals.get(k_edge_id, None)
+            if edge_vals is None:
+                # Wacky edge
+                continue
+
+            edge_weight = {
+                edge_vals["source"]: {
+                    k: v
+                    for k, v in edge_vals.items()
+                    if k != "source"
+                }
+            }
 
             for edge_source, edge_properties in edge_weight.items():
                 for edge_property, edge_val in edge_properties.items():
-                    weight_dict[subject][object][edge_source][edge_property] = \
-                        max(weight_dict[subject][object][edge_source][edge_property], edge_val)
-                    weight_dict[object][subject][edge_source][edge_property] = \
-                        max(weight_dict[object][subject][edge_source][edge_property], edge_val)
+                    weight_dict[r_subject][r_object][edge_source][edge_property] = \
+                        max(weight_dict[r_subject][r_object][edge_source][edge_property], edge_val)
+                    weight_dict[r_object][r_subject][edge_source][edge_property] = \
+                        max(weight_dict[r_object][r_subject][edge_source][edge_property], edge_val)
 
+        # Make a set of all subject object q_node_ids that have q_edges
         qedge_qnode_ids = set(
             [frozenset((e["subject"], e["object"])) for e in self.qedge_by_id.values()]
         )
@@ -199,19 +231,21 @@ class Ranker:
         # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
         weight_mat = np.zeros((num_nodes, num_nodes)) # For debugging
-        for i, sub_id_mapping in enumerate(node_ids):
-            q_node_id_subject = sub_id_mapping[0]
-            for j, obj_id_mapping in enumerate(node_ids):
-                q_node_id_object = obj_id_mapping[0]
-
-                edge_qnode_ids = frozenset((q_node_id_subject, q_node_id_object))
-
-                # Set default weight (or 0 when edge is not a qedge)
+        for i, sub_r_node_id in enumerate(nodes):
+            for j, obj_r_node_id in enumerate(nodes):
+                # If these r_nodes correspond to q_nodes and there is a q_edge between
+                # Then we set a default weight for this weight
+                # Otherwise we set the default weight to 0
+                #
+                # This ensures that every bound q_edge at least counts for something
+                edge_qnode_ids = frozenset((sub_r_node_id, obj_r_node_id))
                 weight = (
                     self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
                 )
 
-                for source, properties in weight_dict[sub_id_mapping][obj_id_mapping].items():
+                # Map each of these weights according to the profile
+                # Then parallel combine all of the weights between this subject and object
+                for source, properties in weight_dict[sub_r_node_id][obj_r_node_id].items():
                     for property, source_w in properties.items():
                         source_weighted = source_w * source_weight(
                             source,
@@ -219,8 +253,8 @@ class Ranker:
                             source_weights=self.source_weights,
                             unknown_source_weight=self.unknown_source_weight,
                         )
-                        if source_weighted == 1:
-                            source_weighted = 0.99999999
+                        if source_weighted >= 1: # > as an emergency
+                            source_weighted = 0.9999999 # 1 causes numerical issues so we want basically 1
                         weight = weight + -1 / (np.log(source_weighted))
 
                 weight_mat[i, j] += weight # For debugging
@@ -243,226 +277,159 @@ class Ranker:
         # We can remove these, as long as they aren't probes.
         removal_candidate = np.all(np.abs(laplacian) == 0, axis=0)
         # Don't permit removing probes
-        for probe in probes:
-            removal_candidate[probe[0]] = False
-            removal_candidate[probe[1]] = False
+        for p in probes:
+            p_i = (nodes.index(p[0]), nodes.index(p[1]))
+            removal_candidate[p_i[0]] = False
+            removal_candidate[p_i[1]] = False
 
         keep = np.logical_not(removal_candidate)
-        
-        # Remap probe indicies
-        new_inds = np.cumsum(np.int64(keep)) - 1
-        new_probes = []
-        for p in probes:
-            new_probes.append((new_inds[p[0]], new_inds[p[1]]))
+        kept_nodes = [n for i, n in enumerate(nodes) if keep[i]]
 
-        return laplacian[keep, :][:, keep], new_probes
+        # Convert probes to new laplacian inds
+        probe_inds = [(kept_nodes.index(p[0]), kept_nodes.index(p[1])) for p in probes]
+
+        
+        return laplacian[keep, :][:, keep], probe_inds
     
 
     def get_rgraph(self, result):
         """Get "ranker" subgraph."""
-        rnodes = set()
-        redges = []
-        dummy_ind = 0
         answer = copy.deepcopy(result)
-        result_kg = {"node_ids": set(), "edge_ids": set()}
+        
+                # # Super nodes are any q_nodes that contain multiple bindings
+                # # These will be treated differently throughout scoring
+                # super_nodes = defaultdict(set)
+                # for node in answer["node_bindings"]:
+                #     if len(answer["node_bindings"][node]) > 1:
+                #         super_nodes[node] = set([nb['id'] for nb in answer["node_bindings"][node]])
+        
+        # All analyses share some common r_graph nodes. We can make those now
+        r_graph_shared = dict()
+        r_graph_shared['nodes'] = set()
+        r_graph_shared['nodes_map'] = defaultdict(list)
+        for nb_id, nbs in answer['node_bindings'].items():
+            r_graph_shared['nodes'].add(nb_id)
+            for nb in nbs:
+                r_graph_shared['nodes_map'][nb['id']].append(nb_id)
 
+        # Build the results KG for each analysis
+        
+        # The nodes for the results KG are the same for all analyses
+        # We can populate these node_ids by walking through all node bindings
+        result_kg_shared = {"node_ids": set(), "edge_ids": set()}
         for nb_id, nbs in answer.get("node_bindings", {}).items():
             for nb in nbs:
                 n_id = nb.get("id", None)
                 if n_id:
-                    result_kg["node_ids"].add(n_id)
+                    result_kg_shared["node_ids"].add(n_id)
 
-        nodes_list = []
+        # For each analysis we need to build a KG of all nodes and edges
+        analysis_r_graphs = []
         for anal in answer["analyses"]:
-            anal_kg = copy.deepcopy(result_kg)
+            # Copy this list of globally bound nodes
+            anal_kg = copy.deepcopy(result_kg_shared)
 
+            # Walk and find all edges in this analysis
             for eb_id, ebs in anal["edge_bindings"].items():
                 for eb in ebs:
                     e_id = eb.get("id", None)
                     if e_id:
                         anal_kg["edge_ids"].add(e_id)
 
+            # Parse through all support graphs used in this analysis
             sg_ids = anal.get("support_graphs", [])
             for sg_id in sg_ids:
                 sg = self.agraphs.get(sg_id, None)
                 if sg:
+                    # We found the referenced support graph 
+                    # Add in the corresponding nodes
                     sg_nodes = sg.get("nodes", [])
                     for sgn in sg_nodes:
                         anal_kg["node_ids"].add(sgn)
 
+                    # Add in the corresponding edges
                     sg_edges = sg.get("edges", [])
                     for sge in sg_edges:
                         anal_kg["edge_ids"].add(sge)
 
+            # Now we need to go through all of the edges we have found thus far
+            # We need to find any additional support graphs
+            # We will do that with this recursive function call
+            # Since results_kg uses sets, things will not get duplicated
             current_edge_ids = copy.deepcopy(anal_kg["edge_ids"])
             for edge_id in current_edge_ids:
                 anal_kg = get_edge_support_kg(
                     edge_id, self.kgraph, self.agraphs, anal_kg
                 )
 
-            dummy_ind = 0
-            extra_nodes = set()
-            for e_id in anal_kg.get("edge_ids", []):
-                # This shouldn't happen, but sometimes it does
-                if e_id not in self.kgraph["edges"]:
+            # At this point each analysis now has a complete anal_kg
+            # This is the complete picture of all nodes and edges used by this analysis
+            # This includes everything from all support graphs (recursively)
+
+            # To make things simpler below it is helpful if will build a complete list
+            # of additional nodes and edges that have been added as part of support
+            anal["support_nodes"] = copy.deepcopy(anal_kg['node_ids'])
+            anal["support_edges"] = copy.deepcopy(anal_kg['edge_ids'])
+            for eb_id, ebs in anal["edge_bindings"].items():
+                for eb in ebs:
+                    e_id = eb.get("id", None)
+                    if e_id and e_id in anal["support_edges"]:
+                        anal["support_edges"].remove(e_id)
+
+            for nb_id, nbs in answer['node_bindings'].items():
+                for nb in nbs:
+                    n_id = nb.get("id", None)
+                    if n_id and n_id in anal["support_nodes"]:
+                        anal["support_nodes"].remove(n_id)
+
+            # It is also convenient to have a list of all edges that were bound
+            anal["bound_edges"] = anal_kg['edge_ids'] - anal["support_edges"]
+
+            # We need to build the r_graph which is a little different than the analysis graph
+            # In the list of nodes in the analysis we need to consider the specific node bindings
+            # For example, it is possible to use a k_node in multiple bindings to different q_nodes
+            # the r_graph makes "r_nodes" for each q_node
+            #
+            # Any additional support nodes are added accordingly to the r_graph as individual r_nodes
+            #
+            # Then we need to include all edges but have them point at the correct r_nodes
+            # We need to reroute them accordingly by looking up the origin k_node ids in the nodes_map
+
+            # First we copy over the shared nodes
+            anal_r_graph = copy.deepcopy(r_graph_shared)
+            
+            # Add in support nodes to the r_graph
+            # We will make an r_graph node
+            # And a mapping to that r_graph node
+            for sn in anal["support_nodes"]:
+                r_graph_node_id = f"support_node_{sn}"
+                anal_r_graph['nodes'].add(r_graph_node_id)
+                anal_r_graph['nodes_map'][sn].append(r_graph_node_id)
+            
+            # For each edge we need to find the corresponding r_nodes
+            # for the subject and object
+            # We will use a tuple for these as a sparse matrix type of thing
+            # Bound edges will go between non support nodes
+            anal_r_graph['edges'] = set()
+            for e_id in anal["bound_edges"] | anal["support_edges"]:
+                e = self.kgraph['edges'].get(e_id)
+                if not e:
                     logger.warning(f"Edge {e_id} not found in knowledge graph")
                     continue
-                anal["edge_bindings"]["dummy_edge_" + str(dummy_ind)] = [{"id": e_id}]
-                extra_nodes.add(self.kgraph["edges"][e_id]["subject"])
-                extra_nodes.add(self.kgraph["edges"][e_id]["object"])
-                dummy_ind += 1
-            nodes_list.append(extra_nodes)
+                subject_id = e['subject']
+                subject_r_ids = anal_r_graph['nodes_map'][subject_id]
 
-        # adds edges and nodes from support graphs into the answer edge bindings and node bindings
-        # for i_analysis in range(len(answer.get('analyses',[]))):
-        #     for sg in answer['analyses'][i_analysis].get('support_graphs',[]):
-        #         for edge in self.agraphs[sg]['edges']:
-        #             answer['analyses'][i_analysis]['edge_bindings']['dummy_edge_'+str(dummy_ind)] = [{'id':edge}]
-        #             dummy_ind =+ 1
+                object_id = e['object']
+                object_r_ids = anal_r_graph['nodes_map'][object_id]
 
-        # Checks if multiple nodes share node bindings
-        rgraph_sets = [
-            node
-            for node in answer["node_bindings"]
-            if len(answer["node_bindings"][node]) > 1
-        ]
-        # get list of nodes, and knode_map
-        rnode_anchor_info = defaultdict(list)
-        knode_map = defaultdict(set)
-        for nb in answer["node_bindings"]:
-            # get the query node binding entry
-            qnode_id = nb
-            knode_ids: list = []
+                for r_sub in subject_r_ids:
+                    for r_obj in object_r_ids:
+                        anal_r_graph['edges'].add((r_sub, r_obj, e_id))
 
-            # get all the knowledge node entries
-            for knode_id in answer["node_bindings"][nb]:
-                knode_ids.append(knode_id["id"])
+            # Build a list of these for each analysis
+            analysis_r_graphs.append(anal_r_graph)
 
-            for knode_id in knode_ids:
-                rnode_id = (qnode_id, knode_id)
-                rnodes.add(rnode_id)
-                knode_map[knode_id].add(rnode_id)
-
-                if qnode_id in rgraph_sets:
-                    anchor_id = (f"{qnode_id}_anchor", "")
-                    rnodes.add(anchor_id)
-                    rnode_anchor_info[anchor_id].append(qnode_id)
-                    redges.append(
-                        {
-                            "weight": {"anchor_node": {"anchor_node": 1e9}},
-                            "subject": rnode_id,
-                            "object": anchor_id,
-                        }
-                    )
-        rnodes = list(rnodes)
-        # adding rnodes (for each results) to each nodes_list (for each analyses)
-        [dump, knode_ids] = zip(
-            *rnodes
-        )  # don't want to duplicate rnodes already in there
-        analyses_rnodes = []
-        analysis_rnode_anchor_info = []
-        for i_analysis, nl in enumerate(nodes_list):
-            dummy_node_count = 0
-            anal_rnode = rnodes
-            for n in nl:
-                if n not in knode_ids:
-                    anal_rnode.append(("dummy_node_" + str(dummy_node_count), n))
-                    dummy_node_count += 1
-            analyses_rnodes.append(anal_rnode)
-            analysis_rnode_anchor_info.append(rnode_anchor_info)
-
-        # for eb in answer['edge_bindings']:
-        # qedge_id = eb
-        # kedges = answer['edge_bindings'][eb]
-        analysis_edges = []
-        for i_analysis in range(len(answer.get("analyses", []))):
-            # get "result" edges
-            for qedge_id, kedge_bindings in answer["analyses"][i_analysis][
-                "edge_bindings"
-            ].items():
-                for kedge_binding in kedge_bindings:
-                    """
-                    The code for generating pairs below appears unusual, but we need
-                    it in order to properly handle unlikely set situations.
-
-                    Consider this question graph: n0 --e0--> n1.
-
-                    Suppose n0 is bound to D1 and D2, n1 is bound to D1 and D2, and
-                    e0 is bound to this knowledge graph edge: D1 --> D2.
-
-                    Following the direction of the kedge, we expect the following
-                    edges in the rgraph:
-                    (n0, D1) --> (n1, D2)
-                    (n1, D1) --> (n0, D2)
-
-                    The `product` used below can generate these pairs, but it can
-                    also create the following edges:
-                    (n1, D1) --> (n1, D2)
-                    (n0, D1) --> (n0, D2)
-
-                    The `if pair[0][0] != pair[1][0]` prevents this from happening.
-                    """
-                    kedge = self.kedge_by_id[kedge_binding["id"]]
-                    ksubject, kobject = kedge["subject"], kedge["object"]
-                    try:
-                        qedge = self.qedge_by_id[qedge_id]
-                        qedge_nodes = qedge["subject"], qedge["object"]
-                        pairs = [
-                            pair
-                            for pair in product(
-                                [
-                                    rnode
-                                    for rnode in analyses_rnodes[i_analysis]
-                                    if rnode[0] in qedge_nodes and rnode[1] == ksubject
-                                ],
-                                [
-                                    rnode
-                                    for rnode in analyses_rnodes[i_analysis]
-                                    if rnode[0] in qedge_nodes and rnode[1] == kobject
-                                ],
-                            )
-                            if pair[0][0] != pair[1][0]
-                        ]
-                    except KeyError:
-                        # Support edges aren't bound to particular qnode_ids, so let's find all the places they can go
-                        # set(tuple(sorted(pair)) for ...) prevents duplicate edges in opposite direction when kedge['subject'] == kedge['object']
-                        pairs = set(
-                            tuple(sorted(pair))
-                            for pair in product(
-                                [
-                                    rnode
-                                    for rnode in analyses_rnodes[i_analysis]
-                                    if rnode[1] == ksubject
-                                ],
-                                [
-                                    rnode
-                                    for rnode in analyses_rnodes[i_analysis]
-                                    if rnode[1] == kobject
-                                ],
-                            )
-                            if pair[0][0] != pair[1][0]
-                        )  # Prevents edges between nodes of the same qnode_id
-
-                    for subject, object in pairs:
-                        # get the weight from the edge binding
-                        edge_vals = self.rank_vals.get(kedge_binding["id"], None)
-                        if edge_vals is not None:
-                            edge = {
-                                "weight": {
-                                    edge_vals["source"]: {
-                                        k: v
-                                        for k, v in edge_vals.items()
-                                        if k != "source"
-                                    }
-                                },
-                                "subject": subject,
-                                "object": object,
-                            }
-
-                            redges.append(edge)
-            analysis_edges.append(redges)
-
-        return analyses_rnodes, analysis_edges, analysis_rnode_anchor_info
+        return analysis_r_graphs
 
 
 def kirchhoff(L, probes):

@@ -19,9 +19,13 @@ class Ranker:
 
     def __init__(self, message, profile="blended"):
         """Create ranker."""
+
+        # Decompose message
         self.kgraph = message.get("knowledge_graph", {"nodes": {}, "edges": {}})
         self.qgraph = message.get("query_graph", {"nodes": {}, "edges": {}})
         self.agraphs = message.get("auxiliary_graphs", {})
+        
+        # Apply profile
         (
             source_weights,
             unknown_source_weight,
@@ -32,35 +36,19 @@ class Ranker:
         self.unknown_source_weight = unknown_source_weight
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
-        kedges = self.kgraph["edges"]
 
+        # Find numeric values of edges
+        # This could be smarter and fetched and memoized
+        # rank_vals (get_vals) is used once in graph_laplacian
+        # node_pubs is only used by rank_vals
+        # This could be a big time savings for large messages
         self.node_pubs = get_node_pubs(self.kgraph)
         self.rank_vals = get_vals(
-            kedges,
+            self.kgraph["edges"],
             self.node_pubs,
             self.source_transformation,
             self.unknown_source_transformation,
         )
-        self.qnode_by_id = {n: self.qgraph["nodes"][n] for n in self.qgraph["nodes"]}
-        self.qedge_by_id = {n: self.qgraph["edges"][n] for n in self.qgraph["edges"]}
-        self.kedge_by_id = {n: self.kgraph["edges"][n] for n in kedges}
-        self.kedges_by_knodes = defaultdict(list)
-
-        for e in kedges:
-            self.kedges_by_knodes[
-                tuple(sorted([kedges[e]["subject"], kedges[e]["object"]]))
-            ].append(kedges[e])
-
-        # find leaf-set qnodes
-        degree = defaultdict(int)
-        for edge in self.qgraph["edges"]:
-            degree[self.qgraph["edges"][edge]["subject"]] += 1
-            degree[self.qgraph["edges"][edge]["object"]] += 1
-        self.leaf_sets = [
-            node
-            for node in self.qgraph["nodes"]
-            if self.qgraph["nodes"][node].get("is_set", False) and degree[node] == 1
-        ]
 
     def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
@@ -225,7 +213,7 @@ class Ranker:
 
         # Make a set of all subject object q_node_ids that have q_edges
         qedge_qnode_ids = set(
-            [frozenset((e["subject"], e["object"])) for e in self.qedge_by_id.values()]
+            [frozenset((e["subject"], e["object"])) for e in self.qgraph["edges"].values()]
         )
 
         # Now go through these edges

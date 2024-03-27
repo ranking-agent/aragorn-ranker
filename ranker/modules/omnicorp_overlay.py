@@ -69,7 +69,16 @@ async def add_shared_pmid_counts(
                             "attribute_type_id": "biolink:has_count",
                             "value_type_id": "EDAM:data_0006",
                             "value": publication_count,
-                        }],
+                        },
+                        {
+                            "attribute_type_id": "biolink:agent_type",
+                            "value": "statistical_association_pipeline"
+                        },
+                        {
+                            "attribute_type_id": "biolink:knowledge_level",
+                            "value": "statistical_association"
+                        }
+                    ],
                     "sources": [{
                             "resource_id": "infores:omnicorp",
                             "resource_role": "primary_knowledge_source",

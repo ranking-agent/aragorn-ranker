@@ -34,26 +34,6 @@ class Ranker:
         self.unknown_source_transformation = unknown_source_transformation
         kedges = self.kgraph["edges"]
 
-        attribute = {
-            "original_attribute_name": "weight",
-            "attribute_type_id": "biolink:has_numeric_value",
-            "value": 1,
-            "value_type_id": "EDAM:data_1669",
-            "value_url": None,
-            "attribute_source": None,
-        }
-
-        for kedge in kedges:
-            if kedges[kedge].get("attributes") is None:
-                kedges[kedge]["attributes"] = [attribute]
-            else:
-                found = False
-                for attrib in kedges[kedge]["attributes"]:
-                    if attrib.get("original_attribute_name", None) == "weight":
-                        found = True
-
-                if not found:
-                    kedges[kedge]["attributes"].append(attribute)
         self.node_pubs = get_node_pubs(self.kgraph)
         self.rank_vals = get_vals(
             kedges,
@@ -88,7 +68,8 @@ class Ranker:
         answers_ = []
         scores_for_sort = []
         for answer in answers:
-            answers_.append(self.score(answer, jaccard_like=jaccard_like))
+            scored_answer, _ = self.score(answer, jaccard_like=jaccard_like)
+            answers_.append(scored_answer)
             scores_for_sort.append(
                 max(
                     analysis["score"]
@@ -145,11 +126,12 @@ class Ranker:
         r_gaphs = self.get_rgraph(answer)
 
         # For each analysis we have a unique r_graph to score
+        analysis_details = []
         for i_analysis, r_graph in enumerate(r_gaphs):
             # First we calculate the graph laplacian
             # The probes are needed to make sure we don't remove anything
             # that we actually wanted to use for scoring
-            laplacian, probe_inds = self.graph_laplacian(r_graph, probes)
+            laplacian, probe_inds, laplacian_details = self.graph_laplacian(r_graph, probes)
 
             # For various reasons (malformed responses typicall), we might have a 
             # weird laplacian. We already checked and tried to clean up above
@@ -170,7 +152,20 @@ class Ranker:
                 answer["analyses"][i_analysis]["score"] = score / (1 - score)
             else:
                 answer["analyses"][i_analysis]["score"] = score
-        return answer
+
+            # Package up details
+            this_analysis_details = {
+                "r_graph": r_graph,
+                "laplacian": laplacian,
+                "probe_inds": probe_inds,
+                "score": score,
+                "edges": {e_info[2]:self.kgraph["edges"][e_info[2]] for e_info in r_graph["edges"]}
+            }
+            this_analysis_details.update(laplacian_details)
+
+            analysis_details.append(this_analysis_details)
+
+        return answer, analysis_details
 
     def graph_laplacian(self, r_graph, probes):
         """Generate graph Laplacian."""
@@ -191,6 +186,12 @@ class Ranker:
         # But for some reason return different publication counts        
         weight_dict = defaultdict(lambda: defaultdict(\
             lambda: defaultdict( lambda: defaultdict(float))))
+        
+        # We will also keep track of this weighted version of the weight dictionary
+        # but this is for a diagnostic output
+        weight_dict_profile = defaultdict(lambda: defaultdict(\
+            lambda: defaultdict( lambda: defaultdict(float))))
+        edge_dict = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
         for edge in edges:
             # Recall that edge is a tuple
             # This will contain
@@ -213,6 +214,7 @@ class Ranker:
                     if k != "source"
                 }
             }
+            edge_dict[r_subject][r_object][k_edge_id] = edge_weight
 
             for edge_source, edge_properties in edge_weight.items():
                 for edge_property, edge_val in edge_properties.items():
@@ -253,6 +255,9 @@ class Ranker:
                             source_weights=self.source_weights,
                             unknown_source_weight=self.unknown_source_weight,
                         )
+
+                        weight_dict_profile[sub_r_node_id][obj_r_node_id][property] = source_weighted
+
                         if source_weighted >= 1: # > as an emergency
                             source_weighted = 0.9999999 # 1 causes numerical issues so we want basically 1
                         weight = weight + -1 / (np.log(source_weighted))
@@ -288,8 +293,15 @@ class Ranker:
         # Convert probes to new laplacian inds
         probe_inds = [(kept_nodes.index(p[0]), kept_nodes.index(p[1])) for p in probes]
 
+
+        details = {
+            "edge_dict": edge_dict,
+            "weight_dict": weight_dict,
+            "weight_dict_profile": weight_dict_profile,
+            "weight_mat": weight_mat
+        }
         
-        return laplacian[keep, :][:, keep], probe_inds
+        return laplacian[keep, :][:, keep], probe_inds, details
     
 
     def get_rgraph(self, result):

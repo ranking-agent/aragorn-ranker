@@ -182,7 +182,7 @@ class Ranker:
             # The edge weight can be found via lookup
             # With a little messaging
             edge_vals = self.get_edge_values(k_edge_id)
-
+            
             edge_values_mat[r_subject][r_object][k_edge_id] = edge_vals
             # This enforces symmetry in edges/wires
             edge_values_mat[r_object][r_subject][k_edge_id] = edge_vals # Enforce symmetry
@@ -533,7 +533,7 @@ class Ranker:
             # So we make sure we do it last.
             if edge_pred == "biolink:occurs_together_in_literature_with" and \
                 attr_type_id == "biolink:has_count":
-                
+
                 # We assume this is from a literature co-occurrence source like omnicorp
                 np = attribute.get("value", 0)
                 # Parse strings safely
@@ -604,7 +604,8 @@ class Ranker:
                 "weight": property_w * source_w
             }
 
-        if usable_edge_attr['literature_coocurrence']:
+        if usable_edge_attr['literature_coocurrence'] is not None:
+            
             property_w = source_sigmoid(
                 usable_edge_attr['literature_coocurrence'],
                 edge_source,
@@ -626,7 +627,6 @@ class Ranker:
                 "source_weight": source_w,
                 "weight": property_w * source_w
             }
-            
             
         # Cache it
         self.edge_values[edge_id] = this_edge_vals

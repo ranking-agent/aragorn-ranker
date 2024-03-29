@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class Ranker:
     """Ranker."""
 
-    DEFAULT_WEIGHT = 1e-2
+    DEFAULT_WEIGHT = -1/np.log(1e-2)
 
     def __init__(self, message, profile="blended"):
         """Create ranker."""
@@ -37,18 +37,17 @@ class Ranker:
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
 
-        # Find numeric values of edges
-        # This could be smarter and fetched and memoized
-        # rank_vals (get_vals) is used once in graph_laplacian
-        # node_pubs is only used by rank_vals
-        # This could be a big time savings for large messages
-        self.node_pubs = get_node_pubs(self.kgraph)
-        self.rank_vals = get_vals(
-            self.kgraph["edges"],
-            self.node_pubs,
-            self.source_transformation,
-            self.unknown_source_transformation,
-        )
+        # There are caches stored for this message
+        # Initialized here. 
+        # These are used to find numeric values of edges
+        self.node_pubs = dict()
+        self.edge_values = dict()
+        # self.rank_vals = get_vals(
+        #     self.kgraph["edges"],
+        #     self.node_pubs,
+        #     self.source_transformation,
+        #     self.unknown_source_transformation,
+        # )
 
     def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
@@ -143,11 +142,12 @@ class Ranker:
 
             # Package up details
             this_analysis_details = {
-                "r_graph": r_graph,
-                "laplacian": laplacian,
-                "probe_inds": probe_inds,
                 "score": score,
-                "edges": {e_info[2]:self.kgraph["edges"][e_info[2]] for e_info in r_graph["edges"]}
+                "r_graph": r_graph,
+                "probes": probes,
+                "edges": {e_info[2]:self.kgraph["edges"][e_info[2]] for e_info in r_graph["edges"]},
+                "laplacian": laplacian,
+                "probe_inds": probe_inds
             }
             this_analysis_details.update(laplacian_details)
 
@@ -166,20 +166,11 @@ class Ranker:
         num_nodes = len(nodes)
 
         # For each edge in the answer graph
-        # Make a dictionary of edge source / properties.
-        # For the case where there are redundant edges,
-        # same subject, object, source, property type,
-        # Take the max of the property values
-        # This might happen if two KPs have the same underlying data sources
-        # But for some reason return different publication counts        
-        weight_dict = defaultdict(lambda: defaultdict(\
-            lambda: defaultdict( lambda: defaultdict(float))))
-        
-        # We will also keep track of this weighted version of the weight dictionary
-        # but this is for a diagnostic output
-        weight_dict_profile = defaultdict(lambda: defaultdict(\
-            lambda: defaultdict( lambda: defaultdict(float))))
-        edge_dict = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
+        # Make a dictionary of edge subject, predicate, source , properties.
+        #
+        # We will also keep track of a weighted version of the edge values
+        # these are influenced by the profile
+        edge_values_mat = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
         for edge in edges:
             # Recall that edge is a tuple
             # This will contain
@@ -190,26 +181,11 @@ class Ranker:
 
             # The edge weight can be found via lookup
             # With a little messaging
-            edge_vals = self.rank_vals.get(k_edge_id, None)
-            if edge_vals is None:
-                # Wacky edge
-                continue
+            edge_vals = self.get_edge_values(k_edge_id)
 
-            edge_weight = {
-                edge_vals["source"]: {
-                    k: v
-                    for k, v in edge_vals.items()
-                    if k != "source"
-                }
-            }
-            edge_dict[r_subject][r_object][k_edge_id] = edge_weight
-
-            for edge_source, edge_properties in edge_weight.items():
-                for edge_property, edge_val in edge_properties.items():
-                    weight_dict[r_subject][r_object][edge_source][edge_property] = \
-                        max(weight_dict[r_subject][r_object][edge_source][edge_property], edge_val)
-                    weight_dict[r_object][r_subject][edge_source][edge_property] = \
-                        max(weight_dict[r_object][r_subject][edge_source][edge_property], edge_val)
+            edge_values_mat[r_subject][r_object][k_edge_id] = edge_vals
+            # This enforces symmetry in edges/wires
+            edge_values_mat[r_object][r_subject][k_edge_id] = edge_vals # Enforce symmetry
 
         # Make a set of all subject object q_node_ids that have q_edges
         qedge_qnode_ids = set(
@@ -229,39 +205,33 @@ class Ranker:
                 #
                 # This ensures that every bound q_edge at least counts for something
                 edge_qnode_ids = frozenset((sub_r_node_id, obj_r_node_id))
+
                 weight = (
                     self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
                 )
-
-                # Map each of these weights according to the profile
-                # Then parallel combine all of the weights between this subject and object
-                for source, properties in weight_dict[sub_r_node_id][obj_r_node_id].items():
-                    for property, source_w in properties.items():
-                        source_weighted = source_w * source_weight(
-                            source,
-                            property,
-                            source_weights=self.source_weights,
-                            unknown_source_weight=self.unknown_source_weight,
-                        )
-
-                        weight_dict_profile[sub_r_node_id][obj_r_node_id][property] = source_weighted
-
-                        if source_weighted >= 1: # > as an emergency
-                            source_weighted = 0.9999999 # 1 causes numerical issues so we want basically 1
-                        weight = weight + -1 / (np.log(source_weighted))
+                
+                for edge_id, edge in edge_values_mat[sub_r_node_id][obj_r_node_id].items():
+                    for source, properties in edge.items():
+                        for property, values in properties.items():
+                            w = values['weight']
+                            
+                            if w >= 1: # > as an emergency
+                                w = 0.9999999 # 1 causes numerical issues
+                            
+                            # -1 / np.log(source_weighted) is our mapping from a [0,1]
+                            # weight to an admittance. 
+                            # These admittances just add since they are all in parallel
+                            # This is equivalent to a noisy or.
+                            weight = weight + -1 / (np.log(w))
 
                 weight_mat[i, j] += weight # For debugging
 
-                laplacian[i, j] += -weight
-                laplacian[j, i] += -weight
-                laplacian[i, i] += weight
-                laplacian[j, j] += weight
-        
-        # Using weight_mat you can calculated the laplacian, however we did this above.
-        # weight_row_sums = np.sum(weight_mat,axis=1)
-        # laplacian = -1 * weight_mat.copy()
-        # for i in range(num_nodes):
-        #     laplacian[i, i] = weight_row_sums[i]
+        # Using weight_mat you can calculated the laplacian
+        # We could do this in the loop above, but let's be explicit
+        weight_row_sums = np.sum(weight_mat,axis=1)
+        laplacian = -1 * weight_mat.copy()
+        for i in range(num_nodes):
+            laplacian[i, i] = weight_row_sums[i]
 
         # Clean up Laplacian (remove extra nodes etc.)
         # Sometimes, mostly because of a bug of some kind,
@@ -280,15 +250,11 @@ class Ranker:
 
         # Convert probes to new laplacian inds
         probe_inds = [(kept_nodes.index(p[0]), kept_nodes.index(p[1])) for p in probes]
-
-
         details = {
-            "edge_dict": edge_dict,
-            "weight_dict": weight_dict,
-            "weight_dict_profile": weight_dict_profile,
+            "edge_values": edge_values_mat,
             "weight_mat": weight_mat
         }
-        
+
         return laplacian[keep, :][:, keep], probe_inds, details
     
 
@@ -431,6 +397,241 @@ class Ranker:
 
         return analysis_r_graphs
 
+    def get_omnicorp_node_pubs(self, node_id): 
+        """
+        Find and return the omnicorp publication counts attached to each node.
+        This method will also cache the result for this message
+        """
+        
+        # Check cache
+        if node_id in self.node_pubs:
+            return self.node_pubs[node_id]
+        
+        # Not in the cache, make sure it's a valid node
+        node = self.kgraph['nodes'].get(node_id)
+        if not node:
+            # Should we error here or just cache 0?
+            # I think error
+            raise KeyError(f"Invalid node ID {node_id}")
+        
+        # Extract the node information we are interested in
+
+        # Parse the node attributes to find the publication count
+        omnicorp_article_count = 0
+        attributes = node.get('attributes',[])
+        
+        # Look through attributes and check for the omnicorp edges
+        for p in attributes:
+            # is this what we are looking for
+            # Over time this has changed it's name
+            # num_publications is currently in use (2024-03)
+            # but for historical sake we keep the old name
+            if p.get("original_attribute_name", "") in ["omnicorp_article_count", "num_publications"]:
+                omnicorp_article_count = p["value"]
+                break # There can be only one
+        
+        # Safely parse
+        try:
+            omnicorp_article_count = int(omnicorp_article_count)
+        except:
+            omnicorp_article_count = 0
+
+        # Cache it
+        self.node_pubs[node_id] = omnicorp_article_count
+
+        return omnicorp_article_count
+    
+    def get_edge_values(self, edge_id):
+        """
+        This transforms all edge attributes into values that can be used for ranking
+        This does not consider all attributes, just the ones that we can currently handle.
+        If we want to handle more things we need to add more cases here.
+        This will also cache the result for this message
+        """
+
+        # literature co-occurrence assumes a global number of pubs in it's calculation
+        # This is a constant/param and could potentially be included in a profile
+        TOTAL_PUBS = 27840000
+
+        # Check cache
+        if edge_id in self.edge_values:
+            return self.edge_values[edge_id]
+        
+        # Not in the cache, make sure it's a valid node
+        edge = self.kgraph['edges'].get(edge_id)
+        if not edge:
+            # Should we error here or just cache empty?
+            # I think error
+            raise KeyError(f"Invalid edge ID {edge_id}")
+        
+        # Extract the edge information we are interested in
+
+        # Get edge source information this is looking for primary_knowledge_source
+        edge_source = "unspecified"
+        for source in edge.get("sources", []):
+            if "primary_knowledge_source" == source.get("resource_role", None):
+                edge_source = source.get("resource_id", "unspecified")
+                break # There can be only one
+        
+        # We find literature co-occurance edges via predicate
+        edge_pred = edge.get("predicate", '')
+
+        # Currently we use three types of information
+        # Init storage for the values we may find
+        usable_edge_attr = {
+            "publications": [],
+            "num_publications": 0,
+            "literature_coocurrence": None,
+            "p_value": None
+        }
+
+        # Look through attributes and 
+        for attribute in edge.get("attributes", []):
+            orig_attr_name = attribute.get("original_attribute_name", None)
+            attr_type_id = attribute.get("attribute_type_id", None)
+
+            # We will look at both the original_attribute_name and the
+            # attribute_type_id. The attribute_type_id is the real method
+            # But we should maintain some degree of backwards compatibility
+            
+            # Publications
+            if orig_attr_name == "publications" or \
+                attr_type_id == "biolink:supporting_document" or \
+                attr_type_id == "biolink:publications":
+                
+                # Parse pubs to handle all the cases we have observed
+                pubs = attribute.get("value", [])
+                
+                if isinstance(pubs, str):
+                    pubs = [pubs]
+
+                # Attempt to parse pubs incase it has string lists
+                if len(pubs) == 1:
+                    if "|" in pubs[0]:
+                        # "publications": ['PMID:1234|2345|83984']
+                        pubs = pubs[0].split("|")
+                    elif "," in pubs[0]:
+                        # "publications": ['PMID:1234,2345,83984']
+                        pubs = pubs[0].split(",")
+
+                usable_edge_attr["publications"] = pubs
+                usable_edge_attr["num_publications"] = len(pubs)
+            
+            # P-Values
+            if "p_value" in orig_attr_name or "p-value" in orig_attr_name or \
+                "p_value" in attr_type_id or "p-value" in attr_type_id:
+                
+                p_value = attribute.get("value", None)
+
+                # Some times the reported p_value is a list like [p_value]
+                if isinstance(attribute["value"], list):
+                    p_value = (p_value[0] if len(p_value) > 0 else None)
+
+                usable_edge_attr["p_value"] = p_value
+
+            # Literature Co-occurrence actually uses the num_publications found above
+            # So we make sure we do it last.
+            if edge_pred == "biolink:occurs_together_in_literature_with" and \
+                attr_type_id == "biolink:has_count":
+                
+                # We assume this is from a literature co-occurrence source like omnicorp
+                np = attribute.get("value", 0)
+                # Parse strings safely
+                try:
+                    np = int(np)
+                except:
+                    np = 0
+
+                subject_pubs = self.get_omnicorp_node_pubs(edge["subject"])
+                object_pubs = self.get_omnicorp_node_pubs(edge["object"])
+
+                # Literature co-occurrence score
+                cov = (np / TOTAL_PUBS) - (subject_pubs / TOTAL_PUBS) * (
+                    object_pubs / TOTAL_PUBS
+                )
+                cov = max((cov, 0.0))
+                usable_edge_attr['literature_coocurrence'] = cov * TOTAL_PUBS
+            # else:
+            #     # Every other edge has an assumed publication of 1
+            #     usable_edge_attr['num_publications'] += 1
+            
+        # At this point we have all of the information extracted from the edge
+        # We have have looked through all attributes and filled up usable_edge_attr
+
+        this_edge_vals = defaultdict(dict)
+        if usable_edge_attr["p_value"] is not None:
+            property_w = source_sigmoid(
+                usable_edge_attr["p_value"],
+                edge_source,
+                "p-value",
+                self.source_transformation,
+                self.unknown_source_transformation
+            )
+            source_w = source_weight(
+                edge_source,
+                "p-value",
+                self.source_weights,
+                self.unknown_source_weight
+            )
+            
+            this_edge_vals[edge_source]["p_value"] = {
+                "value": usable_edge_attr["p_value"],
+                "property_weight": property_w,
+                "source_weight": source_w,
+                "weight": property_w * source_w
+            }
+
+        if usable_edge_attr['num_publications']:
+            property_w = source_sigmoid(
+                usable_edge_attr['num_publications'],
+                edge_source,
+                "publications",
+                self.source_transformation,
+                self.unknown_source_transformation,
+            )
+
+            source_w = source_weight(
+                edge_source,
+                "publications",
+                self.source_weights,
+                self.unknown_source_weight
+            )
+
+            this_edge_vals[edge_source]["publications"] = {
+                "value": usable_edge_attr["num_publications"],
+                "property_weight": property_w,
+                "source_weight": source_w,
+                "weight": property_w * source_w
+            }
+
+        if usable_edge_attr['literature_coocurrence']:
+            property_w = source_sigmoid(
+                usable_edge_attr['literature_coocurrence'],
+                edge_source,
+                "literature_co-occurrence",
+                self.source_transformation,
+                self.unknown_source_transformation,
+            )
+
+            source_w = source_weight(
+                edge_source,
+                "literature_co-occurrence",
+                self.source_weights,
+                self.unknown_source_weight
+            )
+
+            this_edge_vals[edge_source]["literature_coocurrence"] = {
+                "value": usable_edge_attr["literature_coocurrence"],
+                "property_weight": property_w,
+                "source_weight": source_w,
+                "weight": property_w * source_w
+            }
+            
+            
+        # Cache it
+        self.edge_values[edge_id] = this_edge_vals
+
+        return this_edge_vals
 
 def kirchhoff(L, probes):
     """Compute Kirchhoff index, including only specific nodes."""
@@ -448,189 +649,6 @@ def kirchhoff(L, probes):
         return -np.inf
 
     return np.trace(x.T @ np.linalg.lstsq(L, x, rcond=None)[0])
-
-
-def matching_subsets(patterns, superset):
-    """Return subsets matching the regular expressions."""
-    subsets = []
-    for subset in superset:
-        if patterns(subset):
-            subsets.append(subset)
-    return subsets
-
-
-def get_node_pubs(kgraph):
-    node_pubs: dict = {}
-    for n in kgraph["nodes"]:
-        # init the count value
-        omnicorp_article_count: int = 0
-        if not kgraph["nodes"][n].get("attributes"):
-            kgraph["nodes"][n]["attributes"] = []
-        # get the article count atribute
-        for p in kgraph["nodes"][n]["attributes"]:
-            # is this what we are looking for
-            if p.get("original_attribute_name", "") == "omnicorp_article_count":
-                # save it
-                omnicorp_article_count = p["value"]
-
-                # no need to continue
-                break
-
-        # add the node d and count to the dict
-        node_pubs.update({n: omnicorp_article_count})
-    return node_pubs
-
-
-def get_vals(edges, node_pubs, source_transfroamtion, unknown_source_transformation):
-    # constant count of all publications
-    all_pubs = 27840000
-
-    # get the knowledge graph edges
-    # edges = kgraph["edges"]
-    edge_vals = {}
-    # for each knowledge graph edge
-    for edge in edges:
-        # We are getting some results back (BTE?) that have "publications": ['PMID:1234|2345|83984']
-        attributes = edges[edge].get("attributes", None)
-
-        # init storage for the publications and their count
-        publications = []
-        num_publications = 0
-
-        # Get source information
-        edge_info_final = "unspecified"
-        sources = edges[edge].get("sources", None)
-        if sources is not None:
-            for source in sources:
-                if "primary_knowledge_source" in source.get("resource_role", None):
-                    edge_info_final = source.get("resource_id", "unspecified")
-
-        p_value = None
-        if attributes is not None:
-            # for each data attribute collect the needed params
-            for attribute in attributes:
-                # This picks up omnicorp
-                if attribute.get("original_attribute_name", None) is not None:
-                    # is this the publication list
-                    if attribute["original_attribute_name"].startswith("publications"):
-                        publications = attribute["value"]
-                    # else is this the number of publications
-                    elif attribute["original_attribute_name"].startswith(
-                        "num_publications"
-                    ):
-                        num_publications = attribute.get("value", 0)
-                    elif (
-                        "p_value" in attribute["original_attribute_name"]
-                        or "p-value" in attribute["original_attribute_name"]
-                    ):
-                        if isinstance(attribute["value"], list):
-                            p_value = (
-                                attribute["value"][0]
-                                if len(attribute["value"]) > 0
-                                else None
-                            )
-                        else:
-                            p_value = attribute["value"]
-                # This picks up Text Miner KP
-                elif attribute["attribute_type_id"] == "biolink:supporting_document":
-                    publications = attribute["value"]
-                    if isinstance(publications, str):
-                        publications = [publications]
-                # This picks up how BTE returns pubs
-                elif attribute["attribute_type_id"] == "biolink:publications":
-                    publications = attribute["value"]
-                elif (
-                    "p_value" in attribute["attribute_type_id"]
-                    or "p-value" in attribute["attribute_type_id"]
-                ):
-                    if isinstance(attribute["value"], list):
-                        p_value = (
-                            attribute["value"][0]
-                            if len(attribute["value"]) > 0
-                            else None
-                        )
-                    else:
-                        p_value = attribute["value"]
-
-            edge_info = {}
-            for attribute in reversed(attributes):
-                if attribute.get("attribute_type_id", None) is not None:
-                    if attribute["attribute_type_id"] in edge_info.keys():
-                        v = attribute.get("value", None)
-                        if type(v) is list:
-                            v = v[0]
-                        if v is not None:
-                            edge_info[attribute["attribute_type_id"]] = v
-                        else:
-                            edge_info[attribute["attribute_type_id"]] = "unspecified"
-
-            # if there was only 1 publication value found insure it wasnt a character separated list
-            if len(publications) == 1:
-                if "|" in publications[0]:
-                    publications = publications[0].split("|")
-                elif "," in publications[0]:
-                    publications = publications[0].split(",")
-
-                # get the real publication count
-                num_publications = len(publications)
-
-            # if there was no publication count found revert to the number of individual values
-            if num_publications == 0:
-                num_publications = len(publications)
-            literature_coocurrence = None
-            if (
-                edges[edge].get("predicate")
-                == "biolink:occurs_together_in_literature_with"
-            ):
-                try:
-                    subject_pubs = int(node_pubs[edges[edge]["subject"]])
-                except:
-                    subject_pubs = 0
-                try:
-                    object_pubs = int(node_pubs[edges[edge]["object"]])
-                except:
-                    object_pubs = 0
-                # cast num_publications from json
-                try:
-                    num_publications = int(num_publications)
-                except:
-                    num_publications = 0
-
-                cov = (num_publications / all_pubs) - (subject_pubs / all_pubs) * (
-                    object_pubs / all_pubs
-                )
-                cov = max((cov, 0.0))
-                literature_coocurrence = cov * all_pubs
-                effective_pubs = None
-            else:
-                effective_pubs = num_publications + 1  # consider the curation a pub
-            edge_vals[edge] = {}
-            if p_value is not None:
-                edge_vals[edge]["p-value"] = source_sigmoid(
-                    p_value,
-                    edge_info_final,
-                    "p-value",
-                    source_transformation=source_transfroamtion,
-                    unknown_source_transformation=unknown_source_transformation,
-                )
-            if literature_coocurrence is not None:
-                edge_vals[edge]["literature_co-occurrence"] = source_sigmoid(
-                    literature_coocurrence,
-                    edge_info_final,
-                    "literature_co-occurrence",
-                    source_transformation=source_transfroamtion,
-                    unknown_source_transformation=unknown_source_transformation,
-                )
-            if effective_pubs is not None:
-                edge_vals[edge]["publications"] = source_sigmoid(
-                    effective_pubs,
-                    edge_info_final,
-                    "publications",
-                    source_transformation=source_transfroamtion,
-                    unknown_source_transformation=unknown_source_transformation,
-                )
-            edge_vals[edge]["source"] = edge_info_final
-    return edge_vals
 
 
 def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):

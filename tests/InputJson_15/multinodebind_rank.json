@@ -676,10 +676,12 @@
               "edge_bindings": {
               "t_edge": [
                                 {
-                                    "id": "16658bea7eb5"
+                                    "id": "16658bea7eb5",
+                                    "attributes": []
                                 },
                                 {
-                                    "id": "9604fb0ad214"
+                                    "id": "9604fb0ad214",
+                                      "attributes": []
                                 }
               ]
               }

@@ -53,6 +53,12 @@ async def test_generate_node_pairs(omnicorp_input):
     x = await generate_curie_pairs(answers,[], {"CHEBI:8871":10, "MONDO:0004995": 10, "NCBIGene:7124": 10}, omnicorp_input["message"])
     assert len(x) > 0
 
+@pytest.mark.asyncio
+async def test_generate_node_pairs_2(multinodebind_rank):
+    answers = multinodebind_rank["message"]["results"]
+    counts = { x:10 for x in multinodebind_rank["message"]["knowledge_graph"]["nodes"]}
+    x = await generate_curie_pairs(answers,[], counts , multinodebind_rank["message"])
+    assert len(x) > 0
 
 def test_multi_omnicorp_overlay(multinodebind_rank):
     """Test that omnicorp_overlay() runs without errors."""

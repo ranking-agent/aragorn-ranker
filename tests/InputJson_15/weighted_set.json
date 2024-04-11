@@ -1,0 +1,131 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n0": {
+          "categories": [
+            "biolink:Gene"
+          ]
+        },
+        "n1": {
+          "categories": [
+            "biolink:Disease"
+          ],
+          "is_set": "True"
+        }
+      },
+      "edges": {
+        "e01": {
+          "subject": "n0",
+          "object": "n1"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "knode_0": {
+          "name": "Gene:x",
+          "categories": [
+            "biolink:NamedThing"
+          ],
+          "attributes": []
+        },
+        "knode_1": {
+          "name": "Disease:1",
+          "categories": [
+            "biolink:NamedThing"
+          ],
+          "attributes": []
+        },
+        "knode_2": {
+          "name": "Disease:2",
+          "categories": [
+            "biolink:NamedThing"
+          ],
+          "attributes": []
+        }
+      },
+      "edges": {
+        "edge_0": {
+          "subject": "knode_0",
+          "object": "knode_1",
+          "predicate": "biolink:related_to",
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ],
+          "attributes": []
+        },
+        "edge_1": {
+          "subject": "knode_0",
+          "object": "knode_2",
+          "predicate": "biolink:related_to",
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ],
+          "attributes": []
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n0": [
+            {
+              "id": "knode_0",
+              "attributes": []
+            }
+          ],
+          "n1": [
+            {
+              "id": "knode_1",
+              "attributes": []
+            },
+            {
+              "id": "knode_2",
+              "attributes": []
+            }
+          ]
+        },
+        "analyses": [
+          {
+            "edge_bindings": {
+              "e01": [
+                {
+                  "id": "edge_0",
+                  "attributes": [
+                    {
+                      "original_attribute_name": "weight",
+                      "attribute_type_id": "biolink:has_numeric_value",
+                      "value": 2,
+                      "value_type_id": "EDAM:data_1669"
+                    }
+                  ]
+                },
+                {
+                  "id": "edge_1",
+                  "attributes": [
+                    {
+                      "original_attribute_name": "weight",
+                      "attribute_type_id": "biolink:has_numeric_value",
+                      "value": 1,
+                      "value_type_id": "EDAM:data_1669"
+                    }
+                  ]
+                }
+              ]
+            },
+            "attributes": [],
+            "resource_id": "fake:thing"
+          }
+        ]
+      }
+    ]
+  },
+  "logs": []
+}

@@ -1,0 +1,886 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "n00": {
+          "categories": [
+            "biolink:Disease"
+          ],
+          "ids": [
+            "MONDO:0005737"
+          ]
+        },
+        "n01": {
+          "categories": [
+            "biolink:Gene"
+          ]
+        },
+        "n02": {
+          "categories": [
+            "biolink:GeneticCondition"
+          ]
+        }
+      },
+      "edges": {
+        "e00": {
+          "subject": "n00",
+          "object": "n01"
+        },
+        "e01": {
+          "subject": "n01",
+          "object": "n02"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "MONDO:0018982": {
+          "categories": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "Niemann-Pick disease type C",
+          "attributes": [
+            {
+              "original_attribute_name": "omnicorp_article_count",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 856
+            }
+          ]
+        },
+        "MONDO:0009757": {
+          "categories": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "Niemann-Pick disease, type C1",
+          "attributes": [
+            {
+              "original_attribute_name": "omnicorp_article_count",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 74
+            }
+          ]
+        },
+        "MONDO:0005737": {
+          "categories": [
+            "biolink:Disease"
+          ],
+          "name": "Ebola hemorrhagic fever",
+          "attributes": [
+            {
+              "original_attribute_name": "omnicorp_article_count",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 7071
+            }
+          ]
+        },
+        "HGNC:7897": {
+          "categories": [
+            "biolink:Gene"
+          ],
+          "name": "NPC1",
+          "attributes": [
+            {
+              "original_attribute_name": "omnicorp_article_count",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 984
+            }
+          ]
+        },
+        "MONDO:0019255": {
+          "categories": [
+            "biolink:Disease",
+            "biolink:GeneticCondition"
+          ],
+          "name": "sphingolipidosis",
+          "attributes": [
+            {
+              "original_attribute_name": "omnicorp_article_count",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 522
+            }
+          ]
+        }
+      },
+      "edges": {
+        "08c3eeec57fe0374dc63e6ae7d9b1415": {
+          "subject": "MONDO:0018982",
+          "object": "HGNC:7897",
+          "predicate": "biolink:has_phenotype",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": []
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "78b2176fe83ffb7eafff1383bfc0249b": {
+          "subject": "MONDO:0018982",
+          "object": "HGNC:7897",
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": [
+                "PMID:16098014",
+                "PMID:17160617",
+                "PMID:22065762",
+                "PMID:19013089",
+                "PMID:11333381",
+                "PMID:26206375",
+                "PMID:15465421",
+                "PMID:25131710",
+                "PMID:27139891",
+                "PMID:24676439",
+                "PMID:20826119",
+                "PMID:23653225",
+                "PMID:23430855",
+                "PMID:12401890",
+                "PMID:11182931",
+                "PMID:26981555",
+                "PMID:11479732",
+                "PMID:15459971",
+                "PMID:19206179",
+                "PMID:15130691",
+                "PMID:15596783",
+                "PMID:21245028",
+                "PMID:23773996",
+                "PMID:19744920",
+                "PMID:11545687",
+                "PMID:23142039",
+                "PMID:19223215",
+                "PMID:4795418",
+                "PMID:24915861",
+                "PMID:22326530",
+                "PMID:24035292",
+                "PMID:20718790",
+                "PMID:11754101",
+                "PMID:22704015",
+                "PMID:24570279",
+                "PMID:18216017",
+                "PMID:22750297",
+                "PMID:10480349",
+                "PMID:24386122",
+                "PMID:9211849",
+                "PMID:26937389",
+                "PMID:9802331",
+                "PMID:17003072",
+                "PMID:23433426",
+                "PMID:25236789",
+                "PMID:12955717",
+                "PMID:22216111",
+                "PMID:19609713",
+                "PMID:3378364",
+                "PMID:16126423",
+                "PMID:9634529",
+                "PMID:12205649",
+                "PMID:11349231",
+                "PMID:12408188",
+                "PMID:23774949",
+                "PMID:23146215",
+                "PMID:22505584",
+                "PMID:12974729",
+                "PMID:22476655",
+                "PMID:22676771",
+                "PMID:26666848",
+                "PMID:23427322",
+                "PMID:16720792",
+                "PMID:19900398",
+                "PMID:10521297",
+                "PMID:24001525",
+                "PMID:19252935",
+                "PMID:12554680",
+                "PMID:10521290",
+                "PMID:19307542",
+                "PMID:16778374"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "4307c21780ba9435f2ec841186fc1aef": {
+          "subject": "MONDO:0009757",
+          "object": "HGNC:7897",
+          "predicate": "biolink:disease_to_gene_association",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": []
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "09faa8e1752c8078bd854ee50479fcd1": {
+          "subject": "MONDO:0009757",
+          "object": "HGNC:7897",
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": [
+                "PMID:16098014",
+                "PMID:17160617",
+                "PMID:22065762",
+                "PMID:19013089",
+                "PMID:11333381",
+                "PMID:26206375",
+                "PMID:15465421",
+                "PMID:25131710",
+                "PMID:27139891",
+                "PMID:24676439",
+                "PMID:20826119",
+                "PMID:23653225",
+                "PMID:23430855",
+                "PMID:12401890",
+                "PMID:11182931",
+                "PMID:26981555",
+                "PMID:11479732",
+                "PMID:15459971",
+                "PMID:19206179",
+                "PMID:15130691",
+                "PMID:15596783",
+                "PMID:21245028",
+                "PMID:23773996",
+                "PMID:19744920",
+                "PMID:11545687",
+                "PMID:23142039",
+                "PMID:19223215",
+                "PMID:4795418",
+                "PMID:24915861",
+                "PMID:22326530",
+                "PMID:24035292",
+                "PMID:20718790",
+                "PMID:11754101",
+                "PMID:22704015",
+                "PMID:24570279",
+                "PMID:18216017",
+                "PMID:22750297",
+                "PMID:10480349",
+                "PMID:24386122",
+                "PMID:9211849",
+                "PMID:26937389",
+                "PMID:9802331",
+                "PMID:17003072",
+                "PMID:23433426",
+                "PMID:25236789",
+                "PMID:12955717",
+                "PMID:22216111",
+                "PMID:19609713",
+                "PMID:3378364",
+                "PMID:16126423",
+                "PMID:9634529",
+                "PMID:12205649",
+                "PMID:11349231",
+                "PMID:12408188",
+                "PMID:23774949",
+                "PMID:23146215",
+                "PMID:22505584",
+                "PMID:12974729",
+                "PMID:22476655",
+                "PMID:22676771",
+                "PMID:26666848",
+                "PMID:23427322",
+                "PMID:16720792",
+                "PMID:19900398",
+                "PMID:10521297",
+                "PMID:24001525",
+                "PMID:19252935",
+                "PMID:12554680",
+                "PMID:10521290",
+                "PMID:19307542",
+                "PMID:16778374"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "5579d0ec3e69cf5bd79fd643942d8536": {
+          "subject": "MONDO:0005737",
+          "object": "HGNC:7897",
+          "predicate": "biolink:disease_to_gene_association",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": []
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "3e0357ca76a619211570454f2c6cf992": {
+          "subject": "HGNC:7897",
+          "object": "MONDO:0009757",
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": [
+                "PMID:16098014",
+                "PMID:17160617",
+                "PMID:22065762",
+                "PMID:19013089",
+                "PMID:11333381",
+                "PMID:26206375",
+                "PMID:15465421",
+                "PMID:25131710",
+                "PMID:27139891",
+                "PMID:24676439",
+                "PMID:20826119",
+                "PMID:23653225",
+                "PMID:23430855",
+                "PMID:12401890",
+                "PMID:11182931",
+                "PMID:26981555",
+                "PMID:11479732",
+                "PMID:15459971",
+                "PMID:19206179",
+                "PMID:15130691",
+                "PMID:15596783",
+                "PMID:21245028",
+                "PMID:23773996",
+                "PMID:19744920",
+                "PMID:11545687",
+                "PMID:23142039",
+                "PMID:19223215",
+                "PMID:4795418",
+                "PMID:24915861",
+                "PMID:22326530",
+                "PMID:24035292",
+                "PMID:20718790",
+                "PMID:11754101",
+                "PMID:22704015",
+                "PMID:24570279",
+                "PMID:18216017",
+                "PMID:22750297",
+                "PMID:10480349",
+                "PMID:24386122",
+                "PMID:9211849",
+                "PMID:26937389",
+                "PMID:9802331",
+                "PMID:17003072",
+                "PMID:23433426",
+                "PMID:25236789",
+                "PMID:12955717",
+                "PMID:22216111",
+                "PMID:19609713",
+                "PMID:3378364",
+                "PMID:16126423",
+                "PMID:9634529",
+                "PMID:12205649",
+                "PMID:11349231",
+                "PMID:12408188",
+                "PMID:23774949",
+                "PMID:23146215",
+                "PMID:22505584",
+                "PMID:12974729",
+                "PMID:22476655",
+                "PMID:22676771",
+                "PMID:26666848",
+                "PMID:23427322",
+                "PMID:16720792",
+                "PMID:19900398",
+                "PMID:10521297",
+                "PMID:24001525",
+                "PMID:19252935",
+                "PMID:12554680",
+                "PMID:10521290",
+                "PMID:19307542",
+                "PMID:16778374"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "0ad16bee8af8229e57d24582ec2f179b": {
+          "subject": "MONDO:0019255",
+          "object": "HGNC:7897",
+          "predicate": "biolink:has_phenotype",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": []
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "456976ff982dd5fff0e1e92a601f8340": {
+          "subject": "MONDO:0019255",
+          "object": "HGNC:7897",
+          "predicate": "biolink:gene_associated_with_condition",
+          "attributes": [
+            {
+              "original_attribute_name": "publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": [
+                "PMID:16098014",
+                "PMID:17160617",
+                "PMID:22065762",
+                "PMID:19013089",
+                "PMID:11333381",
+                "PMID:26206375",
+                "PMID:15465421",
+                "PMID:25131710",
+                "PMID:27139891",
+                "PMID:24676439",
+                "PMID:20826119",
+                "PMID:23653225",
+                "PMID:23430855",
+                "PMID:12401890",
+                "PMID:11182931",
+                "PMID:26981555",
+                "PMID:11479732",
+                "PMID:15459971",
+                "PMID:19206179",
+                "PMID:15130691",
+                "PMID:15596783",
+                "PMID:21245028",
+                "PMID:23773996",
+                "PMID:19744920",
+                "PMID:11545687",
+                "PMID:23142039",
+                "PMID:19223215",
+                "PMID:4795418",
+                "PMID:24915861",
+                "PMID:22326530",
+                "PMID:24035292",
+                "PMID:20718790",
+                "PMID:11754101",
+                "PMID:22704015",
+                "PMID:24570279",
+                "PMID:18216017",
+                "PMID:22750297",
+                "PMID:10480349",
+                "PMID:24386122",
+                "PMID:9211849",
+                "PMID:26937389",
+                "PMID:9802331",
+                "PMID:17003072",
+                "PMID:23433426",
+                "PMID:25236789",
+                "PMID:12955717",
+                "PMID:22216111",
+                "PMID:19609713",
+                "PMID:3378364",
+                "PMID:16126423",
+                "PMID:9634529",
+                "PMID:12205649",
+                "PMID:11349231",
+                "PMID:12408188",
+                "PMID:23774949",
+                "PMID:23146215",
+                "PMID:22505584",
+                "PMID:12974729",
+                "PMID:22476655",
+                "PMID:22676771",
+                "PMID:26666848",
+                "PMID:23427322",
+                "PMID:16720792",
+                "PMID:19900398",
+                "PMID:10521297",
+                "PMID:24001525",
+                "PMID:19252935",
+                "PMID:12554680",
+                "PMID:10521290",
+                "PMID:19307542",
+                "PMID:16778374"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "85fe2234-19f1-4b2d-9839-0d81ea5e46da": {
+          "subject": "MONDO:0005737",
+          "object": "HGNC:7897",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 48
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "52a810a9-c8a1-494a-a69b-7e3e197a41f7": {
+          "subject": "MONDO:0005737",
+          "object": "MONDO:0018982",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 3
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "b786b3c1-47bf-438c-b214-6aed237a2ddd": {
+          "subject": "HGNC:7897",
+          "object": "MONDO:0018982",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 389
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "da96b98f-4363-4e5c-bcb1-b61c602469f5": {
+          "subject": "MONDO:0005737",
+          "object": "MONDO:0019255",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 1
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "91fa6831-396c-42ff-b11a-8768cb6bc389": {
+          "subject": "HGNC:7897",
+          "object": "MONDO:0019255",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 4
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "f474c502-02e5-497f-9600-d384e1e623e3": {
+          "subject": "MONDO:0005737",
+          "object": "MONDO:0009757",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 2
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        },
+        "ae9d8a4f-f866-45b3-9b17-d41aff3f81c9": {
+          "subject": "HGNC:7897",
+          "object": "MONDO:0009757",
+          "predicate": "biolink:literature_co_occurrence",
+          "attributes": [
+            {
+              "original_attribute_name": "num_publications",
+              "attribute_type_id": "EDAM:data_0006",
+              "value": 65
+            }
+          ],
+          "sources": [
+            {
+              "resource_id": "infores:madeup",
+              "resource_role": "primary_knowledge_source"
+            }
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "n00": [
+            {
+              "id": "MONDO:0005737",
+              "attributes": []
+            }
+          ],
+          "n01": [
+            {
+              "id": "HGNC:7897",
+              "attributes": []
+            }
+          ],
+          "n02": [
+            {
+              "id": "MONDO:0009757",
+              "attributes": []
+            }
+          ]
+        },
+        "analyses": [
+          {
+            "edge_bindings": {
+              "e00": [
+                {
+                  "id": "5579d0ec3e69cf5bd79fd643942d8536",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                }
+              ],
+              "e01": [
+                {
+                  "id": "4307c21780ba9435f2ec841186fc1aef",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                },
+                {
+                  "id": "3e0357ca76a619211570454f2c6cf992",
+                  "weight": 1.0,
+                  "attributes": []
+                },
+                {
+                  "id": "09faa8e1752c8078bd854ee50479fcd1",
+                  "weight": 1.0,
+                  "attributes": []
+                }
+              ],
+              "s3": [
+                {
+                  "id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                  "weight": 0.0032786645688920313,
+                  "attributes": []
+                }
+              ],
+              "s154": [
+                {
+                  "id": "f474c502-02e5-497f-9600-d384e1e623e3",
+                  "weight": 0.00013603600616196587,
+                  "attributes": []
+                }
+              ],
+              "s155": [
+                {
+                  "id": "ae9d8a4f-f866-45b3-9b17-d41aff3f81c9",
+                  "weight": 0.004462903202433033,
+                  "attributes": []
+                }
+              ]
+            },
+            "attributes": [],
+            "resource_id": "fake:thing"
+          }
+        ]
+      },
+      {
+        "node_bindings": {
+          "n00": [
+            {
+              "id": "MONDO:0005737",
+              "attributes": []
+            }
+          ],
+          "n01": [
+            {
+              "id": "HGNC:7897",
+              "attributes": []
+            }
+          ],
+          "n02": [
+            {
+              "id": "MONDO:0018982",
+              "attributes": []
+            }
+          ]
+        },
+        "analyses": [
+          {
+            "edge_bindings": {
+              "e00": [
+                {
+                  "id": "5579d0ec3e69cf5bd79fd643942d8536",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                }
+              ],
+              "e01": [
+                {
+                  "id": "08c3eeec57fe0374dc63e6ae7d9b1415",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                },
+                {
+                  "id": "78b2176fe83ffb7eafff1383bfc0249b",
+                  "weight": 1.0,
+                  "attributes": []
+                }
+              ],
+              "s3": [
+                {
+                  "id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                  "weight": 0.0032786645688920313,
+                  "attributes": []
+                }
+              ],
+              "s77": [
+                {
+                  "id": "52a810a9-c8a1-494a-a69b-7e3e197a41f7",
+                  "weight": 0.00019106151944114913,
+                  "attributes": []
+                }
+              ],
+              "s78": [
+                {
+                  "id": "b786b3c1-47bf-438c-b214-6aed237a2ddd",
+                  "weight": 0.026701585281989626,
+                  "attributes": []
+                }
+              ]
+            },
+            "attributes": [],
+            "resource_id": "fake:thing"
+          }
+        ]
+      },
+      {
+        "node_bindings": {
+          "n00": [
+            {
+              "id": "MONDO:0005737",
+              "attributes": []
+            }
+          ],
+          "n01": [
+            {
+              "id": "HGNC:7897",
+              "attributes": []
+            }
+          ],
+          "n02": [
+            {
+              "id": "MONDO:0019255",
+              "attributes": []
+            }
+          ]
+        },
+        "analyses": [
+          {
+            "edge_bindings": {
+              "e00": [
+                {
+                  "id": "5579d0ec3e69cf5bd79fd643942d8536",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                }
+              ],
+              "e01": [
+                {
+                  "id": "0ad16bee8af8229e57d24582ec2f179b",
+                  "weight": 0.2679491924311228,
+                  "attributes": []
+                },
+                {
+                  "id": "456976ff982dd5fff0e1e92a601f8340",
+                  "weight": 1.0,
+                  "attributes": []
+                }
+              ],
+              "s3": [
+                {
+                  "id": "85fe2234-19f1-4b2d-9839-0d81ea5e46da",
+                  "weight": 0.0032786645688920313,
+                  "attributes": []
+                }
+              ],
+              "s112": [
+                {
+                  "id": "da96b98f-4363-4e5c-bcb1-b61c602469f5",
+                  "weight": 5.9559806065312415e-05,
+                  "attributes": []
+                }
+              ],
+              "s113": [
+                {
+                  "id": "91fa6831-396c-42ff-b11a-8768cb6bc389",
+                  "weight": 0.0002733862280606125,
+                  "attributes": []
+                }
+              ]
+            },
+            "attributes": [],
+            "resource_id": "fake:thing"
+          }
+        ]
+      }
+    ]
+  },
+  "logs": []
+}

@@ -200,7 +200,6 @@ async def query(request: PDResponse):
         await add_node_pmid_counts(kgraph, node_pub_counts)
         end_node_time = datetime.now()
         logger.info(f"Node time: {end_node_time - start_node_time}")
-        logger.info(f"Node pub counts: {node_pub_counts}")
 
         start_pair_time = datetime.now()
         # which qgraph nodes are sets?

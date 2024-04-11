@@ -220,7 +220,7 @@ async def query(request: PDResponse):
         t1 = datetime.now()
         pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
         t2 = datetime.now()
-        logger.info(f"generate_curie_pairs time: {t2 - t1}")
+        logger.info(f"generate_curie_pairs time: {t2 - t1}. Number of pairs: {len(pair_to_answer)}")
 
         # get all pair supports
         keypairs = {make_key(x,node_indices):x for x in pair_to_answer.keys()}

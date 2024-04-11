@@ -118,7 +118,9 @@
                   "attributes": []
                 }
               ]
-            }
+            },
+            "attributes": [],
+            "resource_id": "fake:thing"
           }
         ]
       }

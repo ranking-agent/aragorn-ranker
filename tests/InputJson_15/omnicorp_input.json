@@ -4,7 +4,7 @@
       "nodes": {
         "n1": {
           "ids": [
-            "CHEBI:6801"
+            "CHEBI:8871"
           ],
           "categories": [
             "biolink:ChemicalSubstance"
@@ -109,7 +109,18 @@
             }
           ]
         },
-        "analyses": []
+        "analyses": [
+          {
+            "edge_bindings": {
+              "n1n2": [
+                {
+                  "id": "drug-treats-disease",
+                  "attributes": []
+                }
+              ]
+            }
+          }
+        ]
       }
     ],
     "auxiliary_graphs": {

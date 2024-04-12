@@ -216,11 +216,10 @@ async def query(request: PDResponse):
 
         #Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
         # are part of the same answer
-        #Note, this will be affected by TRAPI 1.4
         t1 = datetime.now()
         pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
         t2 = datetime.now()
-        logger.info(f"generate_curie_pairs time: {t2 - t1}")
+        logger.info(f"generate_curie_pairs time: {t2 - t1}. Number of pairs: {len(pair_to_answer)}")
 
         # get all pair supports
         keypairs = {make_key(x,node_indices):x for x in pair_to_answer.keys()}

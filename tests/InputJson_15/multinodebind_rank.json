@@ -1,0 +1,694 @@
+{
+  "message": {
+    "query_graph": {
+      "nodes": {
+        "on": {
+          "ids": [
+            "MONDO:0005015"
+          ],
+          "categories": [
+            "biolink:Disease"
+          ]
+        },
+        "sn": {
+          "categories": [
+            "biolink:ChemicalEntity"
+          ]
+        }
+      },
+      "edges": {
+        "t_edge": {
+          "subject": "sn",
+          "object": "on",
+          "knowledge_type": "inferred",
+          "predicates": [
+            "biolink:treats"
+          ]
+        }
+      }
+    },
+    "knowledge_graph": {
+      "nodes": {
+        "PUBCHEM.COMPOUND:4091": {
+          "categories": [
+            "biolink:PhysicalEssenceOrOccurrent",
+            "biolink:ChemicalOrDrugOrTreatment",
+            "biolink:MolecularEntity",
+            "biolink:PhysicalEssence",
+            "biolink:ChemicalEntity",
+            "biolink:ChemicalEntityOrProteinOrPolypeptide",
+            "biolink:SmallMolecule",
+            "biolink:Entity",
+            "biolink:NamedThing",
+            "biolink:ChemicalEntityOrGeneOrGeneProduct"
+          ],
+          "name": "Metformin",
+          "attributes": [
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 2,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "hetero_sp2_c"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "halogen"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 395,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "fda_labels"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "sp_c"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 129.167,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "cd_molweight"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 88.99,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "tpsa"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 2,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "sp2_c"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": "CN(C)C(=N)NC(N)=N",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "smiles"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 90.8,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "information_content"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "arom_c"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 2,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "sp3_c"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": "OFP",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "status"
+            },
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "DrugCentral:1725",
+                "CHEMBL.COMPOUND:CHEMBL1431",
+                "CAS:657-24-9",
+                "UMLS:C0025598",
+                "MESH:D008687",
+                "INCHIKEY:XZWYZXLIPXDOLR-UHFFFAOYSA-N",
+                "CHEBI:6801",
+                "KEGG.COMPOUND:C07151",
+                "HMDB:HMDB0001921",
+                "GTOPDB:4779",
+                "DRUGBANK:DB00331",
+                "RXCUI:6809",
+                "UNII:9100L32L2N",
+                "PUBCHEM.COMPOUND:4091"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "dct:description",
+              "value": "A member of the class of guanidines that is biguanide the carrying two methyl substituents at position 1.",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "description"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": "A biguanide hypoglycemic agent used in the treatment of non-insulin-dependent diabetes mellitus not responding to dietary modification. Metformin improves glycemic control by improving insulin sensitivity and decreasing intestinal absorption of glucose. (From Martindale, The Extra Pharmacopoeia, 30th ed, p289)",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "mrdef"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_pharmaceutical"
+            },
+            {
+              "attribute_type_id": "biolink:has_count",
+              "value": "27317",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "omnicorp_article_count"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 5,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "o_n"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "rotb"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": "C4H11N5",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "cd_formula"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_xenobiotic"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 5,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "rgb"
+            },
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "PUBCHEM.COMPOUND:4091",
+                "CHEMBL.COMPOUND:CHEMBL1431",
+                "UNII:9100L32L2N",
+                "CHEBI:6801",
+                "DRUGBANK:DB00331",
+                "MESH:D008687",
+                "CAS:657-24-9",
+                "DrugCentral:1725",
+                "GTOPDB:4779",
+                "HMDB:HMDB0001921",
+                "KEGG.COMPOUND:C07151",
+                "INCHIKEY:XZWYZXLIPXDOLR-UHFFFAOYSA-N",
+                "UMLS:C0025598",
+                "RXCUI:6809"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": -1.43,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "clogp"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": -1.97,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "alogs"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 4,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "oh_nh"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_hypoglycemic_agent"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_environmental_contaminant"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "lipinski"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_protective_agent"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_geroprotector"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "CHEBI_ROLE_drug"
+            }
+          ]
+        },
+        "MONDO:0005015": {
+          "categories": [
+            "biolink:Disease",
+            "biolink:Entity",
+            "biolink:BiologicalEntity",
+            "biolink:NamedThing",
+            "biolink:DiseaseOrPhenotypicFeature",
+            "biolink:ThingWithTaxon"
+          ],
+          "name": "diabetes mellitus",
+          "attributes": [
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "MEDDRA:10012594",
+                "MEDDRA:10012601",
+                "MONDO:0005015",
+                "ICD9:250",
+                "MESH:D003920",
+                "UMLS:C0011847",
+                "HP:0000819",
+                "UMLS:C0011849",
+                "MEDDRA:10012614",
+                "NCIT:C2985",
+                "SNOMEDCT:73211009",
+                "ICD10:E08-E13",
+                "EFO:0000400",
+                "DOID:9351"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_pancreas_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_endocrine_pancreas_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_disease"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_human_disease"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_endocrine_system_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "MONDO:0005015",
+                "DOID:9351",
+                "EFO:0000400",
+                "UMLS:C0011847",
+                "UMLS:C0011849",
+                "MESH:D003920",
+                "MEDDRA:10012594",
+                "MEDDRA:10012601",
+                "MEDDRA:10012614",
+                "NCIT:C2985",
+                "SNOMEDCT:73211009",
+                "ICD10:E08-E13",
+                "ICD9:250",
+                "HP:0000819"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 66.7,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "information_content"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_digestive_system_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:has_count",
+              "value": "614535",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "omnicorp_article_count"
+            },
+            {
+              "attribute_type_id": "dct:description",
+              "value": "A metabolic disorder characterized by abnormally high blood sugar levels due to diminished production of insulin or insulin resistance/desensitization.",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "description"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_metabolic_disease"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_glucose_metabolism_disease"
+            }
+          ]
+        },
+        "MONDO:0005148": {
+          "categories": [
+            "biolink:Disease",
+            "biolink:Entity",
+            "biolink:BiologicalEntity",
+            "biolink:NamedThing",
+            "biolink:DiseaseOrPhenotypicFeature",
+            "biolink:ThingWithTaxon"
+          ],
+          "name": "type 2 diabetes mellitus",
+          "attributes": [
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_pancreas_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_endocrine_pancreas_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 78.2,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "information_content"
+            },
+            {
+              "attribute_type_id": "dct:description",
+              "value": "A type of diabetes mellitus that is characterized by insulin resistance or desensitization and increased blood glucose levels. This is a chronic disease that can develop gradually over the life of a patient and can be linked to both environmental factors and heredity.",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "description"
+            },
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "MONDO:0005148",
+                "DOID:9352",
+                "OMIM:125853",
+                "OMIM:147545",
+                "OMIM:168820",
+                "EFO:0001360",
+                "UMLS:C0011860",
+                "UMLS:C1840169",
+                "UMLS:C1852091",
+                "UMLS:C2674662",
+                "UMLS:C2674663",
+                "UMLS:C2674665",
+                "UMLS:C3149706",
+                "UMLS:C4017238",
+                "UMLS:CN244395",
+                "MESH:D003924",
+                "MEDDRA:10012611",
+                "MEDDRA:10012613",
+                "MEDDRA:10026947",
+                "MEDDRA:10029402",
+                "MEDDRA:10029505",
+                "MEDDRA:10045242",
+                "MEDDRA:10067585",
+                "NCIT:C26747",
+                "SNOMEDCT:44054006",
+                "ICD10:E11",
+                "KEGG.DISEASE:04930",
+                "HP:0005978"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_disease"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_human_disease"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_endocrine_system_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_digestive_system_disorder"
+            },
+            {
+              "attribute_type_id": "biolink:has_count",
+              "value": "223233",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "omnicorp_article_count"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_metabolic_disease"
+            },
+            {
+              "attribute_type_id": "biolink:same_as",
+              "value": [
+                "DOID:9352",
+                "UMLS:C0011860",
+                "UMLS:C1852091",
+                "UMLS:C3149706",
+                "MESH:D003924",
+                "UMLS:C2674665",
+                "MEDDRA:10029505",
+                "EFO:0001360",
+                "OMIM:125853",
+                "UMLS:C2674663",
+                "MONDO:0005148",
+                "OMIM:147545",
+                "HP:0005978",
+                "UMLS:C2674662",
+                "NCIT:C26747",
+                "MEDDRA:10029402",
+                "MEDDRA:10045242",
+                "MEDDRA:10012611",
+                "SNOMEDCT:44054006",
+                "OMIM:168820",
+                "ICD10:E11",
+                "MEDDRA:10067585",
+                "UMLS:CN244395",
+                "MEDDRA:10026947",
+                "KEGG.DISEASE:04930",
+                "UMLS:C4017238",
+                "UMLS:C1840169",
+                "MEDDRA:10012613"
+              ],
+              "value_type_id": "metatype:uriorcurie",
+              "original_attribute_name": "equivalent_identifiers"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": true,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "MONDO_SUPERCLASS_glucose_metabolism_disease"
+            }
+          ]
+        }
+      },
+      "edges": {
+        "16658bea7eb5": {
+          "subject": "PUBCHEM.COMPOUND:4091",
+          "object": "MONDO:0005015",
+          "predicate": "biolink:treats",
+          "sources": [
+            {
+              "resource_id": "infores:automat-robokop",
+              "resource_role": "aggregator_knowledge_source",
+              "upstream_resource_ids": [
+                "infores:text-mining-provider-targeted"
+              ]
+            },
+            {
+              "resource_id": "infores:aragorn",
+              "resource_role": "aggregator_knowledge_source",
+              "upstream_resource_ids": [
+                "infores:automat-robokop"
+              ]
+            },
+            {
+              "resource_id": "infores:text-mining-provider-targeted",
+              "resource_role": "primary_knowledge_source"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute_type_id": "biolink:publications",
+              "value": [
+                "PMC:6220525",
+                "PMC:3576864",
+                "PMC:8132467",
+                "PMC:7544566"
+              ],
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "publications"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": 0.9505520088121492,
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "biolink:tmkp_confidence_score"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": [
+                "tmkp:020785ac98401b69b2cac7a084a67ae05129d7fd66b4c2077089191e75408999",
+                "tmkp:0030fff424d4e2e0defd89bf8c7edc4ccda95c5e11714ff4df64a6576f59c42e",
+                "tmkp:002bb6dbdb8e0c355eff2388ade5a32ad5a08b407cb544c4766be3086bfb0b4d",
+                "tmkp:003f7d6c1b4e76175cc5105c6bb28d6ebefe757d2277da3751dc9685b12d3a83"
+              ],
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "tmkp_ids"
+            },
+            {
+              "attribute_type_id": "biolink:Attribute",
+              "value": "Since diabetes and cancer cachexia share certain metabolic features, an oral type 2 diabetes mellitus drug, metformin, was evaluated in tumor-bearing rats and found to minimize tumor-induced muscle wasting in rats.|NA",
+              "value_type_id": "EDAM:data_0006",
+              "original_attribute_name": "sentences"
+            },
+            {
+              "original_attribute_name": "weight",
+              "attribute_type_id": "biolink:has_numeric_value",
+              "value": 1,
+              "value_type_id": "EDAM:data_1669"
+            }
+          ]
+        },
+        "9604fb0ad214": {
+          "subject": "PUBCHEM.COMPOUND:4091",
+          "object": "MONDO:0005148",
+          "predicate": "biolink:treats",
+          "sources": [
+            {
+              "resource_id": "infores:automat-drug-central",
+              "resource_role": "aggregator_knowledge_source",
+              "upstream_resource_ids": [
+                "infores:drugcentral"
+              ]
+            },
+            {
+              "resource_id": "infores:drugcentral",
+              "resource_role": "primary_knowledge_source"
+            },
+            {
+              "resource_id": "infores:aragorn",
+              "resource_role": "aggregator_knowledge_source",
+              "upstream_resource_ids": [
+                "infores:automat-drug-central"
+              ]
+            },
+            {
+              "resource_id": "infores:automat-robokop",
+              "resource_role": "aggregator_knowledge_source",
+              "upstream_resource_ids": [
+                "infores:drugcentral"
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "original_attribute_name": "weight",
+              "attribute_type_id": "biolink:has_numeric_value",
+              "value": 1,
+              "value_type_id": "EDAM:data_1669"
+            }
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "node_bindings": {
+          "sn": [
+            {
+              "id": "PUBCHEM.COMPOUND:4091",
+              "attributes": []
+            }
+          ],
+          "on": [
+            {
+              "id": "MONDO:0005015",
+              "attributes": []
+            },
+            {
+              "id": "MONDO:0005148",
+              "query_id": "MONDO:0005015",
+              "attributes": []
+            }
+          ]
+        },
+        "analyses": [
+          {
+              "resource_id": "infores:aragorn",
+              "edge_bindings": {
+              "t_edge": [
+                    {
+                        "id": "16658bea7eb5",
+                        "attributes": []
+                    },
+                    {
+                        "id": "9604fb0ad214",
+                          "attributes": []
+                    }
+              ]
+              }
+          }
+        ]
+      }
+    ]
+  },
+  "logs": []
+}

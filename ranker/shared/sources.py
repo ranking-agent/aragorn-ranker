@@ -4,11 +4,23 @@ import math
 #Commenting out b/c symbol seems to be missing and parameters is unused?
 #from symbol import parameters
 
+DEFAULT_WEIGHT = 1e-2
+
 BLENDED_PROFILE = { 
     "source_weights": {
-
-    },   
+        "infores:omnicorp": {
+            "literature_co-occurrence": 1,
+        },
+    },
     "source_transformation": {
+        "infores:omnicorp": {
+            "literature_co-occurrence": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 0.00033
+            }
+        }
     },
     "unknown_source_weight": {
         "publications": 1,
@@ -34,6 +46,13 @@ BLENDED_PROFILE = {
             "midpoint": 0,
             "rate": 0
         }
+    },
+    "base_weights": {
+        "default_weight": 1e-2,
+        "infores:omnicorp": 0,
+        "infores:drugcentral": 5e-2,
+        "infores:hetionet": 3e-2,
+        "infores:text-mining-provider-targeted": 5e-3
     },
     "omnicorp_relevence": 0.0025
     
@@ -119,6 +138,9 @@ CURATED_PROFILE = {
             "rate": .574213221
         }
     },
+    "base_weights": {
+        "default_weight": 1e-2
+    },
     "omnicorp_relevence": 0.0025
     
 }
@@ -202,6 +224,9 @@ CORRELATED_PROFILE = {
             "midpoint": 0,
             "rate": .574213221
         }
+    },
+    "base_weights": {
+        "default_weight": 1e-2
     },
     "omnicorp_relevence": 0.0025
     
@@ -287,14 +312,20 @@ CLINICAL_PROFILE = {
             "rate": .574213221
         }
     },
+    "base_weights": {
+        "default_weight": 1e-2
+    },
     "omnicorp_relevence": 0.0025
     
 }
 
-def source_weight(source, property, source_weights = BLENDED_PROFILE["source_weights"], unknown_source_weight = BLENDED_PROFILE["unknown_source_weight"]):
+def get_base_weight(source, base_weights=BLENDED_PROFILE["base_weights"]):
+    return base_weights.get(source, base_weights.get("default_weight", DEFAULT_WEIGHT))
+
+def get_source_weight(source, property, source_weights = BLENDED_PROFILE["source_weights"], unknown_source_weight = BLENDED_PROFILE["unknown_source_weight"]):
     return source_weights.get(source, unknown_source_weight).get(property, unknown_source_weight["unknown_property"])
 
-def source_sigmoid(value, source="unknown", property="unknown", source_transformation = BLENDED_PROFILE["source_transformation"], unknown_source_transformation = BLENDED_PROFILE["unknown_source_transformation"]):
+def get_source_sigmoid(value, source="unknown", property="unknown", source_transformation = BLENDED_PROFILE["source_transformation"], unknown_source_transformation = BLENDED_PROFILE["unknown_source_transformation"]):
     """
     0-centered sigmoid used to map the number of publications found by a source
     to its weight. For all unknown sources, this function evaluates to 0.
@@ -320,22 +351,26 @@ def get_profile(profile = "blended"):
         unknown_source_weight = CLINICAL_PROFILE["unknown_source_weight"]
         source_transformation = CLINICAL_PROFILE["source_transformation"]
         unknown_source_transformation = CLINICAL_PROFILE["unknown_source_transformation"]
+        base_weights = CLINICAL_PROFILE["base_weights"]
     elif profile == "correlated":
         source_weights = CORRELATED_PROFILE["source_weights"]
         unknown_source_weight = CORRELATED_PROFILE["unknown_source_weight"]
         source_transformation = CORRELATED_PROFILE["source_transformation"]
         unknown_source_transformation = CORRELATED_PROFILE["unknown_source_transformation"]
+        base_weights = CORRELATED_PROFILE["base_weights"]
 
     elif profile == "curated":
         source_weights = CURATED_PROFILE["source_weights"]
         unknown_source_weight = CURATED_PROFILE["unknown_source_weight"]
         source_transformation = CURATED_PROFILE["source_transformation"]
         unknown_source_transformation = CURATED_PROFILE["unknown_source_transformation"]
+        base_weights = CURATED_PROFILE["base_weights"]
 
     else:
         source_weights = BLENDED_PROFILE["source_weights"]
         unknown_source_weight = BLENDED_PROFILE["unknown_source_weight"]
         source_transformation = BLENDED_PROFILE["source_transformation"]
         unknown_source_transformation = BLENDED_PROFILE["unknown_source_transformation"]
+        base_weights = BLENDED_PROFILE["base_weights"]
     
-    return source_weights, unknown_source_weight, source_transformation, unknown_source_transformation
+    return source_weights, unknown_source_weight, source_transformation, unknown_source_transformation, base_weights

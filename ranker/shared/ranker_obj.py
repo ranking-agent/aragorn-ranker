@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class Ranker:
     """Ranker."""
 
-    DEFAULT_WEIGHT = -1/np.log(1e-2)
+    DEFAULT_WEIGHT = -1/np.log(1e-3)
 
     def __init__(self, message, profile="blended"):
         """Create ranker."""
@@ -559,6 +559,7 @@ class Ranker:
             
         # At this point we have all of the information extracted from the edge
         # We have have looked through all attributes and filled up usable_edge_attr
+        # Now we can construct the edge values using these attributes and the base weight
 
         this_edge_vals = defaultdict(dict)
         base_weight = get_base_weight(edge_source, self.base_weights)

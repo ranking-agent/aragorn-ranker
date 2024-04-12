@@ -7,7 +7,7 @@ from itertools import combinations, product
 
 import numpy as np
 
-from ranker.shared.sources import get_profile, source_sigmoid, source_weight
+from ranker.shared.sources import get_profile, get_source_sigmoid, get_source_weight, get_base_weight
 
 logger = logging.getLogger(__name__)
 
@@ -31,11 +31,13 @@ class Ranker:
             unknown_source_weight,
             source_transformation,
             unknown_source_transformation,
+            base_weights
         ) = get_profile(profile)
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
+        self.base_weights = base_weights
 
         # There are caches stored for this message
         # Initialized here. 
@@ -559,15 +561,19 @@ class Ranker:
         # We have have looked through all attributes and filled up usable_edge_attr
 
         this_edge_vals = defaultdict(dict)
+        base_weight = get_base_weight(edge_source, self.base_weights)
+        this_edge_vals[edge_source]["base_weight"] = {
+            "weight": base_weight
+        }
         if usable_edge_attr["p_value"] is not None:
-            property_w = source_sigmoid(
+            property_w = get_source_sigmoid(
                 usable_edge_attr["p_value"],
                 edge_source,
                 "p-value",
                 self.source_transformation,
                 self.unknown_source_transformation
             )
-            source_w = source_weight(
+            source_w = get_source_weight(
                 edge_source,
                 "p-value",
                 self.source_weights,
@@ -582,7 +588,7 @@ class Ranker:
             }
 
         if usable_edge_attr['num_publications']:
-            property_w = source_sigmoid(
+            property_w = get_source_sigmoid(
                 usable_edge_attr['num_publications'],
                 edge_source,
                 "publications",
@@ -590,7 +596,7 @@ class Ranker:
                 self.unknown_source_transformation,
             )
 
-            source_w = source_weight(
+            source_w = get_source_weight(
                 edge_source,
                 "publications",
                 self.source_weights,
@@ -606,7 +612,7 @@ class Ranker:
 
         if usable_edge_attr['literature_coocurrence'] is not None:
             
-            property_w = source_sigmoid(
+            property_w = get_source_sigmoid(
                 usable_edge_attr['literature_coocurrence'],
                 edge_source,
                 "literature_co-occurrence",
@@ -614,7 +620,7 @@ class Ranker:
                 self.unknown_source_transformation,
             )
 
-            source_w = source_weight(
+            source_w = get_source_weight(
                 edge_source,
                 "literature_co-occurrence",
                 self.source_weights,

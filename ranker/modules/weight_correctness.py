@@ -10,7 +10,7 @@ from fastapi import Query
 from fastapi.responses import JSONResponse
 from reasoner_pydantic import Response as PDResponse
 
-from ranker.shared.sources import source_sigmoid, BLENDED_PROFILE
+from ranker.shared.sources import get_source_sigmoid, BLENDED_PROFILE
 from ranker.shared.util import create_log_entry
 
 LOCAL_SOURCE_STEEPNESS = BLENDED_PROFILE["source_transformation"]

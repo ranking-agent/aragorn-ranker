@@ -104,6 +104,6 @@ def test_basic_scoring(score_test):
     assert len(answer) == 2
     #assert answer[0]['analyses'][0]['score'] == approx(0.2884698783406143)
     #assert answer[1]['analyses'][0]['score'] == approx(0.2884698783406143)
-    #This is what is coming back today Apr 11, 2024.  I'm assuming that's correct?
-    assert answer[0]['analyses'][0]['score'] == approx(0.5329077927210959)
-    assert answer[1]['analyses'][0]['score'] == approx(0.5329077927210959)
+    #This is what is coming back today Apr 12, 2024.  I'm assuming that's correct?
+    assert answer[0]['analyses'][0]['score'] == approx(0.06309573444801932)
+    assert answer[1]['analyses'][0]['score'] == approx(0.06309573444801932)

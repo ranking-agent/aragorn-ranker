@@ -207,10 +207,7 @@ async def query(request: PDResponse):
             [
                 n
                 for n in qgraph["nodes"]
-                if (
-                    ("is_set" in qgraph["nodes"][n])
-                    and (qgraph["nodes"][n]["is_set"])
-                )
+                if (qgraph["nodes"][n].get("set_interpretation", None) or "BATCH") != "BATCH"
             ]
         )
 

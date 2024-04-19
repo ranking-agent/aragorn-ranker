@@ -106,7 +106,7 @@ async def add_shared_pmid_counts(
                 support_idx += 1
                 analysis["support_graphs"].append(omnisupport)
             if omnisupport not in aux_graphs:
-                aux_graphs[omnisupport] = { "edges": [] }
+                aux_graphs[omnisupport] = { "edges": [], "attributes": [] }
             aux_graphs[omnisupport]["edges"].append(uid)
 
 

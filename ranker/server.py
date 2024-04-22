@@ -16,7 +16,7 @@ from ranker.util.omnicorp_shared_pmids import shared_pmids
 from ranker.util.omnicorp_get_node_pmids import get_node_pmids
 
 # set the app version
-APP_VERSION = '3.3.1'
+APP_VERSION = '3.3.3'
 
 APP = FastAPI(title='ARAGORN Ranker', version=APP_VERSION)
 

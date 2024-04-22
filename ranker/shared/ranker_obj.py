@@ -489,8 +489,8 @@ class Ranker:
 
         # Look through attributes and 
         for attribute in edge.get("attributes", []):
-            orig_attr_name = attribute.get("original_attribute_name", "")
-            attr_type_id = attribute.get("attribute_type_id", "")
+            orig_attr_name = attribute.get("original_attribute_name", '')
+            attr_type_id = attribute.get("attribute_type_id", '')
 
             # We will look at both the original_attribute_name and the
             # attribute_type_id. The attribute_type_id is the real method

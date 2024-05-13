@@ -20,6 +20,44 @@ BLENDED_PROFILE = {
                 "midpoint": 0,
                 "rate": 0.00033
             }
+        },
+        "infores:text-mining-provider-targeted": {
+            "publications": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 4e-4
+            },
+            "confidence_score": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 3
+            },
+        },
+        "infores:genetics-data-provider": {
+            "p_value": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 2000
+            }
+        },
+        "infores:icees-kg": {
+            "p_value": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 5
+            }
+        },
+        "infores:gwas-catalog": {
+            "p_value": {
+                "lower": -1,
+                "upper": 1,
+                "midpoint": 0,
+                "rate": 1e8
+            }
         }
     },
     "unknown_source_weight": {
@@ -39,6 +77,12 @@ BLENDED_PROFILE = {
             "upper": 1,
             "midpoint": 0,
             "rate": 0.001373265360835
+        },
+        "affinity": {
+            "lower": -1,
+            "upper": 1,
+            "midpoint": 0,
+            "rate": 0.4
         },
         "unknown_property": {
             "lower": 0,
@@ -78,7 +122,7 @@ CURATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -92,7 +136,7 @@ CURATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -106,7 +150,7 @@ CURATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -125,7 +169,7 @@ CURATED_PROFILE = {
             "midpoint": 0,
             "rate": .574213221
         },
-        "p-value": {
+        "p_value": {
             "lower": 1,
             "upper": 0,
             "midpoint": 0.055,
@@ -165,7 +209,7 @@ CORRELATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -179,7 +223,7 @@ CORRELATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -193,7 +237,7 @@ CORRELATED_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -212,7 +256,7 @@ CORRELATED_PROFILE = {
             "midpoint": 0,
             "rate": .574213221
         },
-        "p-value": {
+        "p_value": {
             "lower": 1,
             "upper": 0,
             "midpoint": 0.055,
@@ -252,7 +296,7 @@ CLINICAL_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -266,7 +310,7 @@ CLINICAL_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -280,7 +324,7 @@ CLINICAL_PROFILE = {
                 "midpoint": 0,
                 "rate": .574213221
             },
-            "p-value": {
+            "p_value": {
                 "lower": 1,
                 "upper": 0,
                 "midpoint": 0.055,
@@ -299,7 +343,7 @@ CLINICAL_PROFILE = {
             "midpoint": 0,
             "rate": .574213221
         },
-        "p-value": {
+        "p_value": {
             "lower": 1,
             "upper": 0,
             "midpoint": 0.055,

@@ -499,7 +499,8 @@ class Ranker:
             # Publications
             if orig_attr_name == "publications" or \
                 attr_type_id == "biolink:supporting_document" or \
-                attr_type_id == "biolink:publications":
+                attr_type_id == "biolink:publications" or \
+                attr_type_id == "biolink:evidence_count":
                 
                 # Parse pubs to handle all the cases we have observed
                 pubs = attribute.get("value", [])
@@ -520,8 +521,12 @@ class Ranker:
                 usable_edge_attr["num_publications"] = len(pubs)
             
             # P-Values
+            # first 4 probably never happen
             if "p_value" in orig_attr_name or "p-value" in orig_attr_name or \
-                "p_value" in attr_type_id or "p-value" in attr_type_id:
+                "p_value" in attr_type_id or "p-value" in attr_type_id or \
+                "pValue" in orig_attr_name or \
+                "fisher_exact_p" in orig_attr_name or \
+                "gwas_pvalue" in orig_attr_name:
                 
                 p_value = attribute.get("value", None)
 
@@ -557,6 +562,14 @@ class Ranker:
             #     # Every other edge has an assumed publication of 1
             #     usable_edge_attr['num_publications'] += 1
             
+            # affinities
+            if orig_attr_name == "affinity":
+                usable_edge_attr["affinity"] = attribute.get("value", 0)
+
+            # confidence score
+            if orig_attr_name == "biolink:tmkp_confidence_score":
+                usable_edge_attr["confidence_score"] = attribute.get("value", 0)
+
         # At this point we have all of the information extracted from the edge
         # We have have looked through all attributes and filled up usable_edge_attr
         # Now we can construct the edge values using these attributes and the base weight
@@ -570,13 +583,13 @@ class Ranker:
             property_w = get_source_sigmoid(
                 usable_edge_attr["p_value"],
                 edge_source,
-                "p-value",
+                "p_value",
                 self.source_transformation,
                 self.unknown_source_transformation
             )
             source_w = get_source_weight(
                 edge_source,
-                "p-value",
+                "p_value",
                 self.source_weights,
                 self.unknown_source_weight
             )
@@ -635,6 +648,30 @@ class Ranker:
                 "weight": property_w * source_w
             }
             
+        if usable_edge_attr["affinity"] is not None:
+
+            property_w = get_source_sigmoid(
+                usable_edge_attr['affinity'],
+                edge_source,
+                "affinity",
+                self.source_transformation,
+                self.unknown_source_transformation,
+            )
+
+            source_w = get_source_weight(
+                edge_source,
+                "affinity",
+                self.source_weights,
+                self.unknown_source_weight
+            )
+
+            this_edge_vals[edge_source]["affinity"] = {
+                "value": usable_edge_attr["affinity"],
+                "property_weight": property_w,
+                "source_weight": source_w,
+                "weight": property_w * source_w
+            }
+
         # Cache it
         self.edge_values[edge_id] = this_edge_vals
 

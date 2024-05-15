@@ -199,6 +199,7 @@ class Ranker:
         # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
         weight_mat = np.zeros((num_nodes, num_nodes)) # For debugging
+        cooc_mat = np.zeros((num_nodes, num_nodes))
         for i, sub_r_node_id in enumerate(nodes):
             for j, obj_r_node_id in enumerate(nodes):
                 # If these r_nodes correspond to q_nodes and there is a q_edge between
@@ -211,29 +212,44 @@ class Ranker:
                 weight = (
                     self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
                 )
-                
+
+                cooc = 0
+
                 for edge_id, edge in edge_values_mat[sub_r_node_id][obj_r_node_id].items():
                     for source, properties in edge.items():
                         for property, values in properties.items():
                             w = values['weight']
-                            
-                            if w >= 1: # > as an emergency
-                                w = 0.9999999 # 1 causes numerical issues
+
+                            if w >= 1:  # > as an emergency
+                                w = 0.9999999  # 1 causes numerical issues
                             
                             # -1 / np.log(source_weighted) is our mapping from a [0,1]
                             # weight to an admittance. 
                             # These admittances just add since they are all in parallel
                             # This is equivalent to a noisy or.
-                            weight = weight + -1 / (np.log(w))
+
+                            admit = -1 / (np.log(w))
+
+                            if property == "literature_coocurrence":
+                                cooc = cooc + admit
+                            else:
+                                weight = weight + admit
 
                 weight_mat[i, j] += weight # For debugging
+                cooc_mat[i, j] += cooc
+
+
+        # Basically you want to multiply them in [0, 1] space
+        # So first you need to take them back to [0, 1] space
+        # Then you need to take them back to admittance space
+        juiced_mat = -1 / np.log(np.exp(-1 / weight_mat) * np.exp(-1 / cooc_mat))
 
         # Using weight_mat you can calculated the laplacian
         # We could do this in the loop above, but let's be explicit
-        weight_row_sums = np.sum(weight_mat,axis=1)
-        laplacian = -1 * weight_mat.copy()
+        juiced_row_sums = np.sum(juiced_mat,axis=1)
+        laplacian = -1 * juiced_mat.copy()
         for i in range(num_nodes):
-            laplacian[i, i] = weight_row_sums[i]
+            laplacian[i, i] = juiced_row_sums[i]
 
         # Clean up Laplacian (remove extra nodes etc.)
         # Sometimes, mostly because of a bug of some kind,

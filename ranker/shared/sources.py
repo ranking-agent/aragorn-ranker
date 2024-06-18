@@ -11,6 +11,19 @@ BLENDED_PROFILE = {
         "infores:omnicorp": {
             "literature_co-occurrence": 1,
         },
+        "infores:text-mining-provider-targeted": {
+            "publications": 0.5,
+            "confidence_score": 1
+        },
+        "infores:genetics-data-provider": {
+            "p_value": 1
+        },
+        "infores:icees-kg": {
+            "p_value": 1
+        },
+        "infores:gwas-catalog": {
+            "p_value": 1
+        }
     },
     "source_transformation": {
         "infores:omnicorp": {
@@ -37,32 +50,33 @@ BLENDED_PROFILE = {
         },
         "infores:genetics-data-provider": {
             "p_value": {
-                "lower": -1,
+                "lower": 0,
                 "upper": 1,
-                "midpoint": 0,
-                "rate": 2000
+                "midpoint": 0.05,
+                "rate": -150
             }
         },
         "infores:icees-kg": {
             "p_value": {
-                "lower": -1,
+                "lower": 0,
                 "upper": 1,
-                "midpoint": 0,
-                "rate": 5
+                "midpoint": 0.05,
+                "rate": -150
             }
         },
         "infores:gwas-catalog": {
             "p_value": {
-                "lower": -1,
+                "lower": 0,
                 "upper": 1,
-                "midpoint": 0,
-                "rate": 1e8
+                "midpoint": 0.05,
+                "rate": -150
             }
         }
     },
     "unknown_source_weight": {
         "publications": 1,
         "literature_co-occurrence": 1,
+        "affinity": 1,
         "unknown_property" : 0
     },
     "unknown_source_transformation": {
@@ -96,7 +110,9 @@ BLENDED_PROFILE = {
         "infores:omnicorp": 0,
         "infores:drugcentral": 5e-2,
         "infores:hetionet": 3e-2,
-        "infores:text-mining-provider-targeted": 5e-3
+        "infores:text-mining-provider-targeted": 5e-3,
+        "infores:icees-kg": 3e-2,
+        "infores:gwas-catalog": 3e-2
     },
     "omnicorp_relevence": 0.0025
     

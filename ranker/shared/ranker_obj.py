@@ -112,11 +112,11 @@ class Ranker:
         # And organizing nodes and edges into a more manageable form scoring
         # There is some repeated work accross analyses so we calculate all r_graphs
         # at once
-        r_gaphs = self.get_rgraph(answer)
+        r_graphs = self.get_rgraph(answer)
 
         # For each analysis we have a unique r_graph to score
         analysis_details = []
-        for i_analysis, r_graph in enumerate(r_gaphs):
+        for i_analysis, r_graph in enumerate(r_graphs):
             # First we calculate the graph laplacian
             # The probes are needed to make sure we don't remove anything
             # that we actually wanted to use for scoring
@@ -132,7 +132,10 @@ class Ranker:
             # Once we have the graph laplacian we can find the effective resistance
             # Between all of the probes
             # The exp(-1 * .) here converts us back to normalized space
-            score = np.exp(-kirchhoff(laplacian, probe_inds))
+            try:
+                score = np.exp(-kirchhoff(laplacian, probe_inds))
+            except:
+                breakpoint()
 
             # Fail safe to get rid of NaNs.
             score = score if np.isfinite(score) and score >= 0 else -1
@@ -484,7 +487,8 @@ class Ranker:
             "publications": [],
             "num_publications": 0,
             "literature_coocurrence": None,
-            "p_value": None
+            "p_value": None,
+            "affinity": None
         }
 
         # Look through attributes and 
@@ -499,8 +503,7 @@ class Ranker:
             # Publications
             if orig_attr_name == "publications" or \
                 attr_type_id == "biolink:supporting_document" or \
-                attr_type_id == "biolink:publications" or \
-                attr_type_id == "biolink:evidence_count":
+                attr_type_id == "biolink:publications":
                 
                 # Parse pubs to handle all the cases we have observed
                 pubs = attribute.get("value", [])
@@ -519,7 +522,10 @@ class Ranker:
 
                 usable_edge_attr["publications"] = pubs
                 usable_edge_attr["num_publications"] = len(pubs)
-            
+
+            if attr_type_id == "biolink:evidence_count":
+                usable_edge_attr["num_publications"] = attribute.get("value", 0)
+
             # P-Values
             # first 4 probably never happen
             if "p_value" in orig_attr_name or "p-value" in orig_attr_name or \
@@ -625,7 +631,6 @@ class Ranker:
             }
 
         if usable_edge_attr['literature_coocurrence'] is not None:
-            
             property_w = get_source_sigmoid(
                 usable_edge_attr['literature_coocurrence'],
                 edge_source,
@@ -640,7 +645,6 @@ class Ranker:
                 self.source_weights,
                 self.unknown_source_weight
             )
-
             this_edge_vals[edge_source]["literature_coocurrence"] = {
                 "value": usable_edge_attr["literature_coocurrence"],
                 "property_weight": property_w,
@@ -674,7 +678,6 @@ class Ranker:
 
         # Cache it
         self.edge_values[edge_id] = this_edge_vals
-
         return this_edge_vals
 
 def kirchhoff(L, probes):

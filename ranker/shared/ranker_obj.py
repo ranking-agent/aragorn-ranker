@@ -5,6 +5,7 @@ import logging
 from collections import defaultdict
 from itertools import combinations, product
 
+import scipy.sparse.csgraph
 import numpy as np
 
 from ranker.shared.sources import get_profile, get_source_sigmoid, get_source_weight, get_base_weight
@@ -72,11 +73,14 @@ class Ranker:
         return answers
 
     def probes(self):
-        
+
         # Identify Probes
         #################
         # Q Graph Connectivity Matrix
-        q_node_ids = list(self.qgraph["nodes"].keys()) # Need to preserve order!
+        q_node_ids = list(self.qgraph["nodes"].keys())  # Preserve order later!
+        bound_q_node_ids = [k for k, v in self.qgraph["nodes"].items() if "ids" in v and v["ids"]]
+        
+        # Calculate connectivity matrix
         n_q_nodes = len(q_node_ids)
         q_conn = np.full((n_q_nodes, n_q_nodes), 0)
         for e in self.qgraph["edges"].values():
@@ -85,18 +89,37 @@ class Ranker:
             if e_sub is not None and e_obj is not None:
                 q_conn[e_sub, e_obj] = 1
 
-        # Determine probes based on connectivity
-        node_conn = np.sum(q_conn, 0) + np.sum(q_conn, 1).T
-        probe_nodes = []
-        for conn in range(np.max(node_conn)):
-            is_this_conn = node_conn == (conn + 1)
-            probe_nodes += list(np.where(is_this_conn)[0])
-            if len(probe_nodes) > 1:
-                break
-        q_probes = list(combinations(probe_nodes, 2))
+        if len(bound_q_node_ids) > 1:
+            return list(combinations(bound_q_node_ids, 2))
+        
+        elif len(bound_q_node_ids) == 1:
+            the_bound_q_node_id = bound_q_node_ids[0]
 
-        # Convert probes back to q_node_ids
-        probes = [(q_node_ids[p[0]],q_node_ids[p[1]]) for p in q_probes]
+            the_bound_ind = q_node_ids.index(the_bound_q_node_id)
+            check_inds = list(range(n_q_nodes))
+            check_inds.remove(the_bound_ind)
+
+            shortest_dist_mat = scipy.sparse.csgraph.dijkstra(q_conn)
+            max_dist = max(shortest_dist_mat[the_bound_ind, :])
+
+            other_probe_inds = np.where(shortest_dist_mat[the_bound_ind, :] == max_dist)
+
+            return [(the_bound_q_node_id, q_node_ids[op]) for op in other_probe_inds[0]]
+
+        else:  # No bound q_nodes
+
+            # Determine probes based on maximum node connectivity
+            node_conn = np.sum(q_conn, 0) + np.sum(q_conn, 1).T
+            probe_nodes = []
+            for conn in range(np.max(node_conn)):
+                is_this_conn = node_conn == (conn + 1)
+                probe_nodes += list(np.where(is_this_conn)[0])
+                if len(probe_nodes) > 1:
+                    break
+            q_probes = list(combinations(probe_nodes, 2))
+
+            # Convert probes back to q_node_ids
+            return [(q_node_ids[p[0]], q_node_ids[p[1]]) for p in q_probes]
 
         return probes
     

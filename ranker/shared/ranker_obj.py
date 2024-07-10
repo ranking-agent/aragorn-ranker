@@ -490,7 +490,12 @@ class Ranker:
         # Look through attributes and 
         for attribute in edge.get("attributes", []):
             orig_attr_name = attribute.get("original_attribute_name", '')
+            if not orig_attr_name:
+                orig_attr_name = ''
+            
             attr_type_id = attribute.get("attribute_type_id", '')
+            if not attr_type_id:
+                attr_type_id = ''
 
             # We will look at both the original_attribute_name and the
             # attribute_type_id. The attribute_type_id is the real method
@@ -526,8 +531,15 @@ class Ranker:
                 p_value = attribute.get("value", None)
 
                 # Some times the reported p_value is a list like [p_value]
-                if isinstance(attribute["value"], list):
+                if isinstance(p_value, list):
                     p_value = (p_value[0] if len(p_value) > 0 else None)
+                
+                if isinstance(p_value, str):
+                    # Parse strings safely
+                    try:
+                        p_value = float(p_value)
+                    except:
+                        p_value = None
 
                 usable_edge_attr["p_value"] = p_value
 

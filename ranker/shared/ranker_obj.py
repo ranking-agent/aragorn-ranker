@@ -112,11 +112,11 @@ class Ranker:
         # And organizing nodes and edges into a more manageable form scoring
         # There is some repeated work accross analyses so we calculate all r_graphs
         # at once
-        r_gaphs = self.get_rgraph(answer)
+        r_graphs = self.get_rgraph(answer)
 
         # For each analysis we have a unique r_graph to score
         analysis_details = []
-        for i_analysis, r_graph in enumerate(r_gaphs):
+        for i_analysis, r_graph in enumerate(r_graphs):
             # First we calculate the graph laplacian
             # The probes are needed to make sure we don't remove anything
             # that we actually wanted to use for scoring
@@ -132,7 +132,10 @@ class Ranker:
             # Once we have the graph laplacian we can find the effective resistance
             # Between all of the probes
             # The exp(-1 * .) here converts us back to normalized space
-            score = np.exp(-kirchhoff(laplacian, probe_inds))
+            try:
+                score = np.exp(-kirchhoff(laplacian, probe_inds))
+            except:
+                breakpoint()
 
             # Fail safe to get rid of NaNs.
             score = score if np.isfinite(score) and score >= 0 else -1
@@ -484,7 +487,8 @@ class Ranker:
             "publications": [],
             "num_publications": 0,
             "literature_coocurrence": None,
-            "p_value": None
+            "p_value": None,
+            "affinity": None
         }
 
         # Look through attributes and 
@@ -523,10 +527,17 @@ class Ranker:
 
                 usable_edge_attr["publications"] = pubs
                 usable_edge_attr["num_publications"] = len(pubs)
-            
+
+            if attr_type_id == "biolink:evidence_count":
+                usable_edge_attr["num_publications"] = attribute.get("value", 0)
+
             # P-Values
+            # first 4 probably never happen
             if "p_value" in orig_attr_name or "p-value" in orig_attr_name or \
-                "p_value" in attr_type_id or "p-value" in attr_type_id:
+                "p_value" in attr_type_id or "p-value" in attr_type_id or \
+                "pValue" in orig_attr_name or \
+                "fisher_exact_p" in orig_attr_name or \
+                "gwas_pvalue" in orig_attr_name:
                 
                 p_value = attribute.get("value", None)
 
@@ -569,6 +580,14 @@ class Ranker:
             #     # Every other edge has an assumed publication of 1
             #     usable_edge_attr['num_publications'] += 1
             
+            # affinities
+            if orig_attr_name == "affinity":
+                usable_edge_attr["affinity"] = attribute.get("value", 0)
+
+            # confidence score
+            if orig_attr_name == "biolink:tmkp_confidence_score":
+                usable_edge_attr["confidence_score"] = attribute.get("value", 0)
+
         # At this point we have all of the information extracted from the edge
         # We have have looked through all attributes and filled up usable_edge_attr
         # Now we can construct the edge values using these attributes and the base weight
@@ -582,13 +601,13 @@ class Ranker:
             property_w = get_source_sigmoid(
                 usable_edge_attr["p_value"],
                 edge_source,
-                "p-value",
+                "p_value",
                 self.source_transformation,
                 self.unknown_source_transformation
             )
             source_w = get_source_weight(
                 edge_source,
-                "p-value",
+                "p_value",
                 self.source_weights,
                 self.unknown_source_weight
             )
@@ -624,7 +643,6 @@ class Ranker:
             }
 
         if usable_edge_attr['literature_coocurrence'] is not None:
-            
             property_w = get_source_sigmoid(
                 usable_edge_attr['literature_coocurrence'],
                 edge_source,
@@ -639,7 +657,6 @@ class Ranker:
                 self.source_weights,
                 self.unknown_source_weight
             )
-
             this_edge_vals[edge_source]["literature_coocurrence"] = {
                 "value": usable_edge_attr["literature_coocurrence"],
                 "property_weight": property_w,
@@ -647,9 +664,32 @@ class Ranker:
                 "weight": property_w * source_w
             }
             
+        if usable_edge_attr["affinity"] is not None:
+
+            property_w = get_source_sigmoid(
+                usable_edge_attr['affinity'],
+                edge_source,
+                "affinity",
+                self.source_transformation,
+                self.unknown_source_transformation,
+            )
+
+            source_w = get_source_weight(
+                edge_source,
+                "affinity",
+                self.source_weights,
+                self.unknown_source_weight
+            )
+
+            this_edge_vals[edge_source]["affinity"] = {
+                "value": usable_edge_attr["affinity"],
+                "property_weight": property_w,
+                "source_weight": source_w,
+                "weight": property_w * source_w
+            }
+
         # Cache it
         self.edge_values[edge_id] = this_edge_vals
-
         return this_edge_vals
 
 def kirchhoff(L, probes):

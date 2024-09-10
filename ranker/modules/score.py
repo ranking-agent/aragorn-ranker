@@ -2,7 +2,7 @@
 import logging
 from fastapi.responses import JSONResponse
 from reasoner_pydantic import Response as PDResponse
-from ranker.shared.ranker_obj import Ranker
+from ranker.shared.ranking import Ranker
 from ranker.shared.util import create_log_entry
 import os
 from datetime import datetime
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 async def query(request: PDResponse, *, jaccard_like: bool = False):
     """Score answers.
 
-    This is mostly glue around the heavy lifting in ranker_obj.Ranker
+    This is mostly glue around the heavy lifting in ranking.Ranker
     """
     logger.info(f"Begin score")
     # get the debug environment variable

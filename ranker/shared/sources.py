@@ -118,7 +118,7 @@ BLENDED_PROFILE = {
     
 }
 
-CURATED_PROFILE = {
+CURATED_PROFILE = {  # curated publications
     "source_weights": {
         "infores:automat-pharos": {
             "publications": 0.7,
@@ -205,7 +205,7 @@ CURATED_PROFILE = {
     
 }
 
-CORRELATED_PROFILE = {
+CORRELATED_PROFILE = {  # just publications in general
     "source_weights": {
         "infores:automat-pharos": {
             "publications": 0.7,
@@ -292,7 +292,7 @@ CORRELATED_PROFILE = {
     
 }
 
-CLINICAL_PROFILE = {
+CLINICAL_PROFILE = {  # clinal evidence (p values + correlation)
     "source_weights": {
         "infores:automat-pharos": {
             "publications": 0.7,

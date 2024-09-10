@@ -1,4 +1,4 @@
-from ranker.shared.ranker_obj import Ranker
+from ranker.shared.ranking import Ranker
 #temp
 from .fixtures import overlapping_set
 

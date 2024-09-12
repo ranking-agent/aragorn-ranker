@@ -3,11 +3,16 @@
 import copy
 import logging
 from collections import defaultdict
-from itertools import combinations, product
+from itertools import combinations
 
 import numpy as np
 
-from ranker.shared.sources import get_profile, get_source_sigmoid, get_source_weight, get_base_weight
+from ranker.shared.sources import (
+    get_profile, 
+    get_source_sigmoid, 
+    get_source_weight, 
+    get_base_weight
+)
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +20,7 @@ logger = logging.getLogger(__name__)
 class Ranker:
     """Ranker."""
 
-    DEFAULT_WEIGHT = -1/np.log(1e-3)
+    DEFAULT_WEIGHT = -1 / np.log(1e-3)
 
     def __init__(self, message, profile="blended"):
         """Create ranker."""
@@ -33,41 +38,42 @@ class Ranker:
             unknown_source_transformation,
             base_weights
         ) = get_profile(profile)
+
         self.source_weights = source_weights
         self.unknown_source_weight = unknown_source_weight
         self.source_transformation = source_transformation
         self.unknown_source_transformation = unknown_source_transformation
         self.base_weights = base_weights
 
-        # There are caches stored for this message
-        # Initialized here. 
+        # Initialize the caches for nodes and edges
         # These are used to find numeric values of edges
         self.node_pubs = dict()
         self.edge_values = dict()
-        # self.rank_vals = get_vals(
-        #     self.kgraph["edges"],
-        #     self.node_pubs,
-        #     self.source_transformation,
-        #     self.unknown_source_transformation,
-        # )
 
     def rank(self, answers, jaccard_like=False):
         """Generate a sorted list and scores for a set of subgraphs."""
+
         # get subgraph statistics
         answers_ = []
         scores_for_sort = []
+
         for answer in answers:
             scored_answer, _ = self.score(answer, jaccard_like=jaccard_like)
             answers_.append(scored_answer)
+            # get the highest scored analysis for this answer
             scores_for_sort.append(
                 max(
                     analysis["score"]
                     for analysis in answer.get("analyses", [{"score": 0}])
                 )
             )
+        # order the answers by score (rank)
         answers = [
-            x
-            for _, x in sorted(zip(scores_for_sort, answers), key=lambda pair: pair[0])
+            answer
+            for score, answer in 
+            sorted(
+                zip(scores_for_sort, answers), 
+                key=lambda score_answer_pair: score_answer_pair[0])
         ]
         return answers
 
@@ -76,8 +82,10 @@ class Ranker:
         # Identify Probes
         #################
         # Q Graph Connectivity Matrix
-        q_node_ids = list(self.qgraph["nodes"].keys()) # Need to preserve order!
+        # put IDs in list to maintain order
+        q_node_ids = list(self.qgraph["nodes"].keys()) 
         n_q_nodes = len(q_node_ids)
+        # initialize and fill connectivity matrix
         q_conn = np.full((n_q_nodes, n_q_nodes), 0)
         for e in self.qgraph["edges"].values():
             e_sub = q_node_ids.index(e["subject"])
@@ -120,22 +128,22 @@ class Ranker:
             # First we calculate the graph laplacian
             # The probes are needed to make sure we don't remove anything
             # that we actually wanted to use for scoring
-            laplacian, probe_inds, laplacian_details = self.graph_laplacian(r_graph, probes)
+            laplacian, probe_inds, laplacian_details = \
+                self.graph_laplacian(r_graph, probes)
 
-            # For various reasons (malformed responses typicall), we might have a 
-            # weird laplacian. We already checked and tried to clean up above
-            # If this still happens at this point it is because a probe has a problem
+            # For various reasons (malformed responses typical), we might have
+            # a weird laplacian. We already checked and tried to clean up above
+            # If this still happens at this point it is because a probe has a 
+            # problem (q_node got pruned out)
             if np.any(np.all(np.abs(laplacian) == 0, axis=0)):
                 answer["analyses"][i_analysis]["score"] = 0
                 continue
  
-            # Once we have the graph laplacian we can find the effective resistance
-            # Between all of the probes
+            # Once we have the graph laplacian we can find the effective 
+            # resistance between all of the probes
             # The exp(-1 * .) here converts us back to normalized space
-            try:
-                score = np.exp(-kirchhoff(laplacian, probe_inds))
-            except:
-                breakpoint()
+
+            score = np.exp(-kirchhoff(laplacian, probe_inds))
 
             # Fail safe to get rid of NaNs.
             score = score if np.isfinite(score) and score >= 0 else -1
@@ -150,7 +158,9 @@ class Ranker:
                 "score": score,
                 "r_graph": r_graph,
                 "probes": probes,
-                "edges": {e_info[2]:self.kgraph["edges"][e_info[2]] for e_info in r_graph["edges"]},
+                # edge_id: full edge
+                "edges": {e_info[2]: self.kgraph["edges"][e_info[2]] 
+                            for e_info in r_graph["edges"]},
                 "laplacian": laplacian,
                 "probe_inds": probe_inds
             }
@@ -163,8 +173,8 @@ class Ranker:
     def graph_laplacian(self, r_graph, probes):
         """Generate graph Laplacian."""
         
-        nodes = list(r_graph['nodes']) # Must convert to list
-        edges = list(r_graph['edges']) # Must have consistent order
+        nodes = list(r_graph['nodes'])  # Must convert to list
+        edges = list(r_graph['edges'])  # Must have consistent order
         
         # The graph laplacian will be a square matrix
         # If all goes well it will be len(nodes) by len(nodes)
@@ -172,10 +182,12 @@ class Ranker:
 
         # For each edge in the answer graph
         # Make a dictionary of edge subject, predicate, source , properties.
-        #
+
         # We will also keep track of a weighted version of the edge values
         # these are influenced by the profile
-        edge_values_mat = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
+        edge_values_mat = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(dict))
+        )
         for edge in edges:
             # Recall that edge is a tuple
             # This will contain
@@ -185,55 +197,59 @@ class Ranker:
             k_edge_id = edge[2]
 
             # The edge weight can be found via lookup
-            # With a little messaging
             edge_vals = self.get_edge_values(k_edge_id)
             
             edge_values_mat[r_subject][r_object][k_edge_id] = edge_vals
             # This enforces symmetry in edges/wires
-            edge_values_mat[r_object][r_subject][k_edge_id] = edge_vals # Enforce symmetry
+            edge_values_mat[r_object][r_subject][k_edge_id] = edge_vals
 
         # Make a set of all subject object q_node_ids that have q_edges
         qedge_qnode_ids = set(
-            [frozenset((e["subject"], e["object"])) for e in self.qgraph["edges"].values()]
+            [frozenset((e["subject"], e["object"])) 
+             for e in self.qgraph["edges"].values()]
         )
 
         # Now go through these edges
         # Turn each value into an edge weight
         # Then calculate the graph laplacian
         laplacian = np.zeros((num_nodes, num_nodes))
-        weight_mat = np.zeros((num_nodes, num_nodes)) # For debugging
+        weight_mat = np.zeros((num_nodes, num_nodes))  # For debugging
+
+        # for each item in the weight matrix (edge weight between i and j)
         for i, sub_r_node_id in enumerate(nodes):
             for j, obj_r_node_id in enumerate(nodes):
-                # If these r_nodes correspond to q_nodes and there is a q_edge between
-                # Then we set a default weight for this weight
+                # If these r_nodes correspond to q_nodes and there is a q_edge 
+                # between then we set a default weight for this weight
                 # Otherwise we set the default weight to 0
-                #
-                # This ensures that every bound q_edge at least counts for something
+                # This ensures that bound q_edges (which match to provided 
+                # k_edges) get a weight
                 edge_qnode_ids = frozenset((sub_r_node_id, obj_r_node_id))
 
                 weight = (
-                    self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids else 0.0
+                    self.DEFAULT_WEIGHT if edge_qnode_ids in qedge_qnode_ids 
+                    else 0.0
                 )
                 
-                for edge_id, edge in edge_values_mat[sub_r_node_id][obj_r_node_id].items():
+                for edge_id, edge in \
+                    edge_values_mat[sub_r_node_id][obj_r_node_id].items():
                     for source, properties in edge.items():
                         for property, values in properties.items():
                             w = values['weight']
                             
-                            if w >= 1: # > as an emergency
-                                w = 0.9999999 # 1 causes numerical issues
+                            if w >= 1:  # > as an emergency
+                                w = 0.9999999  # 1 causes numerical issues
                             
-                            # -1 / np.log(source_weighted) is our mapping from a [0,1]
-                            # weight to an admittance. 
-                            # These admittances just add since they are all in parallel
-                            # This is equivalent to a noisy or.
+                            # -1 / np.log(source_weighted) is our mapping from 
+                            # a [0,1] weight to an admittance. 
+                            # These admittances just add since they are all in 
+                            # parallel which is equivalent to a noisy or.
                             weight = weight + -1 / (np.log(w))
 
-                weight_mat[i, j] += weight # For debugging
+                weight_mat[i, j] += weight  # For debugging
 
-        # Using weight_mat you can calculated the laplacian
+        # Using weight_mat you can calculate the laplacian
         # We could do this in the loop above, but let's be explicit
-        weight_row_sums = np.sum(weight_mat,axis=1)
+        weight_row_sums = np.sum(weight_mat, axis=1)
         laplacian = -1 * weight_mat.copy()
         for i in range(num_nodes):
             laplacian[i, i] = weight_row_sums[i]
@@ -254,25 +270,19 @@ class Ranker:
         kept_nodes = [n for i, n in enumerate(nodes) if keep[i]]
 
         # Convert probes to new laplacian inds
-        probe_inds = [(kept_nodes.index(p[0]), kept_nodes.index(p[1])) for p in probes]
+        probe_inds = [(kept_nodes.index(p[0]), kept_nodes.index(p[1])) 
+                      for p in probes]
         details = {
             "edge_values": edge_values_mat,
             "weight_mat": weight_mat
         }
 
+        # remove row and col for nodes not kept 
         return laplacian[keep, :][:, keep], probe_inds, details
     
-
     def get_rgraph(self, result):
         """Get "ranker" subgraph."""
         answer = copy.deepcopy(result)
-        
-                # # Super nodes are any q_nodes that contain multiple bindings
-                # # These will be treated differently throughout scoring
-                # super_nodes = defaultdict(set)
-                # for node in answer["node_bindings"]:
-                #     if len(answer["node_bindings"][node]) > 1:
-                #         super_nodes[node] = set([nb['id'] for nb in answer["node_bindings"][node]])
         
         # All analyses share some common r_graph nodes. We can make those now
         r_graph_shared = dict()
@@ -283,8 +293,7 @@ class Ranker:
             for nb in nbs:
                 r_graph_shared['nodes_map'][nb['id']].append(nb_id)
 
-        # Build the results KG for each analysis
-        
+        # Build the results KG for each analysis:
         # The nodes for the results KG are the same for all analyses
         # We can populate these node_ids by walking through all node bindings
         result_kg_shared = {"node_ids": set(), "edge_ids": set()}
@@ -308,6 +317,8 @@ class Ranker:
                         anal_kg["edge_ids"].add(e_id)
 
             # Parse through all support graphs used in this analysis
+            # If there are support graphs on/for this analysis (not edge)
+            # Does this happen anymore?
             sg_ids = anal.get("support_graphs", [])
             for sg_id in sg_ids:
                 sg = self.agraphs.get(sg_id, None)
@@ -334,19 +345,25 @@ class Ranker:
                 )
 
             # At this point each analysis now has a complete anal_kg
-            # This is the complete picture of all nodes and edges used by this analysis
-            # This includes everything from all support graphs (recursively)
+            # This is the complete picture of all nodes and edges used by this 
+            # analysis and includes everything from all support graphs 
+            # (recursively)
 
-            # To make things simpler below it is helpful if will build a complete list
-            # of additional nodes and edges that have been added as part of support
+            # To make things simpler below it is helpful if will build a 
+            # complete list of additional nodes and edges that have been added 
+            # as part of support
             anal["support_nodes"] = copy.deepcopy(anal_kg['node_ids'])
             anal["support_edges"] = copy.deepcopy(anal_kg['edge_ids'])
+
+            # remove support graph edges which are already in edge bindings
+            # so they are not double-counted
             for eb_id, ebs in anal["edge_bindings"].items():
                 for eb in ebs:
                     e_id = eb.get("id", None)
                     if e_id and e_id in anal["support_edges"]:
                         anal["support_edges"].remove(e_id)
 
+            # same for nodes
             for nb_id, nbs in answer['node_bindings'].items():
                 for nb in nbs:
                     n_id = nb.get("id", None)
@@ -356,15 +373,18 @@ class Ranker:
             # It is also convenient to have a list of all edges that were bound
             anal["bound_edges"] = anal_kg['edge_ids'] - anal["support_edges"]
 
-            # We need to build the r_graph which is a little different than the analysis graph
-            # In the list of nodes in the analysis we need to consider the specific node bindings
-            # For example, it is possible to use a k_node in multiple bindings to different q_nodes
+            # We need to build the r_graph which is a little different than the
+            # analysis graph. In the list of nodes in the analysis we need to 
+            # consider the specific node bindings. For example, it is possible 
+            # to use a k_node in multiple bindings to different q_nodes
             # the r_graph makes "r_nodes" for each q_node
-            #
-            # Any additional support nodes are added accordingly to the r_graph as individual r_nodes
-            #
-            # Then we need to include all edges but have them point at the correct r_nodes
-            # We need to reroute them accordingly by looking up the origin k_node ids in the nodes_map
+
+            # Any additional support nodes are added accordingly to the r_graph
+            # as individual r_nodes
+
+            # Then we need to include all edges but have them point at the 
+            # correct r_nodes. We need to reroute them accordingly by looking 
+            # up the origin k_node ids in the nodes_map
 
             # First we copy over the shared nodes
             anal_r_graph = copy.deepcopy(r_graph_shared)
@@ -423,7 +443,7 @@ class Ranker:
 
         # Parse the node attributes to find the publication count
         omnicorp_article_count = 0
-        attributes = node.get('attributes',[])
+        attributes = node.get('attributes', [])
         
         # Look through attributes and check for the omnicorp edges
         for p in attributes:
@@ -433,12 +453,12 @@ class Ranker:
             # but for historical sake we keep the old name
             if p.get("original_attribute_name", "") in ["omnicorp_article_count", "num_publications"]:
                 omnicorp_article_count = p["value"]
-                break # There can be only one
+                break  # There can be only one
         
         # Safely parse
         try:
             omnicorp_article_count = int(omnicorp_article_count)
-        except:
+        except ValueError:
             omnicorp_article_count = 0
 
         # Cache it
@@ -448,15 +468,15 @@ class Ranker:
     
     def get_edge_values(self, edge_id):
         """
-        This transforms all edge attributes into values that can be used for ranking
-        This does not consider all attributes, just the ones that we can currently handle.
-        If we want to handle more things we need to add more cases here.
-        This will also cache the result for this message
+        This transforms all edge attributes into values that can be used for 
+        ranking. This does not consider all attributes, just the ones that we 
+        can currently handle. If we want to handle more things we need to add 
+        more cases here. This will also cache the result for this message
         """
 
-        # literature co-occurrence assumes a global number of pubs in it's calculation
-        # This is a constant/param and could potentially be included in a profile
-        TOTAL_PUBS = 27840000
+        # literature co-occurrence assumes a global number of pubs 
+        # This is a constant but could potentially be included in a profile
+        TOTAL_PUBS = 27840000  
 
         # Check cache
         if edge_id in self.edge_values:
@@ -476,7 +496,7 @@ class Ranker:
         for source in edge.get("sources", []):
             if "primary_knowledge_source" == source.get("resource_role", None):
                 edge_source = source.get("resource_id", "unspecified")
-                break # There can be only one
+                break  # There can be only one
         
         # We find literature co-occurance edges via predicate
         edge_pred = edge.get("predicate", '')
@@ -529,7 +549,8 @@ class Ranker:
                 usable_edge_attr["num_publications"] = len(pubs)
 
             if attr_type_id == "biolink:evidence_count":
-                usable_edge_attr["num_publications"] = attribute.get("value", 0)
+                usable_edge_attr["num_publications"] = \
+                    attribute.get("value", 0)
 
             # P-Values
             # first 4 probably never happen
@@ -549,31 +570,31 @@ class Ranker:
                     # Parse strings safely
                     try:
                         p_value = float(p_value)
-                    except:
+                    except ValueError:
                         p_value = None
 
                 usable_edge_attr["p_value"] = p_value
 
-            # Literature Co-occurrence actually uses the num_publications found above
-            # So we make sure we do it last.
+            # Literature Co-occurrence actually uses the num_publications found 
+            # above so we make sure we do it last.
             if edge_pred == "biolink:occurs_together_in_literature_with" and \
                 attr_type_id == "biolink:has_count":
 
-                # We assume this is from a literature co-occurrence source like omnicorp
+                # We assume this is from a literature co-occurrence source 
+                # (like omnicorp)
                 np = attribute.get("value", 0)
                 # Parse strings safely
                 try:
                     np = int(np)
-                except:
+                except ValueError:
                     np = 0
 
                 subject_pubs = self.get_omnicorp_node_pubs(edge["subject"])
                 object_pubs = self.get_omnicorp_node_pubs(edge["object"])
 
                 # Literature co-occurrence score
-                cov = (np / TOTAL_PUBS) - (subject_pubs / TOTAL_PUBS) * (
-                    object_pubs / TOTAL_PUBS
-                )
+                cov = (np / TOTAL_PUBS) - (subject_pubs / TOTAL_PUBS) \
+                    * (object_pubs / TOTAL_PUBS)
                 cov = max((cov, 0.0))
                 usable_edge_attr['literature_coocurrence'] = cov * TOTAL_PUBS
             # else:
@@ -586,11 +607,13 @@ class Ranker:
 
             # confidence score
             if orig_attr_name == "biolink:tmkp_confidence_score":
-                usable_edge_attr["confidence_score"] = attribute.get("value", 0)
+                usable_edge_attr["confidence_score"] = \
+                    attribute.get("value", 0)
 
         # At this point we have all of the information extracted from the edge
-        # We have have looked through all attributes and filled up usable_edge_attr
-        # Now we can construct the edge values using these attributes and the base weight
+        # We have have looked through all attributes and updated 
+        # usable_edge_attr. Now we can construct the edge values using these 
+        # attributes and the base weight
 
         this_edge_vals = defaultdict(dict)
         base_weight = get_base_weight(edge_source, self.base_weights)
@@ -692,6 +715,7 @@ class Ranker:
         self.edge_values[edge_id] = this_edge_vals
         return this_edge_vals
 
+
 def kirchhoff(L, probes):
     """Compute Kirchhoff index, including only specific nodes."""
     try:
@@ -752,7 +776,8 @@ def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
                     try:
                         add_edge = kg["edges"][add_edge_id]
                     except KeyError:
-                        # This shouldn't happen, but it's defending against some malformed TRAPI
+                        # This shouldn't happen, but it's defending against 
+                        # some malformed TRAPI
                         continue
 
                     # Get this edge and add it to the edge_kg
@@ -766,6 +791,10 @@ def get_edge_support_kg(edge_id, kg, aux_graphs, edge_kg=None):
                     if add_edge_object:
                         edge_kg["node_ids"].add(add_edge_object)
 
-                    edge_kg = get_edge_support_kg(add_edge_id, kg, aux_graphs, edge_kg)
+                    edge_kg = get_edge_support_kg(
+                        add_edge_id, kg, 
+                        aux_graphs, 
+                        edge_kg
+                    )
 
     return edge_kg

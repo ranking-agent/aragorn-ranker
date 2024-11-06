@@ -16,14 +16,6 @@ def xtest_service(svc_test):
     # load the json
     answer = response.json()
 
-    response = client.post('/weight_correctness', json=answer)
-
-    # was the request successful
-    assert(response.status_code == 200)
-
-    # load the json
-    answer = response.json()
-
     # make a good request
     response = client.post('/score', json=answer)
 
@@ -145,20 +137,3 @@ def xtest_omnicorp_overlay_publications(acet):
                 assert att.get('value',-1) > 0
                 found = True
         assert found
-
-    #Now send the overlaid thing to get weighted
-    response = client.post('/weight_correctness', json=answer)
-    assert(response.status_code == 200)
-    weighted = response.json()
-
-    #We want to make sure that weighting accomplished something.  If things are borked in weighting either we won't get
-    # back a weight, or it will be set to a default value of 1.
-    for result in weighted['message']['results']:
-        for eb_id, edges in result['edge_bindings'].items():
-            for edge in edges:
-                if edge['id'] in support_edges:
-                    weight = 1
-                    for att in edge.get('attributes',[]):
-                        if att.get('original_attribute_name','') == 'weight':
-                            weight = att.get('value',1)
-                    assert weight != 1

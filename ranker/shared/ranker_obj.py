@@ -8,6 +8,7 @@ from itertools import combinations, product
 import numpy as np
 
 from ranker.shared.sources import get_profile, get_source_sigmoid, get_source_weight, get_base_weight
+from ranker.shared.predicate_hierarchy import find_predicate_heirarchy
 
 logger = logging.getLogger(__name__)
 
@@ -594,8 +595,14 @@ class Ranker:
 
         this_edge_vals = defaultdict(dict)
         base_weight = get_base_weight(edge_source, self.base_weights)
+        pred_height, pred_depth, pred_num_decendants = \
+            find_predicate_heirarchy(edge_pred)
+        # ratio of depth of this pred to total depth of this branch 
+        # most specific pred = 1
+        # less specific pred = depth / total depth  
+        pred_specificity_weight = pred_depth / (pred_depth + pred_height) 
         this_edge_vals[edge_source]["base_weight"] = {
-            "weight": base_weight
+            "weight": base_weight * pred_specificity_weight
         }
         if usable_edge_attr["p_value"] is not None:
             property_w = get_source_sigmoid(

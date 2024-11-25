@@ -1,4 +1,5 @@
 """Literature co-occurrence support."""
+
 import heapq
 import logging
 import os
@@ -45,6 +46,7 @@ async def add_node_pmid_counts(kgraph, counts):
         # save the attributes
         kgraph["nodes"][node_id]["attributes"].append(attribute)
 
+
 async def add_shared_pmid_counts(
     message,
     values,
@@ -72,17 +74,19 @@ async def add_shared_pmid_counts(
                         },
                         {
                             "attribute_type_id": "biolink:agent_type",
-                            "value": "statistical_association_pipeline"
+                            "value": "statistical_association_pipeline",
                         },
                         {
                             "attribute_type_id": "biolink:knowledge_level",
-                            "value": "statistical_association"
-                        }
+                            "value": "statistical_association",
+                        },
                     ],
-                    "sources": [{
+                    "sources": [
+                        {
                             "resource_id": "infores:omnicorp",
                             "resource_role": "primary_knowledge_source",
-                    }],
+                        }
+                    ],
                     "subject": pair[0],
                     "object": pair[1],
                 }
@@ -106,11 +110,11 @@ async def add_shared_pmid_counts(
                 support_idx += 1
                 analysis["support_graphs"].append(omnisupport)
             if omnisupport not in aux_graphs:
-                aux_graphs[omnisupport] = { "edges": [], "attributes": [] }
+                aux_graphs[omnisupport] = {"edges": [], "attributes": []}
             aux_graphs[omnisupport]["edges"].append(uid)
 
 
-def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]] :
+def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]]:
     """Create a dictionary of node to pairs."""
     node2pairs = defaultdict(list)
     for pair in pairs:
@@ -118,7 +122,8 @@ def create_node2pairs(pairs: Set[Tuple]) -> Dict[str, List[Tuple]] :
             node2pairs[node].append(pair)
     return node2pairs
 
-def make_key(x,node_indices):
+
+def make_key(x, node_indices):
     """x is a tuple of curies.
     node_indices is a dictionary of node to index.
     return a string "index1_index2" where index1 < index2.
@@ -129,6 +134,7 @@ def make_key(x,node_indices):
         return f"{i1}_{i2}"
     else:
         return f"{i2}_{i1}"
+
 
 async def query(request: PDResponse):
     """Add support to message.
@@ -207,19 +213,24 @@ async def query(request: PDResponse):
             [
                 n
                 for n in qgraph["nodes"]
-                if (qgraph["nodes"][n].get("set_interpretation", None) or "BATCH") != "BATCH"
+                if (qgraph["nodes"][n].get("set_interpretation", None) or "BATCH")
+                != "BATCH"
             ]
         )
 
-        #Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
+        # Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
         # are part of the same answer
         t1 = datetime.now()
-        pair_to_answer = await generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message)
+        pair_to_answer = await generate_curie_pairs(
+            answers, qgraph_setnodes, node_pub_counts, message
+        )
         t2 = datetime.now()
-        logger.info(f"generate_curie_pairs time: {t2 - t1}. Number of pairs: {len(pair_to_answer)}")
+        logger.info(
+            f"generate_curie_pairs time: {t2 - t1}. Number of pairs: {len(pair_to_answer)}"
+        )
 
         # get all pair supports
-        keypairs = {make_key(x,node_indices):x for x in pair_to_answer.keys()}
+        keypairs = {make_key(x, node_indices): x for x in pair_to_answer.keys()}
         inputkeys = list(keypairs.keys())
 
         values = {}
@@ -227,15 +238,15 @@ async def query(request: PDResponse):
             q_start = datetime.now()
             results = cache.shared_count_query(batch)
             q_end = datetime.now()
-            #logger.info(f"Query time: {q_end - q_start}")
-            for input,output in results.items():
+            # logger.info(f"Query time: {q_end - q_start}")
+            for input, output in results.items():
                 if output is not None:
                     curie_pair = keypairs[input]
                     try:
                         values[curie_pair] = int(output)
                     except Exception as e:
                         values[curie_pair] = 0
-        await add_shared_pmid_counts(message,values,pair_to_answer)
+        await add_shared_pmid_counts(message, values, pair_to_answer)
         end_pair_time = datetime.now()
         logger.info(f"Pair time: {end_pair_time - start_pair_time}")
 
@@ -275,9 +286,9 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
         nonset_nodes = []
         setnodes = {}
 
-        #What counts as a node in the answer for TRAPI 1.4?
-        #It can be in the node_bindings
-        #Or, you can go into each analysis, go to the edges in the edge binding, and some of those many have
+        # What counts as a node in the answer for TRAPI 1.4?
+        # It can be in the node_bindings
+        # Or, you can go into each analysis, go to the edges in the edge binding, and some of those many have
         # an auxiliary supporting graph, which has edges.  The edges have nodes. Those nodes count.
         # for the ones in this case, the support graph goes in the analysis, and involves both the
         # bound nodes and the analysis nodes.
@@ -285,9 +296,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
         # node binding results is now a dict containing dicts that contain a list of dicts.
         for nb in answer_map["node_bindings"]:
             if nb in qgraph_setnodes:
-                setnodes[nb] = [
-                    node["id"] for node in answer_map["node_bindings"][nb]
-                ]
+                setnodes[nb] = [node["id"] for node in answer_map["node_bindings"][nb]]
             else:
                 if len(answer_map["node_bindings"][nb]) != 0:
                     nonset_nodes.extend(
@@ -297,29 +306,33 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
         for analysis_idx, analysis in enumerate(answer_map["analyses"]):
             new_nonset_nodes = set()
             # find the knowledge edges that are bound in the analysis
-            relevant_kedge_id_lists = [ [x["id"] for x in eb] for eb in analysis["edge_bindings"].values()]
+            relevant_kedge_id_lists = [
+                [x["id"] for x in eb] for eb in analysis["edge_bindings"].values()
+            ]
             relevant_kedge_ids = [x for el in relevant_kedge_id_lists for x in el]
-            #for bound knowledge edges, find their supporting graphs
+            # for bound knowledge edges, find their supporting graphs
             auxgraph_ids = []
             for kedge_id in relevant_kedge_ids:
                 kedge = message["knowledge_graph"]["edges"][kedge_id]
                 for attribute in kedge["attributes"]:
                     if attribute["attribute_type_id"] == "biolink:support_graphs":
                         auxgraph_ids.extend(attribute["value"])
-            #for every supporting graph, get the edges
+            # for every supporting graph, get the edges
             all_relevant_edge_ids = set()
             for auxgraph_id in auxgraph_ids:
                 try:
-                    all_relevant_edge_ids.update(message["auxiliary_graphs"][auxgraph_id]["edges"])
+                    all_relevant_edge_ids.update(
+                        message["auxiliary_graphs"][auxgraph_id]["edges"]
+                    )
                 except KeyError:
-                    #It looks like there are some upstream errors leading to auxgraph_ids that don't exist
+                    # It looks like there are some upstream errors leading to auxgraph_ids that don't exist
                     logger.warning(f"Auxgraph id not found: {auxgraph_id}")
                     pass
             for edge_id in all_relevant_edge_ids:
                 try:
                     edge = message["knowledge_graph"]["edges"][edge_id]
                 except KeyError:
-                    #this can only happen if the trapi is malformed, but we don't want to die if it is.
+                    # this can only happen if the trapi is malformed, but we don't want to die if it is.
                     continue
                 new_nonset_nodes.add(edge["subject"])
                 new_nonset_nodes.add(edge["object"])
@@ -337,7 +350,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                 for snode in snodes:
                     for node in lookup_nodes:
                         node_pair = tuple(sorted((node, snode)))
-                        pair_to_answer[node_pair].add((ans_idx,analysis_idx))
+                        pair_to_answer[node_pair].add((ans_idx, analysis_idx))
 
             # now all nodes in set a to all nodes in set b
             for qga, qgb in combinations(setnodes.keys(), 2):

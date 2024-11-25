@@ -8,8 +8,9 @@
 
 import uvicorn
 
-class App:
-    ...
+
+class App: ...
+
 
 app = App()
 

@@ -2,9 +2,11 @@
 
 The ARAGORN ranker used by the ARAGORN ARA, which takes a TRAPI 1.5 message containing answers, and calculates numerical scores for each answer.
 
-This is a upgraded port of code from robokop-messenger to perform omnicorp overlay, score and weight-correctness answer ranking.
+This is a upgraded port of code from robokop-messenger to perform omnicorp overlay and score for answer ranking.
 
-ARAGORN-ranker uses the omnicorp database to retrieve ontologies. Please see the link below that references that codebase.
+Omicorp overlay attaches literature co-occurrence support graphs to each result, and the score operation calculates the overall score of the result. Together, the support graphs and the score are included as an analysis of of the result.
+
+ARAGORN-ranker uses the omnicorp database to retrieve ontologies and perform literature co-occurrence calculations. Please see the link below that references that codebase.
 
 ## Demonstration
 

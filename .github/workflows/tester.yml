@@ -47,3 +47,10 @@ jobs:
       - name: Cleanup
         run: |
           bash tests/setup/shutdown_helpers.sh
+
+  check-format:
+    name: Check that code matches Black formatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable

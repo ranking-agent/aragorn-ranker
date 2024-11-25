@@ -4,61 +4,6 @@ import string
 from datetime import datetime
 from typing import List
 
-from pydantic import BaseModel, Field
-
-
-class CurieList(BaseModel):
-    """Curie list input model"""
-
-    curies: List[str] = Field(
-        ...,  # Ellipsis means field is required
-        title='list of nodes formatted as curies',
-        min_items=1
-    )
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "curies": ["NCBIGene:1026", "NCBIGene:896"]
-            }
-        }
-
-
-class Curie(BaseModel):
-    """Curie list input model"""
-
-    curies: List[str] = Field(
-        ...,  # Ellipsis means field is required
-        title='list of single node formatted as curies',
-        min_items=1,
-        max_items=1
-    )
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "curies": ["NCBIGene:1026"]
-            }
-        }
-
-
-def random_string(length=10):
-    """Return a random N-character-long string."""
-    return ''.join(random.choice(string.ascii_lowercase) for x in range(length))
-
-
-def argsort(x, reverse=False):
-    """Return the indices that would sort the array."""
-    return [p[0] for p in sorted(enumerate(x), key=lambda elem: elem[1], reverse=reverse)]
-
-
-def flatten_semilist(x):
-    """Convert a semi-nested list - a list of (lists and scalars) - to a flat list."""
-    # convert to a list of lists
-    lists = [n if isinstance(n, list) else [n] for n in x]
-    # flatten nested list
-    return [e for el in lists for e in el]
-
 
 def batches(arr, n):
     """Iterate over arr by batches of size n."""
@@ -66,22 +11,8 @@ def batches(arr, n):
         yield arr[i:i + n]
 
 
-def get_curie_prefix(curie):
-    if ':' not in curie:
-        raise ValueError(f'Curies ought to contain a colon: {curie}')
-    return curie.upper().split(':')[0]
-
-
-def get_postgres_curie_prefix(curie):
-    """The representation in postgres moves things to lowercase, and replaces . with _"""
-    if ':' not in curie:
-        raise ValueError(f'Curies ought to contain a colon: {curie}')
-    prefix = curie.lower().split(':')
-    prefix = '_'.join(prefix[0].split('.'))
-    return prefix
-
-
 def create_log_entry(msg: str, err_level, code=None) -> dict:
+    """Creates a log entry"""
     now = datetime.now()
 
     # load the data

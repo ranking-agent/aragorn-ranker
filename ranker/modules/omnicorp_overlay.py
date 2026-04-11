@@ -1,6 +1,7 @@
 """Literature co-occurrence support."""
 
 import heapq
+import json as json_mod
 import logging
 import os
 import asyncio
@@ -57,6 +58,9 @@ async def add_shared_pmid_counts(
     aux_graphs = message["auxiliary_graphs"]
     answers = message["results"]
     support_idx = 0
+    # Cache the OMNICORP support graph name per (answer_idx, analysis_idx)
+    # to avoid repeated linear searches through analysis["support_graphs"]
+    omni_sg_cache = {}
     for pair, publication_count in values.items():
         if publication_count == 0:
             continue
@@ -96,19 +100,24 @@ async def add_shared_pmid_counts(
         # pair_to_answer is a dictionary of pairs to tuples.
         # Each tuple is a pair of (answer_idx, analysis_idx)
         for answer_idx, analysis_idx in pair_to_answer[pair]:
-            analysis = answers[answer_idx]["analyses"][analysis_idx]
-            # see if the analysis has an omnicoprot support graph
-            if "support_graphs" not in analysis:
-                analysis["support_graphs"] = []
-            omnisupport = None
-            for sg in analysis["support_graphs"]:
-                if sg.startswith("OMNICORP_support_graph"):
-                    omnisupport = sg
-                    break
-            if omnisupport is None:
-                omnisupport = f"OMNICORP_support_graph_{support_idx}"
-                support_idx += 1
-                analysis["support_graphs"].append(omnisupport)
+            cache_key = (answer_idx, analysis_idx)
+            if cache_key in omni_sg_cache:
+                omnisupport = omni_sg_cache[cache_key]
+            else:
+                analysis = answers[answer_idx]["analyses"][analysis_idx]
+                # see if the analysis has an omnicorp support graph
+                if "support_graphs" not in analysis:
+                    analysis["support_graphs"] = []
+                omnisupport = None
+                for sg in analysis["support_graphs"]:
+                    if sg.startswith("OMNICORP_support_graph"):
+                        omnisupport = sg
+                        break
+                if omnisupport is None:
+                    omnisupport = f"OMNICORP_support_graph_{support_idx}"
+                    support_idx += 1
+                    analysis["support_graphs"].append(omnisupport)
+                omni_sg_cache[cache_key] = omnisupport
             if omnisupport not in aux_graphs:
                 aux_graphs[omnisupport] = {"edges": [], "attributes": []}
             aux_graphs[omnisupport]["edges"].append(uid)
@@ -149,7 +158,7 @@ async def query(request: PDResponse):
         dt_start = datetime.now()
 
     dt_1 = datetime.now()
-    in_message = request.dict(exclude_none=True, exclude_unset=True)
+    in_message = json_mod.loads(request.json(exclude_none=True, exclude_unset=True))
     dt_2 = datetime.now()
     logger.info(f"convert in message to dict: {dt_2 - dt_1}")
 
@@ -209,14 +218,12 @@ async def query(request: PDResponse):
 
         start_pair_time = datetime.now()
         # which qgraph nodes are sets?
-        qgraph_setnodes = set(
-            [
-                n
-                for n in qgraph["nodes"]
-                if (qgraph["nodes"][n].get("set_interpretation", None) or "BATCH")
-                != "BATCH"
-            ]
-        )
+        qgraph_setnodes = {
+            n
+            for n in qgraph["nodes"]
+            if (qgraph["nodes"][n].get("set_interpretation", None) or "BATCH")
+            != "BATCH"
+        }
 
         # Now we want to find the publication count for every pair.   But: we only want to do that for pairs that
         # are part of the same answer
@@ -278,6 +285,16 @@ async def query(request: PDResponse):
 async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, message):
     # Generate a set of pairs of node curies
     # if we don't have a node in node_pub_counts, we don't need to add it to the pairs to check.
+
+    # Pre-compute edge -> support_graph_ids mapping to avoid re-scanning
+    # edge attributes for every answer/analysis
+    edge_support_graphs = {}
+    for edge_id, edge in message["knowledge_graph"]["edges"].items():
+        for attr in edge.get("attributes", []):
+            if attr.get("attribute_type_id") == "biolink:support_graphs":
+                edge_support_graphs[edge_id] = attr.get("value", [])
+                break
+
     pair_to_answer = defaultdict(set)  # a map of node pairs to answers
     for ans_idx, answer_map in enumerate(answers):
 
@@ -296,7 +313,8 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
         # node binding results is now a dict containing dicts that contain a list of dicts.
         for nb in answer_map["node_bindings"]:
             if nb in qgraph_setnodes:
-                setnodes[nb] = [node["id"] for node in answer_map["node_bindings"][nb]]
+                setnodes[nb] = [node["id"] for node in answer_map["node_bindings"][nb]
+                                if node["id"] in node_pub_counts]
             else:
                 if len(answer_map["node_bindings"][nb]) != 0:
                     nonset_nodes.extend(
@@ -313,10 +331,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
             # for bound knowledge edges, find their supporting graphs
             auxgraph_ids = []
             for kedge_id in relevant_kedge_ids:
-                kedge = message["knowledge_graph"]["edges"][kedge_id]
-                for attribute in kedge["attributes"]:
-                    if attribute["attribute_type_id"] == "biolink:support_graphs":
-                        auxgraph_ids.extend(attribute["value"])
+                auxgraph_ids.extend(edge_support_graphs.get(kedge_id, []))
             # for every supporting graph, get the edges
             all_relevant_edge_ids = set()
             for auxgraph_id in auxgraph_ids:
@@ -337,11 +352,7 @@ async def generate_curie_pairs(answers, qgraph_setnodes, node_pub_counts, messag
                 new_nonset_nodes.add(edge["subject"])
                 new_nonset_nodes.add(edge["object"])
             new_nonset_nodes.update(nonset_nodes)
-            lookup_nodes = list(new_nonset_nodes)
-
-            # remove nodes that are not in node_pub_counts
-            lookup_nodes = [n for n in lookup_nodes if n in node_pub_counts]
-            lookup_nodes = sorted(lookup_nodes)
+            lookup_nodes = sorted(new_nonset_nodes & node_pub_counts.keys())
             for node_pair in combinations(lookup_nodes, 2):
                 pair_to_answer[node_pair].add((ans_idx, analysis_idx))
 

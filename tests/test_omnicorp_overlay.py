@@ -1,5 +1,7 @@
 """Test scoring."""
 
+import os
+
 import pytest
 from fastapi.testclient import TestClient
 from ranker.server import APP
@@ -11,6 +13,63 @@ from .fixtures import omnicorp_input, property_coalesce, multinodebind_rank
 
 # start a client
 client = TestClient(APP)
+
+
+def _load_redis_test_data():
+    """Parse the Redis command dump files into plain dicts.
+
+    redis_curies contains lines like:
+        HSET <curie> index <i> pmc <count>
+    redis_curie_pairs contains lines like:
+        SET <i>_<j> <count>
+    """
+    data_dir = os.path.join(os.path.dirname(__file__), "OmnicorpTestData")
+
+    curies = {}
+    with open(os.path.join(data_dir, "redis_curies")) as stream:
+        for line in stream:
+            parts = line.strip().split()
+            if len(parts) != 6 or parts[0] != "HSET":
+                continue
+            _, curie, _, index, _, pmc = parts
+            curies[curie] = {"index": index, "pmc": pmc}
+
+    pairs = {}
+    with open(os.path.join(data_dir, "redis_curie_pairs")) as stream:
+        for line in stream:
+            parts = line.strip().split()
+            if len(parts) != 3 or parts[0] != "SET":
+                continue
+            _, key, count = parts
+            pairs[key] = count
+
+    return curies, pairs
+
+
+class _FakeCache:
+    """Drop-in replacement for ranker.shared.cache.Cache that serves
+    the Omnicorp test data from local files instead of Redis."""
+
+    _curies, _pairs = _load_redis_test_data()
+
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def curie_query(self, keys):
+        # Missing curies mimic redis hgetall behavior: empty dict.
+        return {key: self._curies.get(key, {}) for key in keys}
+
+    def shared_count_query(self, keys):
+        # Missing keys mimic redis get behavior: None.
+        return {key: self._pairs.get(key) for key in keys}
+
+
+@pytest.fixture(autouse=True)
+def _mock_redis_cache(monkeypatch):
+    """Replace the Cache used by omnicorp_overlay with the file-backed fake."""
+    monkeypatch.setattr(
+        "ranker.modules.omnicorp_overlay.Cache", _FakeCache
+    )
 
 
 # def test_omnicorp_overlay(omnicorp_input):

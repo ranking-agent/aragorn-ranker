@@ -148,6 +148,8 @@ async def query(request: PDResponse):
     if debug == "True":
         dt_start = datetime.now()
 
+    overall_start = datetime.now()
+
     dt_1 = datetime.now()
     in_message = request.dict(exclude_none=True, exclude_unset=True)
     dt_2 = datetime.now()
@@ -174,6 +176,7 @@ async def query(request: PDResponse):
         message["auxiliary_graphs"] = {}
 
     # get cache if possible
+    cache_init_start = datetime.now()
     try:
         cache = Cache(
             redis_host=CACHE_HOST,
@@ -184,6 +187,7 @@ async def query(request: PDResponse):
     except Exception as e:
         logger.exception(e)
         cache = None
+    logger.info(f"Cache init time: {datetime.now() - cache_init_start}")
 
     dt_start = datetime.now()
     redis_batch_size = 1000
@@ -193,17 +197,32 @@ async def query(request: PDResponse):
         start_node_time = datetime.now()
         # first, get the publication counts for all nodes in the kgraph
         keys = list(kgraph["nodes"].keys())
+        logger.info(f"Node lookup count: {len(keys)}")
 
         node_pub_counts = {}
         node_indices = {}
+        node_redis_total = 0.0
+        node_process_total = 0.0
         for batch in batches(keys, redis_batch_size):
+            t_q = datetime.now()
             results = cache.curie_query(batch)
+            t_r = datetime.now()
             for curie, result in results.items():
                 if len(result) == 0:
                     continue
                 node_pub_counts[curie] = result["pmc"]
                 node_indices[curie] = int(result["index"])
+            t_p = datetime.now()
+            node_redis_total += (t_r - t_q).total_seconds()
+            node_process_total += (t_p - t_r).total_seconds()
+        logger.info(
+            f"Node redis total: {node_redis_total:.4f}s, "
+            f"process total: {node_process_total:.4f}s"
+        )
+
+        t_attr_start = datetime.now()
         await add_node_pmid_counts(kgraph, node_pub_counts)
+        logger.info(f"add_node_pmid_counts time: {datetime.now() - t_attr_start}")
         end_node_time = datetime.now()
         logger.info(f"Node time: {end_node_time - start_node_time}")
 
@@ -230,15 +249,21 @@ async def query(request: PDResponse):
         )
 
         # get all pair supports
+        t_key_start = datetime.now()
         keypairs = {make_key(x, node_indices): x for x in pair_to_answer.keys()}
         inputkeys = list(keypairs.keys())
+        logger.info(
+            f"keypair build time: {datetime.now() - t_key_start}, "
+            f"count: {len(inputkeys)}"
+        )
 
         values = {}
+        pair_redis_total = 0.0
+        pair_process_total = 0.0
         for batch in batches(inputkeys, redis_batch_size):
             q_start = datetime.now()
             results = cache.shared_count_query(batch)
             q_end = datetime.now()
-            # logger.info(f"Query time: {q_end - q_start}")
             for input, output in results.items():
                 if output is not None:
                     curie_pair = keypairs[input]
@@ -246,13 +271,27 @@ async def query(request: PDResponse):
                         values[curie_pair] = int(output)
                     except Exception as e:
                         values[curie_pair] = 0
+            p_end = datetime.now()
+            pair_redis_total += (q_end - q_start).total_seconds()
+            pair_process_total += (p_end - q_end).total_seconds()
+        logger.info(
+            f"Pair redis total: {pair_redis_total:.4f}s, "
+            f"process total: {pair_process_total:.4f}s"
+        )
+
+        t_pair_attr_start = datetime.now()
         await add_shared_pmid_counts(message, values, pair_to_answer)
+        logger.info(
+            f"add_shared_pmid_counts time: {datetime.now() - t_pair_attr_start}"
+        )
         end_pair_time = datetime.now()
         logger.info(f"Pair time: {end_pair_time - start_pair_time}")
 
         # load the new results into the response
+        t_assemble_start = datetime.now()
         message["knowledge_graph"] = kgraph
         message["results"] = answers
+        logger.info(f"response assembly time: {datetime.now() - t_assemble_start}")
 
     except Exception as e:
         # put the error in the response
@@ -269,6 +308,8 @@ async def query(request: PDResponse):
                 "DEBUG",
             )
         )
+
+    logger.info(f"Total omnicorp time: {datetime.now() - overall_start}")
 
     # return the result to the caller
     logger.info("Omnicorp complete. Returning.")

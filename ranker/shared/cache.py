@@ -4,6 +4,7 @@ import logging
 import os
 import pickle
 import redis
+from datetime import datetime
 from lru import LRU
 
 logger = logging.getLogger(__name__)
@@ -72,18 +73,38 @@ class Cache:
         self.serializer = serializer()
 
     def curie_query(self, keys):
+        t_start = datetime.now()
         pipeline = self.redis.pipeline()
         for key in keys:
             pipeline.hgetall(key)
+        t_built = datetime.now()
         result = pipeline.execute()
-        return {key: value for key, value in zip(keys, result)}
+        t_executed = datetime.now()
+        output = {key: value for key, value in zip(keys, result)}
+        t_done = datetime.now()
+        logger.info(
+            f"curie_query (n={len(keys)}): build={t_built - t_start}, "
+            f"execute={t_executed - t_built}, assemble={t_done - t_executed}, "
+            f"total={t_done - t_start}"
+        )
+        return output
 
     def shared_count_query(self, keys):
+        t_start = datetime.now()
         pipeline = self.redis.pipeline()
         for key in keys:
             pipeline.get(key)
+        t_built = datetime.now()
         result = pipeline.execute()
-        return {key: value for key, value in zip(keys, result)}
+        t_executed = datetime.now()
+        output = {key: value for key, value in zip(keys, result)}
+        t_done = datetime.now()
+        logger.info(
+            f"shared_count_query (n={len(keys)}): build={t_built - t_start}, "
+            f"execute={t_executed - t_built}, assemble={t_done - t_executed}, "
+            f"total={t_done - t_start}"
+        )
+        return output
 
     def get(self, key):
         """Get a cached item by key."""
